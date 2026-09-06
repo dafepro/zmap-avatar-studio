@@ -1,0 +1,809 @@
+{
+  "version": 1,
+  "id": "zoomap-athletics",
+  "revision": "1.0.0",
+  "rig": {
+    "id": "athlete-rigid-v1",
+    "height": 1.95,
+    "sockets": [
+      {
+        "id": "root",
+        "parent": null,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "hips",
+        "parent": "root",
+        "position": [
+          0,
+          0.86,
+          0
+        ]
+      },
+      {
+        "id": "chest",
+        "parent": "hips",
+        "position": [
+          0,
+          0.25,
+          0
+        ]
+      },
+      {
+        "id": "head",
+        "parent": "chest",
+        "position": [
+          0,
+          0.5,
+          0
+        ]
+      },
+      {
+        "id": "arm_L",
+        "parent": "chest",
+        "position": [
+          -0.272,
+          0.18,
+          0
+        ]
+      },
+      {
+        "id": "forearm_L",
+        "parent": "arm_L",
+        "position": [
+          0,
+          -0.255,
+          0
+        ]
+      },
+      {
+        "id": "hand_L",
+        "parent": "forearm_L",
+        "position": [
+          0,
+          -0.22,
+          0
+        ]
+      },
+      {
+        "id": "leg_L",
+        "parent": "hips",
+        "position": [
+          -0.137,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "shin_L",
+        "parent": "leg_L",
+        "position": [
+          0,
+          -0.34,
+          0
+        ]
+      },
+      {
+        "id": "foot_L",
+        "parent": "shin_L",
+        "position": [
+          0,
+          -0.36,
+          0.01
+        ]
+      },
+      {
+        "id": "arm_R",
+        "parent": "chest",
+        "position": [
+          0.272,
+          0.18,
+          0
+        ]
+      },
+      {
+        "id": "forearm_R",
+        "parent": "arm_R",
+        "position": [
+          0,
+          -0.255,
+          0
+        ]
+      },
+      {
+        "id": "hand_R",
+        "parent": "forearm_R",
+        "position": [
+          0,
+          -0.22,
+          0
+        ]
+      },
+      {
+        "id": "leg_R",
+        "parent": "hips",
+        "position": [
+          0.137,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "shin_R",
+        "parent": "leg_R",
+        "position": [
+          0,
+          -0.34,
+          0
+        ]
+      },
+      {
+        "id": "foot_R",
+        "parent": "shin_R",
+        "position": [
+          0,
+          -0.36,
+          0.01
+        ]
+      }
+    ]
+  },
+  "base": "body-athletic",
+  "slots": [
+    {
+      "id": "head",
+      "label": "Head",
+      "required": true
+    },
+    {
+      "id": "face",
+      "label": "Face",
+      "required": true
+    },
+    {
+      "id": "hair",
+      "label": "Hair",
+      "required": false
+    },
+    {
+      "id": "shirt",
+      "label": "Tops",
+      "required": true
+    },
+    {
+      "id": "bottom",
+      "label": "Bottoms",
+      "required": true
+    },
+    {
+      "id": "shoes",
+      "label": "Footwear",
+      "required": true
+    },
+    {
+      "id": "accessory",
+      "label": "Accessories",
+      "required": false
+    },
+    {
+      "id": "effect",
+      "label": "Effects",
+      "required": false
+    }
+  ],
+  "channels": [
+    "skin",
+    "primary",
+    "secondary",
+    "trim",
+    "hair",
+    "iris",
+    "accent"
+  ],
+  "assets": [
+    {
+      "id": "body-athletic",
+      "label": "Athletic",
+      "slot": "body",
+      "rig": "athlete-rigid-v1",
+      "description": "Shared articulated proportions with independent hands, knees and ankles.",
+      "attachments": [
+        {
+          "node": "body-athletic__chest",
+          "socket": "chest"
+        },
+        {
+          "node": "body-athletic__arm_L",
+          "socket": "arm_L"
+        },
+        {
+          "node": "body-athletic__forearm_L",
+          "socket": "forearm_L"
+        },
+        {
+          "node": "body-athletic__hand_L",
+          "socket": "hand_L"
+        },
+        {
+          "node": "body-athletic__leg_L",
+          "socket": "leg_L"
+        },
+        {
+          "node": "body-athletic__shin_L",
+          "socket": "shin_L"
+        },
+        {
+          "node": "body-athletic__arm_R",
+          "socket": "arm_R"
+        },
+        {
+          "node": "body-athletic__forearm_R",
+          "socket": "forearm_R"
+        },
+        {
+          "node": "body-athletic__hand_R",
+          "socket": "hand_R"
+        },
+        {
+          "node": "body-athletic__leg_R",
+          "socket": "leg_R"
+        },
+        {
+          "node": "body-athletic__shin_R",
+          "socket": "shin_R"
+        }
+      ],
+      "channels": [
+        "skin"
+      ],
+      "tags": [],
+      "url": "models/body-athletic.glb",
+      "bytes": 52768,
+      "sha256": "74a289ba7994f368c1c3a3cd7d183ca2eb7f27d0663169d720dc83fdd097e9ae",
+      "triangles": 772
+    },
+    {
+      "id": "head-scout",
+      "label": "Scout",
+      "slot": "head",
+      "rig": "athlete-rigid-v1",
+      "description": "Faceted cheek and jaw silhouette on the common head socket.",
+      "attachments": [
+        {
+          "node": "head-scout__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "skin"
+      ],
+      "tags": [],
+      "url": "models/head-scout.glb",
+      "bytes": 29056,
+      "sha256": "782493b2bc452a8b248859ff5f716cd9e7e8e8f6b926087d41d493e3caf05a2e",
+      "triangles": 320
+    },
+    {
+      "id": "head-spark",
+      "label": "Spark",
+      "slot": "head",
+      "rig": "athlete-rigid-v1",
+      "description": "Faceted cheek and jaw silhouette on the common head socket.",
+      "attachments": [
+        {
+          "node": "head-spark__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "skin"
+      ],
+      "tags": [],
+      "url": "models/head-spark.glb",
+      "bytes": 29060,
+      "sha256": "e3622973f53976f11312286c06c3266c2814b33dfa6d87aa1e0b777e996bbba2",
+      "triangles": 320
+    },
+    {
+      "id": "face-focus",
+      "label": "Game face",
+      "slot": "face",
+      "rig": "athlete-rigid-v1",
+      "description": "Readable eyes and brows; geometry stays on the shared facial plane.",
+      "attachments": [
+        {
+          "node": "face-focus__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "hair",
+        "iris"
+      ],
+      "tags": [],
+      "url": "models/face-focus.glb",
+      "bytes": 17964,
+      "sha256": "26a4e922ea82ce2f9fd39a3acc6fc79ef878e3e0596437d64af9daa0b3894453",
+      "triangles": 240
+    },
+    {
+      "id": "face-grin",
+      "label": "Big grin",
+      "slot": "face",
+      "rig": "athlete-rigid-v1",
+      "description": "Readable eyes and brows; geometry stays on the shared facial plane.",
+      "attachments": [
+        {
+          "node": "face-grin__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "hair",
+        "iris"
+      ],
+      "tags": [],
+      "url": "models/face-grin.glb",
+      "bytes": 15740,
+      "sha256": "b1db6c7499e184000c18442acf36a680c5dba44af52212899ffaca60b4bfe342",
+      "triangles": 205
+    },
+    {
+      "id": "face-wink",
+      "label": "Good vibes",
+      "slot": "face",
+      "rig": "athlete-rigid-v1",
+      "description": "Readable eyes and brows; geometry stays on the shared facial plane.",
+      "attachments": [
+        {
+          "node": "face-wink__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "hair",
+        "iris"
+      ],
+      "tags": [],
+      "url": "models/face-wink.glb",
+      "bytes": 14988,
+      "sha256": "2c67b223bc61aa4ac5c18c9347c40d4271e3dfc05a7f332aa354cf3e110e23ea",
+      "triangles": 182
+    },
+    {
+      "id": "hair-sweep",
+      "label": "Side sweep",
+      "slot": "hair",
+      "rig": "athlete-rigid-v1",
+      "description": "Interchangeable hair envelope with a clear athletic silhouette.",
+      "attachments": [
+        {
+          "node": "hair-sweep__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "hair"
+      ],
+      "tags": [],
+      "url": "models/hair-sweep.glb",
+      "bytes": 17640,
+      "sha256": "acbaa4a36f193a9bf30877099e4e321dafb0d7c22857a2e7555c196bd83f48cf",
+      "triangles": 176
+    },
+    {
+      "id": "hair-curls",
+      "label": "Cloud curls",
+      "slot": "hair",
+      "rig": "athlete-rigid-v1",
+      "description": "Interchangeable hair envelope with a clear athletic silhouette.",
+      "attachments": [
+        {
+          "node": "hair-curls__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "hair"
+      ],
+      "tags": [],
+      "url": "models/hair-curls.glb",
+      "bytes": 64860,
+      "sha256": "0eafef83d99ba1e0eaf3e6aab631f67b1bc7b8eec3a039f63d08412ed0d79516",
+      "triangles": 632
+    },
+    {
+      "id": "hair-pony",
+      "label": "High pony",
+      "slot": "hair",
+      "rig": "athlete-rigid-v1",
+      "description": "Interchangeable hair envelope with a clear athletic silhouette.",
+      "attachments": [
+        {
+          "node": "hair-pony__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "primary",
+        "hair"
+      ],
+      "tags": [],
+      "url": "models/hair-pony.glb",
+      "bytes": 36376,
+      "sha256": "b49f525e552e0a531d81832ebe94172ab1a0f4a0cde6508428d6fca1d23c2d03",
+      "triangles": 350
+    },
+    {
+      "id": "shirt-jersey",
+      "label": "Club jersey",
+      "slot": "shirt",
+      "rig": "athlete-rigid-v1",
+      "description": "Torso and independent sleeve segments follow the shared rig.",
+      "attachments": [
+        {
+          "node": "shirt-jersey__chest",
+          "socket": "chest"
+        },
+        {
+          "node": "shirt-jersey__arm_L",
+          "socket": "arm_L"
+        },
+        {
+          "node": "shirt-jersey__arm_R",
+          "socket": "arm_R"
+        }
+      ],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "url": "models/shirt-jersey.glb",
+      "bytes": 29784,
+      "sha256": "f72148fdb24a995310c61ad0ba6a175de6facf0e0d34cfa7108e91399e64ae43",
+      "triangles": 418
+    },
+    {
+      "id": "shirt-hoodie",
+      "label": "Warm-up hoodie",
+      "slot": "shirt",
+      "rig": "athlete-rigid-v1",
+      "description": "Torso and independent sleeve segments follow the shared rig.",
+      "attachments": [
+        {
+          "node": "shirt-hoodie__chest",
+          "socket": "chest"
+        },
+        {
+          "node": "shirt-hoodie__arm_L",
+          "socket": "arm_L"
+        },
+        {
+          "node": "shirt-hoodie__forearm_L",
+          "socket": "forearm_L"
+        },
+        {
+          "node": "shirt-hoodie__arm_R",
+          "socket": "arm_R"
+        },
+        {
+          "node": "shirt-hoodie__forearm_R",
+          "socket": "forearm_R"
+        }
+      ],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "url": "models/shirt-hoodie.glb",
+      "bytes": 46128,
+      "sha256": "0e3dd82bce43194efadf08fc6c2d9d3f09d0e30b58e36f5ffb386ed35a33a08b",
+      "triangles": 630
+    },
+    {
+      "id": "shirt-track",
+      "label": "Track jacket",
+      "slot": "shirt",
+      "rig": "athlete-rigid-v1",
+      "description": "Torso and independent sleeve segments follow the shared rig.",
+      "attachments": [
+        {
+          "node": "shirt-track__chest",
+          "socket": "chest"
+        },
+        {
+          "node": "shirt-track__arm_L",
+          "socket": "arm_L"
+        },
+        {
+          "node": "shirt-track__forearm_L",
+          "socket": "forearm_L"
+        },
+        {
+          "node": "shirt-track__arm_R",
+          "socket": "arm_R"
+        },
+        {
+          "node": "shirt-track__forearm_R",
+          "socket": "forearm_R"
+        }
+      ],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "url": "models/shirt-track.glb",
+      "bytes": 39012,
+      "sha256": "eefc4f795d6e8151502a5e223556fdf2b52190028153305f7e352a5dba5bd22d",
+      "triangles": 566
+    },
+    {
+      "id": "bottom-court",
+      "label": "Court shorts",
+      "slot": "bottom",
+      "rig": "athlete-rigid-v1",
+      "description": "Hip waistband and separate leg panels retain stride articulation.",
+      "attachments": [
+        {
+          "node": "bottom-court__hips",
+          "socket": "hips"
+        },
+        {
+          "node": "bottom-court__leg_L",
+          "socket": "leg_L"
+        },
+        {
+          "node": "bottom-court__leg_R",
+          "socket": "leg_R"
+        }
+      ],
+      "channels": [
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "url": "models/bottom-court.glb",
+      "bytes": 13696,
+      "sha256": "88c5f6f7a099b59462bcf0186185f4ca1c048639015494ac9e36430287e8b09e",
+      "triangles": 156
+    },
+    {
+      "id": "bottom-training",
+      "label": "Training shorts",
+      "slot": "bottom",
+      "rig": "athlete-rigid-v1",
+      "description": "Hip waistband and separate leg panels retain stride articulation.",
+      "attachments": [
+        {
+          "node": "bottom-training__hips",
+          "socket": "hips"
+        },
+        {
+          "node": "bottom-training__leg_L",
+          "socket": "leg_L"
+        },
+        {
+          "node": "bottom-training__leg_R",
+          "socket": "leg_R"
+        }
+      ],
+      "channels": [
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "url": "models/bottom-training.glb",
+      "bytes": 13732,
+      "sha256": "f75387da856c7529f64d4c7925604a738dc712136a371c978f53924f168e8617",
+      "triangles": 156
+    },
+    {
+      "id": "shoes-court",
+      "label": "Court classic",
+      "slot": "shoes",
+      "rig": "athlete-rigid-v1",
+      "description": "Paired foot sockets, with socks, soles, toe panels and laces.",
+      "attachments": [
+        {
+          "node": "shoes-court__foot_L",
+          "socket": "foot_L"
+        },
+        {
+          "node": "shoes-court__foot_R",
+          "socket": "foot_R"
+        }
+      ],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "url": "models/shoes-court.glb",
+      "bytes": 59928,
+      "sha256": "ccdcb91596323fc51fea1f5a1a559ee533294ef23b8485b2ab2cc83704a191db",
+      "triangles": 832
+    },
+    {
+      "id": "shoes-runner",
+      "label": "Velocity runner",
+      "slot": "shoes",
+      "rig": "athlete-rigid-v1",
+      "description": "Paired foot sockets, with socks, soles, toe panels and laces.",
+      "attachments": [
+        {
+          "node": "shoes-runner__foot_L",
+          "socket": "foot_L"
+        },
+        {
+          "node": "shoes-runner__foot_R",
+          "socket": "foot_R"
+        }
+      ],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim",
+        "accent"
+      ],
+      "tags": [],
+      "url": "models/shoes-runner.glb",
+      "bytes": 67940,
+      "sha256": "a77b87f9111f488c52147a6767d89fecd7f2348011bf3f26602e4419c1fc7cc6",
+      "triangles": 920
+    },
+    {
+      "id": "shoes-high",
+      "label": "High tops",
+      "slot": "shoes",
+      "rig": "athlete-rigid-v1",
+      "description": "Paired foot sockets, with socks, soles, toe panels and laces.",
+      "attachments": [
+        {
+          "node": "shoes-high__foot_L",
+          "socket": "foot_L"
+        },
+        {
+          "node": "shoes-high__foot_R",
+          "socket": "foot_R"
+        }
+      ],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "url": "models/shoes-high.glb",
+      "bytes": 63204,
+      "sha256": "8fd9c492ee8c7d2ed57a4b2b1b58f4257aad42196672ee2ce499ac757e0ca75f",
+      "triangles": 888
+    },
+    {
+      "id": "acc-band",
+      "label": "Captain band",
+      "slot": "accessory",
+      "rig": "athlete-rigid-v1",
+      "description": "Optional head accessory, fitted across both head silhouettes.",
+      "attachments": [
+        {
+          "node": "acc-band__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "accent"
+      ],
+      "tags": [],
+      "excludesTags": [
+        "tall-headwear"
+      ],
+      "url": "models/acc-band.glb",
+      "bytes": 3832,
+      "sha256": "ce738379dbb1763208c174a759aa034901c99ec60547a86c81ca469e76328799",
+      "triangles": 60
+    },
+    {
+      "id": "acc-glasses",
+      "label": "Round frames",
+      "slot": "accessory",
+      "rig": "athlete-rigid-v1",
+      "description": "Optional head accessory, fitted across both head silhouettes.",
+      "attachments": [
+        {
+          "node": "acc-glasses__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "secondary"
+      ],
+      "tags": [],
+      "url": "models/acc-glasses.glb",
+      "bytes": 45984,
+      "sha256": "1130e1676bf14c9dd7f983d303d1363c7acbeede95612688cd45bb2f56a73088",
+      "triangles": 700
+    },
+    {
+      "id": "acc-headphones",
+      "label": "Off-duty audio",
+      "slot": "accessory",
+      "rig": "athlete-rigid-v1",
+      "description": "Optional head accessory, fitted across both head silhouettes.",
+      "attachments": [
+        {
+          "node": "acc-headphones__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "secondary",
+        "accent"
+      ],
+      "tags": [],
+      "url": "models/acc-headphones.glb",
+      "bytes": 33976,
+      "sha256": "ca2b4f0a88523779868de26a8e9238497de1ddfeb20ba7c01d486a9ea836ecb4",
+      "triangles": 400
+    },
+    {
+      "id": "effect-orbit",
+      "label": "Golden orbit",
+      "slot": "effect",
+      "rig": "athlete-rigid-v1",
+      "description": "Quiet bounded accent geometry; reduced motion keeps it still.",
+      "attachments": [
+        {
+          "node": "effect-orbit__root",
+          "socket": "root"
+        }
+      ],
+      "channels": [
+        "accent"
+      ],
+      "tags": [],
+      "effect": "orbit",
+      "url": "models/effect-orbit.glb",
+      "bytes": 68712,
+      "sha256": "0f3c0304966b722b098279ca4b654b35605b4afa8c7127d21383610f15c9f1cb",
+      "triangles": 1020
+    },
+    {
+      "id": "effect-spark",
+      "label": "Team sparks",
+      "slot": "effect",
+      "rig": "athlete-rigid-v1",
+      "description": "Quiet bounded accent geometry; reduced motion keeps it still.",
+      "attachments": [
+        {
+          "node": "effect-spark__root",
+          "socket": "root"
+        }
+      ],
+      "channels": [
+        "accent"
+      ],
+      "tags": [],
+      "effect": "spark",
+      "url": "models/effect-spark.glb",
+      "bytes": 11612,
+      "sha256": "2a3cf63a151e8b70532888e17d72fd5376b361c902de4e2f210311b660727534",
+      "triangles": 100
+    }
+  ],
+  "budgets": {
+    "maxTriangles": 14000,
+    "maxBytes": 1500000,
+    "maxParts": 12
+  }
+}

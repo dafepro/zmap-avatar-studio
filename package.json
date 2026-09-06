@@ -1,0 +1,48 @@
+{
+  "name": "@zoomap/avatar-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Independent modular avatar runtime, Blender kit and design studio",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    },
+    "./core": {
+      "types": "./lib/core.d.ts",
+      "import": "./lib/core.js"
+    }
+  },
+  "files": [
+    "lib",
+    "public",
+    "README.md",
+    "docs/contracts.md"
+  ],
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -p tsconfig.lib.json && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "format": "prettier --write src app tests scripts *.ts *.json README.md docs/*.md",
+    "prepack": "tsc -p tsconfig.lib.json",
+    "build:lib": "tsc -p tsconfig.lib.json",
+    "test:package": "node scripts/package-smoke.mjs",
+    "format:check": "prettier --check src app tests scripts *.ts *.json README.md docs/*.md"
+  },
+  "peerDependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "three": "0.180.0",
+    "@types/three": "^0.180.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.2",
+    "tsx": "^4.20.5",
+    "vite": "^7.1.5",
+    "@playwright/test": "^1.55.0",
+    "prettier": "^3.9.6"
+  }
+}
