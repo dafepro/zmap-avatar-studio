@@ -1008,3 +1008,48 @@ dialog form > div {
     top: 116px;
   }
 }
+
+.projection-tools {
+  position: absolute;
+  z-index: 4;
+  top: 96px;
+  left: 24px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: calc(100% - 48px);
+}
+.projection-tools button {
+  font-size: 10px;
+  padding: 6px 9px;
+  border: 1px solid #cbd0bd;
+  border-radius: 14px;
+  background: #f6f4e9;
+  color: #374139;
+}
+#projection-note {
+  font-size: 9px;
+  color: #65705e;
+}
+.stage-number {
+  top: 145px;
+}
+@media (max-width: 650px) {
+  .projection-tools {
+    left: 12px;
+    top: 81px;
+  }
+  .stage-number {
+    display: none;
+  }
+  .style-controls {
+    top: 45px;
+  }
+}
+
+@media (max-width: 900px) {
+  #projection-note {
+    display: none;
+  }
+}

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Zoomap illustrated expression atlas</title>
+  <desc>Original editable vector artwork informed by the Zoomap avatar study. Three expressions occupy 512px cells: focus, grin, wink; bottom right is empty. All space outside the drawn facial features is transparent. Brows are at y110, eyes at y190, nose at y300 and mouth at y416.</desc>
+  <defs>
+    <linearGradient id="brow" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#413327"/><stop offset="0.55" stop-color="#29231e"/><stop offset="1" stop-color="#1c1a17"/>
+    </linearGradient>
+    <linearGradient id="eye-white" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cbb99b"/><stop offset="0.28" stop-color="#fff4d9"/><stop offset="0.8" stop-color="#fff9e7"/><stop offset="1" stop-color="#eee1c6"/>
+    </linearGradient>
+    <radialGradient id="iris" cx="48%" cy="76%" r="80%">
+      <stop offset="0" stop-color="#d29a4e"/><stop offset="0.4" stop-color="#9b642e"/><stop offset="0.76" stop-color="#50311c"/><stop offset="1" stop-color="#251c16"/>
+    </radialGradient>
+    <linearGradient id="pupil" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#141613"/><stop offset="1" stop-color="#292018"/>
+    </linearGradient>
+    <linearGradient id="teeth" x1="0" y1="0" x2="0.1" y2="1">
+      <stop offset="0" stop-color="#dbccb0"/><stop offset="0.3" stop-color="#fff9e9"/><stop offset="1" stop-color="#f5e9cf"/>
+    </linearGradient>
+    <clipPath id="left-eye-clip"><path d="M76 183 Q111 162 149 165 Q192 166 215 199 Q191 234 152 237 Q109 237 87 209 Z"/></clipPath>
+    <clipPath id="right-eye-clip"><path d="M436 180 Q402 159 363 164 Q321 167 297 200 Q321 234 360 236 Q402 236 425 207 Z"/></clipPath>
+    <g id="iris-paint">
+      <ellipse cx="0" cy="0" rx="33" ry="41" fill="#251d16"/>
+      <ellipse cx="0" cy="1" rx="29.5" ry="37.5" fill="url(#iris)"/>
+      <!-- Irregular radial brush marks, concentrated around the warm lower iris. -->
+      <path d="M-24 12l8 1 -3 11 7 -5 2 14 5 -11 3 13 5 -12 6 9 1 -14 7 5 -4 -13 7 -1 -8 -7" fill="none" stroke="#d49a49" stroke-width="2.6" opacity="0.56"/>
+      <path d="M-25 -3l10 3M25 2l-10 2M-17 29l5 -9M13 31l-3 -10M-3 35l2 -12" fill="none" stroke="#5d381e" stroke-width="2" opacity="0.55"/>
+      <ellipse cx="0" cy="-5" rx="15.5" ry="25.5" fill="url(#pupil)"/>
+      <path d="M-18 -24 Q-13 -31 -5 -27 Q1 -23 -3 -16 Q-8 -11 -15 -14 Q-21 -17 -18 -24Z" fill="#fffef6"/>
+      <path d="M16 16q5 -4 8 0l-2 6q-5 2 -7 -2Z" fill="#fff1cf"/>
+      <path d="M-25 15Q-21 27 -11 33" fill="none" stroke="#e3aa59" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+    </g>
+    <g id="left-eye" transform="translate(153 196) scale(1.06 1.32) translate(-153 -196)">
+      <path d="M76 183 Q111 162 149 165 Q192 166 215 199 Q191 234 152 237 Q109 237 87 209 Z" fill="url(#eye-white)"/>
+      <g clip-path="url(#left-eye-clip)"><use href="#iris-paint" transform="translate(153 197)"/></g>
+      <path d="M71 175 Q92 177 113 166 Q145 151 175 164 Q204 177 220 204 Q203 186 184 178 Q145 162 112 178 L88 190 L90 206 Q79 195 71 175Z" fill="#211d18"/>
+      <path d="M88 207 Q106 232 148 236 Q179 240 207 213 Q190 241 151 240 Q110 239 88 211Z" fill="#664329" opacity="0.9"/>
+      <path d="M93 182Q113 168 132 169" fill="none" stroke="#56402b" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M86 199l-7 -5 6 16 9 7Z" fill="#35271e"/>
+    </g>
+    <g id="right-eye" transform="translate(359 195) scale(1.06 1.32) translate(-359 -195)">
+      <path d="M436 180 Q402 159 363 164 Q321 167 297 200 Q321 234 360 236 Q402 236 425 207 Z" fill="url(#eye-white)"/>
+      <g clip-path="url(#right-eye-clip)"><use href="#iris-paint" transform="translate(359 195)"/></g>
+      <path d="M441 172 Q421 174 399 164 Q369 151 338 164 Q309 179 292 205 Q309 187 329 178 Q369 161 400 176 L425 187 L422 204 Q436 190 441 172Z" fill="#211d18"/>
+      <path d="M425 205 Q405 231 364 235 Q330 241 303 212 Q321 241 362 239 Q404 237 425 209Z" fill="#664329" opacity="0.9"/>
+      <path d="M420 179Q401 166 381 167" fill="none" stroke="#56402b" stroke-width="1.3" stroke-linecap="round"/>
+      <path d="M428 198l8 -7 -5 16 -9 7Z" fill="#35271e"/>
+    </g>
+    <g id="left-brow" transform="translate(145 101) scale(1.04 1.08) translate(-145 -110)">
+      <path d="M67 123 L105 85 Q132 88 161 99 L207 119 Q217 123 218 143 Q195 136 179 130 L120 108 Q98 108 67 123Z" fill="url(#brow)"/>
+      <path d="M70 121L105 85 136 98 111 93Z" fill="#64513c" opacity="0.42"/>
+      <path d="M105 92L196 126 170 111 151 109Z" fill="#72604a" opacity="0.22"/>
+      <path d="M120 100L203 129M157 111l52 20" fill="none" stroke="#1b1916" stroke-width="1.3" opacity="0.4"/>
+      <path d="M213 136l-7 -18 10 8 2 17Z" fill="#1b1916"/>
+    </g>
+    <g id="right-brow" transform="translate(367 101) scale(1.04 1.08) translate(-367 -110)">
+      <path d="M294 142 Q293 124 306 117 L354 98 Q383 88 408 84 L446 119 Q417 105 395 108 L337 129 Q319 136 294 142Z" fill="url(#brow)"/>
+      <path d="M300 129L357 101 407 84 430 105 406 94 368 108Z" fill="#66513c" opacity="0.33"/>
+      <path d="M302 134L393 108 413 109M321 122l65 -22" fill="none" stroke="#1b1916" stroke-width="1.3" opacity="0.35"/>
+      <path d="M302 120l-7 8 -1 14 9 -4Z" fill="#1b1916"/>
+    </g>
+    <g id="nose" transform="translate(256 300) scale(1.24 1.24) translate(-256 -300)">
+      <path d="M242 298 Q248 288 256 290 L275 299 252 304Z" fill="#bd7c47" opacity="0.88"/>
+      <path d="M242 298L252 304 260 307 Q249 309 240 301Z" fill="#75462e"/>
+      <path d="M252 291L272 298 257 299Z" fill="#e0a46c" opacity="0.68"/>
+      <path d="M239 300Q241 295 246 294" fill="none" stroke="#4c3023" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <g id="smile" transform="translate(0 36)">
+      <path d="M177 374 Q204 389 252 383 Q293 379 327 366 Q300 383 258 388 Q209 395 177 378Z" fill="#573624"/>
+      <path d="M184 376Q229 392 302 374" fill="none" stroke="#9b5e38" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M176 375Q181 369 188 373" fill="none" stroke="#4b2e21" stroke-width="2.7" stroke-linecap="round"/>
+      <path d="M318 368Q328 361 333 368" fill="none" stroke="#4b2e21" stroke-width="2.7" stroke-linecap="round"/>
+      <path d="M231 407Q257 411 277 403" fill="none" stroke="#9b5e38" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+    </g>
+    <g id="grin" transform="translate(0 36)">
+      <path d="M169 369 Q232 391 339 358 Q330 397 302 417 Q246 445 201 417 Q179 398 169 369Z" fill="#543322"/>
+      <path d="M181 377 Q242 394 326 369 Q323 387 311 396 Q245 418 197 400 Q185 392 181 377Z" fill="url(#teeth)"/>
+      <path d="M204 409 Q249 424 306 405 Q289 429 249 429 Q222 428 204 409Z" fill="#fff8e8"/>
+      <path d="M196 401Q253 422 313 397" fill="none" stroke="#b69570" stroke-width="1.6"/>
+      <path d="M172 371Q169 365 162 368M333 361q9 -6 12 -2" fill="none" stroke="#684029" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M224 439Q253 446 281 436" fill="none" stroke="#a26741" stroke-width="1.5" opacity="0.32" stroke-linecap="round"/>
+    </g>
+    <g id="wink-eye" transform="translate(360 196) scale(1.06 1.2) translate(-360 -196)">
+      <path d="M295 209Q327 169 376 177Q405 184 430 179L418 193 437 187 Q428 203 414 209 Q382 189 353 194 Q324 196 295 209Z" fill="#272119"/>
+      <path d="M307 202Q338 186 365 186" fill="none" stroke="#66503a" stroke-width="1.5" opacity="0.7"/>
+      <path d="M413 229l20 -8M416 242l22 -6" fill="none" stroke="#ad713f" stroke-width="2.3" stroke-linecap="round" opacity="0.7"/>
+    </g>
+    <g id="wink-brow" transform="translate(365 101) scale(1.04 1.08) translate(-365 -110)">
+      <path d="M295 145Q295 120 319 108L371 88Q402 87 433 114Q408 107 389 115L336 133Z" fill="url(#brow)"/>
+      <path d="M301 132L371 92 404 103 373 99Z" fill="#6a553e" opacity="0.3"/>
+    </g>
+  </defs>
+  <g id="focus">
+    <use href="#left-brow"/><use href="#right-brow"/>
+    <use href="#left-eye"/><use href="#right-eye"/>
+    <use href="#nose"/><use href="#smile"/>
+  </g>
+  <g id="big-grin" transform="translate(512 0)">
+    <use href="#left-brow"/><use href="#right-brow"/>
+    <use href="#left-eye"/><use href="#right-eye"/>
+    <use href="#nose"/><use href="#grin"/>
+  </g>
+  <g id="wink" transform="translate(0 512)">
+    <use href="#left-brow" transform="rotate(-3 145 115)"/><use href="#wink-brow"/>
+    <use href="#left-eye"/><use href="#wink-eye"/>
+    <use href="#nose"/><use href="#smile" transform="rotate(-3 255 416)"/>
+  </g>
+</svg>

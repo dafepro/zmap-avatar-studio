@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Zoomap drawn garment wash</title>
+  <desc>Original editable cloth shading without logos, collars or fastenings. Transparent drawn layers. Project x minus .235 to plus .235, y .86 to 1.36 metres, image top at y1.36. A white-backed PNG is used as a palette-multiplied color map.</desc>
+  <defs>
+    <linearGradient id="left-fold" x1="0" y1="0.1" x2="1" y2="0.6">
+      <stop offset="0" stop-color="#797873" stop-opacity=".35"/>
+      <stop offset=".6" stop-color="#b3b0a8" stop-opacity=".13"/>
+      <stop offset="1" stop-color="#b3b0a8" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="right-fold" x1="1" y1="0" x2="0" y2=".8">
+      <stop offset="0" stop-color="#716f68" stop-opacity=".4"/>
+      <stop offset=".55" stop-color="#a4a09a" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#aaa79e" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="hem-fold" x1="0" y1="1" x2=".2" y2="0">
+      <stop offset="0" stop-color="#706d68" stop-opacity=".32"/>
+      <stop offset=".56" stop-color="#aaa79e" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#b3b0a8" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="side-wash" x1="1" y1=".5" x2="0" y2=".5">
+      <stop offset="0" stop-color="#9d9890" stop-opacity=".21"/>
+      <stop offset="1" stop-color="#a8a39a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Designed fabric planes. Their edges describe folds rather than the mesh triangles. -->
+  <path d="M58 154Q71 162 90 174L162 234L122 221L89 198L79 237L65 211Z" fill="url(#left-fold)"/>
+  <path d="M75 170L101 190L112 205L90 194L78 225Z" fill="#88857f" opacity=".16"/>
+  <path d="M447 143L430 177L384 232L355 244L393 194L414 181L426 156Z" fill="url(#right-fold)"/>
+  <path d="M435 163L414 196L394 208L422 171Z" fill="#74716b" opacity=".14"/>
+  <path d="M433 186Q416 262 431 327L448 368L431 394L408 346Q398 271 413 222Z" fill="url(#side-wash)"/>
+  <path d="M70 281L91 318L109 333L92 349L82 337L73 326Z" fill="url(#left-fold)" opacity=".55"/>
+  <path d="M408 317L428 353L419 380L386 399L401 372L414 359Z" fill="url(#right-fold)" opacity=".64"/>
+  <path d="M81 446L116 425L165 438L204 456L181 460L137 444L105 452L88 467Z" fill="url(#hem-fold)"/>
+  <path d="M191 455L232 429Q259 424 289 435L326 451L348 446L334 465Q281 459 250 458L217 469Z" fill="url(#hem-fold)" opacity=".78"/>
+  <path d="M344 444L393 419L433 436L444 465L412 453L386 439L369 454Z" fill="url(#hem-fold)"/>
+  <path d="M104 455Q151 447 195 465L217 469Q172 463 143 461Z" fill="#77756f" opacity=".11"/>
+  <path d="M281 458L326 449L350 453L332 463Z" fill="#858079" opacity=".13"/>
+  <!-- Irregular ink fragments; no continuous box seam, collar or zipper. -->
+  <g fill="none" stroke="#696761" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M72 174Q87 182 100 194" stroke-width="1.7" opacity=".22"/>
+    <path d="M104 197l10 9" stroke-width="1.1" opacity=".15"/>
+    <path d="M430 169Q418 189 404 202" stroke-width="1.9" opacity=".24"/>
+    <path d="M400 206l-13 12" stroke-width="1.1" opacity=".15"/>
+    <path d="M423 356l-9 16" stroke-width="1.4" opacity=".2"/>
+    <path d="M96 447Q117 438 136 444" stroke-width="1.6" opacity=".17"/>
+    <path d="M151 449l15 4" stroke-width="1.1" opacity=".12"/>
+    <path d="M371 443l19 -11 20 7" stroke-width="1.5" opacity=".2"/>
+    <path d="M212 466Q243 460 275 465" stroke-width="1.25" opacity=".13"/>
+  </g>
+  <!-- Quiet hem stitches, spaced in drawn runs and clear of the atlas edge. -->
+  <g fill="none" stroke="#77746d" stroke-width="1.15" stroke-linecap="round" opacity=".16">
+    <path d="M100 479l5 0M110 480l5 0M121 480l5 0M133 481l5 0M146 481l5 0"/>
+    <path d="M213 483l5 0M224 483l5 0M236 484l5 0M248 484l5 0M261 484l5 0M274 484l5 0"/>
+    <path d="M357 480l5 -1M368 479l5 -1M380 478l5 0M392 478l5 0M404 479l5 0"/>
+  </g>
+</svg>

@@ -13,6 +13,7 @@ import {
   type Recipe,
 } from "../src/core";
 import { AvatarLibrary } from "../src/runtime";
+import "./helpers/node-image";
 const catalog: Catalog = JSON.parse(
   await readFile(new URL("../public/catalog.json", import.meta.url), "utf8"),
 );
@@ -40,7 +41,10 @@ test("all catalog assets match their hashes, budgets and self-contained attachme
     );
     total += bytes.length;
   }
-  assert.ok(total < 1000000, "whole launch kit stays under 1 MB");
+  assert.ok(
+    total < 1500000,
+    "whole illustrated launch catalog stays under 1.5 MB; appearance budgets are checked separately",
+  );
 });
 test("every supported combination fits the common rig and resource budgets", () => {
   const recipe = defaultRecipe(catalog);

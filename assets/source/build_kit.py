@@ -13,9 +13,9 @@ def mat(name,hex):
     m=bpy.data.materials.new(name);m.diffuse_color=(*values,1);m.use_nodes=True;b=m.node_tree.nodes.get('Principled BSDF');b.inputs['Base Color'].default_value=(*values,1);b.inputs['Roughness'].default_value=.88;return m
 skin=mat('skin','#c68b60'); primary=mat('primary','#782e43'); secondary=mat('secondary','#263b3c'); trim=mat('trim','#f4ead7'); hair=mat('hair','#312821'); ink=mat('ink','#24252a'); white=mat('white','#fff5e0'); iris=mat('iris','#554030'); sole=mat('sole','#e5e3d6'); accent=mat('accent','#d9a342')
 channels=['skin','primary','secondary','trim','hair','iris','accent']
-sockets=[{'id':'root','parent':None,'position':[0,0,0]},{'id':'hips','parent':'root','position':[0,.86,0]},{'id':'chest','parent':'hips','position':[0,.25,0]},{'id':'head','parent':'chest','position':[0,.50,0]}]
+sockets=[{'id':'root','parent':None,'position':[0,0,0]},{'id':'hips','parent':'root','position':[0,.86,0]},{'id':'chest','parent':'hips','position':[0,.25,0]},{'id':'head','parent':'chest','position':[0,.55,0]}]
 for sign,label in [(-1,'L'),(1,'R')]:
-    sockets.extend([{'id':'arm_'+label,'parent':'chest','position':[sign*.272,.18,0]},{'id':'forearm_'+label,'parent':'arm_'+label,'position':[0,-.255,0]},{'id':'hand_'+label,'parent':'forearm_'+label,'position':[0,-.22,0]},{'id':'leg_'+label,'parent':'hips','position':[sign*.137,0,0]},{'id':'shin_'+label,'parent':'leg_'+label,'position':[0,-.34,0]},{'id':'foot_'+label,'parent':'shin_'+label,'position':[0,-.36,.01]}])
+    sockets.extend([{'id':'arm_'+label,'parent':'chest','position':[sign*.272,.18,0]},{'id':'forearm_'+label,'parent':'arm_'+label,'position':[sign*.06,-.255,0]},{'id':'hand_'+label,'parent':'forearm_'+label,'position':[sign*.025,-.22,0]},{'id':'leg_'+label,'parent':'hips','position':[sign*.137,0,0]},{'id':'shin_'+label,'parent':'leg_'+label,'position':[0,-.34,0]},{'id':'foot_'+label,'parent':'shin_'+label,'position':[0,-.36,.01]}])
 positions={}
 for s in sockets:positions[s['id']]=Vector(s['position'])+(positions[s['parent']] if s['parent'] else Vector())
 def empty(name,parent=None):
@@ -50,16 +50,6 @@ def asset(id,label,slot,description):
 def mount(root,record,socket):
     o=empty(record['id']+'__'+socket,root);record['attachments'].append({'node':o.name,'socket':socket});return o
 def export(root,record):
-    if record['slot']=='face':
-        # Wrap surface details around the head's cheek plane, including line tubes.
-        bpy.context.view_layer.update()
-        for obj in root.children_recursive:
-            if obj.type=='MESH':
-                matrix=obj.matrix_world.copy();inverse=matrix.inverted()
-                for vertex in obj.data.vertices:
-                    point=matrix@vertex.co
-                    point.y+=abs(point.x)*.27-.005
-                    vertex.co=inverse@point
     for pivot in list(root.children):
         parts=[o for o in pivot.children if o.type=='MESH']
         if len(parts)>1:
@@ -69,57 +59,35 @@ def export(root,record):
     for obj in root.children_recursive:
         if obj.type=='MESH':
             bm=bmesh.new();bm.from_mesh(obj.data);bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces));bm.to_mesh(obj.data);bm.free();obj.data.update()
+            if record['slot'] in ['head','body','shirt','bottom','shoes']:smooth(obj)
     bpy.ops.object.select_all(action='DESELECT');root.select_set(True)
     for o in root.children_recursive:o.select_set(True)
     bpy.context.view_layer.objects.active=root;path=OUT/(record['id']+'.glb')
-    bpy.ops.export_scene.gltf(filepath=str(path),export_format='GLB',use_selection=True,export_animations=False,export_extras=True,export_yup=True)
+    # Blender requires globally unique material names; catalog palette names are
+    # local to each exported asset. Canonicalize only for the export transaction.
+    named=[]
+    for obj in root.children_recursive:
+        if obj.type!='MESH':continue
+        for m in obj.data.materials:
+            if m.get('paletteChannel') and not any(item[0]==m for item in named):
+                channel=m['paletteChannel'];conflict=bpy.data.materials.get(channel)
+                if conflict and conflict!=m:named.append((conflict,conflict.name));conflict.name='Temporary palette '+channel
+                named.append((m,m.name));m.name=channel
+    try:bpy.ops.export_scene.gltf(filepath=str(path),export_format='GLB',use_selection=True,export_animations=False,export_extras=True,export_yup=True)
+    finally:
+        for material,original in reversed(named):material.name=original
     tris=0;used=set()
     for o in root.children_recursive:
-        if o.type=='MESH':o.data.calc_loop_triangles();tris+=len(o.data.loop_triangles);used.update(m.name for m in o.data.materials)
+        if o.type=='MESH':o.data.calc_loop_triangles();tris+=len(o.data.loop_triangles);used.update(m.get('paletteChannel',m.name) for m in o.data.materials)
     record.update(url='models/'+path.name,bytes=path.stat().st_size,sha256=hashlib.sha256(path.read_bytes()).hexdigest(),triangles=tris,channels=[c for c in channels if c in used]);assets.append(record)
     # Editable source shows whole assembled-space parts; exported local coordinates stay zero.
     for a in record['attachments']:bpy.data.objects[a['node']].location=co(positions[a['socket']])
     root.hide_render=True
     for child in root.children_recursive:child.hide_render=True
-# Base articulated athletic body. Clothes overlap socket seams deliberately.
-r,d=asset('body-athletic','Athletic','body','Shared articulated proportions with independent hands, knees and ankles.')
-p=mount(r,d,'chest');rings('Neck',[(.19,.085,.08,0),(.35,.075,.075,0)],skin,p)
-for sign,label in [(-1,'L'),(1,'R')]:
-    p=mount(r,d,'arm_'+label);rings('Upper arm',[(-.025,.082,.087,0),(-.25,.065,.073,.003)],skin,p)
-    p=mount(r,d,'forearm_'+label);rings('Forearm',[(.012,.073,.077,0),(-.23,.052,.056,.015)],skin,p)
-    p=mount(r,d,'hand_'+label);box('Palm',(0,-.033,.016),(.098,.091,.052),skin,p,.018)
-    for index in range(4):
-        x=(index-1.5)*.024;length=[.055,.074,.079,.062][index]
-        line('Finger',[(x,-.065,.018),(x*1.12,-.065-length*.64,.028),(x*1.18,-.065-length,.039)],.0105,skin,p)
-    line('Thumb',[(-sign*.044,-.014,.03),(-sign*.065,-.047,.053),(-sign*.058,-.068,.066)],.016,skin,p)
-    p=mount(r,d,'leg_'+label);rings('Thigh',[(-.02,.097,.12,0),(-.35,.076,.086,.008)],skin,p)
-    p=mount(r,d,'shin_'+label);rings('Calf',[(.02,.077,.087,.007),(-.18,.074,.074,0),(-.36,.052,.06,0)],skin,p)
-export(r,d)
-# Heads share face planes and hair envelope: head morphs do not move the sockets.
-for id,label,wide in [('head-scout','Scout',1),('head-spark','Spark',1.08)]:
-    r,d=asset(id,label,'head','Faceted cheek and jaw silhouette on the common head socket.');p=mount(r,d,'head')
-    rings('Sculpted head',[(-.24,.07,.115,.014),(-.195,.137*wide,.16,.005),(-.105,.207*wide,.187,0),(.015,.234*wide,.201,-.006),(.13,.229*wide,.193,-.015),(.205,.17,.145,-.025)],skin,p,12)
-    for x in [-.235,.235]:ico('Ear',(x,-.025,0),(.044,.072,.039),skin,p,2)
-    ico('Nose',(0,-.045,.208),(.034,.039,.042),skin,p,1);export(r,d)
-# Face geometry is interchangeable independently of the head or hair.
-for id,label,expression in [('face-focus','Game face','focus'),('face-grin','Big grin','grin'),('face-wink','Good vibes','wink')]:
-    r,d=asset(id,label,'face','Readable eyes and brows; geometry stays on the shared facial plane.');p=mount(r,d,'head')
-    for sign in [-1,1]:
-        x=sign*.09
-        if expression=='wink' and sign==1:
-            line('Wink',[(x-.053,.015,.199),(x,.033,.213),(x+.047,.02,.197)],.012,ink,p)
-        else:
-            # Almond whites rather than square eye blocks.
-            mesh('Almond eye',[(x-.058,.025,.193),(x-.032,.061,.205),(x+.035,.057,.205),(x+.06,.028,.191),(x+.023,-.015,.209),(x-.033,-.009,.209)],[(0,5,4,3,2,1)],white,p)
-            ellipse('Iris',(x,.021,.215),.028,.038,iris,p);ellipse('Pupil',(x,.021,.217),.016,.028,ink,p);ellipse('Catchlight',(x-.01,.035,.219),.008,.01,white,p,8)
-            line('Top lash',[(x-.058,.025,.2),(x-.032,.061,.212),(x+.035,.057,.212),(x+.06,.028,.199)],.006,ink,p)
-        outer=.121 if expression=='focus' else .111;inner=.091 if expression=='focus' else .121
-        mesh('Expressive brow',[(x-sign*.055,inner,.216),(x+sign*.052,outer,.188),(x+sign*.06,outer+.03,.184),(x-sign*.052,inner+.031,.216)],[(0,1,2,3) if sign==1 else (3,2,1,0)],hair,p)
-    if expression=='grin':
-        mesh('Smile dark',[(-.092,-.112,.188),(.092,-.112,.188),(.065,-.162,.19),(0,-.178,.175),(-.065,-.162,.19)],[(0,4,3,2,1)],ink,p)
-        mesh('Teeth',[(-.075,-.118,.195),(.075,-.118,.195),(.05,-.137,.187),(-.05,-.137,.187)],[(0,3,2,1)],white,p)
-    else:line('Smile',[(-.063,-.123,.181),(0,-.14,.183),(.063,-.123,.181)],.006,ink,p)
-    export(r,d)
+exec(compile((ROOT/'assets/source/sculpt.py').read_text(),str(ROOT/'assets/source/sculpt.py'),'exec'),globals())
+sculpt_body()
+for id,label,wide in [('head-scout','Scout',1),('head-spark','Spark',1.08)]:sculpt_head(id,label,wide)
+for index,(id,label) in enumerate([('face-focus','Game face'),('face-grin','Big grin'),('face-wink','Good vibes')]):painted_face(id,label,index)
 # Hair: bold silhouette pieces, not one round dome.
 for id,label,style in [('hair-sweep','Side sweep','sweep'),('hair-curls','Cloud curls','curls'),('hair-pony','High pony','pony')]:
     r,d=asset(id,label,'hair','Interchangeable hair envelope with a clear athletic silhouette.');p=mount(r,d,'head')
@@ -131,7 +99,8 @@ for id,label,style in [('hair-sweep','Side sweep','sweep'),('hair-curls','Cloud 
     mesh('Fitted nape',verts,faces,hair,p)
     if style=='curls':
         for i in range(26):
-            a=i*2.4;y=.09+(i%4)*.048;rad=.20 if i<18 else .105
+            a=i*2.4;rad=.20 if i<18 else .105;y=.09+(i%4)*.048
+            if math.cos(a)*rad>.04:y+=.11  # Keep the front curls above the drawn brows.
             ico('Curl',(math.sin(a)*rad,y,math.cos(a)*rad-.03),(.085,.09,.083),hair,p,1)
     else:
         # Irregular broad lock wedges: each has its own direction, width and depth.
@@ -150,35 +119,7 @@ for id,label,style in [('hair-sweep','Side sweep','sweep'),('hair-curls','Cloud 
             tail=[(.01,.32,-.27,.13),(.065,.20,-.34,.12),(.12,.08,-.34,.10),(.17,-.045,-.31,.084),(.23,-.15,-.27,.055)]
             for x,y,z,scale in tail:ico('Ponytail',(x,y,z),(scale,.13,.09),hair,p,1)
     export(r,d)
-# Tops include their own sleeve attachments. No hidden body-specific URL logic in runtime.
-for id,label,style in [('shirt-jersey','Club jersey','jersey'),('shirt-hoodie','Warm-up hoodie','hoodie'),('shirt-track','Track jacket','track')]:
-    r,d=asset(id,label,'shirt','Torso and independent sleeve segments follow the shared rig.');p=mount(r,d,'chest')
-    rings('Top',[(-.287,.216,.158,0),(-.20,.207,.148,0),(-.02,.237,.159,0),(.13,.257,.149,0),(.175,.212,.131,0),(.235,.098,.095,0)],primary,p,8)
-    rings('Hem',[(-.293,.219,.16,0),(-.267,.215,.154,0)],trim,p,8)
-    rings('Collar',[(.202,.113,.102,0),(.23,.105,.096,0)],trim,p,8)
-    mesh('Club crest',[(-.156,.10,.134),(-.103,.10,.161),(-.105,.053,.162),(-.13,.039,.148),(-.153,.053,.136)],[(0,4,3,2,1)],trim,p)
-    for sign in [-1,1]:
-        mesh('Side fabric panel',[(sign*.198,-.24,.069),(sign*.196,-.105,.096),(sign*.229,.12,.055),(sign*.242,.12,0),(sign*.218,-.25,0)],[(0,1,2),(0,2,3),(0,3,4)],secondary,p)
-        line('Hem stitching',[(sign*.05,-.274,.154),(sign*.16,-.274,.11)],.0025,primary,p)
-    # A few raised cloth folds break up the large torso planes without texture downloads.
-    mesh('Lower cloth fold',[(-.15,-.237,.11),(-.026,-.20,.15),(.135,-.245,.122),(.002,-.249,.167)],[(0,1,3),(1,2,3)],primary,p)
-    mesh('Chest cloth fold',[(-.162,.095,.11),(-.045,.014,.148),(-.138,-.049,.121),(-.117,.023,.138)],[(0,1,3),(1,2,3),(2,0,3)],primary,p)
-    # Crease planes and shoulder seams emphasize clothing rather than a rigid cylinder.
-    line('Shoulder seam',[(-.22,.172,.069),(-.1,.208,.094)],.003,trim,p)
-    line('Shoulder seam',[(.22,.172,.069),(.1,.208,.094)],.003,trim,p)
-    if style=='hoodie':
-        ico('Hood',(0,.22,-.098),(.18,.127,.103),primary,p,2)
-        mesh('Kangaroo pocket',[(-.126,-.102,.15),(-.09,-.069,.157),(.09,-.069,.157),(.126,-.102,.15),(.12,-.19,.15),(-.12,-.19,.15)],[(0,5,4,3,2,1)],primary,p)
-        for x in [-.058,.058]:line('Drawcord',[(x,.18,.123),(x,.02,.18)],.007,trim,p)
-    if style=='track':
-        line('Zip',[(0,-.25,.158),(0,.19,.172)],.006,trim,p)
-        for x in [-.19,.19]:line('Chest panel',[(x,-.2,.119),(x*.9,.18,.132)],.012,trim,p)
-    for label2 in ['L','R']:
-        p=mount(r,d,'arm_'+label2);rings('Sleeve',[(.025,.064,.075,0),(-.025,.102,.108,0),(-.10,.105,.108,0),(-.18 if style=='jersey' else -.26,.085,.093,0)],primary,p,8)
-        if style=='jersey':rings('Cuff',[(-.19,.087,.095,0),(-.157,.094,.101,0)],trim,p,8)
-        else:
-            p=mount(r,d,'forearm_'+label2);rings('Long sleeve',[(.013,.087,.095,0),(-.10,.082,.085,0),(-.21,.062,.07,.01)],primary,p,8);rings('Cuff',[(-.23,.065,.073,.01),(-.19,.068,.075,.01)],trim,p,8)
-    export(r,d)
+for id,label,style in [('shirt-jersey','Club jersey','jersey'),('shirt-hoodie','Warm-up hoodie','hoodie'),('shirt-track','Track jacket','track')]:sculpt_top(id,label,style)
 for id,label,long in [('bottom-court','Court shorts',False),('bottom-training','Training shorts',True)]:
     r,d=asset(id,label,'bottom','Hip waistband and separate leg panels retain stride articulation.');p=mount(r,d,'hips');rings('Waist',[(-.07,.231,.167,0),(.028,.222,.153,0)],secondary,p)
     for sign,side in [(-1,'L'),(1,'R')]:
@@ -235,7 +176,7 @@ for id,label,style in [('effect-orbit','Golden orbit','orbit'),('effect-spark','
         for i in range(5):a=i*2.4;ico('Floating spark',(math.sin(a)*.48,.22+(i%3)*.16,math.cos(a)*.4),(.022,.065,.022),accent,p,1)
     export(r,d)
 slots=[{'id':s,'label':label,'required':required} for s,label,required in [('head','Head',True),('face','Face',True),('hair','Hair',False),('shirt','Tops',True),('bottom','Bottoms',True),('shoes','Footwear',True),('accessory','Accessories',False),('effect','Effects',False)]]
-catalog={'version':1,'id':'zoomap-athletics','revision':'1.0.0','rig':{'id':'athlete-rigid-v1','height':1.95,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
+catalog={'version':1,'id':'zoomap-athletics','revision':'1.1.0','rig':{'id':'athlete-rigid-v1','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
 (ROOT/'public/catalog.json').write_text(json.dumps(catalog,indent=2)+'\n')
 # Assemble three representative looks into one editable turntable scene.
 look_ids=[['body-athletic','head-scout','face-focus','hair-sweep','shirt-jersey','bottom-court','shoes-court'],['body-athletic','head-spark','face-grin','hair-pony','shirt-track','bottom-training','shoes-high','acc-band'],['body-athletic','head-scout','face-wink','hair-curls','shirt-hoodie','bottom-court','shoes-runner','acc-glasses']]
@@ -253,13 +194,25 @@ for index,ids in enumerate(look_ids):
             if obj.data and obj.type=='MESH':
                 copy.data=obj.data.copy()
                 for j,m in enumerate(copy.data.materials):
-                    if index and m.name in ['skin','primary','hair']:
+                    if index and m.get('paletteChannel',m.name) in ['skin','primary','hair']:
                         colors=[{'skin':'#e6b88c','primary':'#496d65','hair':'#c89144'},{'skin':'#855538','primary':'#d29339','hair':'#25262c'}]
-                        copy.data.materials[j]=mat(m.name+'_look'+str(index),colors[index-1][m.name])
+                        channel=m.get('paletteChannel',m.name);colored=m.copy();colored.name=m.name+'_look'+str(index)
+                        tint=mat('Preview tint',colors[index-1][channel]);colored.diffuse_color=tint.diffuse_color;colored.node_tree.nodes.get('Principled BSDF').inputs['Base Color'].default_value=tint.diffuse_color
+                        if colored.get('paletteChannel'):
+                            mix=colored.node_tree.nodes.get('Palette multiply');mix.inputs[2].default_value=tint.diffuse_color
+                        copy.data.materials[j]=colored
             for child in obj.children:clone_tree(child,copy)
             return copy
         for attachment in record['attachments']:
             clone=clone_tree(bpy.data.objects[attachment['node']],preview_sockets[attachment['socket']]);clone.location=(0,0,0)
+            if record.get('skin'):
+                copied_arm=next(o for o in clone.children_recursive if o.type=='ARMATURE')
+                for obj in clone.children_recursive:
+                    if obj.type=='MESH':
+                        for mod in obj.modifiers:
+                            if mod.type=='ARMATURE':mod.object=copied_arm
+                for side,angle in [('L',.12),('R',-.12)]:
+                    bone=copied_arm.pose.bones['arm_'+side];basis=bone.bone.matrix_local.to_quaternion();bone.rotation_mode='QUATERNION';bone.rotation_quaternion=basis.inverted()@Matrix.Rotation(angle,4,'Y').to_quaternion()@basis
 for root in roots:root.hide_render=True
 floor=mat('Studio paper','#ede9de');box('Studio floor',(0,-.055,0),(200,.08,200),floor,None,0)
 world=bpy.data.worlds.new('Studio World');world.use_nodes=True;world.node_tree.nodes['Background'].inputs[0].default_value=(.7,.73,.75,1);world.node_tree.nodes['Background'].inputs[1].default_value=.6;bpy.context.scene.world=world
@@ -267,6 +220,6 @@ for loc,energy,size in [((-3,-4,6),550,4),((4,-1,4),250,3)]:
     bpy.ops.object.light_add(type='AREA',location=loc);o=bpy.context.object;o.data.energy=energy;o.data.shape='DISK';o.data.size=size;o.rotation_euler=(Vector((0,0,1))-o.location).to_track_quat('-Z','Y').to_euler()
 bpy.ops.object.camera_add(location=(3,-8,3));cam=bpy.context.object;cam.rotation_euler=(Vector((0,0,1))-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.type='ORTHO';cam.data.ortho_scale=4.3
 scene=bpy.context.scene;scene.camera=cam;scene.render.engine='CYCLES';scene.cycles.samples=32;scene.render.resolution_x=1500;scene.render.resolution_y=1000;scene.render.resolution_percentage=100;scene.view_settings.view_transform='AgX'
-scene.render.filepath=str(ROOT/'docs/evidence/blender-lineup.png');bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'assets/source/avatar-kit.blend'));bpy.ops.render.render(write_still=True)
+scene.render.filepath=str(ROOT/'docs/evidence/blender-lineup.png');bpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'assets/source/avatar-kit.blend'));bpy.ops.render.render(write_still=True)
 result={'assets':len(assets),'bytes':sum(a['bytes'] for a in assets),'triangles':sum(a['triangles'] for a in assets),'blender':bpy.app.version_string}
 (ROOT/'docs/evidence/build.json').write_text(json.dumps(result,indent=2)+'\n')

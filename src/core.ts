@@ -19,6 +19,10 @@ export type Asset = {
   tags: string[];
   excludesTags?: string[];
   effect?: "orbit" | "spark";
+  /** A root-mounted deformable part; joint names refer to the shared catalog rig. */
+  skin?: { bones: string[] };
+  /** Explicit permission for bounded, embedded PNG artwork. URLs remain forbidden. */
+  texture?: { maxDimension: number; maxCount: number };
 };
 export type Catalog = {
   version: 1;
@@ -173,6 +177,30 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
       fail("asset", "Invalid material or compatibility tags");
     if (a.effect !== undefined && !["orbit", "spark"].includes(a.effect))
       fail("asset", "Unsupported effect");
+    if (
+      a.skin !== undefined &&
+      (!record(a.skin) ||
+        !Array.isArray(a.skin.bones) ||
+        !a.skin.bones.length ||
+        a.skin.bones.length > 32 ||
+        new Set(a.skin.bones).size !== a.skin.bones.length ||
+        !a.skin.bones.every((bone: unknown) => sockets.has(bone as string)) ||
+        a.attachments.length !== 1 ||
+        a.attachments[0].socket !== "root")
+    )
+      fail(
+        "asset",
+        "Skinned parts need declared rig bones and one root attachment",
+      );
+    if (
+      a.texture !== undefined &&
+      (!record(a.texture) ||
+        !Number.isSafeInteger(a.texture.maxDimension) ||
+        !number(a.texture.maxDimension, 1, 2048) ||
+        !Number.isSafeInteger(a.texture.maxCount) ||
+        !number(a.texture.maxCount, 1, 4))
+    )
+      fail("asset", "Invalid embedded texture budget");
     assets.add(a.id);
   }
   for (const slot of c.slots)
@@ -293,16 +321,36 @@ export function inspectGlb(data: ArrayBuffer, asset: Asset) {
     json.nodes.length > 256 ||
     !Array.isArray(json.meshes) ||
     json.meshes.length > 128 ||
-    json.skins?.length ||
     json.animations?.length ||
     json.extensionsRequired?.length ||
-    json.images?.length ||
-    json.textures?.length ||
     !Array.isArray(json.buffers) ||
     json.buffers.length !== 1 ||
     json.buffers[0].uri !== undefined
   )
-    fail("asset", "Expected a bounded self-contained rigid GLB");
+    fail("asset", "Expected a bounded self-contained GLB");
+  const binaryHeader = 20 + length;
+  if (
+    binaryHeader + 8 > data.byteLength ||
+    view.getUint32(binaryHeader + 4, true) !== 0x004e4942 ||
+    binaryHeader + 8 + view.getUint32(binaryHeader, true) !== data.byteLength ||
+    !Number.isSafeInteger(json.buffers[0].byteLength) ||
+    json.buffers[0].byteLength > view.getUint32(binaryHeader, true) ||
+    !Array.isArray(json.bufferViews) ||
+    json.bufferViews.length > 1024
+  )
+    fail("asset", "Invalid embedded binary buffer");
+  const binaryOffset = binaryHeader + 8;
+  for (const buffer of json.bufferViews)
+    if (
+      !record(buffer) ||
+      buffer.buffer !== 0 ||
+      !Number.isSafeInteger(buffer.byteOffset ?? 0) ||
+      (buffer.byteOffset ?? 0) < 0 ||
+      !Number.isSafeInteger(buffer.byteLength) ||
+      buffer.byteLength < 0 ||
+      (buffer.byteOffset ?? 0) + buffer.byteLength > json.buffers[0].byteLength
+    )
+      fail("asset", "Invalid embedded buffer view");
   if (
     !Array.isArray(json.accessors) ||
     json.accessors.length > 1024 ||
@@ -312,12 +360,275 @@ export function inspectGlb(data: ArrayBuffer, asset: Asset) {
     )
   )
     fail("asset", "Invalid accessor budget");
+  const componentBytes: Record<number, number> = {
+    5120: 1,
+    5121: 1,
+    5122: 2,
+    5123: 2,
+    5125: 4,
+    5126: 4,
+  };
+  const components: Record<string, number> = {
+    SCALAR: 1,
+    VEC2: 2,
+    VEC3: 3,
+    VEC4: 4,
+    MAT4: 16,
+  };
+  for (const accessor of json.accessors) {
+    const buffer = json.bufferViews[accessor.bufferView];
+    const elementBytes =
+      componentBytes[accessor.componentType] * components[accessor.type];
+    const stride = buffer?.byteStride ?? elementBytes;
+    if (
+      !Number.isInteger(accessor.bufferView) ||
+      !buffer ||
+      !elementBytes ||
+      accessor.sparse !== undefined ||
+      !Number.isSafeInteger(accessor.byteOffset ?? 0) ||
+      (accessor.byteOffset ?? 0) < 0 ||
+      !Number.isSafeInteger(stride) ||
+      stride < elementBytes ||
+      stride > 252 ||
+      (accessor.byteOffset ?? 0) +
+        (accessor.count ? (accessor.count - 1) * stride + elementBytes : 0) >
+        buffer.byteLength
+    )
+      fail("asset", "Accessor exceeds its embedded binary view");
+  }
+  const readComponent = (accessor: any, element: number, component: number) => {
+    const buffer = json.bufferViews[accessor.bufferView],
+      bytes = componentBytes[accessor.componentType];
+    const at =
+      binaryOffset +
+      (buffer.byteOffset ?? 0) +
+      (accessor.byteOffset ?? 0) +
+      element * (buffer.byteStride ?? bytes * components[accessor.type]) +
+      component * bytes;
+    switch (accessor.componentType) {
+      case 5121:
+        return view.getUint8(at) / (accessor.normalized ? 255 : 1);
+      case 5123:
+        return view.getUint16(at, true) / (accessor.normalized ? 65535 : 1);
+      case 5126:
+        return view.getFloat32(at, true);
+      default:
+        return NaN;
+    }
+  };
+  const images = json.images ?? [],
+    textures = json.textures ?? [];
+  if (
+    !Array.isArray(images) ||
+    !Array.isArray(textures) ||
+    images.length > (asset.texture?.maxCount ?? 0) ||
+    textures.length > (asset.texture?.maxCount ?? 0) ||
+    textures.some(
+      (texture: any) =>
+        !record(texture) ||
+        !Number.isInteger(texture.source) ||
+        !images[texture.source] ||
+        texture.extensions !== undefined,
+    )
+  )
+    fail("asset", "Textures must fit the declared embedded image budget");
+  for (const image of images) {
+    const buffer = json.bufferViews[image?.bufferView];
+    if (
+      !record(image) ||
+      image.uri !== undefined ||
+      image.mimeType !== "image/png" ||
+      !Number.isInteger(image.bufferView) ||
+      !buffer ||
+      buffer.byteLength < 33
+    )
+      fail("asset", "Only embedded PNG artwork is supported");
+    const at = binaryOffset + (buffer.byteOffset ?? 0);
+    if (
+      view.getUint32(at) !== 0x89504e47 ||
+      view.getUint32(at + 4) !== 0x0d0a1a0a ||
+      view.getUint32(at + 8) !== 13 ||
+      view.getUint32(at + 12) !== 0x49484452 ||
+      !number(view.getUint32(at + 16), 1, asset.texture!.maxDimension) ||
+      !number(view.getUint32(at + 20), 1, asset.texture!.maxDimension)
+    )
+      fail(
+        "asset",
+        "Embedded PNG exceeds the declared dimensions or has an invalid header",
+      );
+  }
+  const skins = json.skins ?? [];
+  if (
+    !Array.isArray(skins) ||
+    skins.length > (asset.skin ? 4 : 0) ||
+    (asset.skin && !skins.length)
+  )
+    fail("asset", "Skins require an explicit bounded joint contract");
+  const parents = new Map<number, number>();
+  for (const [index, node] of json.nodes.entries()) {
+    if (
+      !record(node) ||
+      (node.children !== undefined && !Array.isArray(node.children))
+    )
+      fail("asset", "Invalid node hierarchy");
+    for (const [field, size] of [
+      ["translation", 3],
+      ["rotation", 4],
+      ["scale", 3],
+      ["matrix", 16],
+    ] as const)
+      if (
+        node[field] !== undefined &&
+        (!Array.isArray(node[field]) ||
+          node[field].length !== size ||
+          !node[field].every((value: unknown) => number(value, -100, 100)))
+      )
+        fail("asset", "Node transforms must be finite and bounded");
+    for (const child of node.children ?? []) {
+      if (
+        !Number.isInteger(child) ||
+        child < 0 ||
+        child >= json.nodes.length ||
+        parents.has(child)
+      )
+        fail("asset", "Nodes need one valid parent");
+      parents.set(child, index);
+    }
+    if (
+      node.skin !== undefined &&
+      (!Number.isInteger(node.skin) ||
+        !skins[node.skin] ||
+        node.mesh === undefined)
+    )
+      fail("asset", "Invalid mesh skin reference");
+  }
+  for (let index = 0; index < json.nodes.length; index++) {
+    const seen = new Set<number>();
+    let current: number | undefined = index;
+    while (current !== undefined) {
+      if (seen.has(current)) fail("asset", "Cyclic node hierarchy");
+      seen.add(current);
+      current = parents.get(current);
+    }
+  }
+  if (asset.skin) {
+    const attachment = json.nodes.findIndex(
+      (node: any) => node.name === asset.attachments[0].node,
+    );
+    const descendant = (index: number) => {
+      let current: number | undefined = index;
+      while (current !== undefined) {
+        if (current === attachment) return true;
+        current = parents.get(current);
+      }
+      return false;
+    };
+    for (const skin of skins) {
+      const inverse = json.accessors[skin?.inverseBindMatrices];
+      if (
+        !record(skin) ||
+        !Array.isArray(skin.joints) ||
+        !skin.joints.length ||
+        skin.joints.length > asset.skin.bones.length ||
+        new Set(skin.joints).size !== skin.joints.length ||
+        !skin.joints.every(
+          (joint: number) =>
+            Number.isInteger(joint) &&
+            descendant(joint) &&
+            asset.skin!.bones.includes(json.nodes[joint]?.name),
+        ) ||
+        new Set(skin.joints.map((joint: number) => json.nodes[joint].name))
+          .size !== skin.joints.length ||
+        !inverse ||
+        inverse.type !== "MAT4" ||
+        inverse.componentType !== 5126 ||
+        inverse.count !== skin.joints.length
+      )
+        fail(
+          "asset",
+          "Skin joints and bind matrices must match the declared rig",
+        );
+      for (let element = 0; element < inverse.count; element++)
+        for (let component = 0; component < 16; component++)
+          if (!number(readComponent(inverse, element, component), -100, 100))
+            fail("asset", "Skin bind matrices must be finite and bounded");
+    }
+    for (const [index, node] of json.nodes.entries())
+      if (node.skin !== undefined) {
+        if (!descendant(index))
+          fail("asset", "Skinned meshes must belong to their root attachment");
+        for (const primitive of json.meshes[node.mesh]?.primitives ?? []) {
+          const indices = json.accessors[primitive.attributes?.JOINTS_0],
+            weights = json.accessors[primitive.attributes?.WEIGHTS_0];
+          if (
+            !indices ||
+            !weights ||
+            indices.type !== "VEC4" ||
+            weights.type !== "VEC4" ||
+            ![5121, 5123].includes(indices.componentType) ||
+            indices.normalized ||
+            ![5121, 5123, 5126].includes(weights.componentType) ||
+            (weights.componentType !== 5126 && !weights.normalized) ||
+            indices.count !== weights.count
+          )
+            fail(
+              "asset",
+              "Skinned meshes need matching joint indices and normalized weights",
+            );
+          for (let vertex = 0; vertex < indices.count; vertex++) {
+            let sum = 0;
+            for (let component = 0; component < 4; component++) {
+              const joint = readComponent(indices, vertex, component),
+                weight = readComponent(weights, vertex, component);
+              if (
+                !Number.isInteger(joint) ||
+                joint < 0 ||
+                joint >= skins[node.skin].joints.length ||
+                !number(weight, 0, 1)
+              )
+                fail(
+                  "asset",
+                  "Skin influences exceed the joint or weight bounds",
+                );
+              sum += weight;
+            }
+            if (Math.abs(sum - 1) > 0.002)
+              fail("asset", "Skin weights must sum to one");
+          }
+        }
+      }
+  }
   let triangles = 0;
   for (const m of json.meshes)
     for (const p of m.primitives ?? []) {
       if ((p.mode ?? 4) !== 4) fail("asset", "Triangle meshes required");
       const count = json.accessors[p.indices ?? p.attributes?.POSITION]?.count;
       if (!count) fail("asset", "Missing mesh accessor");
+      if (
+        p.attributes?.JOINTS_0 !== undefined ||
+        p.attributes?.WEIGHTS_0 !== undefined
+      ) {
+        const joints = json.accessors[p.attributes.JOINTS_0],
+          weights = json.accessors[p.attributes.WEIGHTS_0],
+          positions = json.accessors[p.attributes.POSITION];
+        if (
+          !asset.skin ||
+          !joints ||
+          !weights ||
+          joints.type !== "VEC4" ||
+          weights.type !== "VEC4" ||
+          ![5121, 5123].includes(joints.componentType) ||
+          ![5121, 5123, 5126].includes(weights.componentType) ||
+          joints.count !== positions?.count ||
+          weights.count !== positions.count ||
+          p.attributes.JOINTS_1 !== undefined ||
+          p.attributes.WEIGHTS_1 !== undefined
+        )
+          fail(
+            "asset",
+            "Skin attributes require four bounded influences per vertex",
+          );
+      }
       triangles += count / 3;
     }
   if (triangles !== asset.triangles)

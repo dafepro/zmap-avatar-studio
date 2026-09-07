@@ -1,0 +1,101 @@
+[
+  {
+    "title": "COURT CAPTAIN",
+    "pose": "idle",
+    "yaw": -0.07,
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "1.1.0",
+      "rig": "athlete-rigid-v1",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cf925a",
+        "primary": "#f7efdf",
+        "secondary": "#2c2b28",
+        "trim": "#32312a",
+        "hair": "#342b22",
+        "accent": "#bf8533"
+      }
+    },
+    "meshes": 37,
+    "triangles": 19492,
+    "sourceTriangles": 10098,
+    "parts": 7
+  },
+  {
+    "title": "AFTER THE MATCH",
+    "pose": "idle",
+    "yaw": 1.22,
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "1.1.0",
+      "rig": "athlete-rigid-v1",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-grin",
+        "hair": "hair-pony",
+        "shirt": "shirt-track",
+        "bottom": "bottom-training",
+        "shoes": "shoes-high",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#dea267",
+        "primary": "#7d3040",
+        "secondary": "#302c2b",
+        "trim": "#f4ead7",
+        "hair": "#d6a14a",
+        "accent": "#a77236"
+      }
+    },
+    "meshes": 39,
+    "triangles": 21488,
+    "sourceTriangles": 11096,
+    "parts": 7
+  },
+  {
+    "title": "GOOD COMPANY",
+    "pose": "wave",
+    "yaw": -0.1,
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "1.1.0",
+      "rig": "athlete-rigid-v1",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-wink",
+        "hair": "hair-curls",
+        "shirt": "shirt-hoodie",
+        "bottom": "bottom-court",
+        "shoes": "shoes-runner",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#975c38",
+        "primary": "#eda137",
+        "secondary": "#2d2b28",
+        "trim": "#f4ead7",
+        "hair": "#252522",
+        "accent": "#d9a342"
+      }
+    },
+    "meshes": 41,
+    "triangles": 22324,
+    "sourceTriangles": 11514,
+    "parts": 7
+  }
+]

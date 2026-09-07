@@ -1,5 +1,5 @@
 {
-  "name": "@zoomap/avatar-studio",
+  "name": "@zmap/avatar-studio",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -18,13 +18,15 @@
     "lib",
     "public",
     "README.md",
-    "docs/contracts.md"
+    "docs/contracts.md",
+    "docs/directional-projection.md",
+    "docs/illustrated-rendering.md"
   ],
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -p tsconfig.lib.json && vite build",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/*.test.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
     "test:e2e": "playwright test",
     "format": "prettier --write src app tests scripts *.ts *.json README.md docs/*.md",
     "prepack": "tsc -p tsconfig.lib.json",

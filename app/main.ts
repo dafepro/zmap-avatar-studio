@@ -26,7 +26,7 @@ document.querySelector("#app")!.innerHTML =
   `<header class="topbar"><a class="brand" href="/"><span class="brand-symbol">a<span>✳</span></span><span>avatar studio<small>BY ZOOMAP</small></span></a><span class="project-label">THE ATHLETICS COLLECTION <span>01</span></span><div class="header-actions"><button id="reference" class="quiet">Study sheet</button><button id="import" class="quiet">↥ Import look</button><button id="export" class="dark">Export look <span>↗</span></button></div></header>
 <main><section class="intro"><div><p class="eyebrow">A LITTLE CHARACTER. A LOT OF YOU.</p><h1>Make it yours<span>.</span></h1></div><p>Mix the pieces. Find your people.<br>Built to move with you.</p></section>
 <div class="studio"><nav id="categories" class="categories" aria-label="Avatar categories"><span class="eyebrow">THE DETAILS</span></nav>
-<section class="preview" aria-label="Avatar design preview"><div class="style-controls" role="group" aria-label="Render style"><button id="soft-style" aria-pressed="true">Studio</button><button id="comic-style" aria-pressed="false">Comic ink</button></div><div class="preview-top"><span class="collection-chip"><i></i> ATHLETICS / 01</span><div class="history"><button id="undo" aria-label="Undo change" title="Undo">↶</button><button id="redo" aria-label="Redo change" title="Redo">↷</button></div></div><div class="stage-art"><span class="orbit-ring"></span><span class="stage-number">YOU,<br>IN EVERY<br>DETAIL.</span></div><div id="stage"></div><div id="loading" class="loading">Preparing your studio…</div><div class="view-controls" role="group" aria-label="Camera views"><button data-view="front">Front</button><button data-view="side">Side</button><button data-view="back">Back</button><button id="turntable" aria-pressed="false" title="Rotate avatar">⟳</button></div><div class="preview-bottom"><div class="pose-controls" role="group" aria-label="Animation preview"><button data-pose="idle" aria-pressed="true">Stand</button><button data-pose="walk" aria-pressed="false">Walk</button><button data-pose="wave" aria-pressed="false">Wave</button><button data-pose="run" aria-pressed="false">Run</button></div><button id="photo" class="photo" title="Download transparent PNG">↧ <span>Portrait</span></button></div></section>
+<section class="preview" aria-label="Avatar design preview"><div class="style-controls" role="group" aria-label="Render style"><button id="soft-style" aria-pressed="false">Studio</button><button id="comic-style" aria-pressed="true">Illustrated</button></div><div class="projection-tools"><button id="capture-views">16-view drawing</button><button id="live-view" hidden>Back to live 3D</button><button id="export-views" hidden>Export views</button><span id="projection-note" hidden>Frozen pose · 22.5° steps</span></div><div class="preview-top"><span class="collection-chip"><i></i> ATHLETICS / 01</span><div class="history"><button id="undo" aria-label="Undo change" title="Undo">↶</button><button id="redo" aria-label="Redo change" title="Redo">↷</button></div></div><div class="stage-art"><span class="orbit-ring"></span><span class="stage-number">YOU,<br>IN EVERY<br>DETAIL.</span></div><div id="stage"></div><div id="loading" class="loading">Preparing your studio…</div><div class="view-controls" role="group" aria-label="Camera views"><button data-view="front">Front</button><button data-view="side">Side</button><button data-view="back">Back</button><button id="turntable" aria-pressed="false" title="Rotate avatar">⟳</button></div><div class="preview-bottom"><div class="pose-controls" role="group" aria-label="Animation preview"><button data-pose="idle" aria-pressed="true">Stand</button><button data-pose="walk" aria-pressed="false">Walk</button><button data-pose="wave" aria-pressed="false">Wave</button><button data-pose="run" aria-pressed="false">Run</button></div><button id="photo" class="photo" title="Download transparent PNG">↧ <span>Portrait</span></button></div></section>
 <aside class="inspector"><div class="inspector-heading"><p class="eyebrow">YOUR WARDROBE</p><h2 id="category-title">Head</h2><p id="category-description">A familiar face starts here.</p></div><div id="parts" class="parts" role="group" aria-label="Available parts"></div><div class="palette-heading"><h3>Make it personal</h3><span>COLOR STUDY</span></div><div id="colors" class="colors"></div><div class="look-note"><span>✳</span><p>Same player. Endless possibilities.<small>Your look is saved on this device.</small></p></div></aside></div>
 <section class="saved-section"><div><p class="eyebrow">YOUR STARTING LINEUP</p><h2>Good looks, on repeat.</h2></div><div id="presets" class="presets"></div><button id="save-look" class="save-look">＋ Save this look</button></section>
 <footer><p id="status" role="status" aria-live="polite">Starting studio…</p><div><label><input id="reduced" type="checkbox"> Less motion</label><label><input id="scale" type="checkbox"> World scale</label><details><summary>Kit details</summary><pre id="stats"></pre></details></div></footer></main>
@@ -397,6 +397,53 @@ $<HTMLInputElement>("reduced").checked = matchMedia(
 $("reduced").onchange = () =>
   stage?.setReduced($<HTMLInputElement>("reduced").checked);
 $("scale").onchange = () => stage?.scale($<HTMLInputElement>("scale").checked);
+function projectionControls(state: "live" | "capturing" | "projected") {
+  $("live-view").hidden = state === "live";
+  $("live-view").textContent =
+    state === "capturing" ? "Cancel capture" : "Back to live 3D";
+  $("export-views").hidden = state !== "projected";
+  $("projection-note").hidden = state !== "projected";
+  $("capture-views").hidden = state !== "live";
+}
+$("capture-views").onclick = async () => {
+  if (!stage) return;
+  $("capture-views").setAttribute("disabled", "");
+  projectionControls("capturing");
+  try {
+    await stage.project((done, total) =>
+      status(`Drawing view ${done} of ${total}…`),
+    );
+    projectionControls("projected");
+    status(
+      "16 views captured from this pose. Orbit to compare the drawn projection.",
+    );
+  } catch (e) {
+    projectionControls("live");
+    if ((e as Error).name !== "AbortError") status((e as Error).message, true);
+  } finally {
+    $("capture-views").removeAttribute("disabled");
+  }
+};
+$("live-view").onclick = () => {
+  stage.leaveProjection();
+  projectionControls("live");
+  status("Live 3D animation.");
+};
+$("export-views").onclick = () => {
+  try {
+    download(stage.projectionPng(), "avatar-16-views.png");
+    const url = URL.createObjectURL(
+      new Blob(
+        [JSON.stringify({ ...stage.projectionMetadata(), recipe }, null, 2)],
+        { type: "application/json" },
+      ),
+    );
+    download(url, "avatar-16-views.json");
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch (e) {
+    status((e as Error).message, true);
+  }
+};
 $("photo").onclick = () => {
   if (stage) download(stage.png(), "avatar-portrait.png");
 };
@@ -431,6 +478,11 @@ async function start() {
     catalog = library.catalog;
     const avatar = library.create();
     stage = new Stage($("stage"), avatar);
+    stage.setComic(true);
+    stage.onProjectionInvalidated = () => {
+      projectionControls("live");
+      status("Live 3D. Capture again to include your latest changes.");
+    };
     thumbs = new Thumbnails(library);
     recipe = defaultRecipe(catalog);
     recipe.parts.hair = "hair-sweep";

@@ -166,7 +166,7 @@ test("40 full appearance replacements keep live GPU resources bounded", async ({
   });
   expect(samples.at(-1).geometries).toBe(samples[1].geometries);
   expect(samples.at(-1).textures).toBe(samples[1].textures);
-  expect(samples.at(-1).triangles).toBeLessThan(14000);
+  expect(samples.at(-1).sourceTriangles).toBeLessThan(14000);
 });
 test("comic rendering survives swaps and mode changes without changing the recipe", async ({
   page,

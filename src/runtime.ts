@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { clone as cloneSkeleton } from "three/addons/utils/SkeletonUtils.js";
 import {
   AvatarError,
   inspectGlb,
@@ -15,27 +16,77 @@ export type Motion = {
   gesture?: "idle" | "walk" | "wave" | "run";
   reducedMotion?: boolean;
 };
+const imageReferences = new WeakMap<object, number>();
+const ownedTextures = new WeakSet<THREE.Texture>();
+const templateTextures = new WeakMap<THREE.Object3D, Set<THREE.Texture>>();
+const disposedRoots = new WeakSet<THREE.Object3D>();
+function ownTexture(texture: THREE.Texture) {
+  if (ownedTextures.has(texture)) return texture;
+  ownedTextures.add(texture);
+  const image = texture.image;
+  if (image && typeof image.close === "function")
+    imageReferences.set(image, (imageReferences.get(image) ?? 0) + 1);
+  const onDispose = () => {
+    texture.removeEventListener("dispose", onDispose);
+    if (
+      !ownedTextures.delete(texture) ||
+      !image ||
+      typeof image.close !== "function"
+    )
+      return;
+    const remaining = (imageReferences.get(image) ?? 1) - 1;
+    if (remaining > 0) imageReferences.set(image, remaining);
+    else {
+      imageReferences.delete(image);
+      image.close();
+    }
+  };
+  // Scene consumers may dispose Three resources directly instead of retaining
+  // an AvatarInstance handle. The texture event is the common ownership edge.
+  texture.addEventListener("dispose", onDispose);
+  return texture;
+}
+function releaseTexture(texture: THREE.Texture) {
+  texture.dispose();
+}
 function dispose(root: THREE.Object3D) {
+  if (disposedRoots.has(root)) return;
+  disposedRoots.add(root);
   const geometries = new Set<THREE.BufferGeometry>(),
-    materials = new Set<THREE.Material>();
+    materials = new Set<THREE.Material>(),
+    textures = new Set<THREE.Texture>(templateTextures.get(root)),
+    skeletons = new Set<THREE.Skeleton>();
   root.traverse((o) => {
     if (o instanceof THREE.Mesh) {
       geometries.add(o.geometry);
       for (const m of Array.isArray(o.material) ? o.material : [o.material])
         materials.add(m);
+      if (o instanceof THREE.SkinnedMesh) skeletons.add(o.skeleton);
     }
   });
   for (const g of geometries) g.dispose();
-  for (const m of materials) m.dispose();
+  for (const m of materials) {
+    for (const value of Object.values(m))
+      if (value instanceof THREE.Texture) textures.add(value);
+    m.dispose();
+  }
+  for (const texture of textures) releaseTexture(texture);
+  for (const skeleton of skeletons) skeleton.dispose();
+  templateTextures.delete(root);
 }
 type Assembly = {
   root: THREE.Group;
-  sockets: Map<string, THREE.Group>;
+  sockets: Map<string, THREE.Bone>;
   effects: { object: THREE.Object3D; kind: string }[];
 };
 export class AvatarLibrary {
   readonly catalog: Catalog;
   private cache = new Map<string, Promise<THREE.Group>>();
+  // A synchronous prepared factory cannot refetch an evicted image. Keep its
+  // template lease until library disposal; one entry per approved catalog asset.
+  private preparedTemplates = new Map<string, Promise<THREE.Group>>();
+  private assemblyLeases = new Map<Promise<THREE.Group>, number>();
+  private retiredTemplates = new Set<Promise<THREE.Group>>();
   private controllers = new Set<AbortController>();
   private closed = false;
   constructor(
@@ -46,13 +97,16 @@ export class AvatarLibrary {
     validateCatalog(catalog);
     this.catalog = structuredClone(catalog);
   }
-  private load(asset: Asset): Promise<THREE.Group> {
+  private load(asset: Asset, prepare = false): Promise<THREE.Group> {
     if (this.closed)
       return Promise.reject(
         new AvatarError("disposed", "Avatar library is disposed"),
       );
+    const pinned = this.preparedTemplates.get(asset.id);
+    if (pinned) return pinned;
     const cached = this.cache.get(asset.id);
     if (cached) {
+      if (prepare) this.preparedTemplates.set(asset.id, cached);
       this.cache.delete(asset.id);
       this.cache.set(asset.id, cached);
       return cached;
@@ -102,44 +156,106 @@ export class AvatarLibrary {
             "integrity",
             `${asset.label} does not match the approved asset`,
           );
-        const scene = (await new GLTFLoader().parseAsync(bytes.buffer, ""))
-          .scene;
-        if (this.closed) {
-          dispose(scene);
-          throw new AvatarError("disposed", "Avatar library is disposed");
+        const manager = new THREE.LoadingManager(),
+          temporaryUrls = new Set<string>();
+        manager.setURLModifier((url) => {
+          if (url.startsWith("blob:")) temporaryUrls.add(url);
+          return url;
+        });
+        let scene: THREE.Group | undefined;
+        try {
+          const parsed = await new GLTFLoader(manager).parseAsync(
+            bytes.buffer,
+            "",
+          );
+          scene = parsed.scene;
+          // GLTFLoader turns a failed image decode into a null material map.
+          // Artwork must instead fail atomically with the rest of the asset.
+          const artwork = await parsed.parser.getDependencies("texture");
+          const textures = new Set<THREE.Texture>(artwork.filter(Boolean));
+          scene.traverse((object) => {
+            if (!(object instanceof THREE.Mesh)) return;
+            for (const material of Array.isArray(object.material)
+              ? object.material
+              : [object.material])
+              for (const value of Object.values(material))
+                if (value instanceof THREE.Texture) textures.add(value);
+          });
+          for (const texture of textures) ownTexture(texture);
+          templateTextures.set(scene, textures);
+          if (artwork.some((texture: THREE.Texture | null) => !texture?.image))
+            throw new AvatarError(
+              "texture",
+              `${asset.label} artwork could not decode`,
+            );
+          if (this.closed)
+            throw new AvatarError("disposed", "Avatar library is disposed");
+          return scene;
+        } catch (error) {
+          if (scene) dispose(scene);
+          throw error;
+        } finally {
+          // The loader revokes successful images itself; its failure path does
+          // not. Revoking again is safe and bounds repeated decode failures.
+          for (const url of temporaryUrls) URL.revokeObjectURL(url);
         }
-        return scene;
       } finally {
         clearTimeout(timeout);
         this.controllers.delete(controller);
       }
     })();
     this.cache.set(asset.id, work);
+    if (prepare) this.preparedTemplates.set(asset.id, work);
     void work.catch(() => {
       if (this.cache.get(asset.id) === work) this.cache.delete(asset.id);
+      if (this.preparedTemplates.get(asset.id) === work)
+        this.preparedTemplates.delete(asset.id);
     });
     // Templates never enter a live scene. Instances own their geometry and materials.
     if (this.cache.size > 32) {
       const [key, old] = this.cache.entries().next().value!;
       this.cache.delete(key);
-      void old.then(dispose, () => {});
+      if (this.preparedTemplates.get(key) !== old) {
+        if (this.assemblyLeases.has(old)) this.retiredTemplates.add(old);
+        else void old.then(dispose, () => {});
+      }
     }
     return work;
   }
   async assemble(recipe: Recipe): Promise<Assembly> {
     validateRecipe(recipe, this.catalog);
     const assets = selectedAssets(recipe, this.catalog);
-    const loaded = await Promise.allSettled(assets.map((a) => this.load(a)));
-    const failure = loaded.find(
-      (r): r is PromiseRejectedResult => r.status === "rejected",
-    );
-    if (failure) throw failure.reason;
-    const models = loaded.map(
-      (r) => (r as PromiseFulfilledResult<THREE.Group>).value,
-    );
-    if (this.closed)
-      throw new AvatarError("disposed", "Avatar library is disposed");
-    return this.assembleModels(recipe, assets, models);
+    const requests = assets.map((asset) => {
+      const request = this.load(asset);
+      this.assemblyLeases.set(
+        request,
+        (this.assemblyLeases.get(request) ?? 0) + 1,
+      );
+      return request;
+    });
+    try {
+      const loaded = await Promise.allSettled(requests);
+      const failure = loaded.find(
+        (r): r is PromiseRejectedResult => r.status === "rejected",
+      );
+      if (failure) throw failure.reason;
+      const models = loaded.map(
+        (r) => (r as PromiseFulfilledResult<THREE.Group>).value,
+      );
+      if (this.closed)
+        throw new AvatarError("disposed", "Avatar library is disposed");
+      return this.assembleModels(recipe, assets, models);
+    } finally {
+      for (const request of requests) {
+        const remaining = (this.assemblyLeases.get(request) ?? 1) - 1;
+        if (remaining > 0) this.assemblyLeases.set(request, remaining);
+        else {
+          this.assemblyLeases.delete(request);
+          if (this.retiredTemplates.delete(request))
+            void request.then(dispose, () => {});
+        }
+      }
+    }
   }
   private assembleModels(
     recipe: Recipe,
@@ -148,14 +264,15 @@ export class AvatarLibrary {
   ): Assembly {
     const root = new THREE.Group();
     root.name = "Avatar";
-    const sockets = new Map<string, THREE.Group>();
+    const sockets = new Map<string, THREE.Bone>();
     for (const s of this.catalog.rig.sockets) {
-      const node = new THREE.Group();
+      const node = new THREE.Bone();
       node.name = s.id;
       node.position.fromArray(s.position);
       (s.parent ? sockets.get(s.parent)! : root).add(node);
       sockets.set(s.id, node);
     }
+    root.updateMatrixWorld(true);
     const effects: Assembly["effects"] = [];
     try {
       for (let i = 0; i < assets.length; i++) {
@@ -165,14 +282,35 @@ export class AvatarLibrary {
             THREE.BufferGeometry,
             THREE.BufferGeometry
           >(),
-          materials = new Map<THREE.Material, THREE.Material>();
+          materials = new Map<THREE.Material, THREE.Material>(),
+          textures = new Map<THREE.Texture, THREE.Texture>();
+        model.updateMatrixWorld(true);
         for (const mount of asset.attachments) {
           const source = model.getObjectByName(mount.node);
           if (!source)
             throw new AvatarError("attachment", `Missing ${mount.node}`);
-          const object = source.clone(true);
+          const object = asset.skin
+            ? cloneSkeleton(source)
+            : source.clone(true);
           object.name = `part:${asset.id}:${mount.socket}`;
           object.userData.assetId = asset.id;
+          if (asset.skin) {
+            // Retain the export's complete root-space placement even if the
+            // attachment was nested beneath a transformed authoring container.
+            const transform = sockets
+              .get(mount.socket)!
+              .matrixWorld.clone()
+              .invert()
+              .multiply(source.matrixWorld);
+            transform.decompose(
+              object.position,
+              object.quaternion,
+              object.scale,
+            );
+          }
+          sockets.get(mount.socket)!.add(object);
+          root.updateMatrixWorld(true);
+          const skeletons = new Map<THREE.Skeleton, THREE.Skeleton>();
           object.traverse((o) => {
             if (o instanceof THREE.Mesh) {
               if (!geometries.has(o.geometry))
@@ -181,6 +319,12 @@ export class AvatarLibrary {
               const copy = (m: THREE.Material) => {
                 if (!materials.has(m)) {
                   const cloned = m.clone();
+                  for (const [key, value] of Object.entries(m)) {
+                    if (!(value instanceof THREE.Texture)) continue;
+                    if (!textures.has(value))
+                      textures.set(value, ownTexture(value.clone()));
+                    (cloned as any)[key] = textures.get(value)!;
+                  }
                   const color = recipe.colors[m.name];
                   if (
                     color &&
@@ -197,9 +341,82 @@ export class AvatarLibrary {
                 : copy(o.material);
               o.castShadow = true;
               o.receiveShadow = true;
+              if (o instanceof THREE.SkinnedMesh) {
+                if (!asset.skin)
+                  throw new AvatarError(
+                    "skin",
+                    "Skinned meshes require a declared rig contract",
+                  );
+                const native = o.skeleton;
+                if (!skeletons.has(native)) {
+                  const bones = native.bones.map((bone) => {
+                    const shared = sockets.get(bone.name);
+                    if (
+                      !shared ||
+                      !asset.skin!.bones.includes(bone.name) ||
+                      new THREE.Vector3()
+                        .setFromMatrixPosition(bone.matrixWorld)
+                        .distanceTo(
+                          new THREE.Vector3().setFromMatrixPosition(
+                            shared.matrixWorld,
+                          ),
+                        ) > 0.002
+                    )
+                      throw new AvatarError(
+                        "skin",
+                        "Skin joint rest positions differ from the catalog rig",
+                      );
+                    return shared;
+                  });
+                  // The exported inverse binds include Blender's bone bases.
+                  // Preserve their rest result, then apply the shared rig's pose
+                  // delta. This supports arbitrary authoring bone orientations.
+                  const inverses = bones.map((bone, index) =>
+                    bone.matrixWorld
+                      .clone()
+                      .invert()
+                      .multiply(native.bones[index].matrixWorld)
+                      .multiply(native.boneInverses[index]),
+                  );
+                  skeletons.set(native, new THREE.Skeleton(bones, inverses));
+                }
+                const indices = o.geometry.getAttribute("skinIndex"),
+                  weights = o.geometry.getAttribute("skinWeight");
+                if (!indices || !weights || indices.count !== weights.count)
+                  throw new AvatarError("skin", "Missing skin influences");
+                for (let vertex = 0; vertex < indices.count; vertex++) {
+                  let sum = 0;
+                  for (let component = 0; component < 4; component++) {
+                    const index = indices.getComponent(vertex, component),
+                      weight = weights.getComponent(vertex, component);
+                    if (
+                      !Number.isInteger(index) ||
+                      index < 0 ||
+                      index >= native.bones.length ||
+                      !Number.isFinite(weight) ||
+                      weight < 0 ||
+                      weight > 1
+                    )
+                      throw new AvatarError(
+                        "skin",
+                        "Invalid joint index or weight",
+                      );
+                    sum += weight;
+                  }
+                  if (Math.abs(sum - 1) > 0.002)
+                    throw new AvatarError(
+                      "skin",
+                      "Skin weights must sum to one",
+                    );
+                }
+                o.bind(skeletons.get(native)!, o.bindMatrix);
+                // A posed hand can move beyond the bind-pose bounds. Recompute
+                // accurate bounds only when a caller requests them; do not cull
+                // this small mesh using stale bounds during animation.
+                o.frustumCulled = false;
+              }
             }
           });
-          sockets.get(mount.socket)!.add(object);
           if (asset.effect) effects.push({ object, kind: asset.effect });
         }
       }
@@ -213,11 +430,15 @@ export class AvatarLibrary {
   async prepare(recipe: Recipe): Promise<() => AvatarInstance> {
     const approved = structuredClone(recipe),
       assets = selectedAssets(approved, this.catalog);
-    const loaded = await Promise.allSettled(assets.map((a) => this.load(a)));
+    const loaded = await Promise.allSettled(
+      assets.map((a) => this.load(a, true)),
+    );
     const failure = loaded.find(
       (r): r is PromiseRejectedResult => r.status === "rejected",
     );
     if (failure) throw failure.reason;
+    if (this.closed)
+      throw new AvatarError("disposed", "Avatar library is disposed");
     const models = loaded.map(
       (r) => (r as PromiseFulfilledResult<THREE.Group>).value,
     );
@@ -238,6 +459,7 @@ export class AvatarLibrary {
   diagnostics() {
     return {
       cachedAssets: this.cache.size,
+      preparedAssets: this.preparedTemplates.size,
       pendingRequests: this.controllers.size,
     };
   }
@@ -245,8 +467,15 @@ export class AvatarLibrary {
     if (this.closed) return;
     this.closed = true;
     for (const c of this.controllers) c.abort();
-    for (const value of this.cache.values()) void value.then(dispose, () => {});
+    for (const value of new Set([
+      ...this.cache.values(),
+      ...this.preparedTemplates.values(),
+      ...this.retiredTemplates,
+    ]))
+      void value.then(dispose, () => {});
     this.cache.clear();
+    this.preparedTemplates.clear();
+    this.retiredTemplates.clear();
   }
 }
 export class AvatarInstance {
@@ -359,17 +588,21 @@ export class AvatarInstance {
   }
   diagnostics() {
     let triangles = 0,
+      sourceTriangles = 0,
       meshes = 0;
     this.object.traverse((o) => {
       if (o instanceof THREE.Mesh) {
         meshes++;
-        triangles +=
+        const count =
           (o.geometry.index?.count ?? o.geometry.attributes.position.count) / 3;
+        triangles += count;
+        if (!o.userData.comicOutline) sourceTriangles += count;
       }
     });
     return {
       meshes,
       triangles,
+      sourceTriangles,
       parts: this.current
         ? Object.values(this.current.parts).filter(Boolean).length + 1
         : 0,

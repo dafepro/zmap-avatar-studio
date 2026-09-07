@@ -12,12 +12,14 @@ npm run test:e2e             # Chrome; use ZMAP_BROWSER_CHANNEL=chromium in CI
 npm run test:package
 ```
 
-Use **Study sheet** to compare the generated visual reference, **Studio / Comic ink** to compare rendering, and the front/side/back, turntable and animation controls to inspect fit. Comic ink uses four lighting bands, a thin silhouette outline and an orthographic camera. Export look saves portable appearance JSON; Portrait saves the current rendered view as a transparent PNG. Saved looks stay in this browser.
+Use **Illustrated / Studio** to compare drawing and lit-material views, and front/side/back, turntable and animation controls to inspect fit. Illustrated is the default: continuous shoulder surfaces, drawn facial features, broad soft shading and restrained silhouette ink. **16-view drawing** freezes the equipped look and pose into sixteen transparent views, one every 22.5°. Orbit horizontally to compare the projected result; export its PNG atlas and metadata for a consuming application. Return to live 3D to animate or edit. This capture is a fixed-pose presentation cache, not a substitute for animation.
+
+Export look saves portable appearance JSON; Portrait saves the current rendered view as a transparent PNG. Saved looks stay in this browser. The [avatar study](docs/design-reference-v1.png) is the visual target.
 
 ## Consume the runtime
 
 ```ts
-import { AvatarLibrary, defaultRecipe } from "@zoomap/avatar-studio";
+import { AvatarLibrary, defaultRecipe } from "@zmap/avatar-studio";
 
 const base = new URL("/avatars/", location.href);
 const response = await fetch(new URL("catalog.json", base));
@@ -41,7 +43,7 @@ library.dispose();
 
 Copy `public/catalog.json` and `public/models/` into your application's static asset path. Serve over HTTPS or localhost: integrity checks use Web Crypto. When developing through a local symlink with a separate dependency install, configure your bundler to resolve a single Three.js copy (Vite: `resolve: { dedupe: ["three"] }`). The working hub demonstrates this setting.
 
-The runtime has no CSS, DOM, renderer, network room, identity, inventory or account dependency. It uses the consumer's Three.js 0.180 instance. Import `@zoomap/avatar-studio/core` for recipe validation without Three.js.
+The runtime has no CSS, DOM, renderer, network room, identity, inventory or account dependency. It uses the consumer's Three.js 0.180 instance. Import `@zmap/avatar-studio/core` for recipe validation without Three.js.
 
 For a synchronous world visual factory, preload with `const create = await library.prepare(recipe)`, then return `create().asCharacter()` from ZMap's `visuals.character`. The optional `asCharacter(() => mediaQuery.matches)` argument supplies reduced-motion policy. The app resolves identity and approved looks before calling this factory. See `../examples/models.ts` for a working integration. ZMap owns disposal of meshes in its character scene; an ordinary Three.js consumer calls `avatar.dispose()` itself.
 
@@ -53,7 +55,7 @@ This directory has its own lockfile, build, tests, public contracts and assets. 
 
 ## Art and evidence
 
-The original [study sheet](docs/design-reference-v1.png) was generated with the built-in image generator using the user-provided Zoomap poster. The exact [generation prompt](docs/design-prompt.txt) is recorded. The meshes were made in Blender through MCP, not reconstructed automatically from the image. The editable source is `assets/source/avatar-kit.blend`; `assets/source/build_kit.py` rebuilds all 22 GLBs, their hash manifest and the representative lineup render.
+The original [study sheet](docs/design-reference-v1.png) was generated with the built-in image generator using the user-provided Zoomap poster. The exact [generation prompt](docs/design-prompt.txt) is recorded. The meshes were made in Blender through MCP. Facial detail is now an editable drawn atlas fitted to one continuous face surface; its [source and provenance](assets/textures/README.md) are retained. The editable source is `assets/source/avatar-kit.blend`; `assets/source/build_kit.py` and `assets/source/sculpt.py` rebuild all 22 GLBs, their hash manifest and the representative lineup render.
 
 ```sh
 /Applications/Blender.app/Contents/MacOS/Blender --background --python assets/source/build_kit.py
@@ -63,4 +65,6 @@ Run the builder in a background Blender process; it resets that process's scene.
 
 Iterations covered swept hair silhouettes, jaw/cheek proportions, visible brows and eyes, sleeves, cloth folds, fingers, layered trainers, socket fit and outward mesh normals. [Visual evidence](docs/evidence/) includes Blender lineups, studio desktop/phone views and comic rendering. All 5,184 recipe combinations pass compatibility and source-budget checks; this is not a claim that all combinations were visually inspected.
 
-The current art approximates the study's angular athletic style. It is still simpler than the painted reference, especially hand poses, garment deformation, hair shaping and facial variety. The rigid segmented rig is intentionally explicit: it does not yet provide skinned cloth, facial blend shapes or a production animation library. These are tracked in [the plan](docs/plan.md), not hidden behind alternate character assets.
+The current kit uses smoothly weighted body and garments on a shared skeleton, relaxed sculpted fingers, a softly shaded head and drawn expressions. It approximates the study; the reference still has more deliberate hair masses, asymmetry, hand posing and garment detail. Facial blend shapes, finger animation and a production animation library remain future work. The sixteen-view prototype preserves one equipped look and pose at one elevation; animated and multi-elevation atlases are not implemented.
+
+See [this visual iteration](docs/illustrated-iteration.md), [asset contracts](docs/contracts.md), [illustrated rendering](docs/illustrated-rendering.md), [directional capture](docs/directional-projection.md) and [the iteration plan](docs/plan.md).

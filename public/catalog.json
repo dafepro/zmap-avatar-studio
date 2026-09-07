@@ -1,10 +1,10 @@
 {
   "version": 1,
   "id": "zoomap-athletics",
-  "revision": "1.0.0",
+  "revision": "1.1.0",
   "rig": {
     "id": "athlete-rigid-v1",
-    "height": 1.95,
+    "height": 2.04,
     "sockets": [
       {
         "id": "root",
@@ -38,7 +38,7 @@
         "parent": "chest",
         "position": [
           0,
-          0.5,
+          0.55,
           0
         ]
       },
@@ -55,7 +55,7 @@
         "id": "forearm_L",
         "parent": "arm_L",
         "position": [
-          0,
+          -0.06,
           -0.255,
           0
         ]
@@ -64,7 +64,7 @@
         "id": "hand_L",
         "parent": "forearm_L",
         "position": [
-          0,
+          -0.025,
           -0.22,
           0
         ]
@@ -109,7 +109,7 @@
         "id": "forearm_R",
         "parent": "arm_R",
         "position": [
-          0,
+          0.06,
           -0.255,
           0
         ]
@@ -118,7 +118,7 @@
         "id": "hand_R",
         "parent": "forearm_R",
         "position": [
-          0,
+          0.025,
           -0.22,
           0
         ]
@@ -210,68 +210,48 @@
       "label": "Athletic",
       "slot": "body",
       "rig": "athlete-rigid-v1",
-      "description": "Shared articulated proportions with independent hands, knees and ankles.",
+      "description": "Connected shoulder, collarbone and limbs with blended skin weights and naturally curled hands.",
       "attachments": [
         {
-          "node": "body-athletic__chest",
-          "socket": "chest"
-        },
-        {
-          "node": "body-athletic__arm_L",
-          "socket": "arm_L"
-        },
-        {
-          "node": "body-athletic__forearm_L",
-          "socket": "forearm_L"
-        },
-        {
-          "node": "body-athletic__hand_L",
-          "socket": "hand_L"
-        },
-        {
-          "node": "body-athletic__leg_L",
-          "socket": "leg_L"
-        },
-        {
-          "node": "body-athletic__shin_L",
-          "socket": "shin_L"
-        },
-        {
-          "node": "body-athletic__arm_R",
-          "socket": "arm_R"
-        },
-        {
-          "node": "body-athletic__forearm_R",
-          "socket": "forearm_R"
-        },
-        {
-          "node": "body-athletic__hand_R",
-          "socket": "hand_R"
-        },
-        {
-          "node": "body-athletic__leg_R",
-          "socket": "leg_R"
-        },
-        {
-          "node": "body-athletic__shin_R",
-          "socket": "shin_R"
+          "node": "body-athletic__root",
+          "socket": "root"
         }
       ],
       "channels": [
         "skin"
       ],
       "tags": [],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
       "url": "models/body-athletic.glb",
-      "bytes": 52768,
-      "sha256": "74a289ba7994f368c1c3a3cd7d183ca2eb7f27d0663169d720dc83fdd097e9ae",
-      "triangles": 772
+      "bytes": 133140,
+      "sha256": "3a26acf788b869737a8d9b070a33c7bb7253a8f96bdf817596d90c172fc276bf",
+      "triangles": 3867
     },
     {
       "id": "head-scout",
       "label": "Scout",
       "slot": "head",
       "rig": "athlete-rigid-v1",
-      "description": "Faceted cheek and jaw silhouette on the common head socket.",
+      "description": "A continuous softly sculpted face, cheek and jaw with a shared painted feature surface.",
       "attachments": [
         {
           "node": "head-scout__head",
@@ -283,16 +263,16 @@
       ],
       "tags": [],
       "url": "models/head-scout.glb",
-      "bytes": 29056,
-      "sha256": "782493b2bc452a8b248859ff5f716cd9e7e8e8f6b926087d41d493e3caf05a2e",
-      "triangles": 320
+      "bytes": 38716,
+      "sha256": "66a8d87e34dcd4efff298ece886f944a3c4580b4937f58c6dfc0b54d4e0e814f",
+      "triangles": 1628
     },
     {
       "id": "head-spark",
       "label": "Spark",
       "slot": "head",
       "rig": "athlete-rigid-v1",
-      "description": "Faceted cheek and jaw silhouette on the common head socket.",
+      "description": "A continuous softly sculpted face, cheek and jaw with a shared painted feature surface.",
       "attachments": [
         {
           "node": "head-spark__head",
@@ -304,75 +284,78 @@
       ],
       "tags": [],
       "url": "models/head-spark.glb",
-      "bytes": 29060,
-      "sha256": "e3622973f53976f11312286c06c3266c2814b33dfa6d87aa1e0b777e996bbba2",
-      "triangles": 320
+      "bytes": 38720,
+      "sha256": "d280b6f1313de8d771cf1841a0a5f1a0686857b6801f32420434b34c39acbb19",
+      "triangles": 1628
     },
     {
       "id": "face-focus",
       "label": "Game face",
       "slot": "face",
       "rig": "athlete-rigid-v1",
-      "description": "Readable eyes and brows; geometry stays on the shared facial plane.",
+      "description": "Drawn expression on one fitted surface; no individually lit eye or mouth primitives.",
       "attachments": [
         {
           "node": "face-focus__head",
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair",
-        "iris"
-      ],
+      "channels": [],
       "tags": [],
+      "texture": {
+        "maxDimension": 1024,
+        "maxCount": 1
+      },
       "url": "models/face-focus.glb",
-      "bytes": 17964,
-      "sha256": "26a4e922ea82ce2f9fd39a3acc6fc79ef878e3e0596437d64af9daa0b3894453",
-      "triangles": 240
+      "bytes": 136644,
+      "sha256": "7457e54c3fa265153787d7384ce0b02d5af78588410e2050e114ee4db2775391",
+      "triangles": 704
     },
     {
       "id": "face-grin",
       "label": "Big grin",
       "slot": "face",
       "rig": "athlete-rigid-v1",
-      "description": "Readable eyes and brows; geometry stays on the shared facial plane.",
+      "description": "Drawn expression on one fitted surface; no individually lit eye or mouth primitives.",
       "attachments": [
         {
           "node": "face-grin__head",
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair",
-        "iris"
-      ],
+      "channels": [],
       "tags": [],
+      "texture": {
+        "maxDimension": 1024,
+        "maxCount": 1
+      },
       "url": "models/face-grin.glb",
-      "bytes": 15740,
-      "sha256": "b1db6c7499e184000c18442acf36a680c5dba44af52212899ffaca60b4bfe342",
-      "triangles": 205
+      "bytes": 136652,
+      "sha256": "5266d49ba0451785d4957b4f9cba66989d2ac593eec9f612b84b739bd6a144a0",
+      "triangles": 704
     },
     {
       "id": "face-wink",
       "label": "Good vibes",
       "slot": "face",
       "rig": "athlete-rigid-v1",
-      "description": "Readable eyes and brows; geometry stays on the shared facial plane.",
+      "description": "Drawn expression on one fitted surface; no individually lit eye or mouth primitives.",
       "attachments": [
         {
           "node": "face-wink__head",
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair",
-        "iris"
-      ],
+      "channels": [],
       "tags": [],
+      "texture": {
+        "maxDimension": 1024,
+        "maxCount": 1
+      },
       "url": "models/face-wink.glb",
-      "bytes": 14988,
-      "sha256": "2c67b223bc61aa4ac5c18c9347c40d4271e3dfc05a7f332aa354cf3e110e23ea",
-      "triangles": 182
+      "bytes": 136652,
+      "sha256": "9538c8e155a41edbc14b0017dd12640e04aed4afc3fb4bb332edbf69be287cfa",
+      "triangles": 704
     },
     {
       "id": "hair-sweep",
@@ -413,7 +396,7 @@
       "tags": [],
       "url": "models/hair-curls.glb",
       "bytes": 64860,
-      "sha256": "0eafef83d99ba1e0eaf3e6aab631f67b1bc7b8eec3a039f63d08412ed0d79516",
+      "sha256": "8d4907fd260b40c836fdad031be64536f0d0be7372ee77e665a98d846f2965ea",
       "triangles": 632
     },
     {
@@ -443,109 +426,138 @@
       "label": "Club jersey",
       "slot": "shirt",
       "rig": "athlete-rigid-v1",
-      "description": "Torso and independent sleeve segments follow the shared rig.",
+      "description": "One connected collarbone, shoulder and sleeve surface with blended deformation.",
       "attachments": [
         {
-          "node": "shirt-jersey__chest",
-          "socket": "chest"
-        },
-        {
-          "node": "shirt-jersey__arm_L",
-          "socket": "arm_L"
-        },
-        {
-          "node": "shirt-jersey__arm_R",
-          "socket": "arm_R"
+          "node": "shirt-jersey__root",
+          "socket": "root"
         }
       ],
       "channels": [
         "primary",
-        "secondary",
         "trim"
       ],
       "tags": [],
+      "texture": {
+        "maxDimension": 256,
+        "maxCount": 1
+      },
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
       "url": "models/shirt-jersey.glb",
-      "bytes": 29784,
-      "sha256": "f72148fdb24a995310c61ad0ba6a175de6facf0e0d34cfa7108e91399e64ae43",
-      "triangles": 418
+      "bytes": 113220,
+      "sha256": "13940ca346ee2e70661ea2573d90dad8d4421b2b38f6ef6cf44d4a875c9490e9",
+      "triangles": 2735
     },
     {
       "id": "shirt-hoodie",
       "label": "Warm-up hoodie",
       "slot": "shirt",
       "rig": "athlete-rigid-v1",
-      "description": "Torso and independent sleeve segments follow the shared rig.",
+      "description": "One connected collarbone, shoulder and sleeve surface with blended deformation.",
       "attachments": [
         {
-          "node": "shirt-hoodie__chest",
-          "socket": "chest"
-        },
-        {
-          "node": "shirt-hoodie__arm_L",
-          "socket": "arm_L"
-        },
-        {
-          "node": "shirt-hoodie__forearm_L",
-          "socket": "forearm_L"
-        },
-        {
-          "node": "shirt-hoodie__arm_R",
-          "socket": "arm_R"
-        },
-        {
-          "node": "shirt-hoodie__forearm_R",
-          "socket": "forearm_R"
+          "node": "shirt-hoodie__root",
+          "socket": "root"
         }
       ],
       "channels": [
         "primary",
-        "secondary",
         "trim"
       ],
       "tags": [],
+      "texture": {
+        "maxDimension": 256,
+        "maxCount": 1
+      },
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
       "url": "models/shirt-hoodie.glb",
-      "bytes": 46128,
-      "sha256": "0e3dd82bce43194efadf08fc6c2d9d3f09d0e30b58e36f5ffb386ed35a33a08b",
-      "triangles": 630
+      "bytes": 148172,
+      "sha256": "caa7e2ab7cbaa9fa3185b2d2bebb247c074f28044944dfbeba4a9808c6241108",
+      "triangles": 3607
     },
     {
       "id": "shirt-track",
       "label": "Track jacket",
       "slot": "shirt",
       "rig": "athlete-rigid-v1",
-      "description": "Torso and independent sleeve segments follow the shared rig.",
+      "description": "One connected collarbone, shoulder and sleeve surface with blended deformation.",
       "attachments": [
         {
-          "node": "shirt-track__chest",
-          "socket": "chest"
-        },
-        {
-          "node": "shirt-track__arm_L",
-          "socket": "arm_L"
-        },
-        {
-          "node": "shirt-track__forearm_L",
-          "socket": "forearm_L"
-        },
-        {
-          "node": "shirt-track__arm_R",
-          "socket": "arm_R"
-        },
-        {
-          "node": "shirt-track__forearm_R",
-          "socket": "forearm_R"
+          "node": "shirt-track__root",
+          "socket": "root"
         }
       ],
       "channels": [
         "primary",
-        "secondary",
         "trim"
       ],
       "tags": [],
+      "texture": {
+        "maxDimension": 256,
+        "maxCount": 1
+      },
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
       "url": "models/shirt-track.glb",
-      "bytes": 39012,
-      "sha256": "eefc4f795d6e8151502a5e223556fdf2b52190028153305f7e352a5dba5bd22d",
-      "triangles": 566
+      "bytes": 141840,
+      "sha256": "f28ed6528f442b5ccadcae18f80ad87af9c17eb020df0a1ad4ba062f396e54b3",
+      "triangles": 3503
     },
     {
       "id": "bottom-court",
@@ -573,8 +585,8 @@
       ],
       "tags": [],
       "url": "models/bottom-court.glb",
-      "bytes": 13696,
-      "sha256": "88c5f6f7a099b59462bcf0186185f4ca1c048639015494ac9e36430287e8b09e",
+      "bytes": 8452,
+      "sha256": "964f823d1c49a3f0022698c23a7b08f8535ee89d48a71fa51095ab002bfb8fcc",
       "triangles": 156
     },
     {
@@ -603,8 +615,8 @@
       ],
       "tags": [],
       "url": "models/bottom-training.glb",
-      "bytes": 13732,
-      "sha256": "f75387da856c7529f64d4c7925604a738dc712136a371c978f53924f168e8617",
+      "bytes": 8488,
+      "sha256": "4abf4c96ce5787aab84541d9b73b1fc870ab063da1035981af18f278d9cc6769",
       "triangles": 156
     },
     {
@@ -630,8 +642,8 @@
       ],
       "tags": [],
       "url": "models/shoes-court.glb",
-      "bytes": 59928,
-      "sha256": "ccdcb91596323fc51fea1f5a1a559ee533294ef23b8485b2ab2cc83704a191db",
+      "bytes": 32388,
+      "sha256": "0e42f8b23a81d5973e2950cd2d4a7f56d66cc67fe5d6e421f088a60a0b373ec9",
       "triangles": 832
     },
     {
@@ -658,8 +670,8 @@
       ],
       "tags": [],
       "url": "models/shoes-runner.glb",
-      "bytes": 67940,
-      "sha256": "a77b87f9111f488c52147a6767d89fecd7f2348011bf3f26602e4419c1fc7cc6",
+      "bytes": 36420,
+      "sha256": "6708a7a671a2a5794f70a8c5875c96408d6d044dd1f4ea7e672faeff53b01f4a",
       "triangles": 920
     },
     {
@@ -685,8 +697,8 @@
       ],
       "tags": [],
       "url": "models/shoes-high.glb",
-      "bytes": 63204,
-      "sha256": "8fd9c492ee8c7d2ed57a4b2b1b58f4257aad42196672ee2ce499ac757e0ca75f",
+      "bytes": 33608,
+      "sha256": "22072c4cdc7fc72554f2eef97ac8a041db69eed2ac01c1bb14dda75d08f282d6",
       "triangles": 888
     },
     {
@@ -731,7 +743,7 @@
       "tags": [],
       "url": "models/acc-glasses.glb",
       "bytes": 45984,
-      "sha256": "1130e1676bf14c9dd7f983d303d1363c7acbeede95612688cd45bb2f56a73088",
+      "sha256": "fa032b9540906985835aeaec67ddcf716077d390b2bc68d3e4b8008738294bd8",
       "triangles": 700
     },
     {
@@ -753,7 +765,7 @@
       "tags": [],
       "url": "models/acc-headphones.glb",
       "bytes": 33976,
-      "sha256": "ca2b4f0a88523779868de26a8e9238497de1ddfeb20ba7c01d486a9ea836ecb4",
+      "sha256": "c6e27efbcb830bea7ab633e19b13932f06bcf38e03956e6d59a5b96dc5d3408d",
       "triangles": 400
     },
     {
@@ -775,7 +787,7 @@
       "effect": "orbit",
       "url": "models/effect-orbit.glb",
       "bytes": 68712,
-      "sha256": "0f3c0304966b722b098279ca4b654b35605b4afa8c7127d21383610f15c9f1cb",
+      "sha256": "ba6d8caee92304b104bb14dba878e5dab63fa518913378d1eeb90046f1942163",
       "triangles": 1020
     },
     {
@@ -797,7 +809,7 @@
       "effect": "spark",
       "url": "models/effect-spark.glb",
       "bytes": 11612,
-      "sha256": "2a3cf63a151e8b70532888e17d72fd5376b361c902de4e2f210311b660727534",
+      "sha256": "ae92c2266ab17e2372cac11827e235982da497120b428ecdaa34581bb7f14588",
       "triangles": 100
     }
   ],

@@ -1,0 +1,76 @@
+{
+  "catalogRevision": "1.1.0",
+  "views": [
+    {
+      "name": "FRONT",
+      "degrees": 0
+    },
+    {
+      "name": "EXACT PROFILE",
+      "degrees": 90
+    },
+    {
+      "name": "THREE-QUARTER",
+      "degrees": 45
+    }
+  ],
+  "recipe": {
+    "version": 1,
+    "catalog": "zoomap-athletics",
+    "revision": "1.1.0",
+    "rig": "athlete-rigid-v1",
+    "parts": {
+      "head": "head-scout",
+      "face": "face-focus",
+      "hair": "hair-sweep",
+      "shirt": "shirt-jersey",
+      "bottom": "bottom-court",
+      "shoes": "shoes-court",
+      "accessory": null,
+      "effect": null
+    },
+    "colors": {
+      "skin": "#cf925a",
+      "primary": "#f7efdf",
+      "secondary": "#2c2b28",
+      "trim": "#32312a",
+      "hair": "#342b22",
+      "accent": "#bf8533"
+    }
+  },
+  "camera": {
+    "projection": "orthographic",
+    "targetY": 1.625,
+    "pitch": 0
+  },
+  "assets": [
+    {
+      "id": "body-athletic",
+      "sha256": "3a26acf788b869737a8d9b070a33c7bb7253a8f96bdf817596d90c172fc276bf"
+    },
+    {
+      "id": "head-scout",
+      "sha256": "66a8d87e34dcd4efff298ece886f944a3c4580b4937f58c6dfc0b54d4e0e814f"
+    },
+    {
+      "id": "face-focus",
+      "sha256": "7457e54c3fa265153787d7384ce0b02d5af78588410e2050e114ee4db2775391"
+    },
+    {
+      "id": "hair-sweep",
+      "sha256": "acbaa4a36f193a9bf30877099e4e321dafb0d7c22857a2e7555c196bd83f48cf"
+    },
+    {
+      "id": "shirt-jersey",
+      "sha256": "13940ca346ee2e70661ea2573d90dad8d4421b2b38f6ef6cf44d4a875c9490e9"
+    },
+    {
+      "id": "bottom-court",
+      "sha256": "964f823d1c49a3f0022698c23a7b08f8535ee89d48a71fa51095ab002bfb8fcc"
+    },
+    {
+      "id": "shoes-court",
+      "sha256": "0e42f8b23a81d5973e2950cd2d4a7f56d66cc67fe5d6e421f088a60a0b373ec9"
+    }
+  ]
+}

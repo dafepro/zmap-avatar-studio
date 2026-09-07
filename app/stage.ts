@@ -2,6 +2,9 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import {
   ComicStyle,
+  bakeDirectionalAtlas,
+  type DirectionalAtlas,
+  type DirectionalPreview,
   type AvatarInstance,
   type AvatarLibrary,
   type Recipe,
@@ -25,6 +28,24 @@ export class Stage {
   private small = false;
   private comic = new ComicStyle();
   private comicEnabled = false;
+  private capture?: AbortController;
+  private atlas?: DirectionalAtlas;
+  private projection?: DirectionalPreview;
+  private projected = false;
+  private captureGeneration = 0;
+  private capturedRoot?: THREE.Object3D;
+  private livePolar: [number, number] = [0.35, Math.PI * 0.56];
+  private livePitch = Math.PI / 2;
+  private lastUpdateSeconds = 0;
+  private captureInfo?: {
+    renderStyle: "illustrated" | "studio";
+    pose: {
+      gesture: Motion["gesture"];
+      timeSeconds: number;
+      reducedMotion: boolean;
+    };
+  };
+  onProjectionInvalidated = () => {};
   private pixels = new THREE.Vector2();
   constructor(
     readonly container: HTMLElement,
@@ -93,18 +114,30 @@ export class Stage {
     this.controls.autoRotate = this.turning && !this.reduced;
     this.controls.autoRotateSpeed = 1;
     this.controls.update();
-    this.avatar.update(ms / 1000, {
-      gesture: this.pose,
-      reducedMotion: this.reduced,
-    });
+    if (
+      (this.projected || this.capture) &&
+      this.capturedRoot !== this.avatar.object.children[0]
+    ) {
+      this.leaveProjection();
+      this.onProjectionInvalidated();
+    }
+    if (!this.projected) {
+      this.lastUpdateSeconds = ms / 1000;
+      this.avatar.update(this.lastUpdateSeconds, {
+        gesture: this.pose,
+        reducedMotion: this.reduced,
+      });
+    }
     if (this.comicEnabled)
       this.comic.update(
         this.avatar.object.children[0],
         this.renderer.getDrawingBufferSize(this.pixels),
       );
+    this.updateProjectionView();
     this.renderer.render(this.scene, this.camera);
   };
   setComic(enabled: boolean) {
+    this.invalidateProjection();
     if (enabled === this.comicEnabled) return;
     const old = this.camera,
       aspect =
@@ -147,9 +180,11 @@ export class Stage {
     });
   }
   setPose(pose: Motion["gesture"]) {
+    this.invalidateProjection();
     this.pose = pose;
   }
   setReduced(reduced: boolean) {
+    this.invalidateProjection();
     this.reduced = reduced;
   }
   turn(value: boolean) {
@@ -164,6 +199,7 @@ export class Stage {
     );
     this.controls.target.set(0, 0.96, 0);
     this.controls.update();
+    this.updateProjectionView();
   }
   scale(value: boolean) {
     this.small = value;
@@ -173,8 +209,147 @@ export class Stage {
     }
     this.camera.position.set(0, 1.6, value ? 8 : 4.3);
     this.controls.update();
+    this.updateProjectionView();
+  }
+  private updateProjectionView() {
+    if (!this.projected || !this.projection) return;
+    const delta = this.camera.position.clone().sub(this.controls.target);
+    this.projection.setAzimuth(
+      Math.atan2(delta.x, delta.z),
+      THREE.MathUtils.degToRad(2),
+    );
+    this.projection.faceCamera(this.camera);
+  }
+  private invalidateProjection() {
+    if (this.capture || this.projected || this.atlas) {
+      this.leaveProjection();
+      this.onProjectionInvalidated();
+    }
+  }
+  leaveProjection() {
+    const wasProjected = this.projected;
+    this.capture?.abort();
+    this.capture = undefined;
+    ++this.captureGeneration;
+    this.projected = false;
+    this.avatar.object.visible = true;
+    if (this.projection) {
+      this.scene.remove(this.projection.object);
+      this.projection.dispose();
+      this.projection = undefined;
+    }
+    this.atlas?.dispose();
+    this.atlas = undefined;
+    this.capturedRoot = undefined;
+    this.captureInfo = undefined;
+    this.controls.minPolarAngle = this.livePolar[0];
+    this.controls.maxPolarAngle = this.livePolar[1];
+    if (wasProjected) {
+      const delta = this.camera.position.clone().sub(this.controls.target);
+      const spherical = new THREE.Spherical().setFromVector3(delta);
+      spherical.phi = this.livePitch;
+      this.camera.position
+        .setFromSpherical(spherical)
+        .add(this.controls.target);
+      this.controls.update();
+    }
+  }
+  async project(onProgress: (done: number, total: number) => void) {
+    this.leaveProjection();
+    const root = this.avatar.object.children[0];
+    if (!root) throw Error("Choose a complete avatar before capturing");
+    const generation = ++this.captureGeneration,
+      controller = new AbortController();
+    this.capture = controller;
+    this.capturedRoot = root;
+    this.livePolar = [this.controls.minPolarAngle, this.controls.maxPolarAngle];
+    this.livePitch = this.controls.getPolarAngle();
+    this.captureInfo = {
+      renderStyle: this.comicEnabled ? "illustrated" : "studio",
+      pose: {
+        gesture: this.pose,
+        timeSeconds: this.lastUpdateSeconds,
+        reducedMotion: this.reduced,
+      },
+    };
+    const delta = this.camera.position.clone().sub(this.controls.target),
+      azimuth = Math.atan2(delta.x, delta.z),
+      elevation = 0.13;
+    let atlas: DirectionalAtlas;
+    try {
+      if (this.comicEnabled)
+        this.comic.update(
+          root,
+          this.renderer.getDrawingBufferSize(this.pixels),
+        );
+      atlas = await bakeDirectionalAtlas(this.renderer, this.avatar.object, {
+        tileSize: 512,
+        elevation,
+        signal: controller.signal,
+        lights: this.scene.children.filter(
+          (o): o is THREE.Light => o instanceof THREE.Light,
+        ),
+        onProgress,
+      });
+    } catch (error) {
+      if (this.capture === controller) {
+        this.capturedRoot = undefined;
+        this.captureInfo = undefined;
+      }
+      throw error;
+    } finally {
+      if (this.capture === controller) this.capture = undefined;
+    }
+    if (
+      generation !== this.captureGeneration ||
+      root !== this.avatar.object.children[0]
+    ) {
+      atlas.dispose();
+      throw new DOMException(
+        "The avatar changed while capturing",
+        "AbortError",
+      );
+    }
+    this.atlas = atlas;
+    this.projection = atlas.createPreview();
+    this.projection.setAzimuth(azimuth);
+    this.scene.add(this.projection.object);
+    this.avatar.object.visible = false;
+    this.projected = true;
+    this.capturedRoot = root;
+    this.controls.minPolarAngle = this.controls.maxPolarAngle =
+      Math.PI / 2 - elevation;
+    this.controls.update();
+    this.updateProjectionView();
+    return atlas.metadata;
+  }
+  projectionPng() {
+    this.projectionMetadata();
+    const atlas = this.atlas!;
+    const { width, height } = atlas.metadata,
+      source = atlas.readPixels(),
+      pixels = new Uint8ClampedArray(source.length),
+      stride = width * 4;
+    for (let y = 0; y < height; y++)
+      pixels.set(
+        source.subarray(y * stride, (y + 1) * stride),
+        (height - 1 - y) * stride,
+      );
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    canvas
+      .getContext("2d")!
+      .putImageData(new ImageData(pixels, width, height), 0, 0);
+    return canvas.toDataURL("image/png");
+  }
+  projectionMetadata() {
+    if (!this.atlas || this.capturedRoot !== this.avatar.object.children[0])
+      throw Error("Capture the current look first");
+    return { ...this.atlas.metadata, ...structuredClone(this.captureInfo) };
   }
   png() {
+    this.updateProjectionView();
     const alpha = this.renderer.getClearAlpha();
     this.renderer.setClearAlpha(0);
     this.renderer.render(this.scene, this.camera);
@@ -192,6 +367,7 @@ export class Stage {
   }
   dispose() {
     cancelAnimationFrame(this.frame);
+    this.leaveProjection();
     this.resize.disconnect();
     this.controls.dispose();
     this.comic.dispose();
