@@ -133,7 +133,12 @@ function splitBoundary(
 /** Project against the actual exported triangles, not an approximate head sphere.
  * A small XY spatial index bounds assembly cost; it is discarded after fitting.
  */
-function projector(meshes: THREE.Mesh[], socket: THREE.Object3D) {
+function projector(
+  meshes: THREE.Mesh[],
+  socket: THREE.Object3D,
+  axis: "z" | "x" = "z",
+  direction: -1 | 1 = 1,
+) {
   const inverse = socket.matrixWorld.clone().invert();
   const cells = new Map<string, Triangle[]>();
   let entries = 0;
@@ -143,11 +148,16 @@ function projector(meshes: THREE.Mesh[], socket: THREE.Object3D) {
     const position = mesh.geometry.getAttribute("position");
     const indices = mesh.geometry.index;
     for (let i = 0; i < (indices?.count ?? position.count); i += 3) {
-      const t = [0, 1, 2].map((j) =>
-        new THREE.Vector3()
+      const t = [0, 1, 2].map((j) => {
+        const p = new THREE.Vector3()
           .fromBufferAttribute(position, indices?.getX(i + j) ?? i + j)
-          .applyMatrix4(matrix),
-      ) as Triangle;
+          .applyMatrix4(matrix);
+        return new THREE.Vector3(
+          axis === "z" ? p.x : p.z,
+          p.y,
+          p[axis] * direction,
+        );
+      }) as Triangle;
       for (
         let x = cell(Math.min(...t.map((p) => p.x)) - 1e-6);
         x <= cell(Math.max(...t.map((p) => p.x)) + 1e-6);
@@ -169,7 +179,7 @@ function projector(meshes: THREE.Mesh[], socket: THREE.Object3D) {
         }
     }
   }
-  return (x: number, y: number): number | undefined => {
+  const project = (x: number, y: number): number | undefined => {
     let depth = -Infinity;
     for (const [a, b, c] of cells.get(`${cell(x)},${cell(y)}`) ?? []) {
       const det = (b.y - c.y) * (a.x - c.x) + (c.x - b.x) * (a.y - c.y);
@@ -181,6 +191,251 @@ function projector(meshes: THREE.Mesh[], socket: THREE.Object3D) {
     }
     return Number.isFinite(depth) ? depth : undefined;
   };
+  // The difference between two projected triangle planes is linear. Its
+  // maximum lies at a vertex of their overlap polygon, including edge
+  // intersections that an authored-vertex-only contact test would miss.
+  let queries = 0;
+  const work = () => {
+    if (++queries > 250000)
+      throw new AvatarError(
+        "fit",
+        "Head contact exceeds the projection complexity limit",
+      );
+  };
+  const clearance = (triangle: Triangle): number | undefined => {
+    if (triangle.some((p) => !p.toArray().every(Number.isFinite)))
+      throw new AvatarError(
+        "fit",
+        "Accessory contact coordinates must be finite",
+      );
+    const candidates = new Set<Triangle>();
+    for (
+      let x = cell(Math.min(...triangle.map((p) => p.x)));
+      x <= cell(Math.max(...triangle.map((p) => p.x)));
+      x++
+    )
+      for (
+        let y = cell(Math.min(...triangle.map((p) => p.y)));
+        y <= cell(Math.max(...triangle.map((p) => p.y)));
+        y++
+      ) {
+        work();
+        for (const head of cells.get(`${x},${y}`) ?? []) candidates.add(head);
+      }
+    let maximum = -Infinity;
+    for (const head of candidates) {
+      work();
+      const [a, b, c] = head,
+        det = (b.y - c.y) * (a.x - c.x) + (c.x - b.x) * (a.y - c.y);
+      if (Math.abs(det) < 1e-12) continue;
+      const orientation = Math.sign(det);
+      let polygon: THREE.Vector3[] = [...triangle];
+      for (let i = 0; i < 3 && polygon.length; i++) {
+        const a = head[i],
+          b = head[(i + 1) % 3],
+          distance = (p: THREE.Vector3) =>
+            orientation *
+            ((b.x - a.x) * (p.y - a.y) - (b.y - a.y) * (p.x - a.x)),
+          output: THREE.Vector3[] = [];
+        for (let j = 0; j < polygon.length; j++) {
+          const p = polygon[j],
+            q = polygon[(j + 1) % polygon.length],
+            dp = distance(p),
+            dq = distance(q);
+          if (dp >= -1e-10) output.push(p);
+          if ((dp < 0 && dq > 0) || (dp > 0 && dq < 0))
+            output.push(p.clone().lerp(q, dp / (dp - dq)));
+        }
+        polygon = output;
+      }
+      for (const p of polygon) {
+        const u = ((b.y - c.y) * (p.x - c.x) + (c.x - b.x) * (p.y - c.y)) / det,
+          v = ((c.y - a.y) * (p.x - c.x) + (a.x - c.x) * (p.y - c.y)) / det;
+        maximum = Math.max(
+          maximum,
+          u * a.z + v * b.z + (1 - u - v) * c.z - p.z,
+        );
+      }
+    }
+    return Number.isFinite(maximum) ? maximum : undefined;
+  };
+  return Object.assign(project, { clearance });
+}
+
+/** Resolve curved temple contact inside long side faces, not only at authored
+ * vertices. Refinement is bounded and preserves every interpolated attribute.
+ */
+function refineSideSurface(
+  mesh: THREE.Mesh,
+  matrix: THREE.Matrix4,
+  project: [ReturnType<typeof projector>, ReturnType<typeof projector>],
+  offset: number,
+  maxDistance: number,
+  centerX: number,
+  original: THREE.Vector3[],
+) {
+  const source = mesh.geometry,
+    index = source.index,
+    inverse = matrix.clone().invert(),
+    names = Object.keys(source.attributes),
+    sizes = names.map((name) => source.getAttribute(name).itemSize),
+    starts = sizes.map((_, i) =>
+      sizes.slice(0, i).reduce((sum, n) => sum + n, 0),
+    ),
+    position = starts[names.indexOf("position")],
+    origin = sizes.reduce((sum, size) => sum + size, 0),
+    output: number[][] = names.map(() => []),
+    groups: { start: number; count: number; materialIndex: number }[] = [];
+  let count = 0,
+    changed = false;
+  // Carry authoring-space provenance through every split. These private
+  // coordinates are interpolated but never become exported GPU attributes.
+  const read = (i: number) => [
+    ...names.flatMap((name) => {
+      const attribute = source.getAttribute(name);
+      return Array.from({ length: attribute.itemSize }, (_, j) =>
+        attribute.getComponent(i, j),
+      );
+    }),
+    ...original[i].toArray(),
+  ];
+  const average = (points: number[][]) =>
+    points[0].map(
+      (_, i) =>
+        points.reduce((sum, point) => sum + point[i], 0) / points.length,
+    );
+  const clear = (vertex: number[]) => {
+    const p = new THREE.Vector3(
+        ...(vertex.slice(position, position + 3) as [number, number, number]),
+      ).applyMatrix4(matrix),
+      sign = p.x < centerX ? -1 : 1,
+      skin = project[sign < 0 ? 0 : 1](p.z, p.y);
+    const distance = skin === undefined ? 0 : skin + offset - sign * p.x;
+    if (distance <= 1e-7) return { vertex, moved: false, distance: 0 };
+    // A sub-millimetre reserve prevents repeated refinement at an exported
+    // head facet boundary merely to reproduce its edge to float precision.
+    p.x += sign * (distance + 0.0002);
+    if (
+      p.distanceTo(
+        new THREE.Vector3(
+          ...(vertex.slice(origin, origin + 3) as [number, number, number]),
+        ),
+      ) > maxDistance
+    )
+      throw new AvatarError(
+        "fit",
+        "Accessory side exceeds its approved cumulative fitting distance",
+      );
+    p.applyMatrix4(inverse);
+    const result = [...vertex];
+    result.splice(position, 3, p.x, p.y, p.z);
+    return { vertex: result, moved: true, distance };
+  };
+  const emit = (triangle: number[][], materialIndex: number, depth: number) => {
+    const surfacePoints = triangle.map((vertex) =>
+      new THREE.Vector3(
+        ...(vertex.slice(position, position + 3) as [number, number, number]),
+      ).applyMatrix4(matrix),
+    );
+    const sign = surfacePoints[0].x < centerX ? -1 : 1;
+    if (surfacePoints.some((p) => (p.x - centerX) * sign < 0))
+      throw new AvatarError(
+        "fit",
+        "Accessory side triangles must stay on one side of the head",
+      );
+    const contact = project[sign < 0 ? 0 : 1].clearance(
+      surfacePoints.map(
+        (p) => new THREE.Vector3(p.z, p.y, sign * p.x),
+      ) as Triangle,
+    );
+    if (contact !== undefined && contact + offset > 0.0001) {
+      const midpoints = [0, 1, 2].map((i) =>
+          clear(average([triangle[i], triangle[(i + 1) % 3]])),
+        ),
+        center = clear(average(triangle));
+      if (depth >= 14)
+        throw new AvatarError(
+          "fit",
+          "Accessory sides cannot resolve the head surface within the refinement limit",
+        );
+      changed = true;
+      if (midpoints.some((point) => point.moved) || !center.moved) {
+        const projectedLength = (i: number) => {
+          const points = [triangle[i], triangle[(i + 1) % 3]].map((v) =>
+            new THREE.Vector3(
+              ...(v.slice(position, position + 3) as [number, number, number]),
+            ).applyMatrix4(matrix),
+          );
+          return (
+            (points[0].y - points[1].y) ** 2 + (points[0].z - points[1].z) ** 2
+          );
+        };
+        const i = [0, 1, 2].reduce(
+          (best, index) =>
+            projectedLength(index) > projectedLength(best) ? index : best,
+          0,
+        );
+        emit(
+          [triangle[i], midpoints[i].vertex, triangle[(i + 2) % 3]],
+          materialIndex,
+          depth + 1,
+        );
+        emit(
+          [midpoints[i].vertex, triangle[(i + 1) % 3], triangle[(i + 2) % 3]],
+          materialIndex,
+          depth + 1,
+        );
+      } else {
+        for (let i = 0; i < 3; i++)
+          emit(
+            [triangle[i], triangle[(i + 1) % 3], center.vertex],
+            materialIndex,
+            depth + 1,
+          );
+      }
+      return;
+    }
+    if (count >= 60000)
+      throw new AvatarError(
+        "budget",
+        "Accessory sides exceed the geometry limit",
+      );
+    for (const vertex of triangle)
+      names.forEach((_, i) =>
+        output[i].push(...vertex.slice(starts[i], starts[i] + sizes[i])),
+      );
+    const group = groups.at(-1);
+    if (group?.materialIndex === materialIndex) group.count += 3;
+    else groups.push({ start: count, count: 3, materialIndex });
+    count += 3;
+  };
+  for (
+    let i = 0;
+    i < (index?.count ?? source.getAttribute("position").count);
+    i += 3
+  ) {
+    const materialIndex =
+      source.groups.find(
+        (group) => i >= group.start && i < group.start + group.count,
+      )?.materialIndex ?? 0;
+    emit(
+      [0, 1, 2].map((j) => read(index?.getX(i + j) ?? i + j)),
+      materialIndex,
+      0,
+    );
+  }
+  if (!changed) return;
+  const geometry = new THREE.BufferGeometry();
+  names.forEach((name, i) =>
+    geometry.setAttribute(
+      name,
+      new THREE.Float32BufferAttribute(output[i], sizes[i]),
+    ),
+  );
+  for (const group of groups)
+    geometry.addGroup(group.start, group.count, group.materialIndex);
+  mesh.geometry = geometry;
+  source.dispose();
 }
 
 /** Head-local horizontal rays retain both front and profile paint. The Y index
@@ -278,6 +533,7 @@ export function fitAssembly(
   const mutable = new Set(assets.filter((a) => a.fit).map((a) => a.id));
   for (const asset of assets)
     for (const volume of asset.hairFit ?? []) {
+      if (volume.mode === "occlude") continue;
       const target = assets.find((a) => a.slot === volume.targetSlot);
       if (target) mutable.add(target.id);
     }
@@ -299,6 +555,10 @@ export function fitAssembly(
     owned.get(id)!.push(object);
   });
   const projections = new Map<string, ReturnType<typeof projector>>();
+  const sideProjections = new Map<
+    string,
+    [ReturnType<typeof projector>, ReturnType<typeof projector>]
+  >();
   const radialProjections = new Map<
     string,
     ReturnType<typeof radialProjector>
@@ -317,6 +577,11 @@ export function fitAssembly(
         projector(owned.get(provider.id) ?? [], socket),
       );
     const project = projections.get(provider.id)!;
+    if (fit.projection === "wrap" && !sideProjections.has(provider.id))
+      sideProjections.set(provider.id, [
+        projector(owned.get(provider.id) ?? [], socket, "x", -1),
+        projector(owned.get(provider.id) ?? [], socket, "x", 1),
+      ]);
     if (fit.projection === "radial" && !radialProjections.has(provider.id))
       radialProjections.set(
         provider.id,
@@ -335,10 +600,27 @@ export function fitAssembly(
       inverse: THREE.Matrix4;
       depth: number | undefined;
       target?: THREE.Vector3;
+      role?: "front" | "side";
     }[] = [];
     let shift = -Infinity,
       hits = 0;
+    const sideMeshes = new Set<THREE.Mesh>();
+    const coordinates = new Map<THREE.Mesh, THREE.Vector3[]>();
     for (const mesh of owned.get(asset.id) ?? []) {
+      coordinates.set(mesh, []);
+      let role: "front" | "side" | undefined;
+      if (fit.projection === "wrap") {
+        let node: THREE.Object3D | null = mesh;
+        while (node && !node.userData.fitRole && !node.userData.assetId)
+          node = node.parent;
+        if (!["front", "side"].includes(node?.userData.fitRole))
+          throw new AvatarError(
+            "fit",
+            `${asset.label} needs explicit front and side fitting roles`,
+          );
+        role = node!.userData.fitRole;
+        if (role === "side") sideMeshes.add(mesh);
+      }
       const matrix = socket.matrixWorld
         .clone()
         .invert()
@@ -351,9 +633,10 @@ export function fitAssembly(
           .applyMatrix4(matrix);
         p.x = to[0] + ((p.x - from[0]) * to[2]) / from[2];
         p.y = to[1] + ((p.y - from[1]) * to[3]) / from[3];
+        coordinates.get(mesh)!.push(p.clone());
         const target = radial?.(p, fit.offset);
         const depth = radial ? target?.z : project(p.x, p.y);
-        if (depth !== undefined) {
+        if (depth !== undefined && role !== "side") {
           shift = Math.max(shift, depth + fit.offset - p.z);
           hits++;
         } else if (fit.mode === "surface") {
@@ -362,9 +645,32 @@ export function fitAssembly(
             `${asset.label} extends beyond ${provider.label}'s fitting surface at ${p.toArray().join(",")}`,
           );
         }
-        vertices.push({ mesh, index: i, local: p, inverse, depth, target });
+        vertices.push({
+          mesh,
+          index: i,
+          local: p,
+          inverse,
+          depth,
+          target,
+          role,
+        });
       }
     }
+    if (fit.mode === "clearance")
+      for (const [mesh, points] of coordinates) {
+        if (sideMeshes.has(mesh)) continue;
+        const indices = mesh.geometry.index;
+        for (let i = 0; i < (indices?.count ?? points.length); i += 3) {
+          const triangle = [0, 1, 2].map(
+            (j) => points[indices?.getX(i + j) ?? i + j],
+          ) as Triangle;
+          const contact = project.clearance(triangle);
+          if (contact !== undefined) {
+            shift = Math.max(shift, contact + fit.offset);
+            hits++;
+          }
+        }
+      }
     if (
       !hits ||
       (fit.mode === "clearance" && Math.abs(shift) > fit.maxDistance)
@@ -380,7 +686,24 @@ export function fitAssembly(
       y: to[1] - (from[1] * to[3]) / from[3],
       z: fit.mode === "clearance" ? shift : 0,
     });
-    for (const { mesh, index, local, inverse, depth, target } of vertices) {
+    if (
+      fit.projection === "wrap" &&
+      !vertices.some((vertex) => vertex.role === "side")
+    )
+      throw new AvatarError(
+        "fit",
+        `${asset.label} needs explicit front and side fitting roles`,
+      );
+    for (const {
+      mesh,
+      index,
+      local,
+      inverse,
+      depth,
+      target,
+      role,
+    } of vertices) {
+      const before = local.clone();
       const dz = fit.mode === "surface" ? depth! + fit.offset - local.z : shift;
       if ((target ? local.distanceTo(target) : Math.abs(dz)) > fit.maxDistance)
         throw new AvatarError(
@@ -389,24 +712,49 @@ export function fitAssembly(
         );
       if (target) local.copy(target);
       else local.z += dz;
+      if (role === "side") {
+        const sign = local.x < to[0] ? -1 : 1;
+        const surface = sideProjections
+          .get(provider.id)!
+          [sign < 0 ? 0 : 1](local.z, local.y);
+        if (surface !== undefined)
+          local.x = sign * Math.max(sign * local.x, surface + fit.sideOffset!);
+        if (local.distanceTo(before) > fit.maxDistance)
+          throw new AvatarError(
+            "fit",
+            `${asset.label} exceeds its approved fitting distance`,
+          );
+      }
       local.applyMatrix4(inverse);
       mesh.geometry
         .getAttribute("position")
         .setXYZ(index, local.x, local.y, local.z);
     }
     for (const mesh of owned.get(asset.id) ?? []) {
+      if (sideMeshes.has(mesh))
+        refineSideSurface(
+          mesh,
+          socket.matrixWorld.clone().invert().multiply(mesh.matrixWorld),
+          sideProjections.get(provider.id)!,
+          fit.sideOffset!,
+          fit.maxDistance,
+          to[0],
+          coordinates.get(mesh)!,
+        );
       mesh.geometry.getAttribute("position").needsUpdate = true;
       mesh.geometry.computeVertexNormals();
       mesh.geometry.computeBoundingBox();
       mesh.geometry.computeBoundingSphere();
     }
   }
-  // Volumes belong to the accessory, not the hairstyle. A crown volume packs
-  // any hair silhouette into the available interior. Eyewear clears the front
-  // and temples after crown fitting; ordering is independent of recipe keys.
+  // Natural occlusion is a rendering relationship, never a request to carve
+  // the target mesh. Glasses arms can disappear inside hair without turning
+  // their path into a hole. Only explicit geometric modes enter this solver.
   const volumes = assets
     .flatMap((asset) =>
-      (asset.hairFit ?? []).map((volume) => ({ asset, volume })),
+      (asset.hairFit ?? [])
+        .filter((volume) => volume.mode !== "occlude")
+        .map((volume) => ({ asset, volume })),
     )
     .sort(
       (a, b) =>

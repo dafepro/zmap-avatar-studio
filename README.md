@@ -57,8 +57,12 @@ This directory has its own lockfile, build, tests and contracts. It can be extra
 
 The active source is `assets/source/reference_kit.py`, with the editable `assets/source/reference-kit.blend`. The small `build_kit.py` entry point invokes it. The dedicated Blender scene preserves unrelated open work. The workflow documents interactive MCP construction, render corrections, supplied references and generated weight-reference provenance.
 
-The 24-part kit supports 11 slots, two heads, three expressions, interchangeable hair/clothes/shoes, facial hair, eyewear, hats and effects. It approximates the drawings; it is not a claim of final production art. Finger animation, facial blend shapes and a production animation library remain unimplemented. Source limits are 14,000 triangles, 1.5 MB and 12 selected parts; outlines add rendering work. Phone/full-room performance needs qualification by the consumer.
+The 33-part kit supports 11 slots, two heads, six expressions, interchangeable hair/clothes/shoes, facial hair, eyewear, hats and effects. It approximates the drawings; it is not a claim of final production art. Finger animation, facial blend shapes and a production animation library remain unimplemented. Source limits are 14,000 triangles, 1.5 MB and 12 selected parts; outlines add rendering work. Phone/full-room performance needs qualification by the consumer.
 
 See [contracts](docs/contracts.md), [rendering](docs/illustrated-rendering.md), [directional capture](docs/directional-projection.md) and [reference workflow](docs/reference-workflow.md).
 
 Collection 02 adds Ember, Tide and Volt starter looks, nine independent parts, body-size neck/collar deformation, and packed Blender front/side/top references. See the [workflow and actual render comparisons](docs/collection-02-workflow.md).
+
+Revision 2.2.0 hardens scalp coverage, uses natural hair occlusion for glasses, and separates front-frame from temple fitting. See the [compatibility review and orbit evidence](docs/fit-quality-review.md).
+
+It also rebuilds the three Collection 02 hairstyles against isolated front/side/back/top studies, corrects the ponytail root and improves the original swept nape. See the [hair authoring comparisons](docs/references/hair-isolated/README.md).

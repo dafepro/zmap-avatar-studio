@@ -31,6 +31,12 @@ function meshes(root: THREE.Object3D, id: string) {
   });
   return result;
 }
+function fittingRole(mesh: THREE.Mesh) {
+  let object: THREE.Object3D | null = mesh;
+  while (object && !object.userData.fitRole && !object.userData.assetId)
+    object = object.parent;
+  return object?.userData.fitRole;
+}
 function points(mesh: THREE.Mesh, centers = false) {
   const p = mesh.geometry.getAttribute("position"),
     ix = mesh.geometry.index;
@@ -117,17 +123,30 @@ test("mustache follows both heads and every expression; glasses clear actual hea
               );
             }
           let probes = 0;
-          for (const mesh of meshes(avatar.object, "acc-glasses"))
+          const glasses = meshes(avatar.object, "acc-glasses");
+          for (const mesh of glasses.filter(
+            (mesh) => fittingRole(mesh) === "front",
+          ))
             for (const p of points(mesh, true)) {
               const depth = frontDepth(skin, p);
               if (depth === undefined) continue;
               probes++;
               assert.ok(
-                p.z - depth > 0.008,
-                `${head} frame penetrates face: ${p.z - depth}`,
+                p.z - depth > 0.008 && p.z - depth < 0.085,
+                `${head} frame must clear skin without floating in front: ${p.z - depth}`,
               );
+              if (Math.abs(p.x) < 0.02)
+                assert.ok(
+                  p.z - depth < 0.035,
+                  `${head} bridge floats ${p.z - depth} m from the nose`,
+                );
             }
           assert.ok(probes > 100);
+          assert.equal(
+            intersections(glasses, skin) + intersections(skin, glasses),
+            0,
+            `${head} glasses sides intersect the head or ears`,
+          );
         } finally {
           avatar.dispose();
         }
@@ -136,7 +155,7 @@ test("mustache follows both heads and every expression; glasses clear actual hea
     library.dispose();
   }
 });
-test("one hair asset fits cap and glasses, restores on removal, and isolates other instances", async () => {
+test("caps contain hair while glasses preserve it, including removal and independent instances", async () => {
   const requests: string[] = [];
   const library = new AvatarLibrary(
     catalog,
@@ -173,7 +192,8 @@ test("one hair asset fits cap and glasses, restores on removal, and isolates oth
               },
             });
             avatar.object.updateMatrixWorld(true);
-            assert.notDeepEqual(snapshot(), original);
+            if (worn === "glasses") assert.deepEqual(snapshot(), original);
+            else assert.notDeepEqual(snapshot(), original);
             assert.deepEqual(
               meshes(untouched.object, hair).flatMap((m) =>
                 Array.from(m.geometry.getAttribute("position").array),
@@ -181,19 +201,24 @@ test("one hair asset fits cap and glasses, restores on removal, and isolates oth
               original,
             );
             const hairMeshes = meshes(avatar.object, hair),
-              cap = meshes(avatar.object, "hat-club-cap"),
-              glasses = meshes(avatar.object, "acc-glasses");
+              cap = meshes(avatar.object, "hat-club-cap");
             assert.equal(
               intersections(hairMeshes, cap) + intersections(cap, hairMeshes),
               0,
               `${head}/${hair}: hair intersects cap`,
             );
-            assert.equal(
-              intersections(hairMeshes, glasses) +
-                intersections(glasses, hairMeshes),
-              0,
-              `${head}/${hair}: hair intersects glasses`,
-            );
+            if (worn === "both") {
+              const withGlasses = snapshot();
+              await avatar.setAppearance({
+                ...recipe,
+                parts: { ...recipe.parts, headwear: "hat-club-cap" },
+              });
+              assert.deepEqual(
+                snapshot(),
+                withGlasses,
+                `${head}/${hair}: eyewear must preserve the hat-fitted hair`,
+              );
+            }
             assert.equal(avatar.recipe?.parts.hair, hair);
             await avatar.setAppearance(recipe);
             assert.deepEqual(snapshot(), original);
@@ -211,7 +236,7 @@ test("one hair asset fits cap and glasses, restores on removal, and isolates oth
     library.dispose();
   }
 });
-test("accessory volumes fit unseen wide and tall hair without per-style metadata", async () => {
+test("cap containment and glasses occlusion accept unseen wide and tall hair", async () => {
   for (const shape of ["wide", "tall"] as const)
     for (const worn of ["hat", "glasses", "both"]) {
       const { asset, bytes } = await syntheticHair(shape, catalog.rig.id),
@@ -236,17 +261,25 @@ test("accessory volumes fit unseen wide and tall hair without per-style metadata
         await avatar.setAppearance(recipe);
         avatar.object.updateMatrixWorld(true);
         const hair = meshes(avatar.object, asset.id),
-          cap = meshes(avatar.object, "hat-club-cap"),
-          glasses = meshes(avatar.object, "acc-glasses");
+          cap = meshes(avatar.object, "hat-club-cap");
         assert.equal(
           intersections(hair, cap) + intersections(cap, hair),
           0,
           `${shape}/${worn}: cap intersection`,
         );
-        assert.equal(
-          intersections(hair, glasses) + intersections(glasses, hair),
-          0,
-          `${shape}/${worn}: glasses intersection`,
+        const withGlasses = hair.flatMap((mesh) =>
+          Array.from(mesh.geometry.getAttribute("position").array),
+        );
+        await avatar.setAppearance({
+          ...recipe,
+          parts: { ...recipe.parts, eyewear: null },
+        });
+        assert.deepEqual(
+          meshes(avatar.object, asset.id).flatMap((mesh) =>
+            Array.from(mesh.geometry.getAttribute("position").array),
+          ),
+          withGlasses,
+          `${shape}/${worn}: glasses must not carve unfamiliar hair`,
         );
         assert.equal(avatar.recipe?.parts.hair, asset.id);
       } finally {

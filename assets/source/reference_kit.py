@@ -379,19 +379,11 @@ def lock(name, outline, ridge, material, parent):
     fs=[(i,(i+1)%n,n) for i in range(n)]+[tuple(reversed(range(n+1,2*n+1)))]+[(i,n+1+i,n+1+(i+1)%n,(i+1)%n) for i in range(n)]
     return mesh(name,vs,fs,material,parent)
 
+exec(compile((ROOT/'assets/source/scalp_foundation.py').read_text(), 'scalp_foundation.py', 'exec'),globals())
+
 def make_hair(id,label,style):
     r,d=asset(id,label,'hair','A filled scalp and a few broad directional lock masses; all accessories fit this same source mesh.');p=mount(r,d,'head')
-    # A crown grid with an intentional hairline and close nape around exposed ears.
-    vs=[];fs=[];n=24
-    for row in range(5):
-        t=row/4
-        for j in range(n):
-            a=j*math.tau/n;front=max(0,math.cos(a));bottom=-.114*(1-front)+.058*front
-            y=bottom+( .261-bottom)*t;rad=math.sqrt(max(.02,1-((y-.061)/.215)**2))
-            vs.append((math.sin(a)*.187*rad,y,-.013+math.cos(a)*.192*rad))
-    for row in range(4):
-        for j in range(n):a=row*n+j;b=row*n+(j+1)%n;fs.append((a,b,b+n,a+n))
-    fs.append(tuple(range(4*n,5*n)));mesh('Continuous fitted scalp',vs,fs,hair,p)
+    scalp_foundation(p,label)
     masses=[
       # left outer fan; long fringe; central fringe; cowlick; upright right locks
       ([(-.042,.228,.124),(-.180,.245,.035),(-.287,.208,.034),(-.228,.181,.106),(-.324,.127,.100),(-.195,.117,.197)],(-.176,.194,.183)),
@@ -407,16 +399,30 @@ def make_hair(id,label,style):
         if style=='pony':
             outline=[(x*.92,y if i<4 else .19+(y-.19)*.45,z) for x,y,z in outline];ridge=(ridge[0]*.92,ridge[1],ridge[2])
         lock('Swept lock '+str(i+1),outline,ridge,hair,p)
-    # Back silhouette is a layered sweep, with roots fully inside the scalp.
-    for s in [-1,1]:
-        lock('Long nape sweep',[(s*.055,.20,-.134),(s*.143,.17,-.116),(s*.179,-.047,-.071),(s*.111,-.138,-.110),(s*.073,-.048,-.193)],(s*.129,.066,-.203),hair,p)
+    # The supplied overhead study flows diagonally out of a crown whorl.
+    # Four staggered rear locks continue that flow instead of two symmetric
+    # vertical shield-shaped panels hanging behind the ears.
+    rear_masses=[
+      ([(.05,.19,-.11),(-.10,.21,-.10),(-.19,.14,-.085),(-.218,.035,-.065),(-.12,.075,-.182)],(-.11,.145,-.20)),
+      ([(.04,.20,-.12),(-.08,.17,-.18),(-.19,-.02,-.17),(-.148,-.118,-.128),(-.03,-.04,-.193)],(-.06,.08,-.228)),
+      ([(.06,.198,-.126),(.15,.12,-.16),(.09,-.065,-.22),(-.033,-.15,-.142),(-.015,.065,-.225)],(.065,.075,-.239)),
+      ([(.078,.19,-.098),(.166,.16,-.06),(.213,.037,-.07),(.146,-.096,-.127),(.062,.02,-.212)],(.15,.08,-.209)),
+    ]
+    for i,(outline,ridge) in enumerate(rear_masses):
+        lock('Directional crown-to-nape '+str(i),outline,ridge,hair,p)
     if style=='pony':
-        ico('Hair tie',(0,.215,-.20),(.055,.032,.034),secondary,p,1)
-        lock('Pony tail', [(-.05,.26,-.21),(.07,.27,-.25),(.13,.06,-.30),(.08,-.16,-.28),(-.016,-.052,-.24)],(.05,.10,-.36),hair,p)
+        # A gathered root overlaps the occipital scalp and tail. The original
+        # flat tail began behind the skull, leaving an air gap in profile.
+        gathered=rings('Gathered pony root',[(.12,.060,.035,-.156),(.18,.067,.059,-.165),(.23,.043,.044,-.190),(.255,.028,.024,-.219)],hair,p,n=10)
+        smooth(gathered)
+        ico('Hair tie',(0,.239,-.218),(.044,.024,.030),secondary,p,2)
+        # Solid taper with a kicked pointed end, not a hanging rectangular card.
+        tail=rings('Pony tail volume',[(-.174,.004,.004,-.267),(-.112,.027,.027,-.310),(-.015,.057,.043,-.327),(.093,.064,.056,-.301),(.180,.050,.045,-.262),(.244,.030,.026,-.222)],hair,p,n=8)
+        smooth(tail)
     if style=='curls':
         # Alternate swept cut retains broad masses; this is not the approved study.
         for obj in p.children:
-            if obj.type=='MESH':
+            if obj.type=='MESH' and not obj.get('scalpFoundation'):
                 for v in obj.data.vertices:v.co.x=-v.co.x;v.co.z=.02+(v.co.z-.02)*.88
     export(r,d)
 
@@ -569,24 +575,28 @@ def export_accessory(root,record):
             transform=obj.matrix_basis.copy()
             for v in obj.data.vertices:v.co=transform@v.co
             obj.matrix_basis=Matrix.Identity(4)
-            for v in obj.data.vertices:v.co.x*=.76;v.co.z*=.90;v.co.y*=.80
+            for v in obj.data.vertices:v.co.x*=.76*(1.022 if record['slot']=='headwear' else 1);v.co.z*=.90;v.co.y*=.80
     if record.get('fit'):
         record['fit'].update(surface='face-v2',frame=FRAME,maxDistance=.085)
         if record['slot']=='facialHair':record['fit']['offset']=.0055
     for volume in record.get('hairFit',[]):
+        if volume['mode']=='occlude':continue
         volume['center']=[v*s for v,s in zip(volume['center'],[.76,.90,.80])]
         volume['radii']=[v*s for v,s in zip(volume['radii'],[.76,.90,.80])]
+        if volume['mode']=='contain':volume['radii'][0]*=1.022
         if 'transition' in volume:volume['transition']=[v*.9 for v in volume['transition']]
     old_export(root,record)
 export=export_accessory
 fitted_accessories()
 # Round glasses reuse the tested frame/volume construction, in the new family.
-r,d=asset('acc-glasses','Round frames','eyewear','One glasses asset: actual-face clearance and generic hair exclusion volumes.');p=mount(r,d,'head')
+r,d=asset('acc-glasses','Round frames','eyewear','One glasses asset: actual-face clearance, shaped temples and natural occlusion inside hair.');p=mount(r,d,'head')
 for x in [-.096,.096]:tube_path('Round rim',[(x+math.cos(i*math.pi/8)*.073,.025+math.sin(i*math.pi/8)*.062,.267) for i in range(17)],.006,secondary,p,True)
 tube_path('Bridge',[(-.023,.029,.267),(0,.038,.275),(.023,.029,.267)],.005,secondary,p)
-for s in [-1,1]:tube_path('Temple',[(s*.166,.03,.267),(s*.22,.03,.247),(s*.282,.03,.135),(s*.282,.03,-.08)],.005,secondary,p)
-d['fit']=fit_spec('clearance',.016)
-d['hairFit']=[{'targetSlot':'hair','mode':'clearance','center':[0,.028,.28],'radii':[.325,.079,.041]}]+[{'targetSlot':'hair','mode':'clearance','axis':'x','direction':-s,'center':[s*.279,.03,.105],'radii':[.079,.018,.205]} for s in [-1,1]]
+for s in [-1,1]:tube_path('Temple',[(s*.166,.03,.267),(s*.22,.03,.247),(s*.248,.03,.135),(s*.245,.012,.02),(s*.24,-.036,-.075)],.005,secondary,p)
+for piece in p.children:
+    if piece.type=='MESH':piece['fitRole']='side' if piece.name.startswith('Temple') else 'front'
+d['fit']=fit_spec('clearance',.016);d['fit'].update(projection='wrap',sideOffset=.003)
+d['hairFit']=[{'targetSlot':'hair','mode':'occlude'}]
 export(r,d);export=old_export
 for id,label,style in [('acc-band','Captain band','band'),('acc-headphones','Off-duty audio','phones')]:
     r,d=asset(id,label,'accessory','Optional head accessory for the reference family.');p=mount(r,d,'head')
@@ -603,7 +613,7 @@ for id,label,style in [('effect-orbit','Golden orbit','orbit'),('effect-spark','
     export(r,d)
 
 slots=[{'id':s,'label':label,'required':required} for s,label,required in [('head','Head',True),('face','Face',True),('hair','Hair',False),('facialHair','Facial hair',False),('eyewear','Glasses',False),('headwear','Hats',False),('shirt','Tops',True),('bottom','Bottoms',True),('shoes','Footwear',True),('accessory','Accessories',False),('effect','Effects',False)]]
-catalog={'version':1,'id':'zoomap-athletics','revision':'2.1.0','rig':{'id':'athlete-reference-v2','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
+catalog={'version':1,'id':'zoomap-athletics','revision':'2.2.0','rig':{'id':'athlete-reference-v2','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
 catalog['bodyRegions']=['torso','upper-legs','feet']
 catalog['bodyShape']={
     'weightProfile':[[0,0,0],[.80,0,0],[.99,.18,.24],[1.13,.34,.46],[1.30,.24,.32],[1.48,.06,.06],[1.61,0,0],[2.04,0,0]],
@@ -643,7 +653,11 @@ def toon(material):
         if image:
             tex=nodes.new('ShaderNodeTexImage');tex.image=image
             paint=nodes.new('ShaderNodeMixRGB');paint.blend_type='MULTIPLY';paint.inputs[0].default_value=1;paint.inputs[1].default_value=material.diffuse_color;links.new(tex.outputs['Color'],paint.inputs[2]);links.new(paint.outputs[0],mix.inputs[1])
-        emission=nodes.new('ShaderNodeEmission');links.new(mix.outputs[0],emission.inputs[0]);out=nodes.new('ShaderNodeOutputMaterial');links.new(emission.outputs[0],out.inputs[0]);toon_materials[material]=m
+        shaded=mix.outputs[0]
+        if material.get('vertexPigment'):
+            pigment=nodes.new('ShaderNodeVertexColor');pigment.layer_name=material['vertexPigment']
+            color_mix=nodes.new('ShaderNodeMixRGB');color_mix.blend_type='MULTIPLY';color_mix.inputs[0].default_value=1;links.new(shaded,color_mix.inputs[1]);links.new(pigment.outputs['Color'],color_mix.inputs[2]);shaded=color_mix.outputs[0]
+        emission=nodes.new('ShaderNodeEmission');links.new(shaded,emission.inputs[0]);out=nodes.new('ShaderNodeOutputMaterial');links.new(emission.outputs[0],out.inputs[0]);toon_materials[material]=m
     return toon_materials[material]
 ink_hull=bpy.data.materials.new('Reference silhouette ink');ink_hull.use_nodes=True
 nodes=ink_hull.node_tree.nodes;links=ink_hull.node_tree.links;nodes.clear()
@@ -684,6 +698,8 @@ def preview(name, ids, x=0, angle=0, grey=False, colors=None):
                     channel=m.get('paletteChannel')
                     if colors and channel in colors:
                         m=m.copy();color(m,colors[channel])
+                    if copy.data.color_attributes:
+                        m=m.copy();m['vertexPigment']=copy.data.color_attributes[0].name
                     copy.data.materials[i]=toon(m)
                 if id.startswith('face-'):excluded.objects.link(copy)
     # Rasterized inverted hulls respect the expression texture's alpha. Freestyle
@@ -720,6 +736,7 @@ line_style.color=(.018,.022,.026);line_style.thickness=1.4
 lines=bpy.context.view_layer.freestyle_settings.linesets[0];lines.select_crease=False;lines.select_border=True;lines.select_silhouette=True
 lines.select_by_collection=True;lines.collection=excluded;lines.collection_negation='EXCLUSIVE'
 exec(compile((ROOT/'assets/source/collection_review.py').read_text(), 'collection_review.py', 'exec'),globals())
+exec(compile((ROOT/'assets/source/hair_review.py').read_text(), 'hair_review.py', 'exec'),globals())
 for obj in set(bpy.data.objects)-before:obj['zmap_reference']=True
 for source in roots:
     source.hide_set(True)

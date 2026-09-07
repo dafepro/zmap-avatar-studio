@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hair-sweep",
+    "accessories": true,
+    "meshes": 50,
+    "triangles": 20756,
+    "sourceTriangles": 10772,
+    "parts": 8
+  },
+  {
+    "id": "hair-curls",
+    "accessories": true,
+    "meshes": 50,
+    "triangles": 20756,
+    "sourceTriangles": 10772,
+    "parts": 8
+  },
+  {
+    "id": "hair-pony",
+    "accessories": true,
+    "meshes": 52,
+    "triangles": 21252,
+    "sourceTriangles": 11020,
+    "parts": 8
+  },
+  {
+    "id": "hair-ember",
+    "accessories": true,
+    "meshes": 50,
+    "triangles": 22848,
+    "sourceTriangles": 11818,
+    "parts": 8
+  },
+  {
+    "id": "hair-tide",
+    "accessories": true,
+    "meshes": 50,
+    "triangles": 22056,
+    "sourceTriangles": 11422,
+    "parts": 8
+  },
+  {
+    "id": "hair-volt",
+    "accessories": true,
+    "meshes": 50,
+    "triangles": 23004,
+    "sourceTriangles": 11896,
+    "parts": 8
+  }
+]

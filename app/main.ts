@@ -382,6 +382,9 @@ $("reference").onclick = () => {
       "collection-02/ember",
       "collection-02/tide",
       "collection-02/volt",
+      "hair-isolated/ember",
+      "hair-isolated/tide",
+      "hair-isolated/volt",
     ]) {
       const img = new Image();
       img.alt = `Zoomap ${name} component study: front, side and elevated top views.`;
@@ -622,7 +625,7 @@ async function start() {
       ];
     }
     for (const [name, primary, skin, hair] of [
-      ["Ember", "#cf641e", "#9e6542", "#30251f"],
+      ["Ember", "#cf641e", "#9e6542", "#514030"],
       ["Tide", "#28847f", "#bc8565", "#182b35"],
       ["Volt", "#79283a", "#e5b48c", "#bb9964"],
     ]) {

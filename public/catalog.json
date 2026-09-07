@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "zoomap-athletics",
-  "revision": "2.1.0",
+  "revision": "2.2.0",
   "rig": {
     "id": "athlete-reference-v2",
     "height": 2.04,
@@ -258,7 +258,7 @@
       },
       "url": "models/body-athletic.glb",
       "bytes": 418824,
-      "sha256": "c4adc4d988928bcfe1251898243bb6964a6324c247e0c33a24a56b1b7c0b1a83",
+      "sha256": "c31eaaac1374f52aadcf6c33ce4ce56ca9803ad780ad9c355955beee676235b3",
       "triangles": 5791
     },
     {
@@ -288,7 +288,7 @@
       },
       "url": "models/head-scout.glb",
       "bytes": 23072,
-      "sha256": "f14be77e0e0510828e148ceb395a3c226017895616fb6a35ebaf9cea9743184c",
+      "sha256": "b7b39d089d8526bbca80f04290022654c41fce4ca1e8f168006ca4c725f187ac",
       "triangles": 1074
     },
     {
@@ -318,7 +318,7 @@
       },
       "url": "models/head-spark.glb",
       "bytes": 23072,
-      "sha256": "15631fcaeb782e00e14fad912eaf4a2111c3c0993fbf71aed8f2107647a78473",
+      "sha256": "9d0494b590b0bea7c1929a0d97970d302916490cbd9a1f001a5e3016c4576424",
       "triangles": 1074
     },
     {
@@ -355,7 +355,7 @@
       },
       "url": "models/face-focus.glb",
       "bytes": 84764,
-      "sha256": "ca3dc407ae5307def1e1e929e4b804b52f98c2fdd76eb64296e3b2252221d6c0",
+      "sha256": "867a0b14a3004ab2d630e7608ba001c7c6e05ecdcd22db82d47eec8330150d82",
       "triangles": 788
     },
     {
@@ -392,7 +392,7 @@
       },
       "url": "models/face-grin.glb",
       "bytes": 84760,
-      "sha256": "a4600001b36138b6a4ae63dbb4ac60f3cee5098b08ef0c889e5fb3e4383fbbe7",
+      "sha256": "ff5425e8ac7f6c421cf79a871951220f69c336498e08e2e89f61482351bf3925",
       "triangles": 788
     },
     {
@@ -429,7 +429,7 @@
       },
       "url": "models/face-wink.glb",
       "bytes": 84760,
-      "sha256": "a50a659b803f667ea1aa9759a4ee8d89255606b58fdb0f8137589074726a8e45",
+      "sha256": "a624f83485044a41fff21c15ed197aa2d03cd044ef7a4e613dd2433cf1c06c06",
       "triangles": 788
     },
     {
@@ -449,9 +449,9 @@
       ],
       "tags": [],
       "url": "models/hair-sweep.glb",
-      "bytes": 22840,
-      "sha256": "7772a45c9e4803b0fafae8e10ad57749df716817545027aae19c7cc04e365dff",
-      "triangles": 390
+      "bytes": 30220,
+      "sha256": "96d86fb76f80a03fa2baa24d25468096ae26c46be28b198d635305049b3efe50",
+      "triangles": 750
     },
     {
       "id": "hair-curls",
@@ -470,9 +470,9 @@
       ],
       "tags": [],
       "url": "models/hair-curls.glb",
-      "bytes": 22840,
-      "sha256": "1afc760028822db94aa511ab68e1387613ec90150ca29263372eacc1d294042b",
-      "triangles": 390
+      "bytes": 30220,
+      "sha256": "31c8b147bcad9573f73a56fe10a8b6fb75437a4ef5ba7401281bf5bf8b504924",
+      "triangles": 750
     },
     {
       "id": "hair-pony",
@@ -492,9 +492,9 @@
       ],
       "tags": [],
       "url": "models/hair-pony.glb",
-      "bytes": 33784,
-      "sha256": "3eb1e028920c4d428c19c0378bebbd1ed557ac3928c606f4eb0380ca5c681e9f",
-      "triangles": 428
+      "bytes": 52176,
+      "sha256": "459bc5a8b778de1547165e3539ff69bc2819e38787fb50706aab9e8ad3cb5717",
+      "triangles": 998
     },
     {
       "id": "shirt-jersey",
@@ -542,7 +542,7 @@
       },
       "url": "models/shirt-jersey.glb",
       "bytes": 47604,
-      "sha256": "14c9e433957802401dff8b6b8edd75ecf9a870ecb4ade5ab84f192492513fc45",
+      "sha256": "aa09fd9d2a50e2ca1e8d63ac3736551af8aaf0dacf6c48c187d24a7a4beda2fd",
       "triangles": 298
     },
     {
@@ -591,7 +591,7 @@
       },
       "url": "models/shirt-hoodie.glb",
       "bytes": 54252,
-      "sha256": "e9122dbd07d9441dd6521a956fb17eb2f6b2e92412f3deb9e299a824414926b3",
+      "sha256": "18a18098699c23ca60038fe5f8dcd25e22e51a2d51822b83b301596959b0ad7d",
       "triangles": 366
     },
     {
@@ -640,7 +640,7 @@
       },
       "url": "models/shirt-track.glb",
       "bytes": 52232,
-      "sha256": "8f740ad000f5e37deb456899a2114a0e6bc659dbd09b20bc5ef65999fe8f3b2d",
+      "sha256": "8771bea1e565179779ac9ab295ddb60431d28dea03572987b3e62504dd20863f",
       "triangles": 342
     },
     {
@@ -685,7 +685,7 @@
       },
       "url": "models/bottom-court.glb",
       "bytes": 21148,
-      "sha256": "893df32b9b81a3ae4dec3ba0937e3a61cbabb788d5e71133470d9bf95660642a",
+      "sha256": "548867e1465264f4a45519477db75cbd3ad747ef0de0afd89a8dc6db24efffd3",
       "triangles": 183
     },
     {
@@ -730,7 +730,7 @@
       },
       "url": "models/bottom-training.glb",
       "bytes": 21868,
-      "sha256": "648d21e26615fe78d2e388dfadbf46048c5dfdfb3fa1139ffe3d9690bc131eb5",
+      "sha256": "0e903eb42d41cecf8961ee9591fbbd927090ede4fe2e38f57663cfd54f9ce53f",
       "triangles": 183
     },
     {
@@ -759,7 +759,7 @@
       ],
       "url": "models/shoes-court.glb",
       "bytes": 73828,
-      "sha256": "2bc83bd0234b67f0a2f0d27ee9be60d75ff27bcf907d184624a52a28917f46e7",
+      "sha256": "efed2465c12dac27a62dadf54de0c1767536c645c7da0e7f2e3fb8461289f686",
       "triangles": 1360
     },
     {
@@ -788,7 +788,7 @@
       ],
       "url": "models/shoes-runner.glb",
       "bytes": 74272,
-      "sha256": "7ce104177555cf1fbfafe46bf2f7e4f622650b19e9fa8165189af932fdde9fe0",
+      "sha256": "2909e0b88398af67fe51064ef222a0acbb8c987320a84f88e7c302c0b1bc7ceb",
       "triangles": 1368
     },
     {
@@ -817,7 +817,7 @@
       ],
       "url": "models/shoes-high.glb",
       "bytes": 92496,
-      "sha256": "71bbbe42bad60c55fa275b063be15109fee6c070db0d7285437ad88142c4ed63",
+      "sha256": "57211acf42891e4b1274d17081c42aaa04ead9ab97e4e05cdaa2627e6c5af1da",
       "triangles": 1712
     },
     {
@@ -837,9 +837,9 @@
       ],
       "tags": [],
       "url": "models/hair-ember.glb",
-      "bytes": 47772,
-      "sha256": "b653b0855394c1168723f799baec9a9c8467042b0d9a0f439e06d7d71bc7871f",
-      "triangles": 502
+      "bytes": 92364,
+      "sha256": "1ec2950e610e9db858bd7bcde447f2242dd62202c2a524d31b986d4dbd97d62e",
+      "triangles": 1796
     },
     {
       "id": "hair-tide",
@@ -858,9 +858,9 @@
       ],
       "tags": [],
       "url": "models/hair-tide.glb",
-      "bytes": 15500,
-      "sha256": "d143162e748bbd42819fb723091c3a7b0c3fd040eef726cdff29a0fa8172dd08",
-      "triangles": 258
+      "bytes": 38516,
+      "sha256": "a8ff9bb2b0839cad1e857dcf55660aaeefa9d545bc1d60c33d8d9f794532d891",
+      "triangles": 1400
     },
     {
       "id": "hair-volt",
@@ -875,14 +875,13 @@
         }
       ],
       "channels": [
-        "secondary",
         "hair"
       ],
       "tags": [],
       "url": "models/hair-volt.glb",
-      "bytes": 21220,
-      "sha256": "3d76c374728472f0d6ccfeda3cc2e22cb071d1c0b8f135631daac9c940a3cf46",
-      "triangles": 366
+      "bytes": 44940,
+      "sha256": "7bfa8e00c1da738049e4886da8192d4ea15f41d23cd4fb1d7374560222d9fa0b",
+      "triangles": 1874
     },
     {
       "id": "shirt-ember",
@@ -927,7 +926,7 @@
       },
       "url": "models/shirt-ember.glb",
       "bytes": 36116,
-      "sha256": "f47fcc0fdc0982312c5ed9a8abdb4d9016257f3d13ac691a5bf6dda9df4c4dda",
+      "sha256": "89fc982952a3b3b04ed20532ecf361450a802e2e58a52f1a379838025ef3f9f6",
       "triangles": 318
     },
     {
@@ -973,7 +972,7 @@
       },
       "url": "models/shirt-tide.glb",
       "bytes": 33108,
-      "sha256": "0cd538e3d937d01f0834dee68d28649a4e68bb49c10980e2152754f7fa634253",
+      "sha256": "8b9f456ab2944fde6357d84038d99dc4957ba13a71fda388de7b5f0afd4f4bf3",
       "triangles": 298
     },
     {
@@ -1019,7 +1018,7 @@
       },
       "url": "models/shirt-volt.glb",
       "bytes": 34608,
-      "sha256": "37e698d2f0841c3369e143f09d7ad481e850f266830bb8e4db87d2914d7f305b",
+      "sha256": "1c833d33582da96e6b201be83513c9a77c04a4843cbcc674a63ec7dafe2c45b9",
       "triangles": 302
     },
     {
@@ -1056,7 +1055,7 @@
       },
       "url": "models/face-ember.glb",
       "bytes": 92568,
-      "sha256": "5b1fb6a939cc4485b5dca2362c2114b668395dc05ff6e5fe70675f08b743e73c",
+      "sha256": "31089d64a0874dd31024c819a8fa5035ad0560f398c09f308749ca62bf6088bc",
       "triangles": 788
     },
     {
@@ -1093,7 +1092,7 @@
       },
       "url": "models/face-tide.glb",
       "bytes": 92564,
-      "sha256": "c9720a684202864e191a16db107047f0557b732ad5282778ac477e870779d373",
+      "sha256": "0b73b99a2487b0f66ecb9dd4f04364a6b71db4eee31aa2b81c41955a6df0c40b",
       "triangles": 788
     },
     {
@@ -1130,7 +1129,7 @@
       },
       "url": "models/face-volt.glb",
       "bytes": 92564,
-      "sha256": "8145aecd8d79780df90da97125d09ba241b931a58c0e9d9615763bde3ea683e5",
+      "sha256": "20bc704a51dd402282e431f35a85d7d89816cb199d5223054f862283ea6ff82a",
       "triangles": 788
     },
     {
@@ -1164,7 +1163,7 @@
       },
       "url": "models/facial-mustache.glb",
       "bytes": 3900,
-      "sha256": "e65a3f1dc98f612dc309a72e46578ec9288f7abf4cd34dd04d047b63bb1520ff",
+      "sha256": "7d4e4092a01297f80d32bb2124784ff410c1b03715f699132ce2a6407383d1c5",
       "triangles": 48
     },
     {
@@ -1195,7 +1194,7 @@
             -0.009600000000000001
           ],
           "radii": [
-            0.20520000000000002,
+            0.20971440000000002,
             0.1908,
             0.20240000000000002
           ],
@@ -1206,8 +1205,8 @@
         }
       ],
       "url": "models/hat-club-cap.glb",
-      "bytes": 18456,
-      "sha256": "a44f5f96b36ea1857fdc0b61035984dd6d57cd5b96f71430d0742737416aca57",
+      "bytes": 18460,
+      "sha256": "633c3832193389758068a4f1d7f1e6396334233e5e7b73a73bac0cf8fe113025",
       "triangles": 596
     },
     {
@@ -1215,7 +1214,7 @@
       "label": "Round frames",
       "slot": "eyewear",
       "rig": "athlete-reference-v2",
-      "description": "One glasses asset: actual-face clearance and generic hair exclusion volumes.",
+      "description": "One glasses asset: actual-face clearance, shaped temples and natural occlusion inside hair.",
       "attachments": [
         {
           "node": "ref2_acc-glasses__head",
@@ -1237,60 +1236,20 @@
         ],
         "mode": "clearance",
         "offset": 0.016,
-        "maxDistance": 0.085
+        "maxDistance": 0.085,
+        "projection": "wrap",
+        "sideOffset": 0.003
       },
       "hairFit": [
         {
           "targetSlot": "hair",
-          "mode": "clearance",
-          "center": [
-            0.0,
-            0.0252,
-            0.22400000000000003
-          ],
-          "radii": [
-            0.24700000000000003,
-            0.0711,
-            0.0328
-          ]
-        },
-        {
-          "targetSlot": "hair",
-          "mode": "clearance",
-          "axis": "x",
-          "direction": 1,
-          "center": [
-            -0.21204000000000003,
-            0.027,
-            0.084
-          ],
-          "radii": [
-            0.06004,
-            0.0162,
-            0.164
-          ]
-        },
-        {
-          "targetSlot": "hair",
-          "mode": "clearance",
-          "axis": "x",
-          "direction": -1,
-          "center": [
-            0.21204000000000003,
-            0.027,
-            0.084
-          ],
-          "radii": [
-            0.06004,
-            0.0162,
-            0.164
-          ]
+          "mode": "occlude"
         }
       ],
       "url": "models/acc-glasses.glb",
-      "bytes": 10520,
-      "sha256": "175c46d6cbfcd8add8fd8c914c554cea6c251f6986e482194c116de78c0e03cf",
-      "triangles": 504
+      "bytes": 11704,
+      "sha256": "474afe26fb02876897aa9be3d529f901dfd04c3a2c1f861afc316eb6b360e77f",
+      "triangles": 528
     },
     {
       "id": "acc-band",
@@ -1313,7 +1272,7 @@
       ],
       "url": "models/acc-band.glb",
       "bytes": 5264,
-      "sha256": "5b7b1c5cc97ad0f234feeb1a248ec35b483ba6600abfc4c4e317e0059d60eb69",
+      "sha256": "abc09cee69be596cb84f7940dd404928cb46c5994992379b068c2cb35a9f4bea",
       "triangles": 92
     },
     {
@@ -1335,7 +1294,7 @@
       "tags": [],
       "url": "models/acc-headphones.glb",
       "bytes": 18540,
-      "sha256": "cf595ab2b3df8a8c6d5ebf96f99725958a88e8150849d3792b332ed0fe078597",
+      "sha256": "e8f33466df602d7302e86e94a831b227a1ea68b37a5900efea1a3d07f0b120d5",
       "triangles": 240
     },
     {
@@ -1357,7 +1316,7 @@
       "effect": "orbit",
       "url": "models/effect-orbit.glb",
       "bytes": 22332,
-      "sha256": "de734968072faa2511967d40b86d4069f4ac9559e97251ee0fbf4d853dc08f15",
+      "sha256": "ff501e442f51985af4c7e1175e5cf277a6f14d17deeef19860d534c77b98f15e",
       "triangles": 392
     },
     {
@@ -1379,7 +1338,7 @@
       "effect": "spark",
       "url": "models/effect-spark.glb",
       "bytes": 11692,
-      "sha256": "7e933fd247580fc846adc37fdd81c72d263eee025ff3d79d9b9d507f223efa79",
+      "sha256": "917aaca152859489970ef114432e2bdbb2fba0b5d5bcb4bf9090400021add074",
       "triangles": 100
     }
   ],

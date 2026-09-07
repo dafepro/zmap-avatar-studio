@@ -4,7 +4,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -30,10 +30,10 @@
         "weight": 0
       }
     },
-    "assemblyMs": 20.59999990463257,
+    "assemblyMs": 23.800000071525574,
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -41,7 +41,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -67,10 +67,10 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.8000000715255737,
+    "assemblyMs": 2.600000023841858,
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -78,7 +78,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -104,10 +104,10 @@
         "weight": 0
       }
     },
-    "assemblyMs": 3,
+    "assemblyMs": 2.6999999284744263,
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -115,7 +115,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -141,10 +141,10 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.200000047683716,
+    "assemblyMs": 2.700000047683716,
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -152,7 +152,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -178,10 +178,10 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.299999952316284,
+    "assemblyMs": 2.799999952316284,
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -189,7 +189,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -215,10 +215,10 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.299999952316284,
+    "assemblyMs": 2.700000047683716,
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -226,7 +226,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -252,10 +252,10 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.100000023841858,
+    "assemblyMs": 2.5999999046325684,
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -263,7 +263,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -291,8 +291,8 @@
     },
     "assemblyMs": 2.200000047683716,
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -300,7 +300,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -326,10 +326,10 @@
         "weight": -1
       }
     },
-    "assemblyMs": 18.100000023841858,
+    "assemblyMs": 18.700000047683716,
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -337,7 +337,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -363,10 +363,10 @@
         "weight": 1
       }
     },
-    "assemblyMs": 16.899999976158142,
+    "assemblyMs": 24.600000023841858,
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -374,7 +374,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -400,10 +400,10 @@
         "weight": 0
       }
     },
-    "assemblyMs": 107.30000007152557,
-    "meshes": 56,
-    "triangles": 24632,
-    "sourceTriangles": 12710,
+    "assemblyMs": 23.600000023841858,
+    "meshes": 58,
+    "triangles": 22532,
+    "sourceTriangles": 11660,
     "parts": 10
   },
   {
@@ -411,7 +411,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -437,10 +437,10 @@
         "weight": 1
       }
     },
-    "assemblyMs": 111.90000009536743,
-    "meshes": 56,
-    "triangles": 24632,
-    "sourceTriangles": 12710,
+    "assemblyMs": 24,
+    "meshes": 58,
+    "triangles": 22532,
+    "sourceTriangles": 11660,
     "parts": 10
   }
 ]

@@ -4,8 +4,8 @@
     "col": 0,
     "weight": -1,
     "meshes": 46,
-    "triangles": 19244,
-    "sourceTriangles": 10016,
+    "triangles": 21832,
+    "sourceTriangles": 11310,
     "parts": 7
   },
   {
@@ -13,8 +13,8 @@
     "col": 1,
     "weight": 0,
     "meshes": 46,
-    "triangles": 19244,
-    "sourceTriangles": 10016,
+    "triangles": 21832,
+    "sourceTriangles": 11310,
     "parts": 7
   },
   {
@@ -22,80 +22,80 @@
     "col": 2,
     "weight": 1,
     "meshes": 46,
-    "triangles": 19244,
-    "sourceTriangles": 10016,
+    "triangles": 21832,
+    "sourceTriangles": 11310,
     "parts": 7
   },
   {
     "id": "ember",
+    "col": 3,
+    "weight": 1,
+    "meshes": 58,
+    "triangles": 24544,
+    "sourceTriangles": 12666,
+    "parts": 10
+  },
+  {
+    "id": "tide",
+    "col": 0,
+    "weight": -1,
+    "meshes": 44,
+    "triangles": 21000,
+    "sourceTriangles": 10894,
+    "parts": 7
+  },
+  {
+    "id": "tide",
+    "col": 1,
+    "weight": 0,
+    "meshes": 44,
+    "triangles": 21000,
+    "sourceTriangles": 10894,
+    "parts": 7
+  },
+  {
+    "id": "tide",
+    "col": 2,
+    "weight": 1,
+    "meshes": 44,
+    "triangles": 21000,
+    "sourceTriangles": 10894,
+    "parts": 7
+  },
+  {
+    "id": "tide",
     "col": 3,
     "weight": 1,
     "meshes": 56,
-    "triangles": 23188,
-    "sourceTriangles": 11988,
-    "parts": 10
-  },
-  {
-    "id": "tide",
-    "col": 0,
-    "weight": -1,
-    "meshes": 44,
-    "triangles": 18716,
-    "sourceTriangles": 9752,
-    "parts": 7
-  },
-  {
-    "id": "tide",
-    "col": 1,
-    "weight": 0,
-    "meshes": 44,
-    "triangles": 18716,
-    "sourceTriangles": 9752,
-    "parts": 7
-  },
-  {
-    "id": "tide",
-    "col": 2,
-    "weight": 1,
-    "meshes": 44,
-    "triangles": 18716,
-    "sourceTriangles": 9752,
-    "parts": 7
-  },
-  {
-    "id": "tide",
-    "col": 3,
-    "weight": 1,
-    "meshes": 54,
-    "triangles": 24564,
-    "sourceTriangles": 12676,
+    "triangles": 24136,
+    "sourceTriangles": 12462,
     "parts": 10
   },
   {
     "id": "volt",
     "col": 0,
     "weight": -1,
-    "meshes": 48,
-    "triangles": 18940,
-    "sourceTriangles": 9864,
+    "meshes": 46,
+    "triangles": 21956,
+    "sourceTriangles": 11372,
     "parts": 7
   },
   {
     "id": "volt",
     "col": 1,
     "weight": 0,
-    "meshes": 48,
-    "triangles": 18940,
-    "sourceTriangles": 9864,
+    "meshes": 46,
+    "triangles": 21956,
+    "sourceTriangles": 11372,
     "parts": 7
   },
   {
     "id": "volt",
     "col": 2,
     "weight": 1,
-    "meshes": 48,
-    "triangles": 18940,
-    "sourceTriangles": 9864,
+    "meshes": 46,
+    "triangles": 21956,
+    "sourceTriangles": 11372,
     "parts": 7
   },
   {
@@ -103,8 +103,8 @@
     "col": 3,
     "weight": 1,
     "meshes": 58,
-    "triangles": 22744,
-    "sourceTriangles": 11766,
+    "triangles": 24744,
+    "sourceTriangles": 12766,
     "parts": 10
   }
 ]

@@ -13,6 +13,20 @@ export type AssetContent = {
 };
 /** Socket-local XY authoring frame: center X/Y, width, height. +Z faces forward. */
 export type FitFrame = [number, number, number, number];
+/** A relationship to the complete target, independent of specific hair IDs.
+ * Natural overlap must never also request destructive target deformation.
+ */
+export type HairInteraction =
+  | { targetSlot: string; mode: "occlude" }
+  | {
+      targetSlot: string;
+      center: [number, number, number];
+      radii: [number, number, number];
+      mode: "contain" | "clearance";
+      axis?: "x" | "y" | "z";
+      direction?: -1 | 1;
+      transition?: [number, number];
+    };
 export type Asset = AssetContent & {
   id: string;
   label: string;
@@ -24,25 +38,18 @@ export type Asset = AssetContent & {
   excludesTags?: string[];
   /** Body regions hidden beneath this garment, independent of body weight. */
   covers?: string[];
-  /** Accessory-owned deformation volumes; no hairstyle-specific alternatives. */
-  hairFit?: {
-    targetSlot: string;
-    center: [number, number, number];
-    radii: [number, number, number];
-    /** Contain a crown in an ellipsoid, or clear a box along -Z. */
-    mode: "contain" | "clearance";
-    axis?: "x" | "y" | "z";
-    direction?: -1 | 1;
-    transition?: [number, number];
-  }[];
+  /** Accessory-owned overlap policy; only geometric modes modify the target. */
+  hairFit?: HairInteraction[];
   surface?: { id: string; frame: FitFrame };
   fit?: {
     targetSlot: string;
     surface: string;
     frame: FitFrame;
     mode: "surface" | "clearance";
-    /** Radial paint wraps profile features around the actual head triangles. */
-    projection?: "front" | "radial";
+    /** Wrap separates a rigid front from sides that clear the head laterally. */
+    projection?: "front" | "radial" | "wrap";
+    /** Required by wrap; meshes carry explicit front/side fitRole extras. */
+    sideOffset?: number;
     offset: number;
     maxDistance: number;
   };
@@ -341,12 +348,31 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
       a.hairFit !== undefined &&
       (!Array.isArray(a.hairFit) ||
         a.hairFit.length > 4 ||
-        !a.hairFit.every(
-          (v: any) =>
-            record(v) &&
-            slots.has(v.targetSlot) &&
-            v.targetSlot !== a.slot &&
+        !a.hairFit.every((v: any) => {
+          if (!record(v) || !slots.has(v.targetSlot) || v.targetSlot === a.slot)
+            return false;
+          if (v.mode === "occlude")
+            return (
+              Object.keys(v).every((key) =>
+                ["targetSlot", "mode"].includes(key),
+              ) &&
+              a.hairFit.filter(
+                (other: any) => other?.targetSlot === v.targetSlot,
+              ).length === 1
+            );
+          return (
             ["contain", "clearance"].includes(v.mode) &&
+            Object.keys(v).every((key) =>
+              [
+                "targetSlot",
+                "mode",
+                "center",
+                "radii",
+                "axis",
+                "direction",
+                "transition",
+              ].includes(key),
+            ) &&
             Array.isArray(v.center) &&
             v.center.length === 3 &&
             v.center.every((n: unknown) => number(n, -1, 1)) &&
@@ -363,8 +389,9 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
                 v.direction === undefined
               : v.transition === undefined &&
                 (v.axis === undefined || ["x", "y", "z"].includes(v.axis)) &&
-                (v.direction === undefined || [-1, 1].includes(v.direction))),
-        ))
+                (v.direction === undefined || [-1, 1].includes(v.direction)))
+          );
+        }))
     )
       fail("asset", "Invalid accessory deformation volume");
     if (
@@ -401,8 +428,12 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
         !frame(a.fit.frame) ||
         !["surface", "clearance"].includes(a.fit.mode) ||
         (a.fit.projection !== undefined &&
-          (!["front", "radial"].includes(a.fit.projection) ||
-            (a.fit.projection === "radial" && a.fit.mode !== "surface"))) ||
+          (!["front", "radial", "wrap"].includes(a.fit.projection) ||
+            (a.fit.projection === "radial" && a.fit.mode !== "surface") ||
+            (a.fit.projection === "wrap" && a.fit.mode !== "clearance"))) ||
+        (a.fit.projection === "wrap"
+          ? !number(a.fit.sideOffset, 0.0005, 0.03)
+          : a.fit.sideOffset !== undefined) ||
         !number(a.fit.offset, 0.0005, 0.03) ||
         !number(a.fit.maxDistance, 0.001, 0.15))
     )

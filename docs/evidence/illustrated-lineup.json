@@ -6,7 +6,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -31,8 +31,8 @@
       }
     },
     "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
+    "triangles": 19700,
+    "sourceTriangles": 10244,
     "parts": 7
   },
   {
@@ -42,7 +42,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-spark",
@@ -67,8 +67,8 @@
       }
     },
     "meshes": 48,
-    "triangles": 19848,
-    "sourceTriangles": 10318,
+    "triangles": 20988,
+    "sourceTriangles": 10888,
     "parts": 7
   },
   {
@@ -78,7 +78,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.1.0",
+      "revision": "2.2.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -103,8 +103,8 @@
       }
     },
     "meshes": 46,
-    "triangles": 19132,
-    "sourceTriangles": 9960,
+    "triangles": 19852,
+    "sourceTriangles": 10320,
     "parts": 7
   }
 ]

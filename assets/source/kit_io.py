@@ -50,12 +50,24 @@ def asset(id,label,slot,description):
 def mount(root,record,socket):
     o=empty(record['id']+'__'+socket,root);record['attachments'].append({'node':o.name,'socket':socket});return o
 def export(root,record):
+    if record['slot']=='hair':
+        for o in root.children_recursive:
+            if o.type=='MESH' and not o.data.color_attributes:
+                pigment=o.data.color_attributes.new(name='Hair pigment',type='FLOAT_COLOR',domain='CORNER')
+                for c in pigment.data:c.color=(1,1,1,1)
     for pivot in list(root.children):
         parts=[o for o in pivot.children if o.type=='MESH']
-        if len(parts)>1 and record['slot']!='body':
-            bpy.ops.object.select_all(action='DESELECT')
-            for o in parts:o.select_set(True)
-            bpy.context.view_layer.objects.active=parts[0];bpy.ops.object.join();parts[0].name=record['id']+'_'+pivot.name+'_mesh'
+        # Independent fitting regions must retain their semantic role after
+        # mesh consolidation. Rims determine depth; temples wrap around sides.
+        groups={}
+        for part in parts:groups.setdefault(part.get('fitRole',''),[]).append(part)
+        for role,group in groups.items():
+            if len(group)>1 and record['slot']!='body':
+                bpy.ops.object.select_all(action='DESELECT')
+                for o in group:o.select_set(True)
+                bpy.context.view_layer.objects.active=group[0];bpy.ops.object.join()
+                group[0].name=record['id']+'_'+pivot.name+('_'+role if role else '')+'_mesh'
+                if role:group[0]['fitRole']=role
     for obj in root.children_recursive:
         if obj.type=='MESH':
             bm=bmesh.new();bm.from_mesh(obj.data);bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces));bm.to_mesh(obj.data);bm.free();obj.data.update()
@@ -73,7 +85,7 @@ def export(root,record):
                 channel=m['paletteChannel'];conflict=bpy.data.materials.get(channel)
                 if conflict and conflict!=m:named.append((conflict,conflict.name));conflict.name='Temporary palette '+channel
                 named.append((m,m.name));m.name=channel
-    try:bpy.ops.export_scene.gltf(filepath=str(path),export_format='GLB',use_selection=True,use_active_scene=True,export_animations=False,export_extras=True,export_yup=True)
+    try:bpy.ops.export_scene.gltf(filepath=str(path),export_format='GLB',use_selection=True,use_active_scene=True,export_animations=False,export_extras=True,export_yup=True,export_vertex_color='ACTIVE')
     finally:
         for material,original in reversed(named):material.name=original
     # Blender emits duplicate sampler entries for a shared image on separate

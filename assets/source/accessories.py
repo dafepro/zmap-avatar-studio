@@ -67,7 +67,8 @@ def fitted_accessories():
 
 def fit_preview_surfaces(head_socket,parts,records):
     """Fit the editable Blender lineup using the same surface/frame contract.
-    Source export meshes remain untouched; runtime owns hair-volume fitting.
+    Source export meshes remain untouched. The runtime additionally qualifies
+    triangle interiors and refines contact on sparse side surfaces.
     """
     from mathutils.bvhtree import BVHTree
     bpy.context.view_layer.update()
@@ -92,9 +93,14 @@ def fit_preview_surfaces(head_socket,parts,records):
                     p=transform@v.co;x=target[0]+(p.x-source[0])*target[2]/source[2];y=target[1]+(p.z-source[1])*target[3]/source[3]
                     hit=surface.ray_cast(Vector((x,-2,y)),Vector((0,1,0)),4)[0]
                     depth=-hit.y if hit is not None else None
-                    if depth is not None:shift=max(shift,depth+fit['offset']+p.y)
-                    vertices.append((v,transform.inverted(),x,y,-p.y,depth))
-        for v,inverse,x,y,z,depth in vertices:
+                    role=obj.get('fitRole') if fit.get('projection')=='wrap' else None
+                    if depth is not None and role!='side':shift=max(shift,depth+fit['offset']+p.y)
+                    vertices.append((v,transform.inverted(),x,y,-p.y,depth,role))
+        for v,inverse,x,y,z,depth,role in vertices:
             if fit['mode']=='surface' and depth is not None:z=depth+fit['offset']
             elif fit['mode']=='clearance' and math.isfinite(shift):z+=shift
+            if role=='side':
+                sign=-1 if x<target[0] else 1
+                hit=surface.ray_cast(Vector((sign*2,-z,y)),Vector((-sign,0,0)),4)[0]
+                if hit is not None:x=sign*max(sign*x,sign*hit.x+fit['sideOffset'])
             v.co=inverse@Vector((x,-z,y))

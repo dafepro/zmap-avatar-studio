@@ -31,7 +31,7 @@ export async function renderCollectionStudy(necks = false) {
   const metadata = [];
   try {
     for (const [row, [id, primary, skin, hair]] of [
-      ["ember", "#cf641e", "#9e6542", "#30251f"],
+      ["ember", "#cf641e", "#9e6542", "#514030"],
       ["tide", "#28847f", "#bc8565", "#182b35"],
       ["volt", "#79283a", "#e5b48c", "#bb9964"],
     ].entries()) {
