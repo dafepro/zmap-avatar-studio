@@ -613,8 +613,9 @@ for id,label,style in [('effect-orbit','Golden orbit','orbit'),('effect-spark','
         for i in range(5):a=i*2.4;ico('Spark',(math.sin(a)*.40,.22+(i%3)*.16,math.cos(a)*.35),(.019,.045,.019),accent,p,1)
     export(r,d)
 
+exec(compile((ROOT/'assets/source/novelty_collection.py').read_text(), 'novelty_collection.py', 'exec'),globals())
 slots=[{'id':s,'label':label,'required':required} for s,label,required in [('head','Head',True),('face','Face',True),('hair','Hair',False),('facialHair','Facial hair',False),('eyewear','Glasses',False),('headwear','Hats',False),('shirt','Tops',True),('bottom','Bottoms',True),('shoes','Footwear',True),('accessory','Accessories',False),('effect','Effects',False)]]
-catalog={'version':1,'id':'zoomap-athletics','revision':'2.3.0','compatibleRecipeRevisions':['2.2.0'],'rig':{'id':'athlete-reference-v2','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
+catalog={'version':1,'id':'zoomap-athletics','revision':'2.4.0','compatibleRecipeRevisions':['2.2.0','2.3.0'],'rig':{'id':'athlete-reference-v2','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
 catalog['bodyRegions']=['torso','upper-legs','feet']
 catalog['bodyShape']={
     'weightProfile':[[0,0,0],[.80,0,0],[.99,.18,.24],[1.13,.34,.46],[1.30,.24,.32],[1.48,.06,.06],[1.61,0,0],[2.04,0,0]],
@@ -738,6 +739,7 @@ lines=bpy.context.view_layer.freestyle_settings.linesets[0];lines.select_crease=
 lines.select_by_collection=True;lines.collection=excluded;lines.collection_negation='EXCLUSIVE'
 exec(compile((ROOT/'assets/source/collection_review.py').read_text(), 'collection_review.py', 'exec'),globals())
 exec(compile((ROOT/'assets/source/hair_review.py').read_text(), 'hair_review.py', 'exec'),globals())
+exec(compile((ROOT/'assets/source/novelty_review.py').read_text(), 'novelty_review.py', 'exec'),globals())
 for obj in set(bpy.data.objects)-before:obj['zmap_reference']=True
 for source in roots:
     source.hide_set(True)

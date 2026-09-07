@@ -1,0 +1,35 @@
+{
+  "catalogRevision": "2.4.0",
+  "assets": {
+    "hat-quack-captain": {
+      "sha256": "6b99e3ee6c3b2dc06ba5d6348b04da90c424faefd939885d9014e62df1b9dba0",
+      "bytes": 20416,
+      "triangles": 584
+    },
+    "acc-starstruck": {
+      "sha256": "71a00bcf4f47247cfa474d02f9a3c9ab747f1ff4ab398417a2cd479da6855c4d",
+      "bytes": 24912,
+      "triangles": 480
+    },
+    "effect-pocket-galaxy": {
+      "sha256": "3649fa3bc887e892e6c68e5aeab9a8bc5fb1b5461f340820b763f0feff4fc3af",
+      "bytes": 25216,
+      "triangles": 364
+    }
+  },
+  "catalogBytes": 2076852,
+  "unitTests": 60,
+  "browserTests": 30,
+  "pythonPackingTests": 4,
+  "structuralRecipes": 933120,
+  "scalpStates": 486,
+  "fittedBudgetStates": 180,
+  "maxFittedTriangles": 13900,
+  "savedBlender": {
+    "path": "../../../assets/source/reference-kit.blend",
+    "sha256": "062aef6b96a6b0b489fb1dffb5d0394228381b7ea457f299163834482a482bd1",
+    "packedImages": 19,
+    "noveltyCameras": 12
+  },
+  "limits": "Local functional, geometry and resource regressions; not physical-phone/full-room qualification."
+}

@@ -104,12 +104,12 @@ export class Stage {
         object.visible = !covered.has(object.userData.avatarRegion);
     });
     this.inspectionRoot = root;
-    this.fitHairInspection();
+    this.fitInspection();
   }
   /** Fit on inspection events, not every animation frame. A sphere keeps every
    * orbit angle inside the smaller viewport dimension, including portrait. */
-  private fitHairInspection() {
-    if (this.inspection !== "hair" || this.projected || this.capture) return;
+  private fitInspection() {
+    if (!this.inspectionCatalog || this.projected || this.capture) return;
     const root = this.avatar.object.children[0];
     if (!root) return;
     root.updateWorldMatrix(true, true);
@@ -216,7 +216,7 @@ export class Stage {
         this.camera.right = (half * w) / h;
       }
       this.camera.updateProjectionMatrix();
-      this.fitHairInspection();
+      this.fitInspection();
     });
     this.resize.observe(container);
     this.animate(0);
@@ -292,7 +292,7 @@ export class Stage {
         o.intensity = (enabled ? [0.85, 2, 0.4] : [2.4, 3, 1.5])[i++] ?? 1;
       }
     });
-    this.fitHairInspection();
+    this.fitInspection();
   }
   setPose(pose: Motion["gesture"]) {
     this.invalidateProjection();
@@ -307,7 +307,7 @@ export class Stage {
   }
   view(side: "front" | "side" | "back") {
     const distance =
-      this.inspection === "hair" && !this.projected
+      this.inspectionCatalog && !this.projected
         ? this.camera.position.distanceTo(this.controls.target)
         : this.small
           ? 8
@@ -328,8 +328,8 @@ export class Stage {
   }
   scale(value: boolean) {
     this.small = value;
-    if (this.inspection === "hair" && !this.projected && !this.capture) {
-      this.fitHairInspection();
+    if (this.inspectionCatalog && !this.projected && !this.capture) {
+      this.fitInspection();
       return;
     }
     if (this.camera instanceof THREE.OrthographicCamera) {

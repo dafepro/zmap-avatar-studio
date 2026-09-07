@@ -46,7 +46,9 @@ await avatar.setAppearance(look);
 
 The same recipe works with asynchronous instances, prepared factories, the illustrated renderer, PNG portraits and directional captures. Mustache color uses the existing hair palette channel.
 
-Recipes require the matching catalog revision; this alpha kit does not migrate old look data. Interaction contracts ship with the versioned asset catalog so authoring changes and runtime behavior are reviewed together.
+Recipes require the current catalog revision or a revision explicitly listed in `compatibleRecipeRevisions`. Catalog 2.4.0 accepts 2.2.0 and 2.3.0 with their original selections intact. Rig, asset IDs, channels, body fields and limits are still validated; undeclared revisions fail. Interaction contracts ship with the versioned asset catalog so authoring changes and runtime behavior are reviewed together.
+
+For a radial containment hat, keep its shell outside the full ellipsoid, including triangle interiors. The open wearing edge must also clear the transition: lower hair vertices can rise toward the field center during blending. A sufficient source rule is an open edge above `max(center[1], transition[1])` with a small clearance. The Quack hat uses a 0.125 m edge above its 0.1125 m field center, avoiding a low cuff that caught ponytails despite an otherwise valid ellipsoid. See the [novelty workflow](novelty-workflow.md).
 
 ## Evidence
 

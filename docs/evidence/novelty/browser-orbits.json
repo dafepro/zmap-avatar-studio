@@ -1,0 +1,1059 @@
+{
+  "provenance": {
+    "kind": "actual-browser-geometry",
+    "catalogRevision": "2.4.0",
+    "renderer": "shipping glTF + ComicStyle",
+    "pose": "idle, reduced motion",
+    "sharedHeadFrame": {
+      "min": [
+        -0.296999990940094,
+        1.5864187902212143,
+        -0.47294068336486816
+      ],
+      "max": [
+        0.296999990940094,
+        2.4580000019073487,
+        0.28040000796318054
+      ]
+    }
+  },
+  "orbits": [
+    {
+      "hair": "hair-sweep",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-scout",
+          "face": "face-focus",
+          "hair": "hair-sweep",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-jersey",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#514030",
+          "skin": "#d3a17a"
+        },
+        "body": {
+          "weight": -1
+        }
+      },
+      "views": [
+        {
+          "degrees": 0,
+          "paintedPixels": 23927,
+          "extent": 0.6322541733364303,
+          "vertices": 5013,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 45,
+          "paintedPixels": 24251,
+          "extent": 0.656528645929508,
+          "vertices": 5013,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 90,
+          "paintedPixels": 23299,
+          "extent": 0.69702707399565,
+          "vertices": 5013,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 135,
+          "paintedPixels": 24517,
+          "extent": 0.6565286459295065,
+          "vertices": 5013,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 180,
+          "paintedPixels": 23850,
+          "extent": 0.6408000238335877,
+          "vertices": 5013,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 225,
+          "paintedPixels": 24214,
+          "extent": 0.6565286459295048,
+          "vertices": 5013,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 270,
+          "paintedPixels": 23315,
+          "extent": 0.6970270739956491,
+          "vertices": 5013,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 315,
+          "paintedPixels": 24641,
+          "extent": 0.656528645929508,
+          "vertices": 5013,
+          "depthClipped": 0,
+          "nonFinite": 0
+        }
+      ],
+      "meshes": 69,
+      "triangles": 22680,
+      "sourceTriangles": 11916,
+      "parts": 10
+    },
+    {
+      "hair": "hair-curls",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-spark",
+          "face": "face-focus",
+          "hair": "hair-curls",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-jersey",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#514030",
+          "skin": "#9e6542"
+        },
+        "body": {
+          "weight": 1
+        }
+      },
+      "views": [
+        {
+          "degrees": 0,
+          "paintedPixels": 24348,
+          "extent": 0.6322541733364303,
+          "vertices": 5001,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 45,
+          "paintedPixels": 24495,
+          "extent": 0.656528645929508,
+          "vertices": 5001,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 90,
+          "paintedPixels": 23022,
+          "extent": 0.69702707399565,
+          "vertices": 5001,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 135,
+          "paintedPixels": 24277,
+          "extent": 0.6565286459295065,
+          "vertices": 5001,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 180,
+          "paintedPixels": 24263,
+          "extent": 0.6408000238335877,
+          "vertices": 5001,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 225,
+          "paintedPixels": 24356,
+          "extent": 0.6565286459295048,
+          "vertices": 5001,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 270,
+          "paintedPixels": 23010,
+          "extent": 0.6970270739956491,
+          "vertices": 5001,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 315,
+          "paintedPixels": 24415,
+          "extent": 0.656528645929508,
+          "vertices": 5001,
+          "depthClipped": 0,
+          "nonFinite": 0
+        }
+      ],
+      "meshes": 69,
+      "triangles": 22672,
+      "sourceTriangles": 11912,
+      "parts": 10
+    },
+    {
+      "hair": "hair-pony",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-scout",
+          "face": "face-focus",
+          "hair": "hair-pony",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-jersey",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#514030",
+          "skin": "#d3a17a"
+        },
+        "body": {
+          "weight": -1
+        }
+      },
+      "views": [
+        {
+          "degrees": 0,
+          "paintedPixels": 23917,
+          "extent": 0.6322541733364303,
+          "vertices": 5811,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 45,
+          "paintedPixels": 24739,
+          "extent": 0.656528645929508,
+          "vertices": 5811,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 90,
+          "paintedPixels": 24578,
+          "extent": 0.69702707399565,
+          "vertices": 5811,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 135,
+          "paintedPixels": 24819,
+          "extent": 0.6565286459295065,
+          "vertices": 5811,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 180,
+          "paintedPixels": 23841,
+          "extent": 0.6408000238335877,
+          "vertices": 5811,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 225,
+          "paintedPixels": 24714,
+          "extent": 0.6565286459295048,
+          "vertices": 5811,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 270,
+          "paintedPixels": 24590,
+          "extent": 0.6970270739956491,
+          "vertices": 5811,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 315,
+          "paintedPixels": 24905,
+          "extent": 0.656528645929508,
+          "vertices": 5811,
+          "depthClipped": 0,
+          "nonFinite": 0
+        }
+      ],
+      "meshes": 71,
+      "triangles": 23212,
+      "sourceTriangles": 12182,
+      "parts": 10
+    },
+    {
+      "hair": "hair-ember",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-spark",
+          "face": "face-focus",
+          "hair": "hair-ember",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-jersey",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#514030",
+          "skin": "#9e6542"
+        },
+        "body": {
+          "weight": 1
+        }
+      },
+      "views": [
+        {
+          "degrees": 0,
+          "paintedPixels": 24330,
+          "extent": 0.6322541733364303,
+          "vertices": 7971,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 45,
+          "paintedPixels": 23912,
+          "extent": 0.656528645929508,
+          "vertices": 7971,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 90,
+          "paintedPixels": 22070,
+          "extent": 0.69702707399565,
+          "vertices": 7971,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 135,
+          "paintedPixels": 23913,
+          "extent": 0.6565286459295065,
+          "vertices": 7971,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 180,
+          "paintedPixels": 24246,
+          "extent": 0.6408000238335877,
+          "vertices": 7971,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 225,
+          "paintedPixels": 23751,
+          "extent": 0.6565286459295048,
+          "vertices": 7971,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 270,
+          "paintedPixels": 22059,
+          "extent": 0.6970270739956491,
+          "vertices": 7971,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 315,
+          "paintedPixels": 24085,
+          "extent": 0.656528645929508,
+          "vertices": 7971,
+          "depthClipped": 0,
+          "nonFinite": 0
+        }
+      ],
+      "meshes": 69,
+      "triangles": 24652,
+      "sourceTriangles": 12902,
+      "parts": 10
+    },
+    {
+      "hair": "hair-tide",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-scout",
+          "face": "face-focus",
+          "hair": "hair-tide",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-jersey",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#20323d",
+          "skin": "#d3a17a"
+        },
+        "body": {
+          "weight": -1
+        }
+      },
+      "views": [
+        {
+          "degrees": 0,
+          "paintedPixels": 24729,
+          "extent": 0.6322541733364303,
+          "vertices": 7419,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 45,
+          "paintedPixels": 24641,
+          "extent": 0.656528645929508,
+          "vertices": 7419,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 90,
+          "paintedPixels": 23983,
+          "extent": 0.69702707399565,
+          "vertices": 7419,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 135,
+          "paintedPixels": 24708,
+          "extent": 0.6565286459295065,
+          "vertices": 7419,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 180,
+          "paintedPixels": 24710,
+          "extent": 0.6408000238335877,
+          "vertices": 7419,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 225,
+          "paintedPixels": 24627,
+          "extent": 0.6565286459295048,
+          "vertices": 7419,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 270,
+          "paintedPixels": 23971,
+          "extent": 0.6970270739956491,
+          "vertices": 7419,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 315,
+          "paintedPixels": 24799,
+          "extent": 0.656528645929508,
+          "vertices": 7419,
+          "depthClipped": 0,
+          "nonFinite": 0
+        }
+      ],
+      "meshes": 69,
+      "triangles": 24284,
+      "sourceTriangles": 12718,
+      "parts": 10
+    },
+    {
+      "hair": "hair-volt",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-spark",
+          "face": "face-focus",
+          "hair": "hair-volt",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-jersey",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#baa078",
+          "skin": "#9e6542"
+        },
+        "body": {
+          "weight": 1
+        }
+      },
+      "views": [
+        {
+          "degrees": 0,
+          "paintedPixels": 24365,
+          "extent": 0.6322541733364303,
+          "vertices": 8319,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 45,
+          "paintedPixels": 23972,
+          "extent": 0.656528645929508,
+          "vertices": 8319,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 90,
+          "paintedPixels": 22113,
+          "extent": 0.69702707399565,
+          "vertices": 8319,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 135,
+          "paintedPixels": 23948,
+          "extent": 0.6565286459295065,
+          "vertices": 8319,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 180,
+          "paintedPixels": 24277,
+          "extent": 0.6408000238335877,
+          "vertices": 8319,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 225,
+          "paintedPixels": 23814,
+          "extent": 0.6565286459295048,
+          "vertices": 8319,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 270,
+          "paintedPixels": 22113,
+          "extent": 0.6970270739956491,
+          "vertices": 8319,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 315,
+          "paintedPixels": 24115,
+          "extent": 0.656528645929508,
+          "vertices": 8319,
+          "depthClipped": 0,
+          "nonFinite": 0
+        }
+      ],
+      "meshes": 69,
+      "triangles": 24884,
+      "sourceTriangles": 13018,
+      "parts": 10
+    },
+    {
+      "hair": "hair-nova",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-scout",
+          "face": "face-focus",
+          "hair": "hair-nova",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-jersey",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#aa6031",
+          "skin": "#d3a17a"
+        },
+        "body": {
+          "weight": -1
+        }
+      },
+      "views": [
+        {
+          "degrees": 0,
+          "paintedPixels": 24693,
+          "extent": 0.6322541733364303,
+          "vertices": 8112,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 45,
+          "paintedPixels": 26980,
+          "extent": 0.8502847900159473,
+          "vertices": 8112,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 90,
+          "paintedPixels": 24585,
+          "extent": 0.69702707399565,
+          "vertices": 8112,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 135,
+          "paintedPixels": 25866,
+          "extent": 0.6565286459295065,
+          "vertices": 8112,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 180,
+          "paintedPixels": 24775,
+          "extent": 0.6469156876501461,
+          "vertices": 8112,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 225,
+          "paintedPixels": 26909,
+          "extent": 0.8502847900159498,
+          "vertices": 8112,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 270,
+          "paintedPixels": 24528,
+          "extent": 0.69702707399565,
+          "vertices": 8112,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 315,
+          "paintedPixels": 25868,
+          "extent": 0.656528645929508,
+          "vertices": 8112,
+          "depthClipped": 0,
+          "nonFinite": 0
+        }
+      ],
+      "meshes": 71,
+      "triangles": 24746,
+      "sourceTriangles": 12949,
+      "parts": 10
+    },
+    {
+      "hair": "hair-halo",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-spark",
+          "face": "face-focus",
+          "hair": "hair-halo",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-jersey",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#5b3e2e",
+          "skin": "#9e6542"
+        },
+        "body": {
+          "weight": 1
+        }
+      },
+      "views": [
+        {
+          "degrees": 0,
+          "paintedPixels": 26050,
+          "extent": 0.6322541733364303,
+          "vertices": 8385,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 45,
+          "paintedPixels": 25780,
+          "extent": 0.656528645929508,
+          "vertices": 8385,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 90,
+          "paintedPixels": 24594,
+          "extent": 0.69702707399565,
+          "vertices": 8385,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 135,
+          "paintedPixels": 25944,
+          "extent": 0.6565286459295065,
+          "vertices": 8385,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 180,
+          "paintedPixels": 26085,
+          "extent": 0.6408000238335877,
+          "vertices": 8385,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 225,
+          "paintedPixels": 25742,
+          "extent": 0.6565286459295048,
+          "vertices": 8385,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 270,
+          "paintedPixels": 24594,
+          "extent": 0.6970270739956491,
+          "vertices": 8385,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 315,
+          "paintedPixels": 25974,
+          "extent": 0.656528645929508,
+          "vertices": 8385,
+          "depthClipped": 0,
+          "nonFinite": 0
+        }
+      ],
+      "meshes": 69,
+      "triangles": 24928,
+      "sourceTriangles": 13040,
+      "parts": 10
+    },
+    {
+      "hair": "hair-reed",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-scout",
+          "face": "face-focus",
+          "hair": "hair-reed",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-jersey",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#70513d",
+          "skin": "#d3a17a"
+        },
+        "body": {
+          "weight": -1
+        }
+      },
+      "views": [
+        {
+          "degrees": 0,
+          "paintedPixels": 24470,
+          "extent": 0.6322541733364303,
+          "vertices": 8577,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 45,
+          "paintedPixels": 24634,
+          "extent": 0.656528645929508,
+          "vertices": 8577,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 90,
+          "paintedPixels": 23955,
+          "extent": 0.69702707399565,
+          "vertices": 8577,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 135,
+          "paintedPixels": 24582,
+          "extent": 0.6565286459295065,
+          "vertices": 8577,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 180,
+          "paintedPixels": 24430,
+          "extent": 0.6408000238335877,
+          "vertices": 8577,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 225,
+          "paintedPixels": 24562,
+          "extent": 0.6565286459295048,
+          "vertices": 8577,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 270,
+          "paintedPixels": 23935,
+          "extent": 0.6970270739956491,
+          "vertices": 8577,
+          "depthClipped": 0,
+          "nonFinite": 0
+        },
+        {
+          "degrees": 315,
+          "paintedPixels": 24660,
+          "extent": 0.656528645929508,
+          "vertices": 8577,
+          "depthClipped": 0,
+          "nonFinite": 0
+        }
+      ],
+      "meshes": 69,
+      "triangles": 25056,
+      "sourceTriangles": 13104,
+      "parts": 10
+    }
+  ],
+  "lineup": [
+    {
+      "id": "nova",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-scout",
+          "face": "face-ember",
+          "hair": "hair-nova",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-ember",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#aa6031",
+          "primary": "#cf641e",
+          "skin": "#d3a17a"
+        },
+        "body": {
+          "weight": -1
+        }
+      },
+      "fullBounds": {
+        "extent": 0.8907496189247762,
+        "vertices": 19416,
+        "depthClipped": 0,
+        "nonFinite": 0
+      },
+      "effectBounds": {
+        "extent": 0.8871489333862073,
+        "vertices": 556,
+        "depthClipped": 0,
+        "nonFinite": 0
+      },
+      "paintedPixels": 41791,
+      "detailPixels": 15990,
+      "meshes": 71,
+      "triangles": 24786,
+      "sourceTriangles": 12969,
+      "parts": 10
+    },
+    {
+      "id": "halo",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-spark",
+          "face": "face-tide",
+          "hair": "hair-halo",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-tide",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#5b3e2e",
+          "primary": "#28847f",
+          "skin": "#855538"
+        },
+        "body": {
+          "weight": 0
+        }
+      },
+      "fullBounds": {
+        "extent": 0.8908025667978235,
+        "vertices": 19649,
+        "depthClipped": 0,
+        "nonFinite": 0
+      },
+      "effectBounds": {
+        "extent": 0.8873296725398935,
+        "vertices": 556,
+        "depthClipped": 0,
+        "nonFinite": 0
+      },
+      "paintedPixels": 41425,
+      "detailPixels": 17341,
+      "meshes": 67,
+      "triangles": 24928,
+      "sourceTriangles": 13040,
+      "parts": 10
+    },
+    {
+      "id": "reed",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.4.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-scout",
+          "face": "face-volt",
+          "hair": "hair-reed",
+          "facialHair": null,
+          "eyewear": "acc-starstruck",
+          "headwear": "hat-quack-captain",
+          "shirt": "shirt-volt",
+          "bottom": "bottom-court",
+          "shoes": "shoes-court",
+          "accessory": null,
+          "effect": "effect-pocket-galaxy"
+        },
+        "colors": {
+          "hair": "#70513d",
+          "primary": "#79283a",
+          "skin": "#e5b48c"
+        },
+        "body": {
+          "weight": 1
+        }
+      },
+      "fullBounds": {
+        "extent": 0.8908007166084504,
+        "vertices": 19849,
+        "depthClipped": 0,
+        "nonFinite": 0
+      },
+      "effectBounds": {
+        "extent": 0.8877552094416168,
+        "vertices": 556,
+        "depthClipped": 0,
+        "nonFinite": 0
+      },
+      "paintedPixels": 44322,
+      "detailPixels": 17194,
+      "meshes": 69,
+      "triangles": 25064,
+      "sourceTriangles": 13108,
+      "parts": 10
+    }
+  ]
+}

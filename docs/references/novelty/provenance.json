@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-07",
+  "generator": "image_gen",
+  "purpose": "Authoring references, not implemented geometry evidence.",
+  "studies": {
+    "quack": {
+      "input": "../hair.png",
+      "prompt": "Use case: stylized-concept. Asset type: isolated modular videogame hat concept. Input image: STYLE reference only—match its confident angular silhouettes, broad hand ink outlines, controlled cel shading and warm cream paper. Design QUACK CAPTAIN: a small cheeky yellow rubber duck sitting in a chunky turquoise swim ring that is worn as a hat. The ring has a closed soft teal fabric crown underneath to cover/contain hair, so it reads as an actual wearable hat, not a disconnected floating toy. Duck has one bold orange flattened bill, two tiny dark eyes, broad simple wings and an upturned tail. Face forward, wings left/right; no writing, logos, straps across face or extra ornaments. Distinct funny silhouette, intentional broad forms, no shiny plastic realism, no fine feathers. Four internally consistent orthographic views in a 2x2 sheet labeled FRONT, SIDE, BACK, TOP; SIDE looks left. Show a faint neutral gray bald enlarged game head and ears in the first three to establish fit, top shows the hat from above. Hat ring slightly wider than head, forehead remains open. The entire hat including duck is about one head tall above the hairline. Each view shows exactly the same modeled object; clear ring opening underside/crown and connected duck body. Draw modelable closed volumes, not disconnected planes.",
+      "generatedPath": "/Users/dcarrell/.codex/generated_images/01a07890-a72b-7b13-a9d4-f7544f99b295/exec-a72cac08-6e0e-43bd-9fd7-aced7e1abfdf.png",
+      "output": "quack.png"
+    },
+    "starstruck": {
+      "input": "../hair.png",
+      "prompt": "Use case: stylized-concept. Asset type: isolated modular videogame eyewear concept. Input image: STYLE reference only—sharp broad hand ink outlines, controlled cel shading, warm cream paper, simplified athletic game proportions. Design STARSTRUCK SPECS: silly mismatched open eyeglass frames with one five-point star rim and one crescent moon rim, connected by a curved nose bridge. Warm golden-yellow chunky but lightweight rims, teal little temple tips. Both eye openings must remain genuinely open/see-through, no opaque lenses or giant solid star covering an eye. The moon frame must close a usable oval eye opening while its outer silhouette has a horned crescent point above and below; think whimsical sculpted rim around a functional pair of glasses. Broad readable contours, small nosepads, gently curving stems that end over the ears; no dangling beads, extra accessories, text or logos. Four internally consistent orthographic views in a 2x2 sheet labeled FRONT, SIDE, BACK, TOP. Front/back show a faint neutral gray enlarged game head and very light eye guides for fit; side points left and clearly shows stems/ear hook; top shows the bridge clearance and wrap of stems around the head. Frames extend just beyond the temples, do not bury in skin, and leave expressive eyes visible. Practical modelable closed volumes. All four views must match.",
+      "generatedPath": "/Users/dcarrell/.codex/generated_images/01a07890-a72b-7b13-a9d4-f7544f99b295/exec-66456ef5-7571-49b9-99c9-1d76a3d09178.png",
+      "output": "starstruck.png"
+    },
+    "galaxy": {
+      "input": "../hair.png",
+      "prompt": "Use case: stylized-concept. Asset type: isolated modular videogame orbiting accessory concept. Input image: STYLE reference only—broad hand-ink outlines, intentional angular forms and controlled cel shading on warm cream paper. Design POCKET GALAXY: a miniature mint-teal flying saucer with a golden rim, a little pale-aqua opaque bubble cabin and two cheerful black eye dots on the cabin; a small golden Saturn with one broad inclined teal ring; and a coral four-point comic star. These three deliberately float as a coordinated orbit around the avatar's ankles/calves, spaced along a mostly invisible circle, with only three tiny golden dash marks suggesting a trail. UFO is the hero, roughly one sneaker long, Saturn half its width and star smaller. There are no connecting rods, lasers, weapons, realistic space textures or text/logos. The cabin is opaque and simply shaded; no glass/refraction simulation needed. Four consistent orthographic views in a 2x2 sheet labeled FRONT, SIDE, BACK, TOP. Use faint gray mannequin lower legs/feet only to show orbit height and clearance, visible objects remain fully clear of legs. Same three objects and same frozen orbital arrangement across views, rotation changes the viewpoint not their locations. In the top view the circle and offset of the three pieces is obvious. Bold readable toy-like silhouettes that can be built economically from real 3D volumes, no screen-facing cardboard illustrations.",
+      "generatedPath": "/Users/dcarrell/.codex/generated_images/01a07890-a72b-7b13-a9d4-f7544f99b295/exec-f88706bc-3a00-4f56-b94b-5c70e6770e3f.png",
+      "output": "galaxy.png"
+    }
+  }
+}

@@ -6,6 +6,7 @@ import bpy, bmesh, math, json, hashlib, struct
 from pathlib import Path
 from mathutils import Vector
 ROOT=Path(__file__).resolve().parents[2]; OUT=ROOT/'public/models'; OUT.mkdir(parents=True,exist_ok=True)
+exec(compile((ROOT/'assets/source/glb_compact.py').read_text(), 'glb_compact.py', 'exec'),globals())
 
 def co(p):return (p[0],-p[2],p[1])
 def mat(name,hex):
@@ -63,6 +64,15 @@ def export(root,record):
         for part in parts:groups.setdefault(part.get('fitRole',''),[]).append(part)
         for role,group in groups.items():
             if len(group)>1 and record['slot']!='body':
+                # Blender fills absent color layers with zero when joining.
+                # Unpainted parts must multiply the material by white, or a
+                # small crest/glint becomes black beside painted geometry.
+                painted=next((o.data.color_attributes[0] for o in group if o.data.color_attributes),None)
+                if painted is not None:
+                    for o in group:
+                        if not o.data.color_attributes:
+                            neutral=o.data.color_attributes.new(name=painted.name,type=painted.data_type,domain=painted.domain)
+                            for value in neutral.data:value.color=(1,1,1,1)
                 bpy.ops.object.select_all(action='DESELECT')
                 for o in group:o.select_set(True)
                 bpy.context.view_layer.objects.active=group[0];bpy.ops.object.join()
@@ -106,6 +116,9 @@ def export(root,record):
         rewrite(document.get('materials',[]));document['textures']=unique
         chunk=json.dumps(document,separators=(',',':')).encode();chunk+=b' '*((-len(chunk))%4)
         tail=binary[20+json_length:];path.write_bytes(struct.pack('<III',0x46546c67,2,20+len(chunk)+len(tail))+struct.pack('<II',len(chunk),0x4e4f534a)+chunk+tail)
+    # Standard normalized UINT8 preserves every eligible skin weight exactly;
+    # compact before pinning bytes/hash so the manifest describes shipped data.
+    path.write_bytes(compact_glb_weights(path.read_bytes()))
     tris=0;used=set()
     for o in root.children_recursive:
         if o.type=='MESH':o.data.calc_loop_triangles();tris+=len(o.data.loop_triangles);used.update(m.get('paletteChannel',m.name) for m in o.data.materials)

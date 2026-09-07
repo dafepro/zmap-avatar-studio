@@ -170,31 +170,47 @@ test("accessory fitting preserves covered scalp instead of opening windows to sk
       for (const hair of catalog.assets.filter(
         (asset) => asset.slot === "hair",
       ))
-        for (const worn of ["hat", "glasses", "both"] as const)
-          for (const weight of [-1, 0, 1]) {
-            const avatar = library.create();
-            try {
-              const recipe = defaultRecipe(catalog);
-              Object.assign(recipe.parts, {
-                head: head.id,
-                hair: hair.id,
-                headwear: worn === "glasses" ? null : "hat-club-cap",
-                eyewear: worn === "hat" ? null : "acc-glasses",
-              });
-              recipe.body = { weight };
-              await avatar.setAppearance(recipe);
-              avatar.object.updateMatrixWorld(true);
-              const uncovered = coverageFailures(
-                probes,
-                ownedMeshes(avatar.object, [head.id]),
-                ownedMeshes(avatar.object, [hair.id, "hat-club-cap"]),
-              );
-              if (uncovered.length)
-                failures.push(
-                  `${head.id}/${hair.id}/${worn}/weight=${weight}: ${uncovered.length} exposed samples; ${uncovered.slice(0, 3).join("; ")}`,
+        for (const headwear of [
+          null,
+          ...catalog.assets
+            .filter((asset) => asset.slot === "headwear")
+            .map((asset) => asset.id),
+        ])
+          for (const eyewear of [
+            null,
+            ...catalog.assets
+              .filter((asset) => asset.slot === "eyewear")
+              .map((asset) => asset.id),
+          ]) {
+            if (headwear === null && eyewear === null) continue;
+            for (const weight of [-1, 0, 1]) {
+              const avatar = library.create();
+              try {
+                const recipe = defaultRecipe(catalog);
+                Object.assign(recipe.parts, {
+                  head: head.id,
+                  hair: hair.id,
+                  headwear,
+                  eyewear,
+                });
+                recipe.body = { weight };
+                await avatar.setAppearance(recipe);
+                avatar.object.updateMatrixWorld(true);
+                const uncovered = coverageFailures(
+                  probes,
+                  ownedMeshes(avatar.object, [head.id]),
+                  ownedMeshes(avatar.object, [
+                    hair.id,
+                    ...(headwear ? [headwear] : []),
+                  ]),
                 );
-            } finally {
-              avatar.dispose();
+                if (uncovered.length)
+                  failures.push(
+                    `${head.id}/${hair.id}/${headwear}/${eyewear}/weight=${weight}: ${uncovered.length} exposed samples; ${uncovered.slice(0, 3).join("; ")}`,
+                  );
+              } finally {
+                avatar.dispose();
+              }
             }
           }
     assert.equal(failures.length, 0, failures.join("\n"));

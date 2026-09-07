@@ -388,6 +388,9 @@ $("reference").onclick = () => {
       "hair-isolated/nova",
       "hair-isolated/halo",
       "hair-isolated/reed",
+      "novelty/quack",
+      "novelty/starstruck",
+      "novelty/galaxy",
     ]) {
       const img = new Image();
       img.alt = `Zoomap ${name} component study: front, side and elevated top views.`;
@@ -580,6 +583,7 @@ async function start() {
       nav.append(b);
     }
     await avatar.setAppearance(recipe);
+    stage.inspect("avatar", catalog);
     $("loading").hidden = true;
     renderControls();
     gallery();
@@ -661,6 +665,29 @@ async function start() {
         const next = structuredClone(draft ?? recipe);
         next.parts.hair = `hair-${name.toLowerCase()}`;
         next.colors.hair = hair;
+        void apply(next);
+      };
+      $("collection-presets").append(button);
+    }
+    for (const [label, parts] of [
+      ["Quack Captain", { headwear: "hat-quack-captain" }],
+      ["Starstruck Specs", { eyewear: "acc-starstruck" }],
+      ["Pocket Galaxy", { effect: "effect-pocket-galaxy" }],
+      [
+        "Go silly",
+        {
+          headwear: "hat-quack-captain",
+          eyewear: "acc-starstruck",
+          effect: "effect-pocket-galaxy",
+        },
+      ],
+    ] as const) {
+      const button = document.createElement("button");
+      button.className = "save-look";
+      button.textContent = label;
+      button.onclick = () => {
+        const next = structuredClone(draft ?? recipe);
+        Object.assign(next.parts, parts);
         void apply(next);
       };
       $("collection-presets").append(button);

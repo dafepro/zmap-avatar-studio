@@ -6,7 +6,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.3.0",
+      "revision": "2.4.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -42,7 +42,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.3.0",
+      "revision": "2.4.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-spark",
@@ -78,7 +78,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.3.0",
+      "revision": "2.4.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",

@@ -1,0 +1,150 @@
+{
+  "baselineCommit": "7e7f16e41ebbbf1ef3f41d99a79801edca6f7f78",
+  "baselineCatalogRevision": "2.3.0",
+  "currentCatalogRevision": "2.4.0",
+  "currentCatalogSha256": "a6e86cce81bbe63ce31dbebbb294b20971806d1ce0ed7a73754afbd49dcbe848",
+  "legacyAssetsCompared": 36,
+  "newAssetsExcluded": [
+    "hat-quack-captain",
+    "acc-starstruck",
+    "effect-pocket-galaxy"
+  ],
+  "result": "exact semantic preservation",
+  "countsCompared": {
+    "primitiveVertexEntries": 38864,
+    "primitiveIndexEntries": 102942,
+    "embeddedImages": 9,
+    "embeddedAnimations": 0
+  },
+  "verified": [
+    "Decoded primitive positions, normals, indices, colors, UVs, joints and normalized skin weights",
+    "Accessor metadata, inverse bind matrices, rig joint names, node transforms and hierarchy",
+    "Materials, samplers, textures, extensions and embedded image bytes",
+    "Animation definitions (none embedded in either export)"
+  ],
+  "ignored": [
+    "GLB chunk/accessor storage offsets and representation when decoded values agree",
+    "Blender datablock names except skin joint names",
+    "JSON layout and exporter generator string"
+  ],
+  "semanticChanges": [],
+  "neutralWhiteChangesOnLegacyAssets": 0,
+  "weightStorageChanges": [
+    {
+      "asset": "body-athletic",
+      "bytesSaved": 77748,
+      "accessors": [
+        {
+          "accessor": 24,
+          "from": {
+            "componentType": 5126,
+            "normalized": false
+          },
+          "to": {
+            "componentType": 5121,
+            "normalized": true
+          },
+          "decodedValuesEqual": true
+        },
+        {
+          "accessor": 29,
+          "from": {
+            "componentType": 5126,
+            "normalized": false
+          },
+          "to": {
+            "componentType": 5121,
+            "normalized": true
+          },
+          "decodedValuesEqual": true
+        }
+      ]
+    },
+    {
+      "asset": "shirt-jersey",
+      "bytesSaved": 72,
+      "accessors": [
+        {
+          "accessor": 4,
+          "from": {
+            "componentType": 5126,
+            "normalized": false
+          },
+          "to": {
+            "componentType": 5121,
+            "normalized": true
+          },
+          "decodedValuesEqual": true
+        }
+      ]
+    },
+    {
+      "asset": "shirt-hoodie",
+      "bytesSaved": 72,
+      "accessors": [
+        {
+          "accessor": 4,
+          "from": {
+            "componentType": 5126,
+            "normalized": false
+          },
+          "to": {
+            "componentType": 5121,
+            "normalized": true
+          },
+          "decodedValuesEqual": true
+        }
+      ]
+    },
+    {
+      "asset": "shirt-track",
+      "bytesSaved": 72,
+      "accessors": [
+        {
+          "accessor": 4,
+          "from": {
+            "componentType": 5126,
+            "normalized": false
+          },
+          "to": {
+            "componentType": 5121,
+            "normalized": true
+          },
+          "decodedValuesEqual": true
+        }
+      ]
+    },
+    {
+      "asset": "shirt-volt",
+      "bytesSaved": 936,
+      "accessors": [
+        {
+          "accessor": 3,
+          "from": {
+            "componentType": 5126,
+            "normalized": false
+          },
+          "to": {
+            "componentType": 5121,
+            "normalized": true
+          },
+          "decodedValuesEqual": true
+        }
+      ]
+    }
+  ],
+  "baselineLegacyBytes": 2085208,
+  "currentLegacyBytes": 2006308,
+  "bytesSaved": 78900,
+  "compactorReview": {
+    "decodedValuesExact": true,
+    "guards": [
+      "FLOAT VEC4 used only as WEIGHTS_0",
+      "Exact normalized UINT8 numeric representability",
+      "No shared, interleaved, overlapping, sparse, offset or min/max accessor rewrite",
+      "Four-byte-aligned repacking; unchanged nonweight buffer payloads"
+    ],
+    "scopeLimit": "Export-time standard self-contained GLBs with one embedded BIN; future storage-referencing extensions need separate qualification.",
+    "currentCatalogExtensions": []
+  }
+}
