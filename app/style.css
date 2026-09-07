@@ -1053,3 +1053,45 @@ dialog form > div {
     display: none;
   }
 }
+/* The same continuous weight cage drives anatomy and the selected wardrobe. */
+.body-shape {
+  border-top: 1px solid #dcd7ca;
+  margin-top: 20px;
+  padding-top: 18px;
+}
+.body-shape label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 650;
+}
+.body-shape output {
+  color: #782e43;
+  font-weight: 500;
+}
+.body-shape input {
+  width: 100%;
+  margin: 15px 0 8px;
+  accent-color: #782e43;
+}
+.body-shape > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #756c5c;
+}
+.component-views {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.component-views button {
+  padding: 7px 10px;
+  border-radius: 7px;
+  font-size: 11px;
+  background: #eeeade;
+}
+.component-views button[aria-pressed="true"] {
+  background: #782e43;
+  color: white;
+}

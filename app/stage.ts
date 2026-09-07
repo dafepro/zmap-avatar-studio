@@ -8,6 +8,7 @@ import {
   type AvatarInstance,
   type AvatarLibrary,
   type Recipe,
+  type Catalog,
   type Motion,
 } from "../src";
 export class Stage {
@@ -47,6 +48,61 @@ export class Stage {
   };
   onProjectionInvalidated = () => {};
   private pixels = new THREE.Vector2();
+  private inspection: "avatar" | "base" | "hair" | "outfit" = "avatar";
+  private inspectionCatalog?: Catalog;
+  private inspectionRoot?: THREE.Object3D;
+  inspect(view: "avatar" | "base" | "hair" | "outfit", catalog: Catalog) {
+    this.invalidateProjection();
+    this.inspection = view;
+    this.inspectionCatalog = catalog;
+    this.inspectionRoot = undefined;
+    const target = view === "hair" ? 1.81 : 1.07;
+    this.controls.target.set(0, target, 0);
+    this.camera.position.set(0.5, target + 0.12, 4.5);
+    if (this.camera instanceof THREE.OrthographicCamera) {
+      const half = view === "hair" ? 0.41 : 1.2;
+      const aspect =
+        Math.max(1, this.container.clientWidth) /
+        Math.max(1, this.container.clientHeight);
+      this.camera.top = half;
+      this.camera.bottom = -half;
+      this.camera.left = -half * aspect;
+      this.camera.right = half * aspect;
+      this.camera.zoom = 1;
+      this.camera.updateProjectionMatrix();
+    }
+    this.controls.update();
+    this.applyInspection();
+  }
+  private applyInspection() {
+    const root = this.avatar.object.children[0],
+      catalog = this.inspectionCatalog;
+    if (!root || !catalog || root === this.inspectionRoot) return;
+    const slots =
+      this.inspection === "base"
+        ? ["body", "head", "face"]
+        : this.inspection === "hair"
+          ? ["head", "face", "hair"]
+          : this.inspection === "outfit"
+            ? ["shirt", "bottom", "shoes"]
+            : null;
+    const selected = new Set(Object.values(this.avatar.recipe?.parts ?? {}));
+    const covered = new Set(
+      catalog.assets
+        .filter((a) => selected.has(a.id) && (!slots || slots.includes(a.slot)))
+        .flatMap((a) => a.covers ?? []),
+    );
+    root.traverse((object) => {
+      const id = object.userData.assetId;
+      if (id)
+        object.visible =
+          !slots ||
+          slots.includes(catalog.assets.find((a) => a.id === id)?.slot ?? "");
+      if (object instanceof THREE.Mesh && object.userData.avatarRegion)
+        object.visible = !covered.has(object.userData.avatarRegion);
+    });
+    this.inspectionRoot = root;
+  }
   constructor(
     readonly container: HTMLElement,
     readonly avatar: AvatarInstance,
@@ -122,6 +178,7 @@ export class Stage {
       this.onProjectionInvalidated();
     }
     if (!this.projected) {
+      this.applyInspection();
       this.lastUpdateSeconds = ms / 1000;
       this.avatar.update(this.lastUpdateSeconds, {
         gesture: this.pose,
@@ -420,16 +477,24 @@ export class Thumbnails {
           if (this.closed) throw Error("Thumbnails disposed");
           this.scene.add(avatar.object);
           avatar.update(0, { reducedMotion: true });
-          const face = ["head", "face", "hair", "accessory"].includes(slot),
+          const face = [
+              "head",
+              "face",
+              "hair",
+              "accessory",
+              "headwear",
+              "eyewear",
+              "facialHair",
+            ].includes(slot),
             foot = slot === "shoes";
           const y = face
-            ? 1.61
+            ? 1.81
             : foot
               ? 0.19
               : slot === "bottom"
-                ? 0.66
+                ? 0.91
                 : slot === "shirt"
-                  ? 1.1
+                  ? 1.28
                   : 1;
           const distance = face
             ? 1.48

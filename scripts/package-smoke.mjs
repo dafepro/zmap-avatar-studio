@@ -83,6 +83,7 @@ async function check() {
   const catalog = await (await fetch(new URL('catalog.json', base))).json();
   const library = new AvatarLibrary(catalog, base.href);
   const recipe = defaultRecipe(library.catalog);
+  recipe.body = { weight: 0.7 };
   Object.assign(recipe.parts, { head: 'head-spark', hair: 'hair-pony', eyewear: 'acc-glasses', facialHair: 'facial-mustache', headwear: 'hat-club-cap' });
   const create = await library.prepare(recipe);
   const avatar = create();

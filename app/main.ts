@@ -34,6 +34,38 @@ document.querySelector("#app")!.innerHTML =
 <section class="saved-section"><div><p class="eyebrow">YOUR STARTING LINEUP</p><h2>Good looks, on repeat.</h2></div><div id="presets" class="presets"></div><button id="save-look" class="save-look">＋ Save this look</button></section>
 <footer><p id="status" role="status" aria-live="polite">Starting studio…</p><div><label><input id="reduced" type="checkbox"> Less motion</label><label><input id="scale" type="checkbox"> World scale</label><details><summary>Kit details</summary><pre id="stats"></pre></details></div></footer></main>
 <dialog id="reference-dialog"><button id="close-reference" class="dark">Back to my avatar</button><h2>The character study</h2><p>Our visual reference for proportions, expression, silhouettes and sportswear.</p><div id="reference-image"></div></dialog><input type="file" id="file" accept=".json,application/json" hidden><dialog id="save-dialog"><form method="dialog"><p class="eyebrow">SAVE TO YOUR LINEUP</p><h2>Give this look a name.</h2><label>Name<input id="look-name" maxlength="32" required placeholder="Weekend captain"></label><div><button value="cancel" formnovalidate>Cancel</button><button id="confirm-save" value="save" class="dark">Save look</button></div></form></dialog>`;
+$("colors").insertAdjacentHTML(
+  "afterend",
+  `<div id="body-shape" class="body-shape"><label for="weight">Build <output id="weight-value">Study</output></label><input id="weight" type="range" min="-100" max="100" step="5" value="0" aria-label="Body weight"><div><span>Lean</span><span>Study</span><span>Heavier</span></div></div>`,
+);
+$("body-shape").insertAdjacentHTML(
+  "afterend",
+  `<div class="component-views" role="group" aria-label="Component inspection"><button data-inspect="avatar" aria-pressed="true">Avatar</button><button data-inspect="base" aria-pressed="false">Base mesh</button><button data-inspect="hair" aria-pressed="false">Hair</button><button data-inspect="outfit" aria-pressed="false">Outfit</button></div>`,
+);
+document.querySelectorAll<HTMLButtonElement>("[data-inspect]").forEach(
+  (button) =>
+    (button.onclick = () => {
+      stage.inspect(
+        button.dataset.inspect as "avatar" | "base" | "hair" | "outfit",
+        catalog,
+      );
+      document
+        .querySelectorAll("[data-inspect]")
+        .forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+      $<HTMLButtonElement>("capture-views").disabled =
+        button.dataset.inspect !== "avatar";
+    }),
+);
+let weightFrame = 0;
+$("weight").oninput = () => {
+  const value = Number($<HTMLInputElement>("weight").value) / 100;
+  $("weight-value").textContent =
+    value === 0 ? "Study" : `${value > 0 ? "+" : ""}${Math.round(value * 100)}`;
+  cancelAnimationFrame(weightFrame);
+  weightFrame = requestAnimationFrame(
+    () => void apply({ ...(draft ?? recipe), body: { weight: value } }),
+  );
+};
 let library: AvatarLibrary,
   stage: Stage,
   thumbs: Thumbnails,
@@ -68,11 +100,11 @@ const colors: Record<string, string[]> = {
   accent: ["#d9a342", "#782e43", "#8caaa0", "#e2c5ac"],
 };
 const defaults: Record<string, string> = {
-  skin: "#c68b60",
-  primary: "#782e43",
-  secondary: "#263b3c",
-  trim: "#f4ead7",
-  hair: "#312821",
+  skin: "#d3a17a",
+  primary: "#f4f1eb",
+  secondary: "#292b2d",
+  trim: "#f5f2eb",
+  hair: "#594333",
   iris: "#554030",
   accent: "#d9a342",
 };
@@ -123,6 +155,13 @@ async function apply(next: Recipe, record = true) {
   }
 }
 function renderControls() {
+  $("body-shape").hidden = !catalog.bodyShape;
+  $<HTMLInputElement>("weight").value = String(
+    Math.round((recipe.body?.weight ?? 0) * 100),
+  );
+  $("weight-value").textContent = !recipe.body?.weight
+    ? "Study"
+    : `${recipe.body.weight > 0 ? "+" : ""}${Math.round(recipe.body.weight * 100)}`;
   $("undo").toggleAttribute("disabled", !history.length);
   $("redo").toggleAttribute("disabled", !future.length);
   document
@@ -336,14 +375,15 @@ $("try-accessories").onclick = () => {
 };
 $("reference").onclick = () => {
   if (!$("reference-image").children.length) {
-    const img = new Image();
-    img.alt =
-      "Zoomap avatar study: three athletic characters and modular hair, faces, clothing and accessories.";
-    img.src = new URL(
-      "study-reference.png",
-      new URL(import.meta.env.BASE_URL, location.href),
-    ).href;
-    $("reference-image").append(img);
+    for (const name of ["body", "hair", "clothing"]) {
+      const img = new Image();
+      img.alt = `Supplied Zoomap ${name} component study: front, side and elevated top views.`;
+      img.src = new URL(
+        `references/${name}.png`,
+        new URL(import.meta.env.BASE_URL, location.href),
+      ).href;
+      $("reference-image").append(img);
+    }
   }
   $<HTMLDialogElement>("reference-dialog").showModal();
 };

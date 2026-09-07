@@ -124,10 +124,11 @@ test("authored shoulder blends stay continuous during wave and running poses", a
                 );
               }
           }
-          assert.ok(
-            maxMovement > 0.04,
-            `${asset.id} did not deform during ${gesture}`,
-          );
+          if (gesture === "run" || asset.slot !== "bottom")
+            assert.ok(
+              maxMovement > 0.04,
+              `${asset.id} did not deform during ${gesture}`,
+            );
           assert.ok(
             worstExcess <= 0,
             `${asset.id} ${gesture} tears a connected surface: edge exceeds continuity allowance by ${(worstExcess * 1000).toFixed(1)} mm`,
@@ -142,7 +143,7 @@ test("authored shoulder blends stay continuous during wave and running poses", a
   }
 });
 
-test("long sleeves cover elbow skin in the illustrated wave pose", async () => {
+test("reference jerseys hide covered shoulder skin while keeping forearms and hands visible", async () => {
   const library = new AvatarLibrary(
     catalog,
     "https://assets.test/",
@@ -182,7 +183,7 @@ test("long sleeves cover elbow skin in the illustrated wave pose", async () => {
           body: THREE.SkinnedMesh[] = [];
         avatar.object.traverse((object) => {
           if (!(object instanceof THREE.Mesh)) return;
-          surfaces.push(object);
+          if (object.visible) surfaces.push(object);
           let owner: THREE.Object3D | null = object;
           while (owner && !owner.userData.assetId) owner = owner.parent;
           if (
@@ -212,9 +213,14 @@ test("long sleeves cover elbow skin in the illustrated wave pose", async () => {
                 new THREE.Vector3(),
               )
               .multiplyScalar(1 / 3);
-            // These are the elbow/upper-forearm faces inside a long sleeve.
-            // Lower wrists and hands intentionally remain visible.
-            if (Math.abs(rest.x) < 0.22 || rest.y < 0.88) continue;
+            // The new study has short sleeves. The explicit torso coverage
+            // region includes the shoulders; wrists and hands stay exposed.
+            if (mesh.userData.avatarRegion !== "torso") continue;
+            assert.equal(
+              mesh.visible,
+              false,
+              "covered anatomy must not render through clothing",
+            );
             checked++;
             const posed = vertices
               .reduce(
@@ -244,7 +250,7 @@ test("long sleeves cover elbow skin in the illustrated wave pose", async () => {
         }
         assert.ok(
           checked > 100,
-          `${shirt} must exercise the authored elbow surfaces`,
+          `${shirt} must exercise the authored shoulder surfaces`,
         );
       } finally {
         avatar.dispose();

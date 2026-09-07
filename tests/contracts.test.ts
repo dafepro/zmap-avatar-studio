@@ -75,7 +75,7 @@ test("recipes reject unknown parts, URLs, wrong slots, extra fields, rig drift a
     (r: any) => (r.parts.head = "shoes-court"),
     (r: any) => (r.parts.head = null),
     (r: any) => (r.rig = "other-rig"),
-    (r: any) => (r.revision = "2.0.0"),
+    (r: any) => (r.revision = "999.0.0"),
     (r: any) => (r.colors.skin = "url(payload)"),
     (r: any) => (r.script = "alert(1)"),
     (r: any) => (r.parts.unknown = "head-scout"),

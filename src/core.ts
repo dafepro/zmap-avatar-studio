@@ -22,6 +22,8 @@ export type Asset = AssetContent & {
   channels: string[];
   tags: string[];
   excludesTags?: string[];
+  /** Body regions hidden beneath this garment, independent of body weight. */
+  covers?: string[];
   /** Accessory-owned deformation volumes; no hairstyle-specific alternatives. */
   hairFit?: {
     targetSlot: string;
@@ -39,6 +41,8 @@ export type Asset = AssetContent & {
     surface: string;
     frame: FitFrame;
     mode: "surface" | "clearance";
+    /** Radial paint wraps profile features around the actual head triangles. */
+    projection?: "front" | "radial";
     offset: number;
     maxDistance: number;
   };
@@ -58,6 +62,21 @@ export type Catalog = {
   channels: string[];
   assets: Asset[];
   budgets: { maxTriangles: number; maxBytes: number; maxParts: number };
+  /** Shared rest-space cross-section cage: [height, width delta, depth delta]. */
+  bodyShape?: {
+    weightProfile: [number, number, number][];
+    /** Less tissue is removed at -1 than is added at +1. */
+    leanFactor: number;
+    /** Shared spatial fields, independent of mesh topology or asset names. */
+    limbs: {
+      joints: string[];
+      radius: number;
+      falloff: number;
+      endMargin: number;
+      profile: [number, number][];
+    }[];
+  };
+  bodyRegions?: string[];
 };
 export type Recipe = {
   version: 1;
@@ -66,6 +85,8 @@ export type Recipe = {
   rig: string;
   parts: Record<string, string | null>;
   colors: Record<string, string>;
+  /** -1 is lean, 0 is the authored study, +1 is full. Height stays fixed. */
+  body?: { weight: number };
 };
 export class AvatarError extends Error {
   constructor(
@@ -127,6 +148,84 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
   }
   if (!sockets.has("root")) fail("rig", "Rig needs a root socket");
   if (
+    c.bodyRegions !== undefined &&
+    (!Array.isArray(c.bodyRegions) ||
+      c.bodyRegions.length > 16 ||
+      !c.bodyRegions.every(id) ||
+      new Set(c.bodyRegions).size !== c.bodyRegions.length)
+  )
+    fail("coverage", "Invalid body regions");
+  if (c.bodyShape !== undefined) {
+    if (!record(c.bodyShape)) fail("shape", "Invalid body shape contract");
+    keys(c.bodyShape, ["weightProfile", "leanFactor", "limbs"]);
+    if (
+      !number(c.bodyShape.leanFactor, 0.1, 1) ||
+      !Array.isArray(c.bodyShape.limbs) ||
+      c.bodyShape.limbs.length > 8
+    )
+      fail("shape", "Invalid limb volume contract");
+    for (const limb of c.bodyShape.limbs) {
+      if (!record(limb)) fail("shape", "Invalid limb field");
+      keys(limb, ["joints", "radius", "falloff", "endMargin", "profile"]);
+      if (
+        !Array.isArray(limb.joints) ||
+        limb.joints.length < 2 ||
+        limb.joints.length > 8 ||
+        new Set(limb.joints).size !== limb.joints.length ||
+        !limb.joints.every((j: unknown) => sockets.has(j as string)) ||
+        limb.joints.slice(1).some((j: string, i: number) => {
+          const socket = c.rig.sockets.find((s: Socket) => s.id === j);
+          return (
+            socket.parent !== limb.joints[i] ||
+            Math.hypot(...socket.position) < 0.005
+          );
+        }) ||
+        !number(limb.radius, 0.01, 0.3) ||
+        !number(limb.falloff, 0.005, 0.2) ||
+        !number(limb.endMargin, 0, 0.3) ||
+        !Array.isArray(limb.profile) ||
+        limb.profile.length < 2 ||
+        limb.profile.length > 16 ||
+        !limb.profile.every(
+          (row: any, i: number) =>
+            Array.isArray(row) &&
+            row.length === 2 &&
+            number(row[0], 0, 1) &&
+            number(row[1], 0, 0.6) &&
+            (i === 0 || row[0] > limb.profile[i - 1][0]),
+        ) ||
+        limb.profile[0][0] !== 0 ||
+        limb.profile.at(-1)[0] !== 1 ||
+        limb.profile.at(-1)[1] !== 0
+      )
+        fail("shape", "Invalid limb centerline or volume profile");
+    }
+    const profile = c.bodyShape.weightProfile;
+    if (
+      !Array.isArray(profile) ||
+      profile.length < 2 ||
+      profile.length > 32 ||
+      !profile.every(
+        (row: unknown, i: number) =>
+          Array.isArray(row) &&
+          row.length === 3 &&
+          number(row[0], 0, c.rig.height) &&
+          number(row[1], 0, 0.6) &&
+          number(row[2], 0, 0.6) &&
+          (i === 0 || row[0] > profile[i - 1][0]),
+      ) ||
+      profile[0][0] !== 0 ||
+      profile.at(-1)[0] !== c.rig.height ||
+      [profile[0], profile.at(-1)].some(
+        (row: number[]) => row[1] !== 0 || row[2] !== 0,
+      )
+    )
+      fail(
+        "shape",
+        "Weight cage must be bounded, ordered and preserve its endpoints",
+      );
+  }
+  if (
     !Array.isArray(c.slots) ||
     c.slots.length > 16 ||
     !c.slots.length ||
@@ -161,6 +260,14 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
     fail("catalog", "Invalid asset list");
   const assets = new Set<string>();
   for (const a of c.assets) {
+    if (!record(a)) fail("asset", "Invalid asset contract");
+    if (
+      a.covers !== undefined &&
+      (!Array.isArray(a.covers) ||
+        a.covers.length > 16 ||
+        !a.covers.every((region: unknown) => c.bodyRegions?.includes(region)))
+    )
+      fail("coverage", "Garment covers undeclared body regions");
     if (
       !record(a) ||
       !id(a.id) ||
@@ -269,6 +376,9 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
         !id(a.fit.surface) ||
         !frame(a.fit.frame) ||
         !["surface", "clearance"].includes(a.fit.mode) ||
+        (a.fit.projection !== undefined &&
+          (!["front", "radial"].includes(a.fit.projection) ||
+            (a.fit.projection === "radial" && a.fit.mode !== "surface"))) ||
         !number(a.fit.offset, 0.0005, 0.03) ||
         !number(a.fit.maxDistance, 0.001, 0.15))
     )
@@ -310,7 +420,22 @@ export function validateRecipe(
   catalog: Catalog,
 ): asserts input is Recipe {
   if (!record(input)) fail("recipe", "Appearance must be an object");
-  keys(input, ["version", "catalog", "revision", "rig", "parts", "colors"]);
+  keys(input, [
+    "version",
+    "catalog",
+    "revision",
+    "rig",
+    "parts",
+    "colors",
+    "body",
+  ]);
+  if (input.body !== undefined) {
+    if (!catalog.bodyShape || !record(input.body))
+      fail("shape", "This collection needs a compatible body shape contract");
+    keys(input.body, ["weight"]);
+    if (!number(input.body.weight, -1, 1))
+      fail("shape", "Body weight must be between -1 and 1");
+  }
   if (
     input.version !== 1 ||
     input.catalog !== catalog.id ||

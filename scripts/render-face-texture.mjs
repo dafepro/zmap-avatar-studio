@@ -44,8 +44,8 @@ try {
     },
     await readFile(source, "utf8"),
   );
-  if (result.cells[3].empty !== 512 * 512)
-    throw Error("The fourth atlas cell must be entirely transparent");
+  if (result.cells[3].empty < 200000 || result.cells[3].opaque < 8000)
+    throw Error("Profile strips need clear alpha gutters and visible ink");
   for (const cell of result.cells.slice(0, 3)) {
     if (cell.empty < 180000 || cell.opaque < 15000 || cell.partial < 1000)
       throw Error(

@@ -1,3 +1,5 @@
+> Current status: catalog 2.0.0 uses the rebuilt reference component system. See [reference workflow](reference-workflow.md), [actual components](evidence/reference-v2/browser-components.png), and [corrected weight comparison](evidence/reference-v2/browser-weight-study.png). The notes below record earlier iterations and are historical.
+
 # Avatar studio implementation plan
 
 The owner requested an independent application and extensible modular avatar system. This folder is a self-contained package with its own install, lockfile, builds and tests. It is tracked in the parent repository so a clone is complete; `git subtree split --prefix=avatar-studio` can extract its history into a new repository. No nested Git repository or external unpublished submodule is required.

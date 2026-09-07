@@ -1,0 +1,446 @@
+[
+  {
+    "label": "BASE / FRONT",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#bcb9b5",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "assemblyMs": 29.400000035762787,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "BASE / PROFILE",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#bcb9b5",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "assemblyMs": 3,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "STUDY / FRONT",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "assemblyMs": 2.600000023841858,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "STUDY / PROFILE",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "assemblyMs": 2.699999988079071,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "HAIR / FRONT",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "assemblyMs": 2.399999976158142,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "HAIR / PROFILE",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "assemblyMs": 2.300000011920929,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "HAIR / ELEVATED TOP",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "assemblyMs": 2.300000011920929,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "OUTFIT / ELEVATED",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "assemblyMs": 2.300000011920929,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "LEAN / SAME OUTFIT",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "assemblyMs": 18.5,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "FULL / SAME OUTFIT",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "assemblyMs": 16.599999964237213,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "CAP + GLASSES + MUSTACHE",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-club-cap",
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "assemblyMs": 103.39999997615814,
+    "meshes": 56,
+    "triangles": 24632,
+    "sourceTriangles": 12710,
+    "parts": 10
+  },
+  {
+    "label": "ACCESSORIES / PROFILE",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-club-cap",
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "assemblyMs": 108.60000002384186,
+    "meshes": 56,
+    "triangles": 24632,
+    "sourceTriangles": 12710,
+    "parts": 10
+  }
+]

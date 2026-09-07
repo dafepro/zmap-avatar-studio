@@ -6,8 +6,8 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "1.2.0",
-      "rig": "athlete-rigid-v1",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
         "face": "face-focus",
@@ -30,9 +30,9 @@
         "accent": "#bf8533"
       }
     },
-    "meshes": 37,
-    "triangles": 19492,
-    "sourceTriangles": 10098,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
     "parts": 7
   },
   {
@@ -42,8 +42,8 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "1.2.0",
-      "rig": "athlete-rigid-v1",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-spark",
         "face": "face-grin",
@@ -66,9 +66,9 @@
         "accent": "#a77236"
       }
     },
-    "meshes": 39,
-    "triangles": 21488,
-    "sourceTriangles": 11096,
+    "meshes": 48,
+    "triangles": 19848,
+    "sourceTriangles": 10318,
     "parts": 7
   },
   {
@@ -78,8 +78,8 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "1.2.0",
-      "rig": "athlete-rigid-v1",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
         "face": "face-wink",
@@ -102,9 +102,9 @@
         "accent": "#d9a342"
       }
     },
-    "meshes": 41,
-    "triangles": 22324,
-    "sourceTriangles": 11514,
+    "meshes": 46,
+    "triangles": 19132,
+    "sourceTriangles": 9960,
     "parts": 7
   }
 ]

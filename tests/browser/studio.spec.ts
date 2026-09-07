@@ -13,13 +13,13 @@ test("all eleven categories swap real assets; pose, colors, undo and named look 
   for (const [category, label] of [
     ["head", "Spark"],
     ["face", "Big grin"],
-    ["hair", "High pony"],
+    ["hair", "Swept pony"],
     ["facialHair", "Pencil mustache"],
     ["eyewear", "Round frames"],
     ["headwear", "Club cap"],
-    ["shirt", "Track jacket"],
-    ["bottom", "Training shorts"],
-    ["shoes", "High tops"],
+    ["shirt", "Zip jersey"],
+    ["bottom", "Long court shorts"],
+    ["shoes", "Court high"],
     ["accessory", "Captain band"],
     ["effect", "Golden orbit"],
   ]) {
@@ -43,7 +43,7 @@ test("all eleven categories swap real assets; pose, colors, undo and named look 
     .poll(() =>
       page.evaluate(() => (window as any).avatarStudio.recipe.colors.primary),
     )
-    .toBe("#782e43");
+    .toBe("#f4f1eb");
   await page.getByRole("button", { name: "Redo change" }).click();
   await expect
     .poll(() =>
@@ -113,15 +113,15 @@ test("failed part download retains the complete current look and a second select
   await ready(page);
   const before = await page.evaluate(() => (window as any).avatarStudio.recipe);
   await page.locator("[data-category=hair]").click();
-  await page.getByRole("button", { name: "High pony", exact: true }).click();
+  await page.getByRole("button", { name: "Swept pony", exact: true }).click();
   await expect(page.locator("#status")).toContainText("could not load");
   expect(
     await page.evaluate(() => (window as any).avatarStudio.recipe),
   ).toEqual(before);
   fail = false;
-  await page.getByRole("button", { name: "High pony", exact: true }).click();
+  await page.getByRole("button", { name: "Swept pony", exact: true }).click();
   await expect(
-    page.getByRole("button", { name: "High pony", exact: true }),
+    page.getByRole("button", { name: "Swept pony", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
 });
 test("portrait controls and reduced motion remain usable", async ({
@@ -140,9 +140,11 @@ test("portrait controls and reduced motion remain usable", async ({
   ).toBeLessThanOrEqual(390);
   await expect(page.locator("#reduced")).toBeChecked();
   await page.locator("[data-category=hair]").click();
-  await page.getByRole("button", { name: "Cloud curls", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Reverse sweep", exact: true })
+    .click();
   await expect(
-    page.getByRole("button", { name: "Cloud curls", exact: true }),
+    page.getByRole("button", { name: "Reverse sweep", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
   await page.getByRole("button", { name: "Front", exact: true }).click();
   await page.screenshot({
@@ -233,7 +235,9 @@ test("a new category selection retains an earlier pending choice", async ({
   await ready(page);
   await page.getByRole("button", { name: "Spark", exact: true }).click();
   await page.locator("[data-category=hair]").click();
-  await page.getByRole("button", { name: "Cloud curls", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Reverse sweep", exact: true })
+    .click();
   release();
   await expect
     .poll(() => page.evaluate(() => (window as any).avatarStudio.recipe.parts))

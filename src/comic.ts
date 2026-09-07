@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { applyExpressionProjection } from "./expression.js";
 import { mergeVertices } from "three/addons/utils/BufferGeometryUtils.js";
 
 /** Presentation controls, independent of appearance recipes or world lighting. */
@@ -54,10 +55,10 @@ export class ComicStyle {
     const bounded = (value: number | undefined, fallback: number, max = 1) =>
       Number.isFinite(value) ? THREE.MathUtils.clamp(value!, 0, max) : fallback;
     this.options = {
-      inkWidth: bounded(options.inkWidth, 0.85, 3),
+      inkWidth: bounded(options.inkWidth, 1.45, 3),
       shadowStrength: bounded(options.shadowStrength, 0.82),
       pigment: bounded(options.pigment, 0.35),
-      inkColor: options.inkColor ?? "#382c2b",
+      inkColor: options.inkColor ?? "#20252a",
     };
   }
 
@@ -101,7 +102,7 @@ export class ComicStyle {
         illustratedFace: { value: head ? 1 : 0 },
         illustratedFeature: { value: feature ? 1 : 0 },
         illustratedShadow: {
-          value: this.options.shadowStrength * (skin ? 0.7 : 1),
+          value: this.options.shadowStrength * (skin ? 0.85 : 1),
         },
         illustratedPigment: { value: this.options.pigment },
       });
@@ -135,14 +136,13 @@ export class ComicStyle {
           // One steady light direction keeps all pieces in the same drawing.
           vec3 paintedLight = normalize(mat3(viewMatrix) * vec3(-0.65, 0.75, 0.65));
           float illumination = dot(paintedNormal, paintedLight);
-          // A large shadow family and a broad light family, with softened edges.
-          // Never quantize individual polygon brightness into a four-step ramp.
-          float lightShape = smoothstep(-0.30, 0.85, illumination);
-          float highlightShape = smoothstep(0.68, 0.97, illumination);
-          vec3 shadowWash = vec3(0.46, 0.43, 0.50);
-          vec3 lightWash = vec3(1.08, 1.035, 0.975);
-          vec3 wash = mix(shadowWash, lightWash, lightShape);
-          wash += vec3(0.06, 0.042, 0.018) * highlightShape;
+          // Three broad cel families. Derivative antialiasing softens only the
+          // boundary pixel, preserving an ink illustration instead of an airbrush.
+          float edge = max(fwidth(illumination), 0.012);
+          float lightShape = smoothstep(0.08-edge, 0.08+edge, illumination);
+          float highlightShape = smoothstep(0.54-edge, 0.54+edge, illumination);
+          vec3 wash = mix(vec3(0.48, 0.46, 0.49), vec3(0.78, 0.77, 0.76), lightShape);
+          wash = mix(wash, vec3(1.02, 1.0, 0.97), highlightShape);
           wash = mix(vec3(1.0), wash, illustratedShadow);
           // Derivative fade removes tiny grain before it can shimmer at world scale.
           float grainScale = max(length(fwidth(vIllustratedPosition)), 0.00001);
@@ -153,7 +153,10 @@ export class ComicStyle {
           #include <opaque_fragment>`,
         );
     };
-    painted.customProgramCacheKey = () => "zmap-illustrated-v2";
+    painted.customProgramCacheKey = () => "zmap-reference-ink-v4";
+    painted.userData.expressionProjection =
+      source.userData.expressionProjection;
+    applyExpressionProjection(painted);
     return painted;
   }
 

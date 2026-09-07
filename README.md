@@ -1,27 +1,29 @@
 # Avatar Studio
 
-An independent Three.js avatar runtime, original Blender asset kit, and browser design studio. The studio runs without ZMap, an account service, or a database. ZMap's hub is a second consumer of the same package.
+An independent Three.js avatar runtime, editable Blender component kit and browser customization studio. It runs without ZMap, an account service or a database. ZMap's hub is a second consumer of the same package.
 
 ```sh
 cd avatar-studio
 npm ci
 npm run dev                 # http://localhost:5180
-npm run build               # lib/ package + dist/ standalone website
+npm run build               # lib/ package + dist/ website
 npm test
-npm run test:e2e             # Chrome; use ZMAP_BROWSER_CHANNEL=chromium in CI
+npm run test:e2e             # Chrome; ZMAP_BROWSER_CHANNEL=chromium in CI
 npm run test:package
 ```
 
-Use **Illustrated / Studio** to compare drawing and lit-material views, and front/side/back, turntable and animation controls to inspect fit. Illustrated is the default: continuous shoulder surfaces, drawn facial features, broad soft shading and restrained silhouette ink. **16-view drawing** freezes the equipped look and pose into sixteen transparent views, one every 22.5°. Orbit horizontally to compare the projected result; export its PNG atlas and metadata for a consuming application. Return to live 3D to animate or edit. This capture is a fixed-pose presentation cache, not a substitute for animation.
+The current reference kit is catalog **2.0.0**, rig **athlete-reference-v2**. It rebuilds the supplied body, swept hair and sportswear sheets. [Actual browser components](docs/evidence/reference-v2/browser-components.png), [weight comparison](docs/evidence/reference-v2/browser-weight-study.png) and the [documented Blender workflow](docs/reference-workflow.md) show the result and its limits.
 
-**Try accessories** equips the mustache, round glasses and cap together. Hair fits from its original mesh using accessory-owned deformation volumes; no per-hat hairstyle alternatives are needed. See [accessory fitting](docs/accessory-fitting.md) and the [four-angle study](docs/evidence/accessory-study.png).
+Use the **Build** slider for lean through heavier tissue volume at fixed height. Arms and legs grow around their own centerlines; joint positions stay fixed. **Avatar / Base mesh / Hair / Outfit** inspect the assembled look or its components. **Illustrated / Studio** compare cel ink and lit materials. Front, side, back, turntable and motion controls inspect fit.
 
-Export look saves portable appearance JSON; Portrait saves the current rendered view as a transparent PNG. Saved looks stay in this browser. The [avatar study](docs/design-reference-v1.png) is the visual target.
+**Try accessories** equips a mustache, glasses and cap together. One original hair mesh fits accessory-owned volumes, with no per-hat hairstyle variants. Removing equipment restores the original. New assets still need correct pivots and a declared fitting contract; see [accessory fitting](docs/accessory-fitting.md).
+
+**16-view drawing** captures one equipped look and pose every 22.5° into an exportable transparent atlas. It is a fixed-pose cache, not animation. Export look saves appearance JSON; Portrait saves rendered PNG. Saved looks remain in this browser. Old catalog recipes fail explicitly rather than silently selecting replacement parts.
 
 ## Consume the runtime
 
 ```ts
-import { AvatarLibrary, defaultRecipe } from "@zmap/avatar-studio";
+import { AvatarLibrary, ComicStyle, defaultRecipe } from "@zmap/avatar-studio";
 
 const base = new URL("/avatars/", location.href);
 const response = await fetch(new URL("catalog.json", base));
@@ -29,44 +31,32 @@ if (!response.ok) throw Error("Collection could not load");
 const library = new AvatarLibrary(await response.json(), base.href);
 const recipe = defaultRecipe(library.catalog);
 recipe.parts.hair = "hair-sweep";
-recipe.colors.primary = "#782e43";
-
+recipe.body = { weight: 0.5 }; // [-1, 1], zero is the authored study
+recipe.colors.primary = "#f4f1eb";
 const avatar = library.create();
 await avatar.setAppearance(recipe);
 scene.add(avatar.object);
-// In your render loop:
+const ink = new ComicStyle();
+// Render loop:
 avatar.update(elapsedSeconds, { gesture: "walk", reducedMotion: false });
-// When the character leaves:
+ink.update(avatar.object.children[0], renderer.getDrawingBufferSize(size));
+// Cleanup:
+ink.dispose();
 scene.remove(avatar.object);
 avatar.dispose();
-// When the consumer no longer needs asset templates:
 library.dispose();
 ```
 
-Copy `public/catalog.json` and `public/models/` into your application's static asset path. Serve over HTTPS or localhost: integrity checks use Web Crypto. When developing through a local symlink with a separate dependency install, configure your bundler to resolve a single Three.js copy (Vite: `resolve: { dedupe: ["three"] }`). The working hub demonstrates this setting.
+Copy `public/catalog.json` and `public/models/` to your static asset path. Serve over HTTPS or localhost for Web Crypto integrity checks. Resolve one Three.js copy when developing through symlinks (Vite `resolve.dedupe: ['three']`). Import `@zmap/avatar-studio/core` for validation without Three.js.
 
-The runtime has no CSS, DOM, renderer, network room, identity, inventory or account dependency. It uses the consumer's Three.js 0.180 instance. Import `@zmap/avatar-studio/core` for recipe validation without Three.js.
+The runtime has no DOM, CSS, renderer, network room, identity, inventory or account dependency. Applications approve parts and persist recipes. For a synchronous ZMap visual factory, preload with `const create = await library.prepare(recipe)`, then return `create().asCharacter()` from `visuals.character`. The app maps identity to approved appearance; ZMap owns world simulation. See `../examples/models.ts`.
 
-For a synchronous world visual factory, preload with `const create = await library.prepare(recipe)`, then return `create().asCharacter()` from ZMap's `visuals.character`. The optional `asCharacter(() => mediaQuery.matches)` argument supplies reduced-motion policy. The app resolves identity and approved looks before calling this factory. See `../examples/models.ts` for a working integration. ZMap owns disposal of meshes in its character scene; an ordinary Three.js consumer calls `avatar.dispose()` itself.
+## Source and package boundary
 
-`ComicStyle` is an optional renderer treatment. Call `style.update(avatar.object.children[0], renderer.getDrawingBufferSize(size))` before rendering, and `style.clear()` to restore the original materials. Call `style.dispose()` when leaving. Its outline adds geometry and draw calls; the catalog triangle budget describes the source avatar, not the outline pass. The studio supplies lighting and camera changes separately. Consumers choose their own presentation.
+This directory has its own lockfile, build, tests and contracts. It can be extracted with `git subtree split --prefix=avatar-studio`; there is no unpublished submodule dependency. The packed-consumer test runs outside this checkout.
 
-## Package boundary
+The active source is `assets/source/reference_kit.py`, with the editable `assets/source/reference-kit.blend`. The small `build_kit.py` entry point invokes it. The dedicated Blender scene preserves unrelated open work. The workflow documents interactive MCP construction, render corrections, supplied references and generated weight-reference provenance.
 
-This directory has its own lockfile, build, tests, public contracts and assets. It is checked into the parent repository so every revision is reproducible without an unpublished submodule. It can be extracted with `git subtree split --prefix=avatar-studio`; no source rewrite is required. A clean packed-consumer test installs the tarball outside this checkout and verifies ESM, declarations, asset assembly and a Vite production build.
+The 24-part kit supports 11 slots, two heads, three expressions, interchangeable hair/clothes/shoes, facial hair, eyewear, hats and effects. It approximates the drawings; it is not a claim of final production art. Finger animation, facial blend shapes and a production animation library remain unimplemented. Source limits are 14,000 triangles, 1.5 MB and 12 selected parts; outlines add rendering work. Phone/full-room performance needs qualification by the consumer.
 
-## Art and evidence
-
-The original [study sheet](docs/design-reference-v1.png) was generated with the built-in image generator using the user-provided Zoomap poster. The exact [generation prompt](docs/design-prompt.txt) is recorded. The meshes were made in Blender through MCP. Facial detail is now an editable drawn atlas fitted to one continuous face surface; its [source and provenance](assets/textures/README.md) are retained. The editable source is `assets/source/avatar-kit.blend`; `assets/source/build_kit.py` and `assets/source/sculpt.py` and `assets/source/accessories.py` rebuild all 24 GLBs, their hash manifest and the representative lineup render.
-
-```sh
-/Applications/Blender.app/Contents/MacOS/Blender --background --python assets/source/build_kit.py
-```
-
-Run the builder in a background Blender process; it resets that process's scene. Interactive review used an appended review scene and preserved the user's existing MCP Test Scene. Blender 5.2.1 LTS produced the current kit.
-
-Iterations covered swept hair silhouettes, jaw/cheek proportions, visible brows and eyes, sleeves, cloth folds, fingers, layered trainers, socket fit and outward mesh normals. [Visual evidence](docs/evidence/) includes Blender lineups, studio desktop/phone views and comic rendering. All 31,104 recipe combinations pass compatibility and source-budget checks; this is not a claim that all combinations were visually inspected.
-
-The current kit uses smoothly weighted body and garments on a shared skeleton, relaxed sculpted fingers, a softly shaded head and drawn expressions. It approximates the study; the reference still has more deliberate hair masses, asymmetry, hand posing and garment detail. Facial blend shapes, finger animation and a production animation library remain future work. The sixteen-view prototype preserves one equipped look and pose at one elevation; animated and multi-elevation atlases are not implemented.
-
-See [this visual iteration](docs/illustrated-iteration.md), [asset contracts](docs/contracts.md), [illustrated rendering](docs/illustrated-rendering.md), [directional capture](docs/directional-projection.md) and [the iteration plan](docs/plan.md).
+See [contracts](docs/contracts.md), [rendering](docs/illustrated-rendering.md), [directional capture](docs/directional-projection.md) and [reference workflow](docs/reference-workflow.md).

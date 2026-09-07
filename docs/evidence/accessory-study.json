@@ -3,8 +3,8 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "1.2.0",
-      "rig": "athlete-rigid-v1",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
         "face": "face-focus",
@@ -30,52 +30,52 @@
       {
         "id": "body-athletic",
         "url": "models/body-athletic.glb",
-        "sha256": "7e9d91ad7e9354817aa7cc99257d4674a39a93c45830d338aa9c7ae2a7bd8de2"
+        "sha256": "5470847a461032fda309364a702966ad96edd90b83afc2ac65a389eb779fb2ea"
       },
       {
         "id": "head-scout",
         "url": "models/head-scout.glb",
-        "sha256": "66a8d87e34dcd4efff298ece886f944a3c4580b4937f58c6dfc0b54d4e0e814f"
+        "sha256": "0801d890c7ff20b44f8fa61811f1ec5a18964631f153b19976bbf030e4319048"
       },
       {
         "id": "face-focus",
         "url": "models/face-focus.glb",
-        "sha256": "7457e54c3fa265153787d7384ce0b02d5af78588410e2050e114ee4db2775391"
+        "sha256": "19199a805c4b8f19a0155be55b16bbe910f5ea1ffe23557a8144cde8950f1e47"
       },
       {
         "id": "hair-sweep",
         "url": "models/hair-sweep.glb",
-        "sha256": "acbaa4a36f193a9bf30877099e4e321dafb0d7c22857a2e7555c196bd83f48cf"
+        "sha256": "11c464b210fb8d82cbba216bb13021c2c64ca078325d6575db2fee47cfc12c54"
       },
       {
         "id": "facial-mustache",
         "url": "models/facial-mustache.glb",
-        "sha256": "11d7510bfc2c771d08293d32ce4756c30a9156a4d9f36d33a08222edd2b4c5d4"
+        "sha256": "926cd36ee7c3afcbc7de224722c20f3b189cdfb0296f94f07517df4b2a5deec4"
       },
       {
         "id": "acc-glasses",
         "url": "models/acc-glasses.glb",
-        "sha256": "d035d8cb071ea2803c1fc6f3feb3da772488b8da25a3f97d1526f1e350dca3f1"
+        "sha256": "c7aff3d1bddc6dbe31989da74257ef80711895629bb80cb284a6224cc73e827b"
       },
       {
         "id": "hat-club-cap",
         "url": "models/hat-club-cap.glb",
-        "sha256": "e1a072a43e88154db3313e77040aa058200368e9fa70db40f7efb573927cf986"
+        "sha256": "4379a7f5e7f25b0b6d12b93c05aa16500197307c24f45b1039fa21ad96b0d649"
       },
       {
         "id": "shirt-jersey",
         "url": "models/shirt-jersey.glb",
-        "sha256": "13940ca346ee2e70661ea2573d90dad8d4421b2b38f6ef6cf44d4a875c9490e9"
+        "sha256": "ae26c5ca0c5d90d4b6157381212e06bb5f35f003fb6a6fc2a3c5c62351f55323"
       },
       {
         "id": "bottom-court",
         "url": "models/bottom-court.glb",
-        "sha256": "964f823d1c49a3f0022698c23a7b08f8535ee89d48a71fa51095ab002bfb8fcc"
+        "sha256": "86c4fc012a55a5ca0231681ff62294954b038df2b6219841f935a1d73ba4c6b5"
       },
       {
         "id": "shoes-court",
         "url": "models/shoes-court.glb",
-        "sha256": "0d0297313bff4f11b421130db152bd5c4938c040e6fcd2ddd2e43bce9da14847"
+        "sha256": "861430ddd028cc0cdf6dd233ca313b32fd13d7697a02d76bf87d6dcf672e19e1"
       }
     ]
   },
@@ -83,8 +83,8 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "1.2.0",
-      "rig": "athlete-rigid-v1",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-spark",
         "face": "face-grin",
@@ -110,52 +110,52 @@
       {
         "id": "body-athletic",
         "url": "models/body-athletic.glb",
-        "sha256": "7e9d91ad7e9354817aa7cc99257d4674a39a93c45830d338aa9c7ae2a7bd8de2"
+        "sha256": "5470847a461032fda309364a702966ad96edd90b83afc2ac65a389eb779fb2ea"
       },
       {
         "id": "head-spark",
         "url": "models/head-spark.glb",
-        "sha256": "9b9e43c4d32d7b8f460d93bdef0dc5418587a60a397d3c72da4aa36f24b6490e"
+        "sha256": "69d51a7bb645d1b90e85ebb8854d140c8f4438f7fcf2193c8d998dc9caba9892"
       },
       {
         "id": "face-grin",
         "url": "models/face-grin.glb",
-        "sha256": "5266d49ba0451785d4957b4f9cba66989d2ac593eec9f612b84b739bd6a144a0"
+        "sha256": "6885136a184fc94b5c5b1fdfe6a925c939c1eea40623eeefdc0bfdc8668c8684"
       },
       {
         "id": "hair-curls",
         "url": "models/hair-curls.glb",
-        "sha256": "8d4907fd260b40c836fdad031be64536f0d0be7372ee77e665a98d846f2965ea"
+        "sha256": "d80a99a71fdc7bdef57e87901cc1eeac7662cd1a4ed7303838bab1c19c5172b1"
       },
       {
         "id": "facial-mustache",
         "url": "models/facial-mustache.glb",
-        "sha256": "11d7510bfc2c771d08293d32ce4756c30a9156a4d9f36d33a08222edd2b4c5d4"
+        "sha256": "926cd36ee7c3afcbc7de224722c20f3b189cdfb0296f94f07517df4b2a5deec4"
       },
       {
         "id": "acc-glasses",
         "url": "models/acc-glasses.glb",
-        "sha256": "d035d8cb071ea2803c1fc6f3feb3da772488b8da25a3f97d1526f1e350dca3f1"
+        "sha256": "c7aff3d1bddc6dbe31989da74257ef80711895629bb80cb284a6224cc73e827b"
       },
       {
         "id": "hat-club-cap",
         "url": "models/hat-club-cap.glb",
-        "sha256": "e1a072a43e88154db3313e77040aa058200368e9fa70db40f7efb573927cf986"
+        "sha256": "4379a7f5e7f25b0b6d12b93c05aa16500197307c24f45b1039fa21ad96b0d649"
       },
       {
         "id": "shirt-jersey",
         "url": "models/shirt-jersey.glb",
-        "sha256": "13940ca346ee2e70661ea2573d90dad8d4421b2b38f6ef6cf44d4a875c9490e9"
+        "sha256": "ae26c5ca0c5d90d4b6157381212e06bb5f35f003fb6a6fc2a3c5c62351f55323"
       },
       {
         "id": "bottom-court",
         "url": "models/bottom-court.glb",
-        "sha256": "964f823d1c49a3f0022698c23a7b08f8535ee89d48a71fa51095ab002bfb8fcc"
+        "sha256": "86c4fc012a55a5ca0231681ff62294954b038df2b6219841f935a1d73ba4c6b5"
       },
       {
         "id": "shoes-court",
         "url": "models/shoes-court.glb",
-        "sha256": "0d0297313bff4f11b421130db152bd5c4938c040e6fcd2ddd2e43bce9da14847"
+        "sha256": "861430ddd028cc0cdf6dd233ca313b32fd13d7697a02d76bf87d6dcf672e19e1"
       }
     ]
   },
@@ -163,8 +163,8 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "1.2.0",
-      "rig": "athlete-rigid-v1",
+      "revision": "2.0.0",
+      "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-spark",
         "face": "face-wink",
@@ -190,52 +190,52 @@
       {
         "id": "body-athletic",
         "url": "models/body-athletic.glb",
-        "sha256": "7e9d91ad7e9354817aa7cc99257d4674a39a93c45830d338aa9c7ae2a7bd8de2"
+        "sha256": "5470847a461032fda309364a702966ad96edd90b83afc2ac65a389eb779fb2ea"
       },
       {
         "id": "head-spark",
         "url": "models/head-spark.glb",
-        "sha256": "9b9e43c4d32d7b8f460d93bdef0dc5418587a60a397d3c72da4aa36f24b6490e"
+        "sha256": "69d51a7bb645d1b90e85ebb8854d140c8f4438f7fcf2193c8d998dc9caba9892"
       },
       {
         "id": "face-wink",
         "url": "models/face-wink.glb",
-        "sha256": "9538c8e155a41edbc14b0017dd12640e04aed4afc3fb4bb332edbf69be287cfa"
+        "sha256": "59c121d58064a964626c20d4de9942197ff4caf7583ab32b2f3ed690e846382f"
       },
       {
         "id": "hair-pony",
         "url": "models/hair-pony.glb",
-        "sha256": "b49f525e552e0a531d81832ebe94172ab1a0f4a0cde6508428d6fca1d23c2d03"
+        "sha256": "91c91d670c68abfa7e508fff0d77734125c8270dc3e30e699bb29183cbc04813"
       },
       {
         "id": "facial-mustache",
         "url": "models/facial-mustache.glb",
-        "sha256": "11d7510bfc2c771d08293d32ce4756c30a9156a4d9f36d33a08222edd2b4c5d4"
+        "sha256": "926cd36ee7c3afcbc7de224722c20f3b189cdfb0296f94f07517df4b2a5deec4"
       },
       {
         "id": "acc-glasses",
         "url": "models/acc-glasses.glb",
-        "sha256": "d035d8cb071ea2803c1fc6f3feb3da772488b8da25a3f97d1526f1e350dca3f1"
+        "sha256": "c7aff3d1bddc6dbe31989da74257ef80711895629bb80cb284a6224cc73e827b"
       },
       {
         "id": "hat-club-cap",
         "url": "models/hat-club-cap.glb",
-        "sha256": "e1a072a43e88154db3313e77040aa058200368e9fa70db40f7efb573927cf986"
+        "sha256": "4379a7f5e7f25b0b6d12b93c05aa16500197307c24f45b1039fa21ad96b0d649"
       },
       {
         "id": "shirt-jersey",
         "url": "models/shirt-jersey.glb",
-        "sha256": "13940ca346ee2e70661ea2573d90dad8d4421b2b38f6ef6cf44d4a875c9490e9"
+        "sha256": "ae26c5ca0c5d90d4b6157381212e06bb5f35f003fb6a6fc2a3c5c62351f55323"
       },
       {
         "id": "bottom-court",
         "url": "models/bottom-court.glb",
-        "sha256": "964f823d1c49a3f0022698c23a7b08f8535ee89d48a71fa51095ab002bfb8fcc"
+        "sha256": "86c4fc012a55a5ca0231681ff62294954b038df2b6219841f935a1d73ba4c6b5"
       },
       {
         "id": "shoes-court",
         "url": "models/shoes-court.glb",
-        "sha256": "0d0297313bff4f11b421130db152bd5c4938c040e6fcd2ddd2e43bce9da14847"
+        "sha256": "861430ddd028cc0cdf6dd233ca313b32fd13d7697a02d76bf87d6dcf672e19e1"
       }
     ]
   }

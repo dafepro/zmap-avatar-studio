@@ -1,9 +1,9 @@
 {
   "version": 1,
   "id": "zoomap-athletics",
-  "revision": "1.2.0",
+  "revision": "2.0.0",
   "rig": {
-    "id": "athlete-rigid-v1",
+    "id": "athlete-reference-v2",
     "height": 2.04,
     "sockets": [
       {
@@ -20,7 +20,7 @@
         "parent": "root",
         "position": [
           0,
-          0.86,
+          0.99,
           0
         ]
       },
@@ -29,7 +29,7 @@
         "parent": "hips",
         "position": [
           0,
-          0.25,
+          0.31,
           0
         ]
       },
@@ -38,7 +38,7 @@
         "parent": "chest",
         "position": [
           0,
-          0.55,
+          0.51,
           0
         ]
       },
@@ -46,8 +46,8 @@
         "id": "arm_L",
         "parent": "chest",
         "position": [
-          -0.272,
-          0.18,
+          -0.204,
+          0.155,
           0
         ]
       },
@@ -55,8 +55,8 @@
         "id": "forearm_L",
         "parent": "arm_L",
         "position": [
-          -0.06,
-          -0.255,
+          -0.065,
+          -0.27,
           0
         ]
       },
@@ -64,16 +64,16 @@
         "id": "hand_L",
         "parent": "forearm_L",
         "position": [
-          -0.025,
-          -0.22,
-          0
+          -0.064,
+          -0.217,
+          0.007
         ]
       },
       {
         "id": "leg_L",
         "parent": "hips",
         "position": [
-          -0.137,
+          -0.11,
           0,
           0
         ]
@@ -82,26 +82,26 @@
         "id": "shin_L",
         "parent": "leg_L",
         "position": [
-          0,
-          -0.34,
-          0
+          -0.06,
+          -0.43,
+          0.013
         ]
       },
       {
         "id": "foot_L",
         "parent": "shin_L",
         "position": [
-          0,
-          -0.36,
-          0.01
+          -0.055,
+          -0.44,
+          -0.003
         ]
       },
       {
         "id": "arm_R",
         "parent": "chest",
         "position": [
-          0.272,
-          0.18,
+          0.204,
+          0.155,
           0
         ]
       },
@@ -109,8 +109,8 @@
         "id": "forearm_R",
         "parent": "arm_R",
         "position": [
-          0.06,
-          -0.255,
+          0.065,
+          -0.27,
           0
         ]
       },
@@ -118,16 +118,16 @@
         "id": "hand_R",
         "parent": "forearm_R",
         "position": [
-          0.025,
-          -0.22,
-          0
+          0.064,
+          -0.217,
+          0.007
         ]
       },
       {
         "id": "leg_R",
         "parent": "hips",
         "position": [
-          0.137,
+          0.11,
           0,
           0
         ]
@@ -136,18 +136,18 @@
         "id": "shin_R",
         "parent": "leg_R",
         "position": [
-          0,
-          -0.34,
-          0
+          0.06,
+          -0.43,
+          0.013
         ]
       },
       {
         "id": "foot_R",
         "parent": "shin_R",
         "position": [
-          0,
-          -0.36,
-          0.01
+          0.055,
+          -0.44,
+          -0.003
         ]
       }
     ]
@@ -222,13 +222,13 @@
   "assets": [
     {
       "id": "body-athletic",
-      "label": "Athletic",
+      "label": "Reference athlete",
       "slot": "body",
-      "rig": "athlete-rigid-v1",
-      "description": "Connected shoulder, collarbone and limbs with blended skin weights and naturally curled hands.",
+      "rig": "athlete-reference-v2",
+      "description": "Fixed-height reference anatomy: connected collarbone and shoulders, long athletic legs, relaxed five-finger hands.",
       "attachments": [
         {
-          "node": "body-athletic__root",
+          "node": "ref2_body-athletic__root",
           "socket": "root"
         }
       ],
@@ -257,19 +257,19 @@
         ]
       },
       "url": "models/body-athletic.glb",
-      "bytes": 133140,
-      "sha256": "7e9d91ad7e9354817aa7cc99257d4674a39a93c45830d338aa9c7ae2a7bd8de2",
-      "triangles": 3867
+      "bytes": 418824,
+      "sha256": "5470847a461032fda309364a702966ad96edd90b83afc2ac65a389eb779fb2ea",
+      "triangles": 5791
     },
     {
       "id": "head-scout",
       "label": "Scout",
       "slot": "head",
-      "rig": "athlete-rigid-v1",
-      "description": "A continuous softly sculpted face, cheek and jaw with a shared painted feature surface.",
+      "rig": "athlete-reference-v2",
+      "description": "Angular chin, cheek bevels and compact skull traced from the supplied front/side study.",
       "attachments": [
         {
-          "node": "head-scout__head",
+          "node": "ref2_head-scout__head",
           "socket": "head"
         }
       ],
@@ -278,28 +278,28 @@
       ],
       "tags": [],
       "surface": {
-        "id": "face-v1",
+        "id": "face-v2",
         "frame": [
           0,
-          0,
-          0.43,
-          0.365
+          -0.041,
+          0.326,
+          0.318
         ]
       },
       "url": "models/head-scout.glb",
-      "bytes": 38716,
-      "sha256": "66a8d87e34dcd4efff298ece886f944a3c4580b4937f58c6dfc0b54d4e0e814f",
-      "triangles": 1628
+      "bytes": 23072,
+      "sha256": "0801d890c7ff20b44f8fa61811f1ec5a18964631f153b19976bbf030e4319048",
+      "triangles": 1074
     },
     {
       "id": "head-spark",
       "label": "Spark",
       "slot": "head",
-      "rig": "athlete-rigid-v1",
-      "description": "A continuous softly sculpted face, cheek and jaw with a shared painted feature surface.",
+      "rig": "athlete-reference-v2",
+      "description": "Angular chin, cheek bevels and compact skull traced from the supplied front/side study.",
       "attachments": [
         {
-          "node": "head-spark__head",
+          "node": "ref2_head-spark__head",
           "socket": "head"
         }
       ],
@@ -308,28 +308,28 @@
       ],
       "tags": [],
       "surface": {
-        "id": "face-v1",
+        "id": "face-v2",
         "frame": [
           0,
-          0,
-          0.44075,
-          0.35769999999999996
+          -0.041,
+          0.34719,
+          0.318
         ]
       },
       "url": "models/head-spark.glb",
-      "bytes": 38720,
-      "sha256": "9b9e43c4d32d7b8f460d93bdef0dc5418587a60a397d3c72da4aa36f24b6490e",
-      "triangles": 1628
+      "bytes": 23072,
+      "sha256": "69d51a7bb645d1b90e85ebb8854d140c8f4438f7fcf2193c8d998dc9caba9892",
+      "triangles": 1074
     },
     {
       "id": "face-focus",
       "label": "Game face",
       "slot": "face",
-      "rig": "athlete-rigid-v1",
-      "description": "Drawn expression on one fitted surface; no individually lit eye or mouth primitives.",
+      "rig": "athlete-reference-v2",
+      "description": "Ink-painted almond eyes, strong brows and an expressive mouth fitted to the actual head surface.",
       "attachments": [
         {
-          "node": "face-focus__head",
+          "node": "ref2_face-focus__head",
           "socket": "head"
         }
       ],
@@ -341,31 +341,32 @@
       },
       "fit": {
         "targetSlot": "head",
-        "surface": "face-v1",
+        "surface": "face-v2",
         "frame": [
           0,
-          0,
-          0.43,
-          0.365
+          -0.041,
+          0.326,
+          0.318
         ],
         "mode": "surface",
-        "offset": 0.0008,
-        "maxDistance": 0.07
+        "offset": 0.0015,
+        "maxDistance": 0.085,
+        "projection": "radial"
       },
       "url": "models/face-focus.glb",
-      "bytes": 136644,
-      "sha256": "7457e54c3fa265153787d7384ce0b02d5af78588410e2050e114ee4db2775391",
-      "triangles": 704
+      "bytes": 84764,
+      "sha256": "19199a805c4b8f19a0155be55b16bbe910f5ea1ffe23557a8144cde8950f1e47",
+      "triangles": 788
     },
     {
       "id": "face-grin",
       "label": "Big grin",
       "slot": "face",
-      "rig": "athlete-rigid-v1",
-      "description": "Drawn expression on one fitted surface; no individually lit eye or mouth primitives.",
+      "rig": "athlete-reference-v2",
+      "description": "Ink-painted almond eyes, strong brows and an expressive mouth fitted to the actual head surface.",
       "attachments": [
         {
-          "node": "face-grin__head",
+          "node": "ref2_face-grin__head",
           "socket": "head"
         }
       ],
@@ -377,31 +378,32 @@
       },
       "fit": {
         "targetSlot": "head",
-        "surface": "face-v1",
+        "surface": "face-v2",
         "frame": [
           0,
-          0,
-          0.43,
-          0.365
+          -0.041,
+          0.326,
+          0.318
         ],
         "mode": "surface",
-        "offset": 0.0008,
-        "maxDistance": 0.07
+        "offset": 0.0015,
+        "maxDistance": 0.085,
+        "projection": "radial"
       },
       "url": "models/face-grin.glb",
-      "bytes": 136652,
-      "sha256": "5266d49ba0451785d4957b4f9cba66989d2ac593eec9f612b84b739bd6a144a0",
-      "triangles": 704
+      "bytes": 84760,
+      "sha256": "6885136a184fc94b5c5b1fdfe6a925c939c1eea40623eeefdc0bfdc8668c8684",
+      "triangles": 788
     },
     {
       "id": "face-wink",
       "label": "Good vibes",
       "slot": "face",
-      "rig": "athlete-rigid-v1",
-      "description": "Drawn expression on one fitted surface; no individually lit eye or mouth primitives.",
+      "rig": "athlete-reference-v2",
+      "description": "Ink-painted almond eyes, strong brows and an expressive mouth fitted to the actual head surface.",
       "attachments": [
         {
-          "node": "face-wink__head",
+          "node": "ref2_face-wink__head",
           "socket": "head"
         }
       ],
@@ -413,31 +415,32 @@
       },
       "fit": {
         "targetSlot": "head",
-        "surface": "face-v1",
+        "surface": "face-v2",
         "frame": [
           0,
-          0,
-          0.43,
-          0.365
+          -0.041,
+          0.326,
+          0.318
         ],
         "mode": "surface",
-        "offset": 0.0008,
-        "maxDistance": 0.07
+        "offset": 0.0015,
+        "maxDistance": 0.085,
+        "projection": "radial"
       },
       "url": "models/face-wink.glb",
-      "bytes": 136652,
-      "sha256": "9538c8e155a41edbc14b0017dd12640e04aed4afc3fb4bb332edbf69be287cfa",
-      "triangles": 704
+      "bytes": 84760,
+      "sha256": "59c121d58064a964626c20d4de9942197ff4caf7583ab32b2f3ed690e846382f",
+      "triangles": 788
     },
     {
       "id": "hair-sweep",
-      "label": "Side sweep",
+      "label": "Study sweep",
       "slot": "hair",
-      "rig": "athlete-rigid-v1",
-      "description": "Interchangeable hair envelope with a clear athletic silhouette.",
+      "rig": "athlete-reference-v2",
+      "description": "A filled scalp and a few broad directional lock masses; all accessories fit this same source mesh.",
       "attachments": [
         {
-          "node": "hair-sweep__head",
+          "node": "ref2_hair-sweep__head",
           "socket": "head"
         }
       ],
@@ -446,19 +449,19 @@
       ],
       "tags": [],
       "url": "models/hair-sweep.glb",
-      "bytes": 17640,
-      "sha256": "acbaa4a36f193a9bf30877099e4e321dafb0d7c22857a2e7555c196bd83f48cf",
-      "triangles": 176
+      "bytes": 22840,
+      "sha256": "11c464b210fb8d82cbba216bb13021c2c64ca078325d6575db2fee47cfc12c54",
+      "triangles": 390
     },
     {
       "id": "hair-curls",
-      "label": "Cloud curls",
+      "label": "Reverse sweep",
       "slot": "hair",
-      "rig": "athlete-rigid-v1",
-      "description": "Interchangeable hair envelope with a clear athletic silhouette.",
+      "rig": "athlete-reference-v2",
+      "description": "A filled scalp and a few broad directional lock masses; all accessories fit this same source mesh.",
       "attachments": [
         {
-          "node": "hair-curls__head",
+          "node": "ref2_hair-curls__head",
           "socket": "head"
         }
       ],
@@ -467,49 +470,52 @@
       ],
       "tags": [],
       "url": "models/hair-curls.glb",
-      "bytes": 64860,
-      "sha256": "8d4907fd260b40c836fdad031be64536f0d0be7372ee77e665a98d846f2965ea",
-      "triangles": 632
+      "bytes": 22840,
+      "sha256": "d80a99a71fdc7bdef57e87901cc1eeac7662cd1a4ed7303838bab1c19c5172b1",
+      "triangles": 390
     },
     {
       "id": "hair-pony",
-      "label": "High pony",
+      "label": "Swept pony",
       "slot": "hair",
-      "rig": "athlete-rigid-v1",
-      "description": "Interchangeable hair envelope with a clear athletic silhouette.",
+      "rig": "athlete-reference-v2",
+      "description": "A filled scalp and a few broad directional lock masses; all accessories fit this same source mesh.",
       "attachments": [
         {
-          "node": "hair-pony__head",
+          "node": "ref2_hair-pony__head",
           "socket": "head"
         }
       ],
       "channels": [
-        "primary",
+        "secondary",
         "hair"
       ],
       "tags": [],
       "url": "models/hair-pony.glb",
-      "bytes": 36376,
-      "sha256": "b49f525e552e0a531d81832ebe94172ab1a0f4a0cde6508428d6fca1d23c2d03",
-      "triangles": 350
+      "bytes": 33784,
+      "sha256": "91c91d670c68abfa7e508fff0d77734125c8270dc3e30e699bb29183cbc04813",
+      "triangles": 428
     },
     {
       "id": "shirt-jersey",
-      "label": "Club jersey",
+      "label": "Study jersey",
       "slot": "shirt",
-      "rig": "athlete-rigid-v1",
-      "description": "One connected collarbone, shoulder and sleeve surface with blended deformation.",
+      "rig": "athlete-reference-v2",
+      "description": "Connected V-neck athletic jersey with broad shoulder planes, bound cuffs, crown crest and drawn fabric folds.",
       "attachments": [
         {
-          "node": "shirt-jersey__root",
+          "node": "ref2_shirt-jersey__root",
           "socket": "root"
         }
       ],
       "channels": [
         "primary",
-        "trim"
+        "secondary"
       ],
       "tags": [],
+      "covers": [
+        "torso"
+      ],
       "texture": {
         "maxDimension": 256,
         "maxCount": 1
@@ -535,27 +541,30 @@
         ]
       },
       "url": "models/shirt-jersey.glb",
-      "bytes": 113220,
-      "sha256": "13940ca346ee2e70661ea2573d90dad8d4421b2b38f6ef6cf44d4a875c9490e9",
-      "triangles": 2735
+      "bytes": 47604,
+      "sha256": "ae26c5ca0c5d90d4b6157381212e06bb5f35f003fb6a6fc2a3c5c62351f55323",
+      "triangles": 298
     },
     {
       "id": "shirt-hoodie",
-      "label": "Warm-up hoodie",
+      "label": "Warm-up jersey",
       "slot": "shirt",
-      "rig": "athlete-rigid-v1",
-      "description": "One connected collarbone, shoulder and sleeve surface with blended deformation.",
+      "rig": "athlete-reference-v2",
+      "description": "Connected V-neck athletic jersey with broad shoulder planes, bound cuffs, crown crest and drawn fabric folds.",
       "attachments": [
         {
-          "node": "shirt-hoodie__root",
+          "node": "ref2_shirt-hoodie__root",
           "socket": "root"
         }
       ],
       "channels": [
         "primary",
-        "trim"
+        "secondary"
       ],
       "tags": [],
+      "covers": [
+        "torso"
+      ],
       "texture": {
         "maxDimension": 256,
         "maxCount": 1
@@ -581,27 +590,30 @@
         ]
       },
       "url": "models/shirt-hoodie.glb",
-      "bytes": 148172,
-      "sha256": "caa7e2ab7cbaa9fa3185b2d2bebb247c074f28044944dfbeba4a9808c6241108",
-      "triangles": 3607
+      "bytes": 54252,
+      "sha256": "5ce6c2bf3232e4053b7aae2ee29ee5e95a89ebf34f7cab9244473f6637d3e278",
+      "triangles": 366
     },
     {
       "id": "shirt-track",
-      "label": "Track jacket",
+      "label": "Zip jersey",
       "slot": "shirt",
-      "rig": "athlete-rigid-v1",
-      "description": "One connected collarbone, shoulder and sleeve surface with blended deformation.",
+      "rig": "athlete-reference-v2",
+      "description": "Connected V-neck athletic jersey with broad shoulder planes, bound cuffs, crown crest and drawn fabric folds.",
       "attachments": [
         {
-          "node": "shirt-track__root",
+          "node": "ref2_shirt-track__root",
           "socket": "root"
         }
       ],
       "channels": [
         "primary",
-        "trim"
+        "secondary"
       ],
       "tags": [],
+      "covers": [
+        "torso"
+      ],
       "texture": {
         "maxDimension": 256,
         "maxCount": 1
@@ -627,28 +639,20 @@
         ]
       },
       "url": "models/shirt-track.glb",
-      "bytes": 141840,
-      "sha256": "f28ed6528f442b5ccadcae18f80ad87af9c17eb020df0a1ad4ba062f396e54b3",
-      "triangles": 3503
+      "bytes": 52232,
+      "sha256": "974d4e58d33713e4693d1918fec66058321f200051a9622aafb3724dde3599ea",
+      "triangles": 342
     },
     {
       "id": "bottom-court",
       "label": "Court shorts",
       "slot": "bottom",
-      "rig": "athlete-rigid-v1",
-      "description": "Hip waistband and separate leg panels retain stride articulation.",
+      "rig": "athlete-reference-v2",
+      "description": "Loose athletic shorts with a shaped crotch, elastic waist and full white side stripes.",
       "attachments": [
         {
-          "node": "bottom-court__hips",
-          "socket": "hips"
-        },
-        {
-          "node": "bottom-court__leg_L",
-          "socket": "leg_L"
-        },
-        {
-          "node": "bottom-court__leg_R",
-          "socket": "leg_R"
+          "node": "ref2_bottom-court__root",
+          "socket": "root"
         }
       ],
       "channels": [
@@ -656,29 +660,44 @@
         "trim"
       ],
       "tags": [],
+      "covers": [
+        "upper-legs"
+      ],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
       "url": "models/bottom-court.glb",
-      "bytes": 8452,
-      "sha256": "964f823d1c49a3f0022698c23a7b08f8535ee89d48a71fa51095ab002bfb8fcc",
-      "triangles": 156
+      "bytes": 21148,
+      "sha256": "86c4fc012a55a5ca0231681ff62294954b038df2b6219841f935a1d73ba4c6b5",
+      "triangles": 183
     },
     {
       "id": "bottom-training",
-      "label": "Training shorts",
+      "label": "Long court shorts",
       "slot": "bottom",
-      "rig": "athlete-rigid-v1",
-      "description": "Hip waistband and separate leg panels retain stride articulation.",
+      "rig": "athlete-reference-v2",
+      "description": "Loose athletic shorts with a shaped crotch, elastic waist and full white side stripes.",
       "attachments": [
         {
-          "node": "bottom-training__hips",
-          "socket": "hips"
-        },
-        {
-          "node": "bottom-training__leg_L",
-          "socket": "leg_L"
-        },
-        {
-          "node": "bottom-training__leg_R",
-          "socket": "leg_R"
+          "node": "ref2_bottom-training__root",
+          "socket": "root"
         }
       ],
       "channels": [
@@ -686,230 +705,130 @@
         "trim"
       ],
       "tags": [],
+      "covers": [
+        "upper-legs"
+      ],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
       "url": "models/bottom-training.glb",
-      "bytes": 8488,
-      "sha256": "4abf4c96ce5787aab84541d9b73b1fc870ab063da1035981af18f278d9cc6769",
-      "triangles": 156
+      "bytes": 21868,
+      "sha256": "727c09b081d6dca35292bfc6e2494eeb1b392e601554e2ddf40a544193a51177",
+      "triangles": 183
     },
     {
       "id": "shoes-court",
-      "label": "Court classic",
+      "label": "Study sneakers",
       "slot": "shoes",
-      "rig": "athlete-rigid-v1",
-      "description": "Paired foot sockets, with socks, soles, toe panels and laces.",
+      "rig": "athlete-reference-v2",
+      "description": "Reference sneakers: layered black and white panels, crossed black laces, sculpted outsole, tongue and heel loop, plain ribbed crew socks.",
       "attachments": [
         {
-          "node": "shoes-court__foot_L",
+          "node": "ref2_shoes-court__foot_L",
           "socket": "foot_L"
         },
         {
-          "node": "shoes-court__foot_R",
+          "node": "ref2_shoes-court__foot_R",
           "socket": "foot_R"
         }
       ],
       "channels": [
-        "primary",
         "secondary",
         "trim"
       ],
       "tags": [],
+      "covers": [
+        "feet"
+      ],
       "url": "models/shoes-court.glb",
-      "bytes": 32388,
-      "sha256": "0d0297313bff4f11b421130db152bd5c4938c040e6fcd2ddd2e43bce9da14847",
-      "triangles": 832
+      "bytes": 73828,
+      "sha256": "861430ddd028cc0cdf6dd233ca313b32fd13d7697a02d76bf87d6dcf672e19e1",
+      "triangles": 1360
     },
     {
       "id": "shoes-runner",
-      "label": "Velocity runner",
+      "label": "Court runner",
       "slot": "shoes",
-      "rig": "athlete-rigid-v1",
-      "description": "Paired foot sockets, with socks, soles, toe panels and laces.",
+      "rig": "athlete-reference-v2",
+      "description": "Reference sneakers: layered black and white panels, crossed black laces, sculpted outsole, tongue and heel loop, plain ribbed crew socks.",
       "attachments": [
         {
-          "node": "shoes-runner__foot_L",
+          "node": "ref2_shoes-runner__foot_L",
           "socket": "foot_L"
         },
         {
-          "node": "shoes-runner__foot_R",
+          "node": "ref2_shoes-runner__foot_R",
           "socket": "foot_R"
         }
       ],
       "channels": [
-        "primary",
-        "secondary",
-        "trim",
-        "accent"
-      ],
-      "tags": [],
-      "url": "models/shoes-runner.glb",
-      "bytes": 36420,
-      "sha256": "c9dc1920de84fe903f2eb46d4c2091675e4d67453a4920397c2c08dacbbbab0c",
-      "triangles": 920
-    },
-    {
-      "id": "shoes-high",
-      "label": "High tops",
-      "slot": "shoes",
-      "rig": "athlete-rigid-v1",
-      "description": "Paired foot sockets, with socks, soles, toe panels and laces.",
-      "attachments": [
-        {
-          "node": "shoes-high__foot_L",
-          "socket": "foot_L"
-        },
-        {
-          "node": "shoes-high__foot_R",
-          "socket": "foot_R"
-        }
-      ],
-      "channels": [
-        "primary",
         "secondary",
         "trim"
       ],
       "tags": [],
-      "url": "models/shoes-high.glb",
-      "bytes": 33608,
-      "sha256": "5252be69df82f909db6a2ef9d4c4f60e6ad5ba80b6616660ac3dd6b1e22299f2",
-      "triangles": 888
+      "covers": [
+        "feet"
+      ],
+      "url": "models/shoes-runner.glb",
+      "bytes": 74272,
+      "sha256": "9bb602d6565f674f2e1eac3b5db3766cfa0cc24db35842a4aab7228b5312b434",
+      "triangles": 1368
     },
     {
-      "id": "acc-band",
-      "label": "Captain band",
-      "slot": "accessory",
-      "rig": "athlete-rigid-v1",
-      "description": "Optional head accessory, fitted across both head silhouettes.",
+      "id": "shoes-high",
+      "label": "Court high",
+      "slot": "shoes",
+      "rig": "athlete-reference-v2",
+      "description": "Reference sneakers: layered black and white panels, crossed black laces, sculpted outsole, tongue and heel loop, plain ribbed crew socks.",
       "attachments": [
         {
-          "node": "acc-band__head",
-          "socket": "head"
-        }
-      ],
-      "channels": [
-        "accent"
-      ],
-      "tags": [],
-      "excludesTags": [
-        "tall-headwear"
-      ],
-      "url": "models/acc-band.glb",
-      "bytes": 3832,
-      "sha256": "ce738379dbb1763208c174a759aa034901c99ec60547a86c81ca469e76328799",
-      "triangles": 60
-    },
-    {
-      "id": "acc-glasses",
-      "label": "Round frames",
-      "slot": "eyewear",
-      "rig": "athlete-rigid-v1",
-      "description": "Optional head accessory, fitted across both head silhouettes.",
-      "attachments": [
-        {
-          "node": "acc-glasses__head",
-          "socket": "head"
-        }
-      ],
-      "channels": [
-        "secondary"
-      ],
-      "tags": [],
-      "fit": {
-        "targetSlot": "head",
-        "surface": "face-v1",
-        "frame": [
-          0,
-          0,
-          0.43,
-          0.365
-        ],
-        "mode": "clearance",
-        "offset": 0.016,
-        "maxDistance": 0.07
-      },
-      "hairFit": [
-        {
-          "targetSlot": "hair",
-          "mode": "clearance",
-          "center": [
-            0,
-            0.028,
-            0.28
-          ],
-          "radii": [
-            0.325,
-            0.079,
-            0.041
-          ]
+          "node": "ref2_shoes-high__foot_L",
+          "socket": "foot_L"
         },
         {
-          "targetSlot": "hair",
-          "mode": "clearance",
-          "axis": "x",
-          "direction": 1,
-          "center": [
-            -0.279,
-            0.03,
-            0.105
-          ],
-          "radii": [
-            0.079,
-            0.018,
-            0.205
-          ]
-        },
-        {
-          "targetSlot": "hair",
-          "mode": "clearance",
-          "axis": "x",
-          "direction": -1,
-          "center": [
-            0.279,
-            0.03,
-            0.105
-          ],
-          "radii": [
-            0.079,
-            0.018,
-            0.205
-          ]
-        }
-      ],
-      "url": "models/acc-glasses.glb",
-      "bytes": 10428,
-      "sha256": "d035d8cb071ea2803c1fc6f3feb3da772488b8da25a3f97d1526f1e350dca3f1",
-      "triangles": 504
-    },
-    {
-      "id": "acc-headphones",
-      "label": "Off-duty audio",
-      "slot": "accessory",
-      "rig": "athlete-rigid-v1",
-      "description": "Optional head accessory, fitted across both head silhouettes.",
-      "attachments": [
-        {
-          "node": "acc-headphones__head",
-          "socket": "head"
+          "node": "ref2_shoes-high__foot_R",
+          "socket": "foot_R"
         }
       ],
       "channels": [
         "secondary",
-        "accent"
+        "trim"
       ],
       "tags": [],
-      "url": "models/acc-headphones.glb",
-      "bytes": 33972,
-      "sha256": "7a9d87876da3c9e7541a515120b78a6169a9294288952820b3bedbf4033828a2",
-      "triangles": 400
+      "covers": [
+        "feet"
+      ],
+      "url": "models/shoes-high.glb",
+      "bytes": 92496,
+      "sha256": "e82f17cd6f3a1bf7d1459db7b4fbf9c406d88b2f08f09497eddb56366ce87e4d",
+      "triangles": 1712
     },
     {
       "id": "facial-mustache",
       "label": "Pencil mustache",
       "slot": "facialHair",
-      "rig": "athlete-rigid-v1",
+      "rig": "athlete-reference-v2",
       "description": "A tapered, hair-colored mustache fitted directly to the selected face surface.",
       "attachments": [
         {
-          "node": "facial-mustache__head",
+          "node": "ref2_facial-mustache__head",
           "socket": "head"
         }
       ],
@@ -919,31 +838,31 @@
       "tags": [],
       "fit": {
         "targetSlot": "head",
-        "surface": "face-v1",
+        "surface": "face-v2",
         "frame": [
           0,
-          0,
-          0.43,
-          0.365
+          -0.041,
+          0.326,
+          0.318
         ],
         "mode": "surface",
-        "offset": 0.003,
-        "maxDistance": 0.07
+        "offset": 0.0055,
+        "maxDistance": 0.085
       },
       "url": "models/facial-mustache.glb",
-      "bytes": 3824,
-      "sha256": "11d7510bfc2c771d08293d32ce4756c30a9156a4d9f36d33a08222edd2b4c5d4",
+      "bytes": 3900,
+      "sha256": "926cd36ee7c3afcbc7de224722c20f3b189cdfb0296f94f07517df4b2a5deec4",
       "triangles": 48
     },
     {
       "id": "hat-club-cap",
       "label": "Club cap",
       "slot": "headwear",
-      "rig": "athlete-rigid-v1",
+      "rig": "athlete-reference-v2",
       "description": "Soft six-panel cap, shaped crown and a rear opening for gathered hair.",
       "attachments": [
         {
-          "node": "hat-club-cap__head",
+          "node": "ref2_hat-club-cap__head",
           "socket": "head"
         }
       ],
@@ -958,35 +877,163 @@
           "targetSlot": "hair",
           "mode": "contain",
           "center": [
-            0,
-            0.125,
-            -0.012
+            0.0,
+            0.1125,
+            -0.009600000000000001
           ],
           "radii": [
-            0.27,
-            0.212,
-            0.253
+            0.20520000000000002,
+            0.1908,
+            0.20240000000000002
           ],
           "transition": [
-            -0.06,
-            0.075
+            -0.054,
+            0.0675
           ]
         }
       ],
       "url": "models/hat-club-cap.glb",
-      "bytes": 18296,
-      "sha256": "e1a072a43e88154db3313e77040aa058200368e9fa70db40f7efb573927cf986",
+      "bytes": 18456,
+      "sha256": "4379a7f5e7f25b0b6d12b93c05aa16500197307c24f45b1039fa21ad96b0d649",
       "triangles": 596
+    },
+    {
+      "id": "acc-glasses",
+      "label": "Round frames",
+      "slot": "eyewear",
+      "rig": "athlete-reference-v2",
+      "description": "One glasses asset: actual-face clearance and generic hair exclusion volumes.",
+      "attachments": [
+        {
+          "node": "ref2_acc-glasses__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "secondary"
+      ],
+      "tags": [],
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v2",
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
+        "mode": "clearance",
+        "offset": 0.016,
+        "maxDistance": 0.085
+      },
+      "hairFit": [
+        {
+          "targetSlot": "hair",
+          "mode": "clearance",
+          "center": [
+            0.0,
+            0.0252,
+            0.22400000000000003
+          ],
+          "radii": [
+            0.24700000000000003,
+            0.0711,
+            0.0328
+          ]
+        },
+        {
+          "targetSlot": "hair",
+          "mode": "clearance",
+          "axis": "x",
+          "direction": 1,
+          "center": [
+            -0.21204000000000003,
+            0.027,
+            0.084
+          ],
+          "radii": [
+            0.06004,
+            0.0162,
+            0.164
+          ]
+        },
+        {
+          "targetSlot": "hair",
+          "mode": "clearance",
+          "axis": "x",
+          "direction": -1,
+          "center": [
+            0.21204000000000003,
+            0.027,
+            0.084
+          ],
+          "radii": [
+            0.06004,
+            0.0162,
+            0.164
+          ]
+        }
+      ],
+      "url": "models/acc-glasses.glb",
+      "bytes": 10520,
+      "sha256": "c7aff3d1bddc6dbe31989da74257ef80711895629bb80cb284a6224cc73e827b",
+      "triangles": 504
+    },
+    {
+      "id": "acc-band",
+      "label": "Captain band",
+      "slot": "accessory",
+      "rig": "athlete-reference-v2",
+      "description": "Optional head accessory for the reference family.",
+      "attachments": [
+        {
+          "node": "ref2_acc-band__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "accent"
+      ],
+      "tags": [],
+      "excludesTags": [
+        "tall-headwear"
+      ],
+      "url": "models/acc-band.glb",
+      "bytes": 5264,
+      "sha256": "4559a4fbe76155be067e75ca04a9c0db7c05f25d41de53d8c98f51f271663829",
+      "triangles": 92
+    },
+    {
+      "id": "acc-headphones",
+      "label": "Off-duty audio",
+      "slot": "accessory",
+      "rig": "athlete-reference-v2",
+      "description": "Optional head accessory for the reference family.",
+      "attachments": [
+        {
+          "node": "ref2_acc-headphones__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "secondary",
+        "accent"
+      ],
+      "tags": [],
+      "url": "models/acc-headphones.glb",
+      "bytes": 18540,
+      "sha256": "f35367b2aeed1f001a5e8d7926f8ac461674d8d7c594bc1ce603a32813f0982e",
+      "triangles": 240
     },
     {
       "id": "effect-orbit",
       "label": "Golden orbit",
       "slot": "effect",
-      "rig": "athlete-rigid-v1",
-      "description": "Quiet bounded accent geometry; reduced motion keeps it still.",
+      "rig": "athlete-reference-v2",
+      "description": "Bounded decorative geometry.",
       "attachments": [
         {
-          "node": "effect-orbit__root",
+          "node": "ref2_effect-orbit__root",
           "socket": "root"
         }
       ],
@@ -996,19 +1043,19 @@
       "tags": [],
       "effect": "orbit",
       "url": "models/effect-orbit.glb",
-      "bytes": 13784,
-      "sha256": "ebad197069c75c22546e08373ab12d30b9d1561e2bbabaa0fe89c492627e20f4",
-      "triangles": 348
+      "bytes": 22332,
+      "sha256": "1dea37a43ef4a217e0fc3fcb3705a86ecfdb4056d9cf12431831a2dc45a71ce6",
+      "triangles": 392
     },
     {
       "id": "effect-spark",
       "label": "Team sparks",
       "slot": "effect",
-      "rig": "athlete-rigid-v1",
-      "description": "Quiet bounded accent geometry; reduced motion keeps it still.",
+      "rig": "athlete-reference-v2",
+      "description": "Bounded decorative geometry.",
       "attachments": [
         {
-          "node": "effect-spark__root",
+          "node": "ref2_effect-spark__root",
           "socket": "root"
         }
       ],
@@ -1018,8 +1065,8 @@
       "tags": [],
       "effect": "spark",
       "url": "models/effect-spark.glb",
-      "bytes": 11612,
-      "sha256": "ae92c2266ab17e2372cac11827e235982da497120b428ecdaa34581bb7f14588",
+      "bytes": 11692,
+      "sha256": "bfea4d5d7940d96270a7910d9f0bdcd4b456c2a98e18136b44bf8c4a339ca022",
       "triangles": 100
     }
   ],
@@ -1027,5 +1074,185 @@
     "maxTriangles": 14000,
     "maxBytes": 1500000,
     "maxParts": 12
+  },
+  "bodyRegions": [
+    "torso",
+    "upper-legs",
+    "feet"
+  ],
+  "bodyShape": {
+    "weightProfile": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0.8,
+        0,
+        0
+      ],
+      [
+        0.99,
+        0.18,
+        0.24
+      ],
+      [
+        1.13,
+        0.34,
+        0.46
+      ],
+      [
+        1.3,
+        0.24,
+        0.32
+      ],
+      [
+        1.48,
+        0.06,
+        0.06
+      ],
+      [
+        1.61,
+        0,
+        0
+      ],
+      [
+        2.04,
+        0,
+        0
+      ]
+    ],
+    "leanFactor": 0.55,
+    "limbs": [
+      {
+        "joints": [
+          "arm_L",
+          "forearm_L",
+          "hand_L"
+        ],
+        "radius": 0.095,
+        "falloff": 0.055,
+        "endMargin": 0.15,
+        "profile": [
+          [
+            0,
+            0.22
+          ],
+          [
+            0.4,
+            0.34
+          ],
+          [
+            0.58,
+            0.24
+          ],
+          [
+            0.78,
+            0.3
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "joints": [
+          "arm_R",
+          "forearm_R",
+          "hand_R"
+        ],
+        "radius": 0.095,
+        "falloff": 0.055,
+        "endMargin": 0.15,
+        "profile": [
+          [
+            0,
+            0.22
+          ],
+          [
+            0.4,
+            0.34
+          ],
+          [
+            0.58,
+            0.24
+          ],
+          [
+            0.78,
+            0.3
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "joints": [
+          "leg_L",
+          "shin_L",
+          "foot_L"
+        ],
+        "radius": 0.11,
+        "falloff": 0.045,
+        "endMargin": 0.2,
+        "profile": [
+          [
+            0,
+            0.28
+          ],
+          [
+            0.3,
+            0.38
+          ],
+          [
+            0.53,
+            0.18
+          ],
+          [
+            0.7,
+            0.38
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "joints": [
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ],
+        "radius": 0.11,
+        "falloff": 0.045,
+        "endMargin": 0.2,
+        "profile": [
+          [
+            0,
+            0.28
+          ],
+          [
+            0.3,
+            0.38
+          ],
+          [
+            0.53,
+            0.18
+          ],
+          [
+            0.7,
+            0.38
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
   }
 }

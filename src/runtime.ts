@@ -1,4 +1,6 @@
 import * as THREE from "three";
+import { applyExpressionProjection } from "./expression.js";
+import { applyBodyShape } from "./body-shape.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { clone as cloneSkeleton } from "three/addons/utils/SkeletonUtils.js";
 import { fitAssembly } from "./fitting.js";
@@ -275,6 +277,9 @@ export class AvatarLibrary {
       sockets.set(s.id, node);
     }
     root.updateMatrixWorld(true);
+    const coveredRegions = new Set(
+      assets.flatMap((asset) => asset.covers ?? []),
+    );
     const effects: Assembly["effects"] = [];
     try {
       for (let i = 0; i < assets.length; i++) {
@@ -315,6 +320,11 @@ export class AvatarLibrary {
           const skeletons = new Map<THREE.Skeleton, THREE.Skeleton>();
           object.traverse((o) => {
             if (o instanceof THREE.Mesh) {
+              if (
+                asset.slot === "body" &&
+                coveredRegions.has(o.userData.avatarRegion)
+              )
+                o.visible = false;
               if (!geometries.has(o.geometry))
                 geometries.set(o.geometry, o.geometry.clone());
               o.geometry = geometries.get(o.geometry)!;
@@ -334,6 +344,7 @@ export class AvatarLibrary {
                     (cloned as THREE.MeshStandardMaterial).color
                   )
                     (cloned as THREE.MeshStandardMaterial).color.set(color);
+                  applyExpressionProjection(cloned);
                   materials.set(m, cloned);
                 }
                 return materials.get(m)!;
@@ -428,6 +439,13 @@ export class AvatarLibrary {
           assets,
           sockets.get("head")!,
           this.catalog.budgets.maxTriangles,
+        );
+      if (this.catalog.bodyShape)
+        applyBodyShape(
+          root,
+          sockets,
+          this.catalog.bodyShape,
+          recipe.body?.weight ?? 0,
         );
       return { root, sockets, effects };
     } catch (error) {
