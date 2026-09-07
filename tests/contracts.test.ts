@@ -43,7 +43,7 @@ test("all catalog assets match their hashes, budgets and self-contained attachme
   }
   assert.ok(
     total < 1500000,
-    "whole illustrated launch catalog stays under 1.5 MB; appearance budgets are checked separately",
+    "whole illustrated kit stays under 1.5 MB; appearance budgets are checked separately",
   );
 });
 test("every supported combination fits the common rig and resource budgets", () => {
@@ -66,7 +66,7 @@ test("every supported combination fits the common rig and resource budgets", () 
     }
   };
   visit(0);
-  assert.equal(combinations, 5184);
+  assert.equal(combinations, 31104);
 });
 test("recipes reject unknown parts, URLs, wrong slots, extra fields, rig drift and unbounded colors", () => {
   const base = defaultRecipe(catalog);
@@ -128,7 +128,7 @@ test("atomic replacement keeps the prior avatar on failure and ignores stale com
   await assert.rejects(
     avatar.setAppearance({
       ...base,
-      parts: { ...base.parts, accessory: "acc-glasses" },
+      parts: { ...base.parts, eyewear: "acc-glasses" },
     }),
     /could not load/,
   );

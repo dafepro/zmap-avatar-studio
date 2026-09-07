@@ -4,7 +4,7 @@ async function ready(page: Page) {
   await expect(page.locator("#loading")).toBeHidden();
   await page.waitForFunction(() => !!(window as any).avatarStudio);
 }
-test("all eight categories swap real assets; pose, colors, undo and named look survive reload", async ({
+test("all eleven categories swap real assets; pose, colors, undo and named look survive reload", async ({
   page,
 }) => {
   const errors: string[] = [];
@@ -14,6 +14,9 @@ test("all eight categories swap real assets; pose, colors, undo and named look s
     ["head", "Spark"],
     ["face", "Big grin"],
     ["hair", "High pony"],
+    ["facialHair", "Pencil mustache"],
+    ["eyewear", "Round frames"],
+    ["headwear", "Club cap"],
     ["shirt", "Track jacket"],
     ["bottom", "Training shorts"],
     ["shoes", "High tops"],

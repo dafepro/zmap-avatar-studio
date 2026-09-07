@@ -8,7 +8,7 @@ Catalog revision and rig IDs must match exactly. A mismatched import fails visib
 
 ## Geometry and extension
 
-The rig retains the identifier `athlete-rigid-v1` for its socket hierarchy; catalog revision 1.1.0 adds weighted surfaces and painted assets. Its coordinates are metres, Y up, +Z forward, floor at Y=0. Attachment transforms are local to the named socket, not world-space. Socket hierarchy is parent-first, and a garment may attach several independent segments. The shared body supplies exposed limbs and neck; the required shirt and bottom supply the covered torso/hips. Heads share the face/hair mounting envelope.
+The rig retains the identifier `athlete-rigid-v1` for its socket hierarchy; catalog revision 1.2.0 adds accessory-owned fitting volumes and independent facial hair, eyewear and headwear slots. Its coordinates are metres, Y up, +Z forward, floor at Y=0. Attachment transforms are local to the named socket, not world-space. Socket hierarchy is parent-first, and a garment may attach several independent segments. The shared body supplies exposed limbs and neck; the required shirt and bottom supply the covered torso/hips. Heads declare a face-surface family and frame; fitted expressions and accessories adapt to the selected head. See [accessory fitting](accessory-fitting.md) for the deformation contract.
 
 To add a part:
 

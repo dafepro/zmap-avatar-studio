@@ -14,6 +14,8 @@ npm run test:package
 
 Use **Illustrated / Studio** to compare drawing and lit-material views, and front/side/back, turntable and animation controls to inspect fit. Illustrated is the default: continuous shoulder surfaces, drawn facial features, broad soft shading and restrained silhouette ink. **16-view drawing** freezes the equipped look and pose into sixteen transparent views, one every 22.5°. Orbit horizontally to compare the projected result; export its PNG atlas and metadata for a consuming application. Return to live 3D to animate or edit. This capture is a fixed-pose presentation cache, not a substitute for animation.
 
+**Try accessories** equips the mustache, round glasses and cap together. Hair fits from its original mesh using accessory-owned deformation volumes; no per-hat hairstyle alternatives are needed. See [accessory fitting](docs/accessory-fitting.md) and the [four-angle study](docs/evidence/accessory-study.png).
+
 Export look saves portable appearance JSON; Portrait saves the current rendered view as a transparent PNG. Saved looks stay in this browser. The [avatar study](docs/design-reference-v1.png) is the visual target.
 
 ## Consume the runtime
@@ -55,7 +57,7 @@ This directory has its own lockfile, build, tests, public contracts and assets. 
 
 ## Art and evidence
 
-The original [study sheet](docs/design-reference-v1.png) was generated with the built-in image generator using the user-provided Zoomap poster. The exact [generation prompt](docs/design-prompt.txt) is recorded. The meshes were made in Blender through MCP. Facial detail is now an editable drawn atlas fitted to one continuous face surface; its [source and provenance](assets/textures/README.md) are retained. The editable source is `assets/source/avatar-kit.blend`; `assets/source/build_kit.py` and `assets/source/sculpt.py` rebuild all 22 GLBs, their hash manifest and the representative lineup render.
+The original [study sheet](docs/design-reference-v1.png) was generated with the built-in image generator using the user-provided Zoomap poster. The exact [generation prompt](docs/design-prompt.txt) is recorded. The meshes were made in Blender through MCP. Facial detail is now an editable drawn atlas fitted to one continuous face surface; its [source and provenance](assets/textures/README.md) are retained. The editable source is `assets/source/avatar-kit.blend`; `assets/source/build_kit.py` and `assets/source/sculpt.py` and `assets/source/accessories.py` rebuild all 24 GLBs, their hash manifest and the representative lineup render.
 
 ```sh
 /Applications/Blender.app/Contents/MacOS/Blender --background --python assets/source/build_kit.py
@@ -63,7 +65,7 @@ The original [study sheet](docs/design-reference-v1.png) was generated with the 
 
 Run the builder in a background Blender process; it resets that process's scene. Interactive review used an appended review scene and preserved the user's existing MCP Test Scene. Blender 5.2.1 LTS produced the current kit.
 
-Iterations covered swept hair silhouettes, jaw/cheek proportions, visible brows and eyes, sleeves, cloth folds, fingers, layered trainers, socket fit and outward mesh normals. [Visual evidence](docs/evidence/) includes Blender lineups, studio desktop/phone views and comic rendering. All 5,184 recipe combinations pass compatibility and source-budget checks; this is not a claim that all combinations were visually inspected.
+Iterations covered swept hair silhouettes, jaw/cheek proportions, visible brows and eyes, sleeves, cloth folds, fingers, layered trainers, socket fit and outward mesh normals. [Visual evidence](docs/evidence/) includes Blender lineups, studio desktop/phone views and comic rendering. All 31,104 recipe combinations pass compatibility and source-budget checks; this is not a claim that all combinations were visually inspected.
 
 The current kit uses smoothly weighted body and garments on a shared skeleton, relaxed sculpted fingers, a softly shaded head and drawn expressions. It approximates the study; the reference still has more deliberate hair masses, asymmetry, hand posing and garment detail. Facial blend shapes, finger animation and a production animation library remain future work. The sixteen-view prototype preserves one equipped look and pose at one elevation; animated and multi-elevation atlases are not implemented.
 

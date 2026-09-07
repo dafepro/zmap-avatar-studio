@@ -200,6 +200,13 @@ def sculpt_head(id,label,wide):
         for j in range(32):faces.append((i*32+j,i*32+(j+1)%32,(i+1)*32+(j+1)%32,(i+1)*32+j))
     smooth(mesh('Continuous face volume',verts,faces,skin,p))
     for x in [-.235,.235]:smooth(ico('Ear',(x,-.035,-.005),(.042,.064,.032),skin,p,2))
+    if wide>1:
+        # A genuinely different face frame and projection depth exercises fitting.
+        for obj in p.children:
+            if obj.type=='MESH':
+                for vertex in obj.data.vertices:
+                    vertex.co.x*=1.025;vertex.co.y*=1.06;vertex.co.z*=.98
+    d['surface']={'id':'face-v1','frame':[0,0,.43*(1.025 if wide>1 else 1),.365*(.98 if wide>1 else 1)]}
     export(r,d)
 
 def painted_face(id,label,index):
@@ -226,7 +233,7 @@ def painted_face(id,label,index):
     obj=smooth(mesh('Painted expression',verts,faces,m,p));layer=obj.data.uv_layers.new(name='Expression atlas')
     for poly in obj.data.polygons:
         for li in poly.loop_indices:layer.data[li].uv=uvs[obj.data.loops[li].vertex_index]
-    d['texture']={'maxDimension':1024,'maxCount':1};export(r,d)
+    d['texture']={'maxDimension':1024,'maxCount':1};d['fit']=fit_spec('surface',.0008);export(r,d)
 
 def sculpt_top(id,label,style):
     r,d=asset(id,label,'shirt','One connected collarbone, shoulder and sleeve surface with blended deformation.')

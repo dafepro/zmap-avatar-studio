@@ -17,13 +17,16 @@ const icons: Record<string, string> = {
   shirt: "♧",
   bottom: "Ⅱ",
   shoes: "⌁",
+  facialHair: "⌁",
+  eyewear: "∞",
+  headwear: "◒",
   accessory: "◎",
   effect: "✧",
 };
 const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
   document.getElementById(id) as T;
 document.querySelector("#app")!.innerHTML =
-  `<header class="topbar"><a class="brand" href="/"><span class="brand-symbol">a<span>✳</span></span><span>avatar studio<small>BY ZOOMAP</small></span></a><span class="project-label">THE ATHLETICS COLLECTION <span>01</span></span><div class="header-actions"><button id="reference" class="quiet">Study sheet</button><button id="import" class="quiet">↥ Import look</button><button id="export" class="dark">Export look <span>↗</span></button></div></header>
+  `<header class="topbar"><a class="brand" href="/"><span class="brand-symbol">a<span>✳</span></span><span>avatar studio<small>BY ZOOMAP</small></span></a><span class="project-label">THE ATHLETICS COLLECTION <span>01</span></span><div class="header-actions"><button id="try-accessories" class="quiet">Try accessories</button><button id="reference" class="quiet">Study sheet</button><button id="import" class="quiet">↥ Import look</button><button id="export" class="dark">Export look <span>↗</span></button></div></header>
 <main><section class="intro"><div><p class="eyebrow">A LITTLE CHARACTER. A LOT OF YOU.</p><h1>Make it yours<span>.</span></h1></div><p>Mix the pieces. Find your people.<br>Built to move with you.</p></section>
 <div class="studio"><nav id="categories" class="categories" aria-label="Avatar categories"><span class="eyebrow">THE DETAILS</span></nav>
 <section class="preview" aria-label="Avatar design preview"><div class="style-controls" role="group" aria-label="Render style"><button id="soft-style" aria-pressed="false">Studio</button><button id="comic-style" aria-pressed="true">Illustrated</button></div><div class="projection-tools"><button id="capture-views">16-view drawing</button><button id="live-view" hidden>Back to live 3D</button><button id="export-views" hidden>Export views</button><span id="projection-note" hidden>Frozen pose · 22.5° steps</span></div><div class="preview-top"><span class="collection-chip"><i></i> ATHLETICS / 01</span><div class="history"><button id="undo" aria-label="Undo change" title="Undo">↶</button><button id="redo" aria-label="Redo change" title="Redo">↷</button></div></div><div class="stage-art"><span class="orbit-ring"></span><span class="stage-number">YOU,<br>IN EVERY<br>DETAIL.</span></div><div id="stage"></div><div id="loading" class="loading">Preparing your studio…</div><div class="view-controls" role="group" aria-label="Camera views"><button data-view="front">Front</button><button data-view="side">Side</button><button data-view="back">Back</button><button id="turntable" aria-pressed="false" title="Rotate avatar">⟳</button></div><div class="preview-bottom"><div class="pose-controls" role="group" aria-label="Animation preview"><button data-pose="idle" aria-pressed="true">Stand</button><button data-pose="walk" aria-pressed="false">Walk</button><button data-pose="wave" aria-pressed="false">Wave</button><button data-pose="run" aria-pressed="false">Run</button></div><button id="photo" class="photo" title="Download transparent PNG">↧ <span>Portrait</span></button></div></section>
@@ -49,6 +52,9 @@ const descriptions: Record<string, string> = {
   shirt: "Ready for the court. Or the weekend.",
   bottom: "A little room to move.",
   shoes: "Start from the ground up.",
+  facialHair: "A little character, shaped to your face.",
+  eyewear: "Frames that follow your features.",
+  headwear: "Your hair. Your hat. A comfortable fit.",
   accessory: "The small things make it yours.",
   effect: "A quiet spark of personality.",
 };
@@ -130,7 +136,7 @@ function renderControls() {
   renderColors();
   const assets = selectedAssets(recipe, catalog);
   $("stats").textContent =
-    `Rig ${catalog.rig.id}\n${assets.length} selected parts · ${assets.reduce((n, a) => n + a.triangles, 0).toLocaleString()} triangles\n${(assets.reduce((n, a) => n + a.bytes, 0) / 1000).toFixed(0)} KB selected assets\nCatalog ${catalog.revision} · original Blender meshes`;
+    `Rig ${catalog.rig.id}\n${assets.length} selected parts · ${stage.avatar.diagnostics().sourceTriangles.toLocaleString()} fitted triangles\n${(assets.reduce((n, a) => n + a.bytes, 0) / 1000).toFixed(0)} KB selected assets\nCatalog ${catalog.revision} · original Blender meshes`;
 }
 function renderColors() {
   const asset = catalog.assets.find((a) => a.id === recipe.parts[category]);
@@ -316,6 +322,18 @@ function download(url: string, name: string) {
   a.download = name;
   a.click();
 }
+$("try-accessories").onclick = () => {
+  if (!recipe) return;
+  void apply({
+    ...recipe,
+    parts: {
+      ...recipe.parts,
+      facialHair: "facial-mustache",
+      eyewear: "acc-glasses",
+      headwear: "hat-club-cap",
+    },
+  });
+};
 $("reference").onclick = () => {
   if (!$("reference-image").children.length) {
     const img = new Image();
@@ -524,7 +542,9 @@ async function start() {
               hair: "hair-curls",
               shirt: "shirt-hoodie",
               face: "face-grin",
-              accessory: "acc-glasses",
+              eyewear: "acc-glasses",
+              facialHair: "facial-mustache",
+              headwear: "hat-club-cap",
             },
             colors: {
               ...recipe.colors,

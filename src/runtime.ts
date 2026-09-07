@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { clone as cloneSkeleton } from "three/addons/utils/SkeletonUtils.js";
+import { fitAssembly } from "./fitting.js";
 import {
   AvatarError,
   inspectGlb,
@@ -98,17 +99,18 @@ export class AvatarLibrary {
     this.catalog = structuredClone(catalog);
   }
   private load(asset: Asset, prepare = false): Promise<THREE.Group> {
+    const key = `${asset.id}:${asset.sha256}`;
     if (this.closed)
       return Promise.reject(
         new AvatarError("disposed", "Avatar library is disposed"),
       );
-    const pinned = this.preparedTemplates.get(asset.id);
+    const pinned = this.preparedTemplates.get(key);
     if (pinned) return pinned;
-    const cached = this.cache.get(asset.id);
+    const cached = this.cache.get(key);
     if (cached) {
-      if (prepare) this.preparedTemplates.set(asset.id, cached);
-      this.cache.delete(asset.id);
-      this.cache.set(asset.id, cached);
+      if (prepare) this.preparedTemplates.set(key, cached);
+      this.cache.delete(key);
+      this.cache.set(key, cached);
       return cached;
     }
     const controller = new AbortController();
@@ -204,12 +206,12 @@ export class AvatarLibrary {
         this.controllers.delete(controller);
       }
     })();
-    this.cache.set(asset.id, work);
-    if (prepare) this.preparedTemplates.set(asset.id, work);
+    this.cache.set(key, work);
+    if (prepare) this.preparedTemplates.set(key, work);
     void work.catch(() => {
-      if (this.cache.get(asset.id) === work) this.cache.delete(asset.id);
-      if (this.preparedTemplates.get(asset.id) === work)
-        this.preparedTemplates.delete(asset.id);
+      if (this.cache.get(key) === work) this.cache.delete(key);
+      if (this.preparedTemplates.get(key) === work)
+        this.preparedTemplates.delete(key);
     });
     // Templates never enter a live scene. Instances own their geometry and materials.
     if (this.cache.size > 32) {
@@ -420,6 +422,13 @@ export class AvatarLibrary {
           if (asset.effect) effects.push({ object, kind: asset.effect });
         }
       }
+      if (assets.some((asset) => asset.fit || asset.hairFit))
+        fitAssembly(
+          root,
+          assets,
+          sockets.get("head")!,
+          this.catalog.budgets.maxTriangles,
+        );
       return { root, sockets, effects };
     } catch (error) {
       dispose(root);

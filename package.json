@@ -20,7 +20,8 @@
     "README.md",
     "docs/contracts.md",
     "docs/directional-projection.md",
-    "docs/illustrated-rendering.md"
+    "docs/illustrated-rendering.md",
+    "docs/accessory-fitting.md"
   ],
   "scripts": {
     "dev": "vite --host 0.0.0.0",

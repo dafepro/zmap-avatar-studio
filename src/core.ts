@@ -4,20 +4,44 @@ export type Socket = {
   parent: string | null;
   position: [number, number, number];
 };
-export type Asset = {
-  id: string;
-  label: string;
-  slot: string;
-  rig: string;
-  description: string;
+export type AssetContent = {
   url: string;
   bytes: number;
   sha256: string;
   triangles: number;
   attachments: { node: string; socket: string }[];
+};
+/** Socket-local XY authoring frame: center X/Y, width, height. +Z faces forward. */
+export type FitFrame = [number, number, number, number];
+export type Asset = AssetContent & {
+  id: string;
+  label: string;
+  slot: string;
+  rig: string;
+  description: string;
   channels: string[];
   tags: string[];
   excludesTags?: string[];
+  /** Accessory-owned deformation volumes; no hairstyle-specific alternatives. */
+  hairFit?: {
+    targetSlot: string;
+    center: [number, number, number];
+    radii: [number, number, number];
+    /** Contain a crown in an ellipsoid, or clear a box along -Z. */
+    mode: "contain" | "clearance";
+    axis?: "x" | "y" | "z";
+    direction?: -1 | 1;
+    transition?: [number, number];
+  }[];
+  surface?: { id: string; frame: FitFrame };
+  fit?: {
+    targetSlot: string;
+    surface: string;
+    frame: FitFrame;
+    mode: "surface" | "clearance";
+    offset: number;
+    maxDistance: number;
+  };
   effect?: "orbit" | "spark";
   /** A root-mounted deformable part; joint names refer to the shared catalog rig. */
   skin?: { bones: string[] };
@@ -60,6 +84,11 @@ const id = (v: unknown): v is string =>
   !["__proto__", "prototype", "constructor"].includes(v);
 const number = (v: unknown, min: number, max: number) =>
   typeof v === "number" && Number.isFinite(v) && v >= min && v <= max;
+const frame = (v: unknown) =>
+  Array.isArray(v) &&
+  v.length === 4 &&
+  v.slice(0, 2).every((n) => number(n, -1, 1)) &&
+  v.slice(2).every((n) => number(n, 0.05, 1));
 function fail(code: string, text: string): never {
   throw new AvatarError(code, text);
 }
@@ -178,6 +207,73 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
     if (a.effect !== undefined && !["orbit", "spark"].includes(a.effect))
       fail("asset", "Unsupported effect");
     if (
+      a.hairFit !== undefined &&
+      (!Array.isArray(a.hairFit) ||
+        a.hairFit.length > 4 ||
+        !a.hairFit.every(
+          (v: any) =>
+            record(v) &&
+            slots.has(v.targetSlot) &&
+            v.targetSlot !== a.slot &&
+            ["contain", "clearance"].includes(v.mode) &&
+            Array.isArray(v.center) &&
+            v.center.length === 3 &&
+            v.center.every((n: unknown) => number(n, -1, 1)) &&
+            Array.isArray(v.radii) &&
+            v.radii.length === 3 &&
+            v.radii.every((n: unknown) => number(n, 0.005, 1)) &&
+            (v.mode === "contain"
+              ? Array.isArray(v.transition) &&
+                v.transition.length === 2 &&
+                v.transition.every((n: unknown) => number(n, -1, 1)) &&
+                v.transition[1] - v.transition[0] >= 0.01 &&
+                v.transition[1] <= v.center[1] &&
+                v.axis === undefined &&
+                v.direction === undefined
+              : v.transition === undefined &&
+                (v.axis === undefined || ["x", "y", "z"].includes(v.axis)) &&
+                (v.direction === undefined || [-1, 1].includes(v.direction))),
+        ))
+    )
+      fail("asset", "Invalid accessory deformation volume");
+    if (
+      a.hairFit &&
+      (a.skin ||
+        a.attachments.length !== 1 ||
+        a.attachments[0].socket !== "head")
+    )
+      fail(
+        "asset",
+        "Accessory deformation volumes require one rigid head attachment",
+      );
+    if (
+      (a.surface !== undefined || a.fit !== undefined) &&
+      (a.skin ||
+        a.attachments.length !== 1 ||
+        a.attachments[0].socket !== "head")
+    )
+      fail("asset", "Fitted surfaces require one rigid head attachment");
+    if (
+      a.surface !== undefined &&
+      (!record(a.surface) ||
+        !id(a.surface.id) ||
+        !frame(a.surface.frame) ||
+        a.fit !== undefined)
+    )
+      fail("asset", "Invalid fitting surface");
+    if (
+      a.fit !== undefined &&
+      (!record(a.fit) ||
+        !slots.has(a.fit.targetSlot) ||
+        a.fit.targetSlot === a.slot ||
+        !id(a.fit.surface) ||
+        !frame(a.fit.frame) ||
+        !["surface", "clearance"].includes(a.fit.mode) ||
+        !number(a.fit.offset, 0.0005, 0.03) ||
+        !number(a.fit.maxDistance, 0.001, 0.15))
+    )
+      fail("asset", "Invalid surface fitting contract");
+    if (
       a.skin !== undefined &&
       (!record(a.skin) ||
         !Array.isArray(a.skin.bones) ||
@@ -246,10 +342,25 @@ export function validateRecipe(
   const tags = new Set(selected.flatMap((a) => a.tags));
   if (selected.some((a) => a.excludesTags?.some((t) => tags.has(t))))
     fail("compatibility", "These parts cannot be worn together");
+  for (const asset of selected) {
+    if (
+      asset.fit &&
+      !selected.some(
+        (p) =>
+          p.slot === asset.fit!.targetSlot &&
+          p.surface?.id === asset.fit!.surface,
+      )
+    )
+      fail(
+        "compatibility",
+        `${asset.label} needs a compatible fitting surface`,
+      );
+  }
+  const resolved = selected;
   if (
     selected.length > catalog.budgets.maxParts ||
-    selected.reduce((n, a) => n + a.bytes, 0) > catalog.budgets.maxBytes ||
-    selected.reduce((n, a) => n + a.triangles, 0) > catalog.budgets.maxTriangles
+    resolved.reduce((n, a) => n + a.bytes, 0) > catalog.budgets.maxBytes ||
+    resolved.reduce((n, a) => n + a.triangles, 0) > catalog.budgets.maxTriangles
   )
     fail("budget", "Appearance exceeds the catalog resource budget");
 }

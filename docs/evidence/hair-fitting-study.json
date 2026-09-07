@@ -1,0 +1,14 @@
+[
+  {
+    "shape": "wide",
+    "sha256": "f861cf984303511a85500e64368283fae4083b09695cf5b463dce0849736f9c4",
+    "hairDownloads": 1,
+    "triangles": 21928
+  },
+  {
+    "shape": "tall",
+    "sha256": "1b9ad52968a4f061931cbff82783273532ff0ba1e35a9e4aba6287041b30cef0",
+    "hairDownloads": 1,
+    "triangles": 21940
+  }
+]

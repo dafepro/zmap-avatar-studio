@@ -85,6 +85,7 @@ def export(root,record):
     root.hide_render=True
     for child in root.children_recursive:child.hide_render=True
 exec(compile((ROOT/'assets/source/sculpt.py').read_text(),str(ROOT/'assets/source/sculpt.py'),'exec'),globals())
+exec(compile((ROOT/'assets/source/accessories.py').read_text(),str(ROOT/'assets/source/accessories.py'),'exec'),globals())
 sculpt_body()
 for id,label,wide in [('head-scout','Scout',1),('head-spark','Spark',1.08)]:sculpt_head(id,label,wide)
 for index,(id,label) in enumerate([('face-focus','Game face'),('face-grin','Big grin'),('face-wink','Good vibes')]):painted_face(id,label,index)
@@ -155,28 +156,31 @@ for id,label,style in [('shoes-court','Court classic','court'),('shoes-runner','
             line('Laces',[(.034,.026,z),(-.034,.027,z+.018)],.0045,trim,p)
     export(r,d)
 for id,label,style in [('acc-band','Captain band','band'),('acc-glasses','Round frames','glasses'),('acc-headphones','Off-duty audio','phones')]:
-    r,d=asset(id,label,'accessory','Optional head accessory, fitted across both head silhouettes.');p=mount(r,d,'head')
+    r,d=asset(id,label,'eyewear' if style=='glasses' else 'accessory','Optional head accessory, fitted across both head silhouettes.');p=mount(r,d,'head')
     if style=='band':
         rings('Headband',[(.13,.26,.226,-.02),(.172,.254,.22,-.02)],accent,p,16);d['excludesTags']=['tall-headwear']
     elif style=='glasses':
         for x in [-.096,.096]:
-            points=[(x+math.cos(i*math.pi/8)*.073,.025+math.sin(i*math.pi/8)*.062,.241) for i in range(17)];line('Round rim',points,.009,secondary,p)
-        line('Bridge',[(-.023,.029,.242),(.023,.029,.242)],.008,secondary,p)
-        for sign in [-1,1]:line('Temple',[(sign*.166,.03,.24),(sign*.24,.03,.015)],.008,secondary,p)
+            points=[(x+math.cos(i*math.pi/8)*.073,.025+math.sin(i*math.pi/8)*.062,.267) for i in range(17)];tube_path('Round rim',points,.006,secondary,p,True)
+        tube_path('Bridge',[(-.023,.029,.267),(0,.038,.275),(.023,.029,.267)],.005,secondary,p)
+        for sign in [-1,1]:tube_path('Temple',[(sign*.166,.03,.267),(sign*.22,.03,.247),(sign*.282,.03,.135),(sign*.282,.03,-.08)],.005,secondary,p)
+        d['fit']=fit_spec('clearance',.016)
+        d['hairFit']=[{'targetSlot':'hair','mode':'clearance','center':[0,.028,.28],'radii':[.325,.079,.041]}]+[{'targetSlot':'hair','mode':'clearance','axis':'x','direction':-sign,'center':[sign*.279,.03,.105],'radii':[.079,.018,.205]} for sign in [-1,1]]
     else:
-        points=[(math.cos(i*math.pi/12)*.292,.016+math.sin(i*math.pi/12)*.292,-.005) for i in range(13)];line('Headphone band',points,.023,secondary,p)
-        for x in [-.277,.277]:ico('Ear cup',(x,-.01,-.005),(.054,.097,.07),accent,p,2)
+        points=[(math.cos(i*math.pi/12)*.335,.016+math.sin(i*math.pi/12)*.400,-.005) for i in range(13)];line('Headphone band',points,.023,secondary,p)
+        for x in [-.330,.330]:ico('Ear cup',(x,-.045,-.005),(.046,.082,.07),accent,p,2)
     export(r,d)
+fitted_accessories()
 for id,label,style in [('effect-orbit','Golden orbit','orbit'),('effect-spark','Team sparks','spark')]:
     r,d=asset(id,label,'effect','Quiet bounded accent geometry; reduced motion keeps it still.');p=mount(r,d,'root');d['effect']=style
     if style=='orbit':
-        points=[(math.cos(i*math.pi/24)*.52,.025,math.sin(i*math.pi/24)*.52) for i in range(49)];line('Orbit',points,.008,accent,p)
+        points=[(math.cos(i*math.pi/12)*.52,.025,math.sin(i*math.pi/12)*.52) for i in range(25)];tube_path('Orbit',points,.008,accent,p,True)
         for i in range(3):a=i*math.pi*2/3;ico('Orbit spark',(math.cos(a)*.52,.06,math.sin(a)*.52),(.035,.06,.035),accent,p,1)
     else:
         for i in range(5):a=i*2.4;ico('Floating spark',(math.sin(a)*.48,.22+(i%3)*.16,math.cos(a)*.4),(.022,.065,.022),accent,p,1)
     export(r,d)
-slots=[{'id':s,'label':label,'required':required} for s,label,required in [('head','Head',True),('face','Face',True),('hair','Hair',False),('shirt','Tops',True),('bottom','Bottoms',True),('shoes','Footwear',True),('accessory','Accessories',False),('effect','Effects',False)]]
-catalog={'version':1,'id':'zoomap-athletics','revision':'1.1.0','rig':{'id':'athlete-rigid-v1','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
+slots=[{'id':s,'label':label,'required':required} for s,label,required in [('head','Head',True),('face','Face',True),('hair','Hair',False),('facialHair','Facial hair',False),('eyewear','Glasses',False),('headwear','Hats',False),('shirt','Tops',True),('bottom','Bottoms',True),('shoes','Footwear',True),('accessory','Accessories',False),('effect','Effects',False)]]
+catalog={'version':1,'id':'zoomap-athletics','revision':'1.2.0','rig':{'id':'athlete-rigid-v1','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
 (ROOT/'public/catalog.json').write_text(json.dumps(catalog,indent=2)+'\n')
 # Assemble three representative looks into one editable turntable scene.
 look_ids=[['body-athletic','head-scout','face-focus','hair-sweep','shirt-jersey','bottom-court','shoes-court'],['body-athletic','head-spark','face-grin','hair-pony','shirt-track','bottom-training','shoes-high','acc-band'],['body-athletic','head-scout','face-wink','hair-curls','shirt-hoodie','bottom-court','shoes-runner','acc-glasses']]
@@ -187,6 +191,7 @@ for index,ids in enumerate(look_ids):
     for sock in sockets:
         node=empty('Preview_'+str(index)+'_'+sock['id'],preview_sockets[sock['parent']] if sock['parent'] else look_root);node.location=co(sock['position']);preview_sockets[sock['id']]=node
         if sock['id'].startswith('arm_'):node.rotation_euler.y=-.14 if sock['id'].endswith('R') else .14
+    preview_parts={};preview_records={}
     for id in ids:
         source=bpy.data.objects[id];record=next(a for a in assets if a['id']==id)
         def clone_tree(obj,parent=None):
@@ -205,6 +210,7 @@ for index,ids in enumerate(look_ids):
             return copy
         for attachment in record['attachments']:
             clone=clone_tree(bpy.data.objects[attachment['node']],preview_sockets[attachment['socket']]);clone.location=(0,0,0)
+            preview_parts.setdefault(id,[]).append(clone);preview_records[id]=record
             if record.get('skin'):
                 copied_arm=next(o for o in clone.children_recursive if o.type=='ARMATURE')
                 for obj in clone.children_recursive:
@@ -213,6 +219,7 @@ for index,ids in enumerate(look_ids):
                             if mod.type=='ARMATURE':mod.object=copied_arm
                 for side,angle in [('L',.12),('R',-.12)]:
                     bone=copied_arm.pose.bones['arm_'+side];basis=bone.bone.matrix_local.to_quaternion();bone.rotation_mode='QUATERNION';bone.rotation_quaternion=basis.inverted()@Matrix.Rotation(angle,4,'Y').to_quaternion()@basis
+    fit_preview_surfaces(preview_sockets['head'],preview_parts,preview_records)
 for root in roots:root.hide_render=True
 floor=mat('Studio paper','#ede9de');box('Studio floor',(0,-.055,0),(200,.08,200),floor,None,0)
 world=bpy.data.worlds.new('Studio World');world.use_nodes=True;world.node_tree.nodes['Background'].inputs[0].default_value=(.7,.73,.75,1);world.node_tree.nodes['Background'].inputs[1].default_value=.6;bpy.context.scene.world=world

@@ -82,7 +82,9 @@ async function check() {
   const base = new URL('./avatars/', location.href);
   const catalog = await (await fetch(new URL('catalog.json', base))).json();
   const library = new AvatarLibrary(catalog, base.href);
-  const create = await library.prepare(defaultRecipe(library.catalog));
+  const recipe = defaultRecipe(library.catalog);
+  Object.assign(recipe.parts, { head: 'head-spark', hair: 'hair-pony', eyewear: 'acc-glasses', facialHair: 'facial-mustache', headwear: 'hat-club-cap' });
+  const create = await library.prepare(recipe);
   const avatar = create();
   const scene = new THREE.Scene();
   scene.add(avatar.object);

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "zoomap-athletics",
-  "revision": "1.1.0",
+  "revision": "1.2.0",
   "rig": {
     "id": "athlete-rigid-v1",
     "height": 2.04,
@@ -170,6 +170,21 @@
       "required": false
     },
     {
+      "id": "facialHair",
+      "label": "Facial hair",
+      "required": false
+    },
+    {
+      "id": "eyewear",
+      "label": "Glasses",
+      "required": false
+    },
+    {
+      "id": "headwear",
+      "label": "Hats",
+      "required": false
+    },
+    {
       "id": "shirt",
       "label": "Tops",
       "required": true
@@ -243,7 +258,7 @@
       },
       "url": "models/body-athletic.glb",
       "bytes": 133140,
-      "sha256": "3a26acf788b869737a8d9b070a33c7bb7253a8f96bdf817596d90c172fc276bf",
+      "sha256": "7e9d91ad7e9354817aa7cc99257d4674a39a93c45830d338aa9c7ae2a7bd8de2",
       "triangles": 3867
     },
     {
@@ -262,6 +277,15 @@
         "skin"
       ],
       "tags": [],
+      "surface": {
+        "id": "face-v1",
+        "frame": [
+          0,
+          0,
+          0.43,
+          0.365
+        ]
+      },
       "url": "models/head-scout.glb",
       "bytes": 38716,
       "sha256": "66a8d87e34dcd4efff298ece886f944a3c4580b4937f58c6dfc0b54d4e0e814f",
@@ -283,9 +307,18 @@
         "skin"
       ],
       "tags": [],
+      "surface": {
+        "id": "face-v1",
+        "frame": [
+          0,
+          0,
+          0.44075,
+          0.35769999999999996
+        ]
+      },
       "url": "models/head-spark.glb",
       "bytes": 38720,
-      "sha256": "d280b6f1313de8d771cf1841a0a5f1a0686857b6801f32420434b34c39acbb19",
+      "sha256": "9b9e43c4d32d7b8f460d93bdef0dc5418587a60a397d3c72da4aa36f24b6490e",
       "triangles": 1628
     },
     {
@@ -305,6 +338,19 @@
       "texture": {
         "maxDimension": 1024,
         "maxCount": 1
+      },
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v1",
+        "frame": [
+          0,
+          0,
+          0.43,
+          0.365
+        ],
+        "mode": "surface",
+        "offset": 0.0008,
+        "maxDistance": 0.07
       },
       "url": "models/face-focus.glb",
       "bytes": 136644,
@@ -329,6 +375,19 @@
         "maxDimension": 1024,
         "maxCount": 1
       },
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v1",
+        "frame": [
+          0,
+          0,
+          0.43,
+          0.365
+        ],
+        "mode": "surface",
+        "offset": 0.0008,
+        "maxDistance": 0.07
+      },
       "url": "models/face-grin.glb",
       "bytes": 136652,
       "sha256": "5266d49ba0451785d4957b4f9cba66989d2ac593eec9f612b84b739bd6a144a0",
@@ -351,6 +410,19 @@
       "texture": {
         "maxDimension": 1024,
         "maxCount": 1
+      },
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v1",
+        "frame": [
+          0,
+          0,
+          0.43,
+          0.365
+        ],
+        "mode": "surface",
+        "offset": 0.0008,
+        "maxDistance": 0.07
       },
       "url": "models/face-wink.glb",
       "bytes": 136652,
@@ -643,7 +715,7 @@
       "tags": [],
       "url": "models/shoes-court.glb",
       "bytes": 32388,
-      "sha256": "0e42f8b23a81d5973e2950cd2d4a7f56d66cc67fe5d6e421f088a60a0b373ec9",
+      "sha256": "0d0297313bff4f11b421130db152bd5c4938c040e6fcd2ddd2e43bce9da14847",
       "triangles": 832
     },
     {
@@ -671,7 +743,7 @@
       "tags": [],
       "url": "models/shoes-runner.glb",
       "bytes": 36420,
-      "sha256": "6708a7a671a2a5794f70a8c5875c96408d6d044dd1f4ea7e672faeff53b01f4a",
+      "sha256": "c9dc1920de84fe903f2eb46d4c2091675e4d67453a4920397c2c08dacbbbab0c",
       "triangles": 920
     },
     {
@@ -698,7 +770,7 @@
       "tags": [],
       "url": "models/shoes-high.glb",
       "bytes": 33608,
-      "sha256": "22072c4cdc7fc72554f2eef97ac8a041db69eed2ac01c1bb14dda75d08f282d6",
+      "sha256": "5252be69df82f909db6a2ef9d4c4f60e6ad5ba80b6616660ac3dd6b1e22299f2",
       "triangles": 888
     },
     {
@@ -728,7 +800,7 @@
     {
       "id": "acc-glasses",
       "label": "Round frames",
-      "slot": "accessory",
+      "slot": "eyewear",
       "rig": "athlete-rigid-v1",
       "description": "Optional head accessory, fitted across both head silhouettes.",
       "attachments": [
@@ -741,10 +813,71 @@
         "secondary"
       ],
       "tags": [],
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v1",
+        "frame": [
+          0,
+          0,
+          0.43,
+          0.365
+        ],
+        "mode": "clearance",
+        "offset": 0.016,
+        "maxDistance": 0.07
+      },
+      "hairFit": [
+        {
+          "targetSlot": "hair",
+          "mode": "clearance",
+          "center": [
+            0,
+            0.028,
+            0.28
+          ],
+          "radii": [
+            0.325,
+            0.079,
+            0.041
+          ]
+        },
+        {
+          "targetSlot": "hair",
+          "mode": "clearance",
+          "axis": "x",
+          "direction": 1,
+          "center": [
+            -0.279,
+            0.03,
+            0.105
+          ],
+          "radii": [
+            0.079,
+            0.018,
+            0.205
+          ]
+        },
+        {
+          "targetSlot": "hair",
+          "mode": "clearance",
+          "axis": "x",
+          "direction": -1,
+          "center": [
+            0.279,
+            0.03,
+            0.105
+          ],
+          "radii": [
+            0.079,
+            0.018,
+            0.205
+          ]
+        }
+      ],
       "url": "models/acc-glasses.glb",
-      "bytes": 45984,
-      "sha256": "fa032b9540906985835aeaec67ddcf716077d390b2bc68d3e4b8008738294bd8",
-      "triangles": 700
+      "bytes": 10428,
+      "sha256": "d035d8cb071ea2803c1fc6f3feb3da772488b8da25a3f97d1526f1e350dca3f1",
+      "triangles": 504
     },
     {
       "id": "acc-headphones",
@@ -764,9 +897,86 @@
       ],
       "tags": [],
       "url": "models/acc-headphones.glb",
-      "bytes": 33976,
-      "sha256": "c6e27efbcb830bea7ab633e19b13932f06bcf38e03956e6d59a5b96dc5d3408d",
+      "bytes": 33972,
+      "sha256": "7a9d87876da3c9e7541a515120b78a6169a9294288952820b3bedbf4033828a2",
       "triangles": 400
+    },
+    {
+      "id": "facial-mustache",
+      "label": "Pencil mustache",
+      "slot": "facialHair",
+      "rig": "athlete-rigid-v1",
+      "description": "A tapered, hair-colored mustache fitted directly to the selected face surface.",
+      "attachments": [
+        {
+          "node": "facial-mustache__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "hair"
+      ],
+      "tags": [],
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v1",
+        "frame": [
+          0,
+          0,
+          0.43,
+          0.365
+        ],
+        "mode": "surface",
+        "offset": 0.003,
+        "maxDistance": 0.07
+      },
+      "url": "models/facial-mustache.glb",
+      "bytes": 3824,
+      "sha256": "11d7510bfc2c771d08293d32ce4756c30a9156a4d9f36d33a08222edd2b4c5d4",
+      "triangles": 48
+    },
+    {
+      "id": "hat-club-cap",
+      "label": "Club cap",
+      "slot": "headwear",
+      "rig": "athlete-rigid-v1",
+      "description": "Soft six-panel cap, shaped crown and a rear opening for gathered hair.",
+      "attachments": [
+        {
+          "node": "hat-club-cap__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "hairFit": [
+        {
+          "targetSlot": "hair",
+          "mode": "contain",
+          "center": [
+            0,
+            0.125,
+            -0.012
+          ],
+          "radii": [
+            0.27,
+            0.212,
+            0.253
+          ],
+          "transition": [
+            -0.06,
+            0.075
+          ]
+        }
+      ],
+      "url": "models/hat-club-cap.glb",
+      "bytes": 18296,
+      "sha256": "e1a072a43e88154db3313e77040aa058200368e9fa70db40f7efb573927cf986",
+      "triangles": 596
     },
     {
       "id": "effect-orbit",
@@ -786,9 +996,9 @@
       "tags": [],
       "effect": "orbit",
       "url": "models/effect-orbit.glb",
-      "bytes": 68712,
-      "sha256": "ba6d8caee92304b104bb14dba878e5dab63fa518913378d1eeb90046f1942163",
-      "triangles": 1020
+      "bytes": 13784,
+      "sha256": "ebad197069c75c22546e08373ab12d30b9d1561e2bbabaa0fe89c492627e20f4",
+      "triangles": 348
     },
     {
       "id": "effect-spark",

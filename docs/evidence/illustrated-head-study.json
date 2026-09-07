@@ -1,5 +1,5 @@
 {
-  "catalogRevision": "1.1.0",
+  "catalogRevision": "1.2.0",
   "views": [
     {
       "name": "FRONT",
@@ -17,12 +17,15 @@
   "recipe": {
     "version": 1,
     "catalog": "zoomap-athletics",
-    "revision": "1.1.0",
+    "revision": "1.2.0",
     "rig": "athlete-rigid-v1",
     "parts": {
       "head": "head-scout",
       "face": "face-focus",
       "hair": "hair-sweep",
+      "facialHair": null,
+      "eyewear": null,
+      "headwear": null,
       "shirt": "shirt-jersey",
       "bottom": "bottom-court",
       "shoes": "shoes-court",
@@ -46,7 +49,7 @@
   "assets": [
     {
       "id": "body-athletic",
-      "sha256": "3a26acf788b869737a8d9b070a33c7bb7253a8f96bdf817596d90c172fc276bf"
+      "sha256": "7e9d91ad7e9354817aa7cc99257d4674a39a93c45830d338aa9c7ae2a7bd8de2"
     },
     {
       "id": "head-scout",
@@ -70,7 +73,7 @@
     },
     {
       "id": "shoes-court",
-      "sha256": "0e42f8b23a81d5973e2950cd2d4a7f56d66cc67fe5d6e421f088a60a0b373ec9"
+      "sha256": "0d0297313bff4f11b421130db152bd5c4938c040e6fcd2ddd2e43bce9da14847"
     }
   ]
 }
