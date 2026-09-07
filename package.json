@@ -24,7 +24,8 @@
     "docs/accessory-fitting.md",
     "docs/reference-workflow.md",
     "docs/collection-02-workflow.md",
-    "docs/fit-quality-review.md"
+    "docs/fit-quality-review.md",
+    "docs/hair-03-workflow.md"
   ],
   "scripts": {
     "dev": "vite --host 0.0.0.0",

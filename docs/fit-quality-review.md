@@ -46,3 +46,5 @@ Final validation: 54 avatar unit tests and 24 real-browser tests pass, including
 Coverage and style are separate authoring responsibilities: the shared head-derived foundation is preserved while each style changes its visible masses. This avoids relearning skull clearance for every haircut. None of these edits introduce head-specific or accessory-specific style variants.
 
 The silhouettes and volume are materially closer, but the renders remain more geometric and cleaner than the drawings. Ember's curl edges, Tide's overlapping fringe shading, and the quiff's fine directional ink need further art refinement for a close painterly match. This iteration is a measured improvement with compatibility evidence, not a claim that concept fidelity is finished.
+
+The subsequent [Hair 03 increment](hair-03-workflow.md) extends the same fitting and coverage gates to nine hairstyles and records its own updated evidence.

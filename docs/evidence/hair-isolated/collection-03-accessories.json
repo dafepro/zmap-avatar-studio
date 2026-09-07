@@ -1,0 +1,68 @@
+[
+  {
+    "id": "hair-nova",
+    "head": "head-spark",
+    "weight": 1,
+    "hairColor": "#aa6031",
+    "accessories": true,
+    "headwear": true,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "meshes": 58,
+    "triangles": 24502,
+    "sourceTriangles": 12645,
+    "parts": 9
+  },
+  {
+    "id": "hair-halo",
+    "head": "head-spark",
+    "weight": -1,
+    "hairColor": "#5b3e2e",
+    "accessories": true,
+    "headwear": true,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "meshes": 56,
+    "triangles": 24684,
+    "sourceTriangles": 12736,
+    "parts": 9
+  },
+  {
+    "id": "hair-reed",
+    "head": "head-spark",
+    "weight": 1,
+    "hairColor": "#70513d",
+    "accessories": true,
+    "headwear": true,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "meshes": 56,
+    "triangles": 24812,
+    "sourceTriangles": 12800,
+    "parts": 9
+  }
+]

@@ -12,13 +12,13 @@ npm run test:e2e             # Chrome; ZMAP_BROWSER_CHANNEL=chromium in CI
 npm run test:package
 ```
 
-The current reference kit is catalog **2.0.0**, rig **athlete-reference-v2**. It rebuilds the supplied body, swept hair and sportswear sheets. [Actual browser components](docs/evidence/reference-v2/browser-components.png), [weight comparison](docs/evidence/reference-v2/browser-weight-study.png) and the [documented Blender workflow](docs/reference-workflow.md) show the result and its limits.
+The current reference kit is catalog **2.3.0**, rig **athlete-reference-v2**. It rebuilds the supplied body, swept hair and sportswear sheets. [Actual browser components](docs/evidence/reference-v2/browser-components.png), [weight comparison](docs/evidence/reference-v2/browser-weight-study.png) and the [documented Blender workflow](docs/reference-workflow.md) show the result and its limits.
 
 Use the **Build** slider for lean through heavier tissue volume at fixed height. Arms and legs grow around their own centerlines; joint positions stay fixed. **Avatar / Base mesh / Hair / Outfit** inspect the assembled look or its components. **Illustrated / Studio** compare cel ink and lit materials. Front, side, back, turntable and motion controls inspect fit.
 
 **Try accessories** equips a mustache, glasses and cap together. One original hair mesh fits accessory-owned volumes, with no per-hat hairstyle variants. Removing equipment restores the original. New assets still need correct pivots and a declared fitting contract; see [accessory fitting](docs/accessory-fitting.md).
 
-**16-view drawing** captures one equipped look and pose every 22.5° into an exportable transparent atlas. It is a fixed-pose cache, not animation. Export look saves appearance JSON; Portrait saves rendered PNG. Saved looks remain in this browser. Old catalog recipes fail explicitly rather than silently selecting replacement parts.
+**16-view drawing** captures one equipped look and pose every 22.5° into an exportable transparent atlas. It is a fixed-pose cache, not animation. Export look saves appearance JSON; Portrait saves rendered PNG. Saved looks remain in this browser. Catalog 2.3.0 explicitly accepts saved 2.2.0 recipes with their selections intact; undeclared revisions fail validation.
 
 ## Consume the runtime
 
@@ -57,7 +57,7 @@ This directory has its own lockfile, build, tests and contracts. It can be extra
 
 The active source is `assets/source/reference_kit.py`, with the editable `assets/source/reference-kit.blend`. The small `build_kit.py` entry point invokes it. The dedicated Blender scene preserves unrelated open work. The workflow documents interactive MCP construction, render corrections, supplied references and generated weight-reference provenance.
 
-The 33-part kit supports 11 slots, two heads, six expressions, interchangeable hair/clothes/shoes, facial hair, eyewear, hats and effects. It approximates the drawings; it is not a claim of final production art. Finger animation, facial blend shapes and a production animation library remain unimplemented. Source limits are 14,000 triangles, 1.5 MB and 12 selected parts; outlines add rendering work. Phone/full-room performance needs qualification by the consumer.
+The 36-part kit supports 11 slots, two heads, six expressions, interchangeable hair/clothes/shoes, facial hair, eyewear, hats and effects. It approximates the drawings; it is not a claim of final production art. Finger animation, facial blend shapes and a production animation library remain unimplemented. Source limits are 14,000 triangles, 1.5 MB and 12 selected parts; outlines add rendering work. Phone/full-room performance needs qualification by the consumer.
 
 See [contracts](docs/contracts.md), [rendering](docs/illustrated-rendering.md), [directional capture](docs/directional-projection.md) and [reference workflow](docs/reference-workflow.md).
 
@@ -66,3 +66,5 @@ Collection 02 adds Ember, Tide and Volt starter looks, nine independent parts, b
 Revision 2.2.0 hardens scalp coverage, uses natural hair occlusion for glasses, and separates front-frame from temple fitting. See the [compatibility review and orbit evidence](docs/fit-quality-review.md).
 
 It also rebuilds the three Collection 02 hairstyles against isolated front/side/back/top studies, corrects the ponytail root and improves the original swept nape. See the [hair authoring comparisons](docs/references/hair-isolated/README.md).
+
+Hair 03 adds **Nova ponytail, Halo afro and Reed waves**, bringing the kit to nine hairstyles. Each quick choice preserves the current head, expression, clothing and accessories. Their isolated front/side/back/top concepts, Blender iterations and accessory checks are recorded in the [Hair 03 workflow](docs/hair-03-workflow.md).

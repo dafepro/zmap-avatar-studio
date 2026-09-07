@@ -43,7 +43,7 @@ test("all catalog assets match their hashes, budgets and self-contained attachme
   }
   assert.ok(
     total < 2100000,
-    "expanded 33-part illustrated kit stays under 2.1 MB; appearance budgets are checked separately",
+    `${catalog.assets.length}-part illustrated kit stays under 2.1 MB; appearance budgets are checked separately`,
   );
 });
 test("every supported combination fits the common rig and resource budgets", () => {
@@ -66,7 +66,15 @@ test("every supported combination fits the common rig and resource budgets", () 
     }
   };
   visit(0);
-  assert.equal(combinations, 217728);
+  const expectedCombinations = catalog.slots.reduce(
+    (total, slot) =>
+      total *
+      (catalog.assets.filter((asset) => asset.slot === slot.id).length +
+        (slot.required ? 0 : 1)),
+    1,
+  );
+  assert.ok(expectedCombinations > 0);
+  assert.equal(combinations, expectedCombinations);
 });
 test("recipes reject unknown parts, URLs, wrong slots, extra fields, rig drift and unbounded colors", () => {
   const base = defaultRecipe(catalog);
@@ -85,6 +93,128 @@ test("recipes reject unknown parts, URLs, wrong slots, extra fields, rig drift a
     assert.throws(() => parseRecipe(JSON.stringify(r), catalog));
   }
   assert.throws(() => parseRecipe(" ".repeat(16001), catalog));
+});
+test("explicit catalog compatibility preserves an approved saved recipe without rewriting it", async () => {
+  const current: Catalog = {
+    ...structuredClone(catalog),
+    revision: "2.3.0",
+    compatibleRecipeRevisions: ["2.2.0"],
+  };
+  validateCatalog(current);
+  const saved = defaultRecipe(current);
+  saved.revision = "2.2.0";
+  saved.parts.hair = "hair-sweep";
+  saved.colors.hair = "#75442c";
+  const loaded = parseRecipe(JSON.stringify(saved), current);
+  assert.deepEqual(loaded, saved);
+  assert.notEqual(loaded, saved);
+  assert.equal(defaultRecipe(current).revision, "2.3.0");
+  assert.ok(
+    selectedAssets(loaded, current).some((asset) => asset.id === "hair-sweep"),
+  );
+  const library = new AvatarLibrary(current, "https://assets.test/", fetcher);
+  const avatar = library.create();
+  try {
+    await avatar.setAppearance(loaded);
+    assert.deepEqual(avatar.recipe, saved);
+    assert.ok(avatar.diagnostics().triangles > 0);
+  } finally {
+    avatar.dispose();
+    library.dispose();
+  }
+});
+test("recipe compatibility is explicit and never grants undeclared or future revisions", () => {
+  const current: Catalog = {
+    ...structuredClone(catalog),
+    revision: "2.3.0",
+    compatibleRecipeRevisions: ["2.2.0"],
+  };
+  for (const revision of [
+    "2.1.0",
+    "2.2.1",
+    "2.3.1",
+    "3.0.0",
+    "2.2",
+    "02.2.0",
+  ]) {
+    const recipe = { ...defaultRecipe(current), revision };
+    assert.throws(() => parseRecipe(JSON.stringify(recipe), current), {
+      code: "version",
+    });
+  }
+  delete current.compatibleRecipeRevisions;
+  const undeclared = { ...defaultRecipe(current), revision: "2.2.0" };
+  assert.throws(() => validateRecipe(undeclared, current), { code: "version" });
+});
+test("approved earlier recipes retain identity, part, schema and resource validation", () => {
+  const current: Catalog = {
+    ...structuredClone(catalog),
+    revision: "2.3.0",
+    compatibleRecipeRevisions: ["2.2.0"],
+  };
+  const saved = { ...defaultRecipe(current), revision: "2.2.0" };
+  for (const [code, modify] of [
+    ["part", (r: any) => (r.parts.hair = "hair-missing")],
+    ["part", (r: any) => (r.parts.hair = "head-scout")],
+    ["version", (r: any) => (r.catalog = "unrelated-catalog")],
+    ["version", (r: any) => (r.rig = "unrelated-rig")],
+    ["version", (r: any) => (r.version = 2)],
+    ["schema", (r: any) => (r.script = "payload")],
+    ["schema", (r: any) => (r.parts.unknown = "hair-sweep")],
+    ["color", (r: any) => (r.colors.hair = "url(payload)")],
+  ] as const) {
+    const invalid = structuredClone(saved);
+    modify(invalid);
+    assert.throws(() => parseRecipe(JSON.stringify(invalid), current), {
+      code,
+    });
+  }
+  for (const budget of ["maxTriangles", "maxBytes", "maxParts"] as const) {
+    const bounded = structuredClone(current);
+    bounded.budgets[budget] = 1;
+    validateCatalog(bounded);
+    assert.throws(() => validateRecipe(saved, bounded), { code: "budget" });
+  }
+});
+test("catalogs reject malformed, duplicate, current and future compatibility revisions", () => {
+  const current: Catalog = { ...structuredClone(catalog), revision: "2.3.0" };
+  for (const compatibleRecipeRevisions of [
+    null,
+    "2.2.0",
+    {},
+    [2],
+    ["2.2"],
+    ["02.2.0"],
+    ["2.2.0-beta.1"],
+    ["2.2.0", "2.2.0"],
+    ["2.3.0"],
+    ["2.3.1"],
+    ["3.0.0"],
+    Array.from({ length: 17 }, (_, i) => `1.0.${i}`),
+  ])
+    assert.throws(
+      () => validateCatalog({ ...current, compatibleRecipeRevisions }),
+      { code: "catalog" },
+    );
+  validateCatalog({ ...current, compatibleRecipeRevisions: [] });
+  validateCatalog({
+    ...current,
+    compatibleRecipeRevisions: Array.from({ length: 16 }, (_, i) => `1.0.${i}`),
+  });
+  validateCatalog({
+    ...current,
+    revision: "2.10.0",
+    compatibleRecipeRevisions: ["2.9.10"],
+  });
+  assert.throws(
+    () =>
+      validateCatalog({
+        ...current,
+        revision: "2.9.0",
+        compatibleRecipeRevisions: ["2.10.0"],
+      }),
+    { code: "catalog" },
+  );
 });
 test("new catalog slots and parts use the same public recipe contract without a core branch", () => {
   const c = structuredClone(catalog);

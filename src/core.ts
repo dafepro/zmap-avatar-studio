@@ -63,6 +63,8 @@ export type Catalog = {
   version: 1;
   id: string;
   revision: string;
+  /** Explicitly approved earlier recipe revisions; assets still use this catalog. */
+  compatibleRecipeRevisions?: string[];
   rig: { id: string; height: number; sockets: Socket[] };
   base: string;
   slots: { id: string; label: string; required: boolean }[];
@@ -121,6 +123,20 @@ const id = (v: unknown): v is string =>
   !["__proto__", "prototype", "constructor"].includes(v);
 const number = (v: unknown, min: number, max: number) =>
   typeof v === "number" && Number.isFinite(v) && v >= min && v <= max;
+const revision = (v: unknown): v is string =>
+  typeof v === "string" && /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(v);
+function earlierRevision(candidate: string, current: string): boolean {
+  const left = candidate.split("."),
+    right = current.split(".");
+  for (let i = 0; i < 3; i++) {
+    if (left[i] === right[i]) continue;
+    // Compare normalized decimal components without losing integer precision.
+    return left[i].length === right[i].length
+      ? left[i] < right[i]
+      : left[i].length < right[i].length;
+  }
+  return false;
+}
 const frame = (v: unknown) =>
   Array.isArray(v) &&
   v.length === 4 &&
@@ -139,8 +155,7 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
   if (
     c.version !== 1 ||
     !id(c.id) ||
-    typeof c.revision !== "string" ||
-    !/^\d+\.\d+\.\d+$/.test(c.revision) ||
+    !revision(c.revision) ||
     !record(c.rig) ||
     !id(c.rig.id) ||
     !number(c.rig.height, 0.5, 3) ||
@@ -148,6 +163,21 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
     c.rig.sockets.length > 32
   )
     fail("catalog", "Unsupported catalog or rig");
+  if (
+    c.compatibleRecipeRevisions !== undefined &&
+    (!Array.isArray(c.compatibleRecipeRevisions) ||
+      c.compatibleRecipeRevisions.length > 16 ||
+      new Set(c.compatibleRecipeRevisions).size !==
+        c.compatibleRecipeRevisions.length ||
+      !c.compatibleRecipeRevisions.every(
+        (value: unknown) =>
+          revision(value) && earlierRevision(value, c.revision),
+      ))
+  )
+    fail(
+      "catalog",
+      "Compatible recipe revisions must be at most 16 unique earlier major.minor.patch versions",
+    );
   const sockets = new Set<string>();
   for (const s of c.rig.sockets) {
     if (
@@ -494,7 +524,10 @@ export function validateRecipe(
   if (
     input.version !== 1 ||
     input.catalog !== catalog.id ||
-    input.revision !== catalog.revision ||
+    (input.revision !== catalog.revision &&
+      (!revision(input.revision) ||
+        !earlierRevision(input.revision, catalog.revision) ||
+        !catalog.compatibleRecipeRevisions?.includes(input.revision))) ||
     input.rig !== catalog.rig.id
   )
     fail("version", "Appearance needs the matching catalog and rig version");

@@ -56,11 +56,13 @@ export class Stage {
     this.inspection = view;
     this.inspectionCatalog = catalog;
     this.inspectionRoot = undefined;
-    const target = view === "hair" ? 1.81 : 1.07;
+    const target = 1.07;
     this.controls.target.set(0, target, 0);
     this.camera.position.set(0.5, target + 0.12, 4.5);
+    this.controls.minDistance = 2.7;
+    this.controls.maxDistance = 9;
     if (this.camera instanceof THREE.OrthographicCamera) {
-      const half = view === "hair" ? 0.41 : 1.2;
+      const half = 1.2;
       const aspect =
         Math.max(1, this.container.clientWidth) /
         Math.max(1, this.container.clientHeight);
@@ -102,6 +104,60 @@ export class Stage {
         object.visible = !covered.has(object.userData.avatarRegion);
     });
     this.inspectionRoot = root;
+    this.fitHairInspection();
+  }
+  /** Fit on inspection events, not every animation frame. A sphere keeps every
+   * orbit angle inside the smaller viewport dimension, including portrait. */
+  private fitHairInspection() {
+    if (this.inspection !== "hair" || this.projected || this.capture) return;
+    const root = this.avatar.object.children[0];
+    if (!root) return;
+    root.updateWorldMatrix(true, true);
+    const bounds = new THREE.Box3(),
+      point = new THREE.Vector3();
+    root.traverseVisible((object) => {
+      if (!(object instanceof THREE.Mesh)) return;
+      if (object instanceof THREE.SkinnedMesh) object.skeleton.update();
+      const positions = object.geometry.getAttribute("position");
+      for (let i = 0; i < positions.count; i++) {
+        object.getVertexPosition(i, point).applyMatrix4(object.matrixWorld);
+        bounds.expandByPoint(point);
+      }
+    });
+    if (bounds.isEmpty()) return;
+    const sphere = bounds.getBoundingSphere(new THREE.Sphere()),
+      radius = sphere.radius * 1.12 + 0.004,
+      aspect =
+        Math.max(1, this.container.clientWidth) /
+        Math.max(1, this.container.clientHeight),
+      direction = this.camera.position.clone().sub(this.controls.target);
+    let distance = Math.max(direction.length(), radius * 2);
+    if (!direction.lengthSq()) direction.set(0, 0.03, 1);
+    direction.normalize();
+    this.camera.zoom = this.small ? 0.55 : 1;
+    if (this.camera instanceof THREE.OrthographicCamera) {
+      const half = radius / Math.min(1, aspect);
+      this.camera.top = half;
+      this.camera.bottom = -half;
+      this.camera.left = -half * aspect;
+      this.camera.right = half * aspect;
+    } else {
+      this.camera.aspect = aspect;
+      this.camera.zoom = 1;
+      const vertical = THREE.MathUtils.degToRad(this.camera.fov / 2),
+        horizontal = Math.atan(Math.tan(vertical) * aspect);
+      distance = radius / Math.sin(Math.min(vertical, horizontal));
+      if (this.small) distance /= 0.55;
+    }
+    this.controls.minDistance = Math.max(0.1, radius + this.camera.near);
+    this.controls.maxDistance = Math.max(9, distance * 2);
+    this.controls.target.copy(sphere.center);
+    this.camera.position
+      .copy(sphere.center)
+      .addScaledVector(direction, distance);
+    this.camera.far = Math.max(50, distance + radius * 2);
+    this.camera.updateProjectionMatrix();
+    this.controls.update();
   }
   constructor(
     readonly container: HTMLElement,
@@ -160,6 +216,7 @@ export class Stage {
         this.camera.right = (half * w) / h;
       }
       this.camera.updateProjectionMatrix();
+      this.fitHairInspection();
     });
     this.resize.observe(container);
     this.animate(0);
@@ -235,6 +292,7 @@ export class Stage {
         o.intensity = (enabled ? [0.85, 2, 0.4] : [2.4, 3, 1.5])[i++] ?? 1;
       }
     });
+    this.fitHairInspection();
   }
   setPose(pose: Motion["gesture"]) {
     this.invalidateProjection();
@@ -248,18 +306,32 @@ export class Stage {
     this.turning = value;
   }
   view(side: "front" | "side" | "back") {
-    const distance = this.small ? 8 : 4.3;
-    this.camera.position.set(
-      side === "side" ? distance : 0,
-      1.55,
-      side === "back" ? -distance : side === "front" ? distance : 0,
-    );
-    this.controls.target.set(0, 0.96, 0);
+    const distance =
+      this.inspection === "hair" && !this.projected
+        ? this.camera.position.distanceTo(this.controls.target)
+        : this.small
+          ? 8
+          : 4.3;
+    this.camera.position
+      .copy(this.controls.target)
+      .add(
+        new THREE.Vector3(
+          side === "side" ? 1 : 0,
+          0.137,
+          side === "back" ? -1 : side === "front" ? 1 : 0,
+        )
+          .normalize()
+          .multiplyScalar(distance),
+      );
     this.controls.update();
     this.updateProjectionView();
   }
   scale(value: boolean) {
     this.small = value;
+    if (this.inspection === "hair" && !this.projected && !this.capture) {
+      this.fitHairInspection();
+      return;
+    }
     if (this.camera instanceof THREE.OrthographicCamera) {
       this.camera.zoom = value ? 0.55 : 1;
       this.camera.updateProjectionMatrix();

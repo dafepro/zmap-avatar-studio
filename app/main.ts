@@ -385,6 +385,9 @@ $("reference").onclick = () => {
       "hair-isolated/ember",
       "hair-isolated/tide",
       "hair-isolated/volt",
+      "hair-isolated/nova",
+      "hair-isolated/halo",
+      "hair-isolated/reed",
     ]) {
       const img = new Image();
       img.alt = `Zoomap ${name} component study: front, side and elevated top views.`;
@@ -392,6 +395,7 @@ $("reference").onclick = () => {
         `references/${name}.png`,
         new URL(import.meta.env.BASE_URL, location.href),
       ).href;
+      img.loading = "lazy";
       $("reference-image").append(img);
     }
   }
@@ -641,6 +645,22 @@ async function start() {
           face: `face-${id}`,
         });
         Object.assign(next.colors, { primary, skin, hair });
+        void apply(next);
+      };
+      $("collection-presets").append(button);
+    }
+    for (const [name, hair] of [
+      ["Nova", "#aa6031"],
+      ["Halo", "#5b3e2e"],
+      ["Reed", "#70513d"],
+    ]) {
+      const button = document.createElement("button");
+      button.className = "save-look";
+      button.textContent = `${name} · Hair 03`;
+      button.onclick = () => {
+        const next = structuredClone(draft ?? recipe);
+        next.parts.hair = `hair-${name.toLowerCase()}`;
+        next.colors.hair = hair;
         void apply(next);
       };
       $("collection-presets").append(button);

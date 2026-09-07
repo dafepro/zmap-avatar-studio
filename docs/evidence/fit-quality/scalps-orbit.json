@@ -1,7 +1,21 @@
 [
   {
     "id": "hair-sweep",
+    "head": "head-spark",
+    "weight": 1,
+    "hairColor": "#514030",
     "accessories": false,
+    "headwear": false,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
     "meshes": 46,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -9,7 +23,21 @@
   },
   {
     "id": "hair-curls",
+    "head": "head-spark",
+    "weight": -1,
+    "hairColor": "#514030",
     "accessories": false,
+    "headwear": false,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
     "meshes": 46,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -17,7 +45,21 @@
   },
   {
     "id": "hair-pony",
+    "head": "head-spark",
+    "weight": 1,
+    "hairColor": "#514030",
     "accessories": false,
+    "headwear": false,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
     "meshes": 48,
     "triangles": 20196,
     "sourceTriangles": 10492,
@@ -25,7 +67,21 @@
   },
   {
     "id": "hair-ember",
+    "head": "head-spark",
+    "weight": -1,
+    "hairColor": "#514030",
     "accessories": false,
+    "headwear": false,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
     "meshes": 46,
     "triangles": 21792,
     "sourceTriangles": 11290,
@@ -33,7 +89,21 @@
   },
   {
     "id": "hair-tide",
+    "head": "head-spark",
+    "weight": 1,
+    "hairColor": "#20323d",
     "accessories": false,
+    "headwear": false,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
     "meshes": 46,
     "triangles": 21000,
     "sourceTriangles": 10894,
@@ -41,10 +111,90 @@
   },
   {
     "id": "hair-volt",
+    "head": "head-spark",
+    "weight": -1,
+    "hairColor": "#baa078",
     "accessories": false,
+    "headwear": false,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
     "meshes": 46,
     "triangles": 21948,
     "sourceTriangles": 11368,
+    "parts": 7
+  },
+  {
+    "id": "hair-nova",
+    "head": "head-spark",
+    "weight": 1,
+    "hairColor": "#aa6031",
+    "accessories": false,
+    "headwear": false,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "meshes": 48,
+    "triangles": 21770,
+    "sourceTriangles": 11279,
+    "parts": 7
+  },
+  {
+    "id": "hair-halo",
+    "head": "head-spark",
+    "weight": -1,
+    "hairColor": "#5b3e2e",
+    "accessories": false,
+    "headwear": false,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "meshes": 46,
+    "triangles": 21736,
+    "sourceTriangles": 11262,
+    "parts": 7
+  },
+  {
+    "id": "hair-reed",
+    "head": "head-spark",
+    "weight": 1,
+    "hairColor": "#70513d",
+    "accessories": false,
+    "headwear": false,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "meshes": 46,
+    "triangles": 21800,
+    "sourceTriangles": 11294,
     "parts": 7
   }
 ]

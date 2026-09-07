@@ -563,6 +563,7 @@ make_bottom('bottom-court','Court shorts');make_bottom('bottom-training','Long c
 for id,label,style in [('shoes-court','Study sneakers','court'),('shoes-runner','Court runner','runner'),('shoes-high','Court high','high')]:make_shoes(id,label,style)
 
 exec(compile((ROOT/'assets/source/collection_02.py').read_text(), 'collection_02.py', 'exec'),globals())
+exec(compile((ROOT/'assets/source/collection_03.py').read_text(), 'collection_03.py', 'exec'),globals())
 
 # The existing authored accessories stay single-source. Their coordinate frame is
 # uniformly mapped to the new head family once, never once per hairstyle.
@@ -613,7 +614,7 @@ for id,label,style in [('effect-orbit','Golden orbit','orbit'),('effect-spark','
     export(r,d)
 
 slots=[{'id':s,'label':label,'required':required} for s,label,required in [('head','Head',True),('face','Face',True),('hair','Hair',False),('facialHair','Facial hair',False),('eyewear','Glasses',False),('headwear','Hats',False),('shirt','Tops',True),('bottom','Bottoms',True),('shoes','Footwear',True),('accessory','Accessories',False),('effect','Effects',False)]]
-catalog={'version':1,'id':'zoomap-athletics','revision':'2.2.0','rig':{'id':'athlete-reference-v2','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
+catalog={'version':1,'id':'zoomap-athletics','revision':'2.3.0','compatibleRecipeRevisions':['2.2.0'],'rig':{'id':'athlete-reference-v2','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
 catalog['bodyRegions']=['torso','upper-legs','feet']
 catalog['bodyShape']={
     'weightProfile':[[0,0,0],[.80,0,0],[.99,.18,.24],[1.13,.34,.46],[1.30,.24,.32],[1.48,.06,.06],[1.61,0,0],[2.04,0,0]],

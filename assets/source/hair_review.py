@@ -5,7 +5,7 @@ captured from the actual asset geometry, on an untextured neutral head, using th
 same orthographic scale for every style and view.
 """
 
-HAIR_REVIEW_SCALE = .80
+HAIR_REVIEW_SCALE = 1.05
 HAIR_REVIEW_VIEWS = ('front', 'side', 'back', 'top')
 HAIR_REFERENCE_DIRECTORY = ROOT / 'docs/references/hair-isolated'
 HAIR_EVIDENCE_DIRECTORY = ROOT / 'docs/evidence/hair-isolated'
@@ -14,9 +14,10 @@ hair_previews = {}
 hair_cameras = {}
 hair_reference_guides = {}
 
-for index, (style, colors) in enumerate(COLLECTION_COLORS.items()):
+HAIR_REVIEW_COLORS={**COLLECTION_COLORS,**{style:{'hair':spec['color']} for style,spec in HAIR_03.items()}}
+for index, (style, colors) in enumerate(HAIR_REVIEW_COLORS.items()):
     # Keep this inspection row separate from the full-character study rows.
-    x = (index - 1) * 2.8
+    x = (index - (len(HAIR_REVIEW_COLORS)-1)*.5) * 2.8
     depth = -6.0
     head_height = positions['head'].y
     root = preview(
@@ -43,19 +44,19 @@ for index, (style, colors) in enumerate(COLLECTION_COLORS.items()):
     guide.rotation_euler = (math.pi / 2, 0, 0)
     guide.hide_render = True
     guide['referenceKind'] = 'Generated authoring concept; not implemented geometry evidence'
-    guide['provenance'] = 'docs/references/hair-isolated/provenance.json'
-    guide['sourceReference'] = 'docs/references/collection-02/' + style + '.png'
+    guide['provenance'] = 'docs/references/hair-isolated/'+('collection-03-provenance.json' if style in HAIR_03 else 'provenance.json')
+    guide['sourceReference'] = 'docs/references/hair-isolated/' + style + '.png'
     guide['referenceViews'] = 'Front, strict left-facing side profile, back, top'
     hair_reference_guides[style] = guide
 
     # Native asset coordinates are Y-up, +Z-forward. The +X side camera makes
     # the visible face point left; the overhead view puts the forehead below.
-    target = (x, head_height + .035, depth)
+    target = (x, head_height + .035, depth-.10)
     eyes = {
         'front': (x, target[1], depth + 5),
-        'side': (x + 5, target[1], depth),
+        'side': (x + 5, target[1], target[2]),
         'back': (x, target[1], depth - 5),
-        'top': (x, head_height + 5, depth),
+        'top': (x, head_height + 5, target[2]),
     }
     for view in HAIR_REVIEW_VIEWS:
         data = bpy.data.cameras.new(style.title() + ' · isolated hair · ' + view)
@@ -76,8 +77,8 @@ def render_hair_views(styles=None, views=None):
     """Write repeatable geometry comparisons without altering the working view.
 
     Optional style/view subsets support fast sculpt-and-review iterations. An
-    empty subset produces no images. The default captures all twelve views.
-    Every camera uses the same .80-unit square frame: no per-model zoom hides a
+    empty subset produces no images. The default captures all twenty-four views.
+    Every camera uses the same 1.05-unit square frame: no per-model zoom hides a
     silhouette or volume mismatch.
     """
     selected_styles = tuple(hair_previews) if styles is None else tuple(styles)

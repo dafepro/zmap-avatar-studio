@@ -1,6 +1,6 @@
 # Reference component workflow — revision 2
 
-This is the current authoring workflow. Catalog `2.0.0` / rig `athlete-reference-v2` replaces the earlier alpha kit. The previous work was committed and pushed before replacement: `21495ebabd4f67128c850276c169e4129b3e32bc` on `codex/accessory-fitting`.
+This is the current authoring workflow. Catalog `2.3.0` extends the reference kit introduced at `2.0.0`, on rig `athlete-reference-v2`, which replaced the earlier alpha kit. The previous work was committed and pushed before replacement: `21495ebabd4f67128c850276c169e4129b3e32bc` on `codex/accessory-fitting`.
 
 ## Targets and provenance
 
@@ -72,7 +72,7 @@ From `avatar-studio`, run `npm test`, `npm run test:e2e`, `npm run typecheck`, `
 
 The reference browser fixture writes [components](evidence/reference-v2/browser-components.png) and [weight comparison](evidence/reference-v2/browser-weight-study.png), with recipes and local assembly timings in adjacent JSON. It renders actual GLBs, both weight endpoints, front/profile/elevated views and fitted cap/glasses/mustache combinations. Generated artwork is never substituted into this proof.
 
-Automated checks cover all 217,728 structural combinations, a heaviest-equipment sweep of every authored head/hair/hat/glasses state, actual triangle intersections, unseen wide/tall hair, source restoration and instance isolation. The maximum fitted look is 13,814 source triangles, below 14,000; silhouette ink is an additional rendering pass. Tests check actual body/garment deformation, overall height, fixed joint centers and symmetric expansion around limb axes. These checks do not claim every combination was visually reviewed or that measured desktop timings qualify a full room on phones.
+Automated checks cover all 311,040 structural combinations, a heaviest-equipment sweep of every authored head/hair/hat/glasses state, actual triangle intersections, unseen wide/tall hair, source restoration and instance isolation. The maximum fitted look is 13,900 source triangles, below 14,000; silhouette ink is an additional rendering pass. Tests check actual body/garment deformation, overall height, fixed joint centers and symmetric expansion around limb axes. These checks do not claim every combination was visually reviewed or that measured desktop timings qualify a full room on phones.
 
 The kit now carries the requested angular head, swept hair, sportswear silhouette and a functioning modular customization system. It remains an art prototype: the drawings have subtler hand posing, garment drape, facial asymmetry and line placement. Three expression atlases are implemented; facial blend shapes, finger animation and a production animation library are not. No numerical likeness percentage or perfect match is claimed. Compare the actual render to the supplied studies before approving another art pass.
 
@@ -84,4 +84,8 @@ See [fitting quality review](fit-quality-review.md) for the rear scalp, selectiv
 
 The Blender review now includes **back** and **rear-oblique** cameras in addition to front/side/top, and `render_collection_views()` writes fifteen views. Browser review adds eight orbit angles for every hairstyle, with and without glasses. Crown-only review is insufficient: the reported defect lived below the crown probes.
 
-The isolated hair workflow adds twelve fixed front/side/back/top cameras through `hair_review.py`. Run `render_hair_views()` to compare grey-head hair renders with the packed four-view concepts. See [reference provenance and iteration criteria](references/hair-isolated/README.md); source references, intermediate failures and final geometry evidence are kept separate.
+The isolated hair workflow now includes 24 fixed front/side/back/top cameras through `hair_review.py`. Run `render_hair_views()` to compare grey-head hair renders with the packed four-view concepts. See [reference provenance and iteration criteria](references/hair-isolated/README.md); source references, intermediate failures and final geometry evidence are kept separate.
+
+## Additional hair studies (revision 2.3.0)
+
+Nova, Halo and Reed add three independent hairstyles. All six isolated studies share a 1.05-unit orthographic frame that contains the complete ponytail. Frontal hairlines can be authored independently while the shared scalp retains its protected temple and posterior boundaries. See the [Hair 03 workflow](hair-03-workflow.md) for concepts, actual iterations, compatibility and validation.

@@ -4,11 +4,15 @@
 
 A recipe contains only `version`, `catalog`, `revision`, `rig`, `parts`, `colors`, and optional `body: { weight: number }`. Every catalog slot is present; optional slots use `null`. Color values are six-digit hex strings keyed by declared material channels. Asset URLs, scripts, identity, ownership, entitlements and inventory are not recipe fields. The consuming application validates access to parts and persists accepted recipes; the runtime validates structure, compatibility and rendering budgets.
 
-Catalog revision and rig IDs must match exactly. A mismatched import fails visibly and does not replace the existing appearance. Catalog assets have IDs, a single slot, socket attachments, named color channels, compatibility tags, a relative GLB path, SHA-256, byte count and triangle count. Catalogs are trusted application configuration. Recipes are untrusted input. Hashes pin bytes to the catalog; they do not authenticate the publisher of the catalog itself.
+Catalog identity and rig IDs must match exactly. The recipe revision must equal the current catalog revision or appear in its optional `compatibleRecipeRevisions` list. That list contains at most 16 unique earlier `major.minor.patch` revisions, with no leading zeros, prerelease suffixes, current revision, or future revision. Compatibility is explicitly declared by the catalog author; sharing a major or minor version grants nothing by itself. An undeclared import fails visibly and does not replace the existing appearance.
+
+For example, a catalog at `2.3.0` may declare `compatibleRecipeRevisions: ["2.2.0"]` after proving its additive release preserves those saved looks. An imported `2.2.0` recipe keeps its revision and selections; new default recipes use `2.3.0`. Every accepted recipe still passes current schema, rig, part, fitting-surface, color, exclusion, and resource checks against the current catalog. Compatibility supplies no asset substitution or automatic recipe rewrite. Authors must retain the referenced parts and qualify compatibility before adding a revision to the list.
+
+Catalog assets have IDs, a single slot, socket attachments, named color channels, compatibility tags, a relative GLB path, SHA-256, byte count and triangle count. Catalogs are trusted application configuration. Recipes are untrusted input. Hashes pin bytes to the catalog; they do not authenticate the publisher of the catalog itself.
 
 ## Geometry and extension
 
-The current rig is `athlete-reference-v2`, catalog revision 2.0.0. It replaces the earlier alpha rig and includes 11 slots with independent facial hair, eyewear and headwear. Its coordinates are metres, Y up, +Z forward, floor at Y=0. Attachment transforms are local to the named socket, not world-space. Socket hierarchy is parent-first, and a garment may attach several independent segments. The base body contains complete anatomy. Declared garment coverage hides torso, upper-leg and foot regions underneath selected clothes. Heads declare a face-surface family and frame; fitted expressions and accessories adapt to the selected head. See [accessory fitting](accessory-fitting.md) for the deformation contract.
+The current rig is `athlete-reference-v2`. It replaces the earlier alpha rig and includes 11 slots with independent facial hair, eyewear and headwear. The release revision and any approved recipe revisions are declared in `public/catalog.json`. Its coordinates are metres, Y up, +Z forward, floor at Y=0. Attachment transforms are local to the named socket, not world-space. Socket hierarchy is parent-first, and a garment may attach several independent segments. The base body contains complete anatomy. Declared garment coverage hides torso, upper-leg and foot regions underneath selected clothes. Heads declare a face-surface family and frame; fitted expressions and accessories adapt to the selected head. See [accessory fitting](accessory-fitting.md) for the deformation contract.
 
 To add a part:
 
@@ -24,7 +28,7 @@ Painted parts declare `texture: { maxDimension: 1024, maxCount: 1 }` (absolute l
 
 New slots and palette channels are data-driven. A new animation behavior, skeletal rig or geometry effect requires an explicit runtime extension; arbitrary catalog code is never executed. `tags` and `excludesTags` express known incompatible combinations. The reference kit supports 11 slots: head, face, hair, facialHair, eyewear, headwear, shirt, bottom, shoes, accessory and effect. It has two fixed effect implementations, orbit and spark.
 
-The launch catalog caps an assembled avatar at 14,000 source triangles, 1.5 MB and 12 parts including its body. Loader-wide limits additionally bound catalog size, GLB nodes/accessors, attachment counts and individual file size. The heaviest tested fitted combination is 13,862 triangles; current per-asset counts and bytes are in `public/catalog.json`.
+The launch catalog caps an assembled avatar at 14,000 source triangles, 1.5 MB and 12 parts including its body. Loader-wide limits additionally bound catalog size, GLB nodes/accessors, attachment counts and individual file size. The heaviest tested fitted combination is 13,900 triangles; current per-asset counts and bytes are in `public/catalog.json`.
 
 ## Body volume and expression projection
 

@@ -7,11 +7,37 @@ on locks, never this fit surface. New heads must pass the family coverage suite.
 """
 HEAD_FAMILY_WIDTH = 1.065
 
-def scalp_foundation(parent, label, nape=-.115, undercut=False, root_pigment=.13):
+
+def _scalp_frontal_profile(profile):
+    """Validate an authored forehead opening without changing protected zones."""
+    if profile is None:
+        return [(0, .082), (.9, .066), (1.25, .018)]
+    if not isinstance(profile, (list, tuple)) or not 2 <= len(profile) <= 16:
+        raise ValueError('Frontal hairline needs 2 to 16 angle/height pairs')
+    result = []
+    for point in profile:
+        if (not isinstance(point, (list, tuple)) or len(point) != 2
+                or any(type(value) not in (int, float) or not math.isfinite(value) for value in point)):
+            raise ValueError('Frontal hairline points must contain finite angles and heights')
+        angle, height = point
+        if not 0 <= angle <= 1.25 or not 0 <= height <= .185:
+            raise ValueError('Frontal hairline must stay within the forehead authoring region')
+        if result and angle <= result[-1][0]:
+            raise ValueError('Frontal hairline angles must increase strictly')
+        result.append((angle, height))
+    if result[0][0] != 0 or result[-1] != (1.25, .018):
+        raise ValueError('Frontal hairline must start at angle 0 and end at the fixed (1.25, .018) temple boundary')
+    return result
+
+
+def scalp_foundation(parent, label, nape=-.115, undercut=False, root_pigment=.13, frontal_hairline=None):
     n=32
     # Hairline is an intentional design boundary; skull coverage above it is
     # structural. Temple ends stay above ears; the posterior extends to nape.
-    line=[(0,.082),(.9,.066),(1.25,.018),(1.57,-.006),(1.90,-.058),(2.35,nape),(math.pi,nape)]
+    # The front opening is style-authored. Its fixed terminal point preserves
+    # the side/rear coverage envelope, instead of making every fringe cover a
+    # universal straight forehead band. Height is bounded below the crown.
+    line=_scalp_frontal_profile(frontal_hairline)+[(1.57,-.006),(1.90,-.058),(2.35,nape),(math.pi,nape)]
     def boundary(angle):
         a=min(angle,math.tau-angle)
         for left,right in zip(line,line[1:]):
