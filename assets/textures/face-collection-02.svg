@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Zoomap collection 02 expression atlas</title>
+  <desc>Original vector ink artwork. Three expressions, three profile strips in the fourth cell. Broad almond eyes, dark simple irises, angular brows and a restrained mouth, based on the supplied base-mesh study.</desc>
+  <defs>
+    <clipPath id="eye"><path d="M69 204 Q92 165 145 170 Q182 174 206 196 L194 231 Q156 253 111 240 Q83 231 69 204Z"/></clipPath>
+    <g id="left-eye">
+      <path d="M69 204 Q92 165 145 170 Q182 174 206 196 L194 231 Q156 253 111 240 Q83 231 69 204Z" fill="#f5f3e9"/>
+      <path d="M78 197 Q120 170 184 190L197 205 193 191 147 169 98 177Z" fill="#aaa69d"/>
+      <g clip-path="url(#eye)">
+        <ellipse cx="149" cy="209" rx="34" ry="48" fill="#252b2c"/>
+        <path d="M134 176Q121 205 141 244L159 250Q121 253 115 219L117 192Z" fill="#505553"/>
+        <ellipse cx="159" cy="211" rx="18" ry="32" fill="#171d21"/>
+        <path d="M130 176l11 -4 1 15 -9 5Z" fill="#fbfaf2"/>
+      </g>
+      <path d="M64 198Q81 165 116 162Q165 157 206 187L210 204Q180 179 151 180Q101 170 76 209L87 231Q70 221 64 198Z" fill="#1c2225"/>
+      <path d="M89 232Q129 259 178 239L194 229Q175 251 137 251Q108 249 89 235Z" fill="#3a3b37"/>
+    </g>
+    <g id="brows">
+      <path d="M57 133L91 96 193 123 189 152 106 123Z" fill="#282b2b"/>
+      <path d="M455 130L422 96 320 123 324 152 407 123Z" fill="#282b2b"/>
+      <path d="M59 132L92 98 121 106 97 105Z" fill="#56534c"/>
+    </g>
+    <g id="nose">
+      <path d="M241 314L257 302 276 313 257 325Z" fill="#755d4c" opacity=".42"/>
+      <path d="M257 303L276 313 257 325Z" fill="#3f3e38" opacity=".20"/>
+    </g>
+    <g id="smile">
+      <path d="M167 372L179 381Q249 385 326 375L338 366 336 377 327 381Q248 392 177 386L167 379Z" fill="#313130"/>
+    </g>
+    <g id="open-eyes"><use href="#left-eye"/><use href="#left-eye" transform="translate(512 0) scale(-1 1)"/></g>
+    <g id="grin">
+      <path d="M166 366Q249 388 341 357Q330 418 278 427Q211 438 181 401Z" fill="#29262a"/>
+      <path d="M179 375Q252 390 329 368L317 392Q249 409 194 394Z" fill="#f8f6ec"/>
+      <path d="M214 419Q244 397 291 419Q254 432 214 419Z" fill="#a46862"/>
+    </g>
+    <g id="profile-eye">
+      <path d="M78 150Q101 114 145 139L142 195Q105 210 82 188Z" fill="#f5f3e9"/>
+      <path d="M117 133Q101 174 121 197L138 193Q153 166 139 137Z" fill="#252b2c"/>
+      <path d="M126 139l7 -2 -1 16 -7 3Z" fill="#fffaf0"/>
+      <path d="M76 148Q102 112 145 133L148 146Q111 123 83 159L85 187 80 187Z" fill="#1c2225"/>
+      <path d="M81 102L108 78 149 96 148 114 109 98 81 115Z" fill="#282b2b"/>
+    </g>
+    <g id="profile-smile"><path d="M136 362Q153 365 168 355L168 362Q154 372 139 369Z" fill="#313130"/></g>
+  </defs>
+  <g><use href="#brows" transform="translate(0 -18)"/><use href="#open-eyes"/><use href="#nose"/><use href="#grin"/></g>
+  <g transform="translate(512 0)"><use href="#brows" transform="translate(0 18) scale(1 .87)"/><use href="#open-eyes"/><use href="#nose"/><use href="#smile"/>
+    <g fill="#81513c" opacity=".6"><circle cx="112" cy="293" r="5"/><circle cx="138" cy="303" r="4"/><circle cx="155" cy="288" r="4"/><circle cx="175" cy="306" r="3"/><circle cx="400" cy="293" r="5"/><circle cx="374" cy="303" r="4"/><circle cx="357" cy="288" r="4"/><circle cx="337" cy="306" r="3"/></g></g>
+  <g transform="translate(0 512)"><use href="#left-eye"/><use href="#left-eye" transform="translate(512 19) scale(-1 .91)"/><use href="#nose"/>
+    <path d="M57 127L89 98 190 120 187 145 104 123Z M320 123L410 73 451 101 413 98 324 148Z" fill="#282b2b"/>
+    <path d="M182 381Q255 393 326 361L340 358 334 371Q260 402 184 388Z" fill="#313130"/></g>
+  <g transform="translate(512 512)"><use href="#profile-eye"/><path d="M134 356L169 348 165 384Q146 403 137 379Z" fill="#29262a"/><path d="M138 359L166 353 160 367 140 369Z" fill="#f8f6ec"/></g>
+  <g transform="translate(682 512)"><use href="#profile-eye"/><use href="#profile-smile"/><g fill="#81513c" opacity=".6"><circle cx="110" cy="248" r="3"/><circle cx="121" cy="259" r="3"/><circle cx="134" cy="246" r="2"/></g></g>
+  <g transform="translate(852 512)"><use href="#profile-eye" transform="translate(0 -9)"/><path d="M134 363Q152 365 168 350L168 359Q152 373 136 369Z" fill="#313130"/></g>
+</svg>

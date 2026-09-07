@@ -15,6 +15,9 @@ export function applyBodyShape(
   root.updateMatrixWorld(true);
   const amount = weight < 0 ? weight * shape.leanFactor : weight;
   const profile = shape.weightProfile;
+  const neckOrigin = shape.neck
+    ? sockets.get(shape.neck.socket)!.getWorldPosition(new THREE.Vector3())
+    : undefined;
   const limbs = shape.limbs.map((limb) => {
     const joints = limb.joints.map((id) =>
       sockets.get(id)!.getWorldPosition(new THREE.Vector3()),
@@ -105,6 +108,24 @@ export function applyBodyShape(
         point.clone().addScaledVector(best.delta, amount * best.gain),
         influence,
       );
+    }
+    if (shape.neck && neckOrigin) {
+      const neck = shape.neck,
+        local = point.clone().sub(neckOrigin);
+      const fraction = (local.y - neck.bottom) / (neck.top - neck.bottom);
+      const vertical =
+        THREE.MathUtils.smoothstep(fraction, 0, 0.38) *
+        (1 - THREE.MathUtils.smoothstep(fraction, 0.65, 1));
+      const radial =
+        1 -
+        THREE.MathUtils.smoothstep(
+          Math.hypot(local.x, local.z),
+          neck.radius,
+          neck.radius + neck.falloff,
+        );
+      const gain = amount * neck.gain * vertical * radial;
+      body.x += local.x * gain;
+      body.z += local.z * gain;
     }
     return body;
   };

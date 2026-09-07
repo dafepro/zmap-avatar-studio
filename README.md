@@ -60,3 +60,5 @@ The active source is `assets/source/reference_kit.py`, with the editable `assets
 The 24-part kit supports 11 slots, two heads, three expressions, interchangeable hair/clothes/shoes, facial hair, eyewear, hats and effects. It approximates the drawings; it is not a claim of final production art. Finger animation, facial blend shapes and a production animation library remain unimplemented. Source limits are 14,000 triangles, 1.5 MB and 12 selected parts; outlines add rendering work. Phone/full-room performance needs qualification by the consumer.
 
 See [contracts](docs/contracts.md), [rendering](docs/illustrated-rendering.md), [directional capture](docs/directional-projection.md) and [reference workflow](docs/reference-workflow.md).
+
+Collection 02 adds Ember, Tide and Volt starter looks, nine independent parts, body-size neck/collar deformation, and packed Blender front/side/top references. See the [workflow and actual render comparisons](docs/collection-02-workflow.md).

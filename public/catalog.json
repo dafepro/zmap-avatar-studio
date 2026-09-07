@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "zoomap-athletics",
-  "revision": "2.0.0",
+  "revision": "2.1.0",
   "rig": {
     "id": "athlete-reference-v2",
     "height": 2.04,
@@ -258,7 +258,7 @@
       },
       "url": "models/body-athletic.glb",
       "bytes": 418824,
-      "sha256": "5470847a461032fda309364a702966ad96edd90b83afc2ac65a389eb779fb2ea",
+      "sha256": "c4adc4d988928bcfe1251898243bb6964a6324c247e0c33a24a56b1b7c0b1a83",
       "triangles": 5791
     },
     {
@@ -288,7 +288,7 @@
       },
       "url": "models/head-scout.glb",
       "bytes": 23072,
-      "sha256": "0801d890c7ff20b44f8fa61811f1ec5a18964631f153b19976bbf030e4319048",
+      "sha256": "f14be77e0e0510828e148ceb395a3c226017895616fb6a35ebaf9cea9743184c",
       "triangles": 1074
     },
     {
@@ -318,7 +318,7 @@
       },
       "url": "models/head-spark.glb",
       "bytes": 23072,
-      "sha256": "69d51a7bb645d1b90e85ebb8854d140c8f4438f7fcf2193c8d998dc9caba9892",
+      "sha256": "15631fcaeb782e00e14fad912eaf4a2111c3c0993fbf71aed8f2107647a78473",
       "triangles": 1074
     },
     {
@@ -355,7 +355,7 @@
       },
       "url": "models/face-focus.glb",
       "bytes": 84764,
-      "sha256": "19199a805c4b8f19a0155be55b16bbe910f5ea1ffe23557a8144cde8950f1e47",
+      "sha256": "ca3dc407ae5307def1e1e929e4b804b52f98c2fdd76eb64296e3b2252221d6c0",
       "triangles": 788
     },
     {
@@ -392,7 +392,7 @@
       },
       "url": "models/face-grin.glb",
       "bytes": 84760,
-      "sha256": "6885136a184fc94b5c5b1fdfe6a925c939c1eea40623eeefdc0bfdc8668c8684",
+      "sha256": "a4600001b36138b6a4ae63dbb4ac60f3cee5098b08ef0c889e5fb3e4383fbbe7",
       "triangles": 788
     },
     {
@@ -429,7 +429,7 @@
       },
       "url": "models/face-wink.glb",
       "bytes": 84760,
-      "sha256": "59c121d58064a964626c20d4de9942197ff4caf7583ab32b2f3ed690e846382f",
+      "sha256": "a50a659b803f667ea1aa9759a4ee8d89255606b58fdb0f8137589074726a8e45",
       "triangles": 788
     },
     {
@@ -450,7 +450,7 @@
       "tags": [],
       "url": "models/hair-sweep.glb",
       "bytes": 22840,
-      "sha256": "11c464b210fb8d82cbba216bb13021c2c64ca078325d6575db2fee47cfc12c54",
+      "sha256": "7772a45c9e4803b0fafae8e10ad57749df716817545027aae19c7cc04e365dff",
       "triangles": 390
     },
     {
@@ -471,7 +471,7 @@
       "tags": [],
       "url": "models/hair-curls.glb",
       "bytes": 22840,
-      "sha256": "d80a99a71fdc7bdef57e87901cc1eeac7662cd1a4ed7303838bab1c19c5172b1",
+      "sha256": "1afc760028822db94aa511ab68e1387613ec90150ca29263372eacc1d294042b",
       "triangles": 390
     },
     {
@@ -493,7 +493,7 @@
       "tags": [],
       "url": "models/hair-pony.glb",
       "bytes": 33784,
-      "sha256": "91c91d670c68abfa7e508fff0d77734125c8270dc3e30e699bb29183cbc04813",
+      "sha256": "3eb1e028920c4d428c19c0378bebbd1ed557ac3928c606f4eb0380ca5c681e9f",
       "triangles": 428
     },
     {
@@ -542,7 +542,7 @@
       },
       "url": "models/shirt-jersey.glb",
       "bytes": 47604,
-      "sha256": "ae26c5ca0c5d90d4b6157381212e06bb5f35f003fb6a6fc2a3c5c62351f55323",
+      "sha256": "14c9e433957802401dff8b6b8edd75ecf9a870ecb4ade5ab84f192492513fc45",
       "triangles": 298
     },
     {
@@ -591,7 +591,7 @@
       },
       "url": "models/shirt-hoodie.glb",
       "bytes": 54252,
-      "sha256": "5ce6c2bf3232e4053b7aae2ee29ee5e95a89ebf34f7cab9244473f6637d3e278",
+      "sha256": "e9122dbd07d9441dd6521a956fb17eb2f6b2e92412f3deb9e299a824414926b3",
       "triangles": 366
     },
     {
@@ -640,7 +640,7 @@
       },
       "url": "models/shirt-track.glb",
       "bytes": 52232,
-      "sha256": "974d4e58d33713e4693d1918fec66058321f200051a9622aafb3724dde3599ea",
+      "sha256": "8f740ad000f5e37deb456899a2114a0e6bc659dbd09b20bc5ef65999fe8f3b2d",
       "triangles": 342
     },
     {
@@ -685,7 +685,7 @@
       },
       "url": "models/bottom-court.glb",
       "bytes": 21148,
-      "sha256": "86c4fc012a55a5ca0231681ff62294954b038df2b6219841f935a1d73ba4c6b5",
+      "sha256": "893df32b9b81a3ae4dec3ba0937e3a61cbabb788d5e71133470d9bf95660642a",
       "triangles": 183
     },
     {
@@ -730,7 +730,7 @@
       },
       "url": "models/bottom-training.glb",
       "bytes": 21868,
-      "sha256": "727c09b081d6dca35292bfc6e2494eeb1b392e601554e2ddf40a544193a51177",
+      "sha256": "648d21e26615fe78d2e388dfadbf46048c5dfdfb3fa1139ffe3d9690bc131eb5",
       "triangles": 183
     },
     {
@@ -759,7 +759,7 @@
       ],
       "url": "models/shoes-court.glb",
       "bytes": 73828,
-      "sha256": "861430ddd028cc0cdf6dd233ca313b32fd13d7697a02d76bf87d6dcf672e19e1",
+      "sha256": "2bc83bd0234b67f0a2f0d27ee9be60d75ff27bcf907d184624a52a28917f46e7",
       "triangles": 1360
     },
     {
@@ -788,7 +788,7 @@
       ],
       "url": "models/shoes-runner.glb",
       "bytes": 74272,
-      "sha256": "9bb602d6565f674f2e1eac3b5db3766cfa0cc24db35842a4aab7228b5312b434",
+      "sha256": "7ce104177555cf1fbfafe46bf2f7e4f622650b19e9fa8165189af932fdde9fe0",
       "triangles": 1368
     },
     {
@@ -817,8 +817,321 @@
       ],
       "url": "models/shoes-high.glb",
       "bytes": 92496,
-      "sha256": "e82f17cd6f3a1bf7d1459db7b4fbf9c406d88b2f08f09497eddb56366ce87e4d",
+      "sha256": "71bbbe42bad60c55fa275b063be15109fee6c070db0d7285437ad88142c4ed63",
       "triangles": 1712
+    },
+    {
+      "id": "hair-ember",
+      "label": "Coiled crop",
+      "slot": "hair",
+      "rig": "athlete-reference-v2",
+      "description": "Collection 02: independently authored scalp and directional masses from front, side and overhead concept studies.",
+      "attachments": [
+        {
+          "node": "ref2_hair-ember__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "hair"
+      ],
+      "tags": [],
+      "url": "models/hair-ember.glb",
+      "bytes": 47772,
+      "sha256": "b653b0855394c1168723f799baec9a9c8467042b0d9a0f439e06d7d71bc7871f",
+      "triangles": 502
+    },
+    {
+      "id": "hair-tide",
+      "label": "Side-part bob",
+      "slot": "hair",
+      "rig": "athlete-reference-v2",
+      "description": "Collection 02: independently authored scalp and directional masses from front, side and overhead concept studies.",
+      "attachments": [
+        {
+          "node": "ref2_hair-tide__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "hair"
+      ],
+      "tags": [],
+      "url": "models/hair-tide.glb",
+      "bytes": 15500,
+      "sha256": "d143162e748bbd42819fb723091c3a7b0c3fd040eef726cdff29a0fa8172dd08",
+      "triangles": 258
+    },
+    {
+      "id": "hair-volt",
+      "label": "Swept quiff",
+      "slot": "hair",
+      "rig": "athlete-reference-v2",
+      "description": "Collection 02: independently authored scalp and directional masses from front, side and overhead concept studies.",
+      "attachments": [
+        {
+          "node": "ref2_hair-volt__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [
+        "secondary",
+        "hair"
+      ],
+      "tags": [],
+      "url": "models/hair-volt.glb",
+      "bytes": 21220,
+      "sha256": "3d76c374728472f0d6ccfeda3cc2e22cb071d1c0b8f135631daac9c940a3cf46",
+      "triangles": 366
+    },
+    {
+      "id": "shirt-ember",
+      "label": "Ember warm-up",
+      "slot": "shirt",
+      "rig": "athlete-reference-v2",
+      "description": "Collection 02 connected sportswear: shared shoulder topology, body-size field and distinct collar/panel construction.",
+      "attachments": [
+        {
+          "node": "ref2_shirt-ember__root",
+          "socket": "root"
+        }
+      ],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "covers": [
+        "torso"
+      ],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
+      "url": "models/shirt-ember.glb",
+      "bytes": 36116,
+      "sha256": "f47fcc0fdc0982312c5ed9a8abdb4d9016257f3d13ac691a5bf6dda9df4c4dda",
+      "triangles": 318
+    },
+    {
+      "id": "shirt-tide",
+      "label": "Tide court jersey",
+      "slot": "shirt",
+      "rig": "athlete-reference-v2",
+      "description": "Collection 02 connected sportswear: shared shoulder topology, body-size field and distinct collar/panel construction.",
+      "attachments": [
+        {
+          "node": "ref2_shirt-tide__root",
+          "socket": "root"
+        }
+      ],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "covers": [
+        "torso"
+      ],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
+      "url": "models/shirt-tide.glb",
+      "bytes": 33108,
+      "sha256": "0cd538e3d937d01f0834dee68d28649a4e68bb49c10980e2152754f7fa634253",
+      "triangles": 298
+    },
+    {
+      "id": "shirt-volt",
+      "label": "Volt raglan",
+      "slot": "shirt",
+      "rig": "athlete-reference-v2",
+      "description": "Collection 02 connected sportswear: shared shoulder topology, body-size field and distinct collar/panel construction.",
+      "attachments": [
+        {
+          "node": "ref2_shirt-volt__root",
+          "socket": "root"
+        }
+      ],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
+      "tags": [],
+      "covers": [
+        "torso"
+      ],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
+      "url": "models/shirt-volt.glb",
+      "bytes": 34608,
+      "sha256": "37e698d2f0841c3369e143f09d7ad481e850f266830bb8e4db87d2914d7f305b",
+      "triangles": 302
+    },
+    {
+      "id": "face-ember",
+      "label": "Warm grin",
+      "slot": "face",
+      "rig": "athlete-reference-v2",
+      "description": "Ink-painted almond eyes, strong brows and an expressive mouth fitted to the actual head surface.",
+      "attachments": [
+        {
+          "node": "ref2_face-ember__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [],
+      "tags": [],
+      "texture": {
+        "maxDimension": 1024,
+        "maxCount": 1
+      },
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v2",
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
+        "mode": "surface",
+        "offset": 0.0015,
+        "maxDistance": 0.085,
+        "projection": "radial"
+      },
+      "url": "models/face-ember.glb",
+      "bytes": 92568,
+      "sha256": "5b1fb6a939cc4485b5dca2362c2114b668395dc05ff6e5fe70675f08b743e73c",
+      "triangles": 788
+    },
+    {
+      "id": "face-tide",
+      "label": "Freckled calm",
+      "slot": "face",
+      "rig": "athlete-reference-v2",
+      "description": "Ink-painted almond eyes, strong brows and an expressive mouth fitted to the actual head surface.",
+      "attachments": [
+        {
+          "node": "ref2_face-tide__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [],
+      "tags": [],
+      "texture": {
+        "maxDimension": 1024,
+        "maxCount": 1
+      },
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v2",
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
+        "mode": "surface",
+        "offset": 0.0015,
+        "maxDistance": 0.085,
+        "projection": "radial"
+      },
+      "url": "models/face-tide.glb",
+      "bytes": 92564,
+      "sha256": "c9720a684202864e191a16db107047f0557b732ad5282778ac477e870779d373",
+      "triangles": 788
+    },
+    {
+      "id": "face-volt",
+      "label": "Raised-brow smirk",
+      "slot": "face",
+      "rig": "athlete-reference-v2",
+      "description": "Ink-painted almond eyes, strong brows and an expressive mouth fitted to the actual head surface.",
+      "attachments": [
+        {
+          "node": "ref2_face-volt__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [],
+      "tags": [],
+      "texture": {
+        "maxDimension": 1024,
+        "maxCount": 1
+      },
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v2",
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
+        "mode": "surface",
+        "offset": 0.0015,
+        "maxDistance": 0.085,
+        "projection": "radial"
+      },
+      "url": "models/face-volt.glb",
+      "bytes": 92564,
+      "sha256": "8145aecd8d79780df90da97125d09ba241b931a58c0e9d9615763bde3ea683e5",
+      "triangles": 788
     },
     {
       "id": "facial-mustache",
@@ -851,7 +1164,7 @@
       },
       "url": "models/facial-mustache.glb",
       "bytes": 3900,
-      "sha256": "926cd36ee7c3afcbc7de224722c20f3b189cdfb0296f94f07517df4b2a5deec4",
+      "sha256": "e65a3f1dc98f612dc309a72e46578ec9288f7abf4cd34dd04d047b63bb1520ff",
       "triangles": 48
     },
     {
@@ -894,7 +1207,7 @@
       ],
       "url": "models/hat-club-cap.glb",
       "bytes": 18456,
-      "sha256": "4379a7f5e7f25b0b6d12b93c05aa16500197307c24f45b1039fa21ad96b0d649",
+      "sha256": "a44f5f96b36ea1857fdc0b61035984dd6d57cd5b96f71430d0742737416aca57",
       "triangles": 596
     },
     {
@@ -976,7 +1289,7 @@
       ],
       "url": "models/acc-glasses.glb",
       "bytes": 10520,
-      "sha256": "c7aff3d1bddc6dbe31989da74257ef80711895629bb80cb284a6224cc73e827b",
+      "sha256": "175c46d6cbfcd8add8fd8c914c554cea6c251f6986e482194c116de78c0e03cf",
       "triangles": 504
     },
     {
@@ -1000,7 +1313,7 @@
       ],
       "url": "models/acc-band.glb",
       "bytes": 5264,
-      "sha256": "4559a4fbe76155be067e75ca04a9c0db7c05f25d41de53d8c98f51f271663829",
+      "sha256": "5b7b1c5cc97ad0f234feeb1a248ec35b483ba6600abfc4c4e317e0059d60eb69",
       "triangles": 92
     },
     {
@@ -1022,7 +1335,7 @@
       "tags": [],
       "url": "models/acc-headphones.glb",
       "bytes": 18540,
-      "sha256": "f35367b2aeed1f001a5e8d7926f8ac461674d8d7c594bc1ce603a32813f0982e",
+      "sha256": "cf595ab2b3df8a8c6d5ebf96f99725958a88e8150849d3792b332ed0fe078597",
       "triangles": 240
     },
     {
@@ -1044,7 +1357,7 @@
       "effect": "orbit",
       "url": "models/effect-orbit.glb",
       "bytes": 22332,
-      "sha256": "1dea37a43ef4a217e0fc3fcb3705a86ecfdb4056d9cf12431831a2dc45a71ce6",
+      "sha256": "de734968072faa2511967d40b86d4069f4ac9559e97251ee0fbf4d853dc08f15",
       "triangles": 392
     },
     {
@@ -1066,7 +1379,7 @@
       "effect": "spark",
       "url": "models/effect-spark.glb",
       "bytes": 11692,
-      "sha256": "bfea4d5d7940d96270a7910d9f0bdcd4b456c2a98e18136b44bf8c4a339ca022",
+      "sha256": "7e933fd247580fc846adc37fdd81c72d263eee025ff3d79d9b9d507f223efa79",
       "triangles": 100
     }
   ],
@@ -1124,6 +1437,14 @@
       ]
     ],
     "leanFactor": 0.55,
+    "neck": {
+      "socket": "head",
+      "bottom": -0.36,
+      "top": -0.12,
+      "radius": 0.1,
+      "falloff": 0.035,
+      "gain": 0.34
+    },
     "limbs": [
       {
         "joints": [

@@ -327,9 +327,9 @@ def make_head(id,label,wide=1):
         obj=mesh('Drawn ear hollow',inset,[(0,1,2,3,4)],ink,p)
     d['surface']={'id':'face-v2','frame':[FRAME[0],FRAME[1],FRAME[2]*wide,FRAME[3]]};export(r,d)
 
-def make_face(id,label,index):
+def make_face(id,label,index,texture="face-ink.png"):
     r,d=asset(id,label,'face','Ink-painted almond eyes, strong brows and an expressive mouth fitted to the actual head surface.');p=mount(r,d,'head')
-    art=bpy.data.images.load(str(ROOT/'assets/textures/face-ink.png'),check_existing=False)
+    art=bpy.data.images.load(str(ROOT/'assets/textures'/texture),check_existing=False)
     m=bpy.data.materials.new('face-ink');m.use_nodes=True;bs=m.node_tree.nodes.get('Principled BSDF');tex=m.node_tree.nodes.new('ShaderNodeTexImage');tex.image=art
     m.node_tree.links.new(tex.outputs['Color'],bs.inputs['Base Color']);m.node_tree.links.new(tex.outputs['Alpha'],bs.inputs['Alpha']);m.surface_render_method='DITHERED';m.use_backface_culling=True
     vs=[];uvs=[];ys=[-.185]+[y for y in head_rows() if -.162<=y<=.092]+[.13];columns=17
@@ -556,6 +556,8 @@ for id,label,style in [('shirt-jersey','Study jersey','jersey'),('shirt-hoodie',
 make_bottom('bottom-court','Court shorts');make_bottom('bottom-training','Long court shorts',True)
 for id,label,style in [('shoes-court','Study sneakers','court'),('shoes-runner','Court runner','runner'),('shoes-high','Court high','high')]:make_shoes(id,label,style)
 
+exec(compile((ROOT/'assets/source/collection_02.py').read_text(), 'collection_02.py', 'exec'),globals())
+
 # The existing authored accessories stay single-source. Their coordinate frame is
 # uniformly mapped to the new head family once, never once per hairstyle.
 exec(compile((ROOT/'assets/source/accessories.py').read_text(), 'reference-accessories', 'exec'),globals())
@@ -601,11 +603,12 @@ for id,label,style in [('effect-orbit','Golden orbit','orbit'),('effect-spark','
     export(r,d)
 
 slots=[{'id':s,'label':label,'required':required} for s,label,required in [('head','Head',True),('face','Face',True),('hair','Hair',False),('facialHair','Facial hair',False),('eyewear','Glasses',False),('headwear','Hats',False),('shirt','Tops',True),('bottom','Bottoms',True),('shoes','Footwear',True),('accessory','Accessories',False),('effect','Effects',False)]]
-catalog={'version':1,'id':'zoomap-athletics','revision':'2.0.0','rig':{'id':'athlete-reference-v2','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
+catalog={'version':1,'id':'zoomap-athletics','revision':'2.1.0','rig':{'id':'athlete-reference-v2','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
 catalog['bodyRegions']=['torso','upper-legs','feet']
 catalog['bodyShape']={
     'weightProfile':[[0,0,0],[.80,0,0],[.99,.18,.24],[1.13,.34,.46],[1.30,.24,.32],[1.48,.06,.06],[1.61,0,0],[2.04,0,0]],
     'leanFactor':.55,
+    'neck':{'socket':'head','bottom':-.36,'top':-.12,'radius':.10,'falloff':.035,'gain':.34},
     'limbs':[{'joints':['arm_'+side,'forearm_'+side,'hand_'+side],'radius':.095,'falloff':.055,'endMargin':.15,'profile':[[0,.22],[.40,.34],[.58,.24],[.78,.30],[1,0]]} for side in ['L','R']]+
             [{'joints':['leg_'+side,'shin_'+side,'foot_'+side],'radius':.11,'falloff':.045,'endMargin':.20,'profile':[[0,.28],[.30,.38],[.53,.18],[.70,.38],[1,0]]} for side in ['L','R']]}
 
@@ -653,7 +656,7 @@ def outline_copy(obj):
     bm.to_mesh(hull.data);bm.free();hull.data.materials.clear();hull.data.materials.append(ink_hull)
     for poly in hull.data.polygons:poly.material_index=0
     hull.visible_shadow=False
-def preview(name, ids, x=0, angle=0, grey=False):
+def preview(name, ids, x=0, angle=0, grey=False, colors=None):
     root=empty(name);root.location.x=x;root.rotation_euler.z=angle
     covered={region for a in assets if a['id'] in ids for region in a.get('covers',[])}
     head_bvh=None
@@ -665,7 +668,7 @@ def preview(name, ids, x=0, angle=0, grey=False):
                 if obj.type!='MESH':continue
                 copy=obj.copy();copy.data=obj.data.copy();copy.modifiers.clear();scene.collection.objects.link(copy);copy.parent=root;copy.hide_render=False
                 if obj.get('avatarRegion') in covered:copy.hide_render=True;copy.hide_set(True)
-                copy.location=Vector(co(positions[mount_info['socket']]));copy.rotation_euler=(0,0,0)
+                copy.matrix_basis=obj.matrix_basis.copy();copy.location+=Vector(co(positions[mount_info['socket']]))
                 if id.startswith('head-'):
                     from mathutils.bvhtree import BVHTree
                     copy.data.calc_loop_triangles();head_bvh=BVHTree.FromPolygons([v.co for v in copy.data.vertices],[tuple(t.vertices) for t in copy.data.loop_triangles],all_triangles=True)
@@ -677,7 +680,11 @@ def preview(name, ids, x=0, angle=0, grey=False):
                 if grey:
                     for i,material in enumerate(copy.data.materials):
                         if material.get('paletteChannel')=='skin':copy.data.materials[i]=grey_material
-                for i,m in enumerate(copy.data.materials):copy.data.materials[i]=toon(m)
+                for i,m in enumerate(copy.data.materials):
+                    channel=m.get('paletteChannel')
+                    if colors and channel in colors:
+                        m=m.copy();color(m,colors[channel])
+                    copy.data.materials[i]=toon(m)
                 if id.startswith('face-'):excluded.objects.link(copy)
     # Rasterized inverted hulls respect the expression texture's alpha. Freestyle
     # treats a transparent facial carrier as an occluder and drops jaw outlines.
@@ -712,6 +719,7 @@ line_style=bpy.context.view_layer.freestyle_settings.linesets[0].linestyle
 line_style.color=(.018,.022,.026);line_style.thickness=1.4
 lines=bpy.context.view_layer.freestyle_settings.linesets[0];lines.select_crease=False;lines.select_border=True;lines.select_silhouette=True
 lines.select_by_collection=True;lines.collection=excluded;lines.collection_negation='EXCLUSIVE'
+exec(compile((ROOT/'assets/source/collection_review.py').read_text(), 'collection_review.py', 'exec'),globals())
 for obj in set(bpy.data.objects)-before:obj['zmap_reference']=True
 for source in roots:
     source.hide_set(True)

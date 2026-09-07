@@ -42,8 +42,8 @@ test("all catalog assets match their hashes, budgets and self-contained attachme
     total += bytes.length;
   }
   assert.ok(
-    total < 1500000,
-    "whole illustrated kit stays under 1.5 MB; appearance budgets are checked separately",
+    total < 2100000,
+    "expanded 33-part illustrated kit stays under 2.1 MB; appearance budgets are checked separately",
   );
 });
 test("every supported combination fits the common rig and resource budgets", () => {
@@ -66,7 +66,7 @@ test("every supported combination fits the common rig and resource budgets", () 
     }
   };
   visit(0);
-  assert.equal(combinations, 31104);
+  assert.equal(combinations, 217728);
 });
 test("recipes reject unknown parts, URLs, wrong slots, extra fields, rig drift and unbounded colors", () => {
   const base = defaultRecipe(catalog);

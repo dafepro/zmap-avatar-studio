@@ -2,8 +2,10 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
 
-const source = new URL("../assets/textures/face-ink.svg", import.meta.url);
-const output = new URL("../assets/textures/face-ink.png", import.meta.url);
+const basename = process.argv[2] || "face-ink";
+if (!/^[a-z0-9-]+$/.test(basename)) throw Error("Invalid texture name");
+const source = new URL(`../assets/textures/${basename}.svg`, import.meta.url);
+const output = new URL(`../assets/textures/${basename}.png`, import.meta.url);
 const browser = await chromium.launch({
   channel: process.env.ZMAP_BROWSER_CHANNEL || "chrome",
   headless: true,

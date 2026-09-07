@@ -170,7 +170,9 @@ test("reference jerseys hide covered shoulder skin while keeping forearms and ha
   camera.updateMatrixWorld(true);
   const raycaster = new THREE.Raycaster();
   try {
-    for (const shirt of ["shirt-hoodie", "shirt-track"]) {
+    for (const shirt of catalog.assets
+      .filter((a) => a.slot === "shirt")
+      .map((a) => a.id)) {
       const avatar = library.create();
       try {
         const recipe = defaultRecipe(catalog);

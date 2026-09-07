@@ -67,6 +67,15 @@ export type Catalog = {
     weightProfile: [number, number, number][];
     /** Less tissue is removed at -1 than is added at +1. */
     leanFactor: number;
+    /** Local neck tissue field; collars sample it with the body. */
+    neck?: {
+      socket: string;
+      bottom: number;
+      top: number;
+      radius: number;
+      falloff: number;
+      gain: number;
+    };
     /** Shared spatial fields, independent of mesh topology or asset names. */
     limbs: {
       joints: string[];
@@ -157,7 +166,22 @@ export function validateCatalog(input: unknown): asserts input is Catalog {
     fail("coverage", "Invalid body regions");
   if (c.bodyShape !== undefined) {
     if (!record(c.bodyShape)) fail("shape", "Invalid body shape contract");
-    keys(c.bodyShape, ["weightProfile", "leanFactor", "limbs"]);
+    keys(c.bodyShape, ["weightProfile", "leanFactor", "limbs", "neck"]);
+    const neck = c.bodyShape.neck;
+    if (neck !== undefined) {
+      if (!record(neck)) fail("shape", "Invalid neck volume contract");
+      keys(neck, ["socket", "bottom", "top", "radius", "falloff", "gain"]);
+      if (
+        !sockets.has(neck.socket) ||
+        !number(neck.bottom, -1, 0) ||
+        !number(neck.top, -1, 0) ||
+        neck.top - neck.bottom < 0.04 ||
+        !number(neck.radius, 0.02, 0.2) ||
+        !number(neck.falloff, 0.005, 0.15) ||
+        !number(neck.gain, 0, 0.6)
+      )
+        fail("shape", "Invalid neck volume contract");
+    }
     if (
       !number(c.bodyShape.leanFactor, 0.1, 1) ||
       !Array.isArray(c.bodyShape.limbs) ||

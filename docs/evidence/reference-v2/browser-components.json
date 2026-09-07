@@ -4,7 +4,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -30,7 +30,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 29.400000035762787,
+    "assemblyMs": 20.59999990463257,
     "meshes": 46,
     "triangles": 18980,
     "sourceTriangles": 9884,
@@ -41,7 +41,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -58,6 +58,43 @@
       },
       "colors": {
         "skin": "#bcb9b5",
+        "primary": "#f4f1eb",
+        "secondary": "#292b2d",
+        "trim": "#f5f2eb",
+        "hair": "#594333"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "assemblyMs": 2.8000000715255737,
+    "meshes": 46,
+    "triangles": 18980,
+    "sourceTriangles": 9884,
+    "parts": 7
+  },
+  {
+    "label": "STUDY / FRONT",
+    "recipe": {
+      "version": 1,
+      "catalog": "zoomap-athletics",
+      "revision": "2.1.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-focus",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-jersey",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#d3a17a",
         "primary": "#f4f1eb",
         "secondary": "#292b2d",
         "trim": "#f5f2eb",
@@ -74,48 +111,11 @@
     "parts": 7
   },
   {
-    "label": "STUDY / FRONT",
-    "recipe": {
-      "version": 1,
-      "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
-      "rig": "athlete-reference-v2",
-      "parts": {
-        "head": "head-scout",
-        "face": "face-focus",
-        "hair": "hair-sweep",
-        "facialHair": null,
-        "eyewear": null,
-        "headwear": null,
-        "shirt": "shirt-jersey",
-        "bottom": "bottom-court",
-        "shoes": "shoes-court",
-        "accessory": null,
-        "effect": null
-      },
-      "colors": {
-        "skin": "#d3a17a",
-        "primary": "#f4f1eb",
-        "secondary": "#292b2d",
-        "trim": "#f5f2eb",
-        "hair": "#594333"
-      },
-      "body": {
-        "weight": 0
-      }
-    },
-    "assemblyMs": 2.600000023841858,
-    "meshes": 46,
-    "triangles": 18980,
-    "sourceTriangles": 9884,
-    "parts": 7
-  },
-  {
     "label": "STUDY / PROFILE",
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -141,7 +141,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.699999988079071,
+    "assemblyMs": 2.200000047683716,
     "meshes": 46,
     "triangles": 18980,
     "sourceTriangles": 9884,
@@ -152,7 +152,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -178,7 +178,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.399999976158142,
+    "assemblyMs": 2.299999952316284,
     "meshes": 46,
     "triangles": 18980,
     "sourceTriangles": 9884,
@@ -189,7 +189,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -215,7 +215,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.300000011920929,
+    "assemblyMs": 2.299999952316284,
     "meshes": 46,
     "triangles": 18980,
     "sourceTriangles": 9884,
@@ -226,7 +226,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -252,7 +252,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.300000011920929,
+    "assemblyMs": 2.100000023841858,
     "meshes": 46,
     "triangles": 18980,
     "sourceTriangles": 9884,
@@ -263,7 +263,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -289,7 +289,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.300000011920929,
+    "assemblyMs": 2.200000047683716,
     "meshes": 46,
     "triangles": 18980,
     "sourceTriangles": 9884,
@@ -300,7 +300,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -326,7 +326,7 @@
         "weight": -1
       }
     },
-    "assemblyMs": 18.5,
+    "assemblyMs": 18.100000023841858,
     "meshes": 46,
     "triangles": 18980,
     "sourceTriangles": 9884,
@@ -337,7 +337,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -363,7 +363,7 @@
         "weight": 1
       }
     },
-    "assemblyMs": 16.599999964237213,
+    "assemblyMs": 16.899999976158142,
     "meshes": 46,
     "triangles": 18980,
     "sourceTriangles": 9884,
@@ -374,7 +374,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -400,7 +400,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 103.39999997615814,
+    "assemblyMs": 107.30000007152557,
     "meshes": 56,
     "triangles": 24632,
     "sourceTriangles": 12710,
@@ -411,7 +411,7 @@
     "recipe": {
       "version": 1,
       "catalog": "zoomap-athletics",
-      "revision": "2.0.0",
+      "revision": "2.1.0",
       "rig": "athlete-reference-v2",
       "parts": {
         "head": "head-scout",
@@ -437,7 +437,7 @@
         "weight": 1
       }
     },
-    "assemblyMs": 108.60000002384186,
+    "assemblyMs": 111.90000009536743,
     "meshes": 56,
     "triangles": 24632,
     "sourceTriangles": 12710,

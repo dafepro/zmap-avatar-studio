@@ -242,3 +242,99 @@ test("arm and leg cross-sections gain tissue around their own axes without bowin
     material.dispose();
   }
 });
+
+test("neck girth follows body size while face landmarks, height and rig stay fixed", async () => {
+  const lib = library(),
+    avatar = lib.create();
+  try {
+    const recipe = defaultRecipe(catalog);
+    await avatar.setAppearance(recipe);
+    const rest = vertices(avatar);
+    const neck = rest
+      .map((p, i) => ({ p, i }))
+      .filter(
+        ({ p }) => p.y > 1.54 && p.y < 1.57 && Math.hypot(p.x, p.z) < 0.07,
+      );
+    assert.ok(neck.length > 8, "sample actual exposed neck surface");
+    for (const weight of [-1, 1]) {
+      await avatar.setAppearance({ ...recipe, body: { weight } });
+      const points = vertices(avatar);
+      const ratio =
+        neck.reduce(
+          (sum, { p, i }) =>
+            sum + Math.hypot(points[i].x, points[i].z) / Math.hypot(p.x, p.z),
+          0,
+        ) / neck.length;
+      assert.ok(
+        weight > 0 ? ratio > 1.2 && ratio < 1.4 : ratio < 0.9 && ratio > 0.75,
+        `neck radial ratio ${ratio}`,
+      );
+      for (const { p, i } of rest
+        .map((p, i) => ({ p, i }))
+        .filter(({ p }) => p.y > 1.7))
+        assert.ok(
+          points[i].distanceTo(p) < 1e-6,
+          "upper face and scalp are unchanged",
+        );
+    }
+    for (const alter of [
+      (c: Catalog) => (c.bodyShape!.neck!.gain = NaN),
+      (c: Catalog) => (c.bodyShape!.neck!.top = c.bodyShape!.neck!.bottom),
+      (c: Catalog) => (c.bodyShape!.neck!.socket = "missing"),
+    ]) {
+      const c = structuredClone(catalog);
+      alter(c);
+      assert.throws(() => validateCatalog(c));
+    }
+  } finally {
+    avatar.dispose();
+    lib.dispose();
+  }
+});
+
+test("standing collar stays outside the actual neck at every body-size endpoint", async () => {
+  const lib = library();
+  try {
+    for (const weight of [-1, 0, 1]) {
+      const avatar = lib.create();
+      try {
+        const recipe = defaultRecipe(catalog);
+        recipe.parts.shirt = "shirt-ember";
+        recipe.body = { weight };
+        await avatar.setAppearance(recipe);
+        avatar.object.updateMatrixWorld(true);
+        const body: THREE.Mesh[] = [],
+          cloth: THREE.Mesh[] = [];
+        avatar.object.traverse((o) => {
+          if (!(o instanceof THREE.Mesh)) return;
+          let parent: THREE.Object3D | null = o;
+          while (parent && !parent.userData.assetId) parent = parent.parent;
+          if (parent?.userData.assetId === "body-athletic" && o.visible)
+            body.push(o);
+          if (parent?.userData.assetId === "shirt-ember") cloth.push(o);
+        });
+        for (const y of [1.55, 1.555, 1.56])
+          for (const x of [-0.025, 0, 0.025]) {
+            const ray = new THREE.Raycaster(
+              new THREE.Vector3(x, y, 2),
+              new THREE.Vector3(0, 0, -1),
+            );
+            const skin = ray.intersectObjects(body, false)[0],
+              shirt = ray.intersectObjects(cloth, false)[0];
+            assert.ok(
+              skin && shirt,
+              "neck and standing collar must exist at the probe",
+            );
+            assert.ok(
+              shirt.distance < skin.distance - 0.003,
+              `collar clearance at weight ${weight}, ${x},${y}`,
+            );
+          }
+      } finally {
+        avatar.dispose();
+      }
+    }
+  } finally {
+    lib.dispose();
+  }
+});

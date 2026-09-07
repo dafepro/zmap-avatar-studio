@@ -1,0 +1,110 @@
+[
+  {
+    "id": "ember",
+    "col": 0,
+    "weight": 0,
+    "meshes": 46,
+    "triangles": 19244,
+    "sourceTriangles": 10016,
+    "parts": 7
+  },
+  {
+    "id": "ember",
+    "col": 1,
+    "weight": 0,
+    "meshes": 46,
+    "triangles": 19244,
+    "sourceTriangles": 10016,
+    "parts": 7
+  },
+  {
+    "id": "ember",
+    "col": 2,
+    "weight": 0,
+    "meshes": 46,
+    "triangles": 19244,
+    "sourceTriangles": 10016,
+    "parts": 7
+  },
+  {
+    "id": "ember",
+    "col": 3,
+    "weight": 0,
+    "meshes": 56,
+    "triangles": 23188,
+    "sourceTriangles": 11988,
+    "parts": 10
+  },
+  {
+    "id": "tide",
+    "col": 0,
+    "weight": 0,
+    "meshes": 44,
+    "triangles": 18716,
+    "sourceTriangles": 9752,
+    "parts": 7
+  },
+  {
+    "id": "tide",
+    "col": 1,
+    "weight": 0,
+    "meshes": 44,
+    "triangles": 18716,
+    "sourceTriangles": 9752,
+    "parts": 7
+  },
+  {
+    "id": "tide",
+    "col": 2,
+    "weight": 0,
+    "meshes": 44,
+    "triangles": 18716,
+    "sourceTriangles": 9752,
+    "parts": 7
+  },
+  {
+    "id": "tide",
+    "col": 3,
+    "weight": 0,
+    "meshes": 54,
+    "triangles": 24564,
+    "sourceTriangles": 12676,
+    "parts": 10
+  },
+  {
+    "id": "volt",
+    "col": 0,
+    "weight": 0,
+    "meshes": 48,
+    "triangles": 18940,
+    "sourceTriangles": 9864,
+    "parts": 7
+  },
+  {
+    "id": "volt",
+    "col": 1,
+    "weight": 0,
+    "meshes": 48,
+    "triangles": 18940,
+    "sourceTriangles": 9864,
+    "parts": 7
+  },
+  {
+    "id": "volt",
+    "col": 2,
+    "weight": 0,
+    "meshes": 48,
+    "triangles": 18940,
+    "sourceTriangles": 9864,
+    "parts": 7
+  },
+  {
+    "id": "volt",
+    "col": 3,
+    "weight": 0,
+    "meshes": 58,
+    "triangles": 22744,
+    "sourceTriangles": 11766,
+    "parts": 10
+  }
+]

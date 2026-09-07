@@ -30,6 +30,8 @@ The launch catalog caps an assembled avatar at 14,000 source triangles, 1.5 MB a
 
 `body.weight` is finite in [-1, 1]. It requires a catalog `bodyShape` contract: a bounded torso `weightProfile`, `leanFactor`, and up to eight limb fields. Each limb names a connected nondegenerate socket chain, `radius`, `falloff`, terminal `endMargin`, and a bounded profile of `[fractionAlongChain, tissueGain]` pairs. The terminal gain must be zero. Shape changes expand tissue perpendicular to limb centerlines without moving the skeleton. All parts sample the same rest-space field; no per-weight garments or height setting are involved. Overall height and floor contact remain fixed. See the reference workflow for the visual correction that motivated this contract.
 
+The optional `bodyShape.neck` field names a socket, negative `bottom`/`top` height offsets, a radial influence `radius`/`falloff`, and bounded `gain`. It expands neck and collar tissue about that socket axis with smooth vertical transitions; it does not scale the face or move the head. Catalogs without this field retain their prior behavior.
+
 Surface fitting defaults to front projection. A face may declare `projection: "radial"` with `mode: "surface"`; actual horizontal head cross-sections then support cheek/profile paint. Material extras `expressionProjection: "front" | "profile"` enable an authored camera-angle transition in both lit and illustrated materials. This is a built-in bounded behavior, never catalog-provided shader code. Front and profile art share one embedded atlas. Missing surfaces and excessive fitting distances reject the whole candidate.
 
 ## Loading and lifecycle

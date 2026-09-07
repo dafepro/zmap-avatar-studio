@@ -91,7 +91,9 @@ test("mustache follows both heads and every expression; glasses clear actual hea
   const library = new AvatarLibrary(catalog, "https://assets.test/", fetcher);
   try {
     for (const head of ["head-scout", "head-spark"])
-      for (const face of ["face-focus", "face-grin", "face-wink"]) {
+      for (const face of catalog.assets
+        .filter((a) => a.slot === "face")
+        .map((a) => a.id)) {
         const recipe = defaultRecipe(catalog);
         Object.assign(recipe.parts, {
           head,
@@ -145,7 +147,9 @@ test("one hair asset fits cap and glasses, restores on removal, and isolates oth
     },
   );
   try {
-    for (const hair of ["hair-sweep", "hair-curls", "hair-pony"])
+    for (const hair of catalog.assets
+      .filter((a) => a.slot === "hair")
+      .map((a) => a.id))
       for (const head of ["head-scout", "head-spark"])
         for (const worn of ["hat", "glasses", "both"]) {
           const recipe = defaultRecipe(catalog);
@@ -200,7 +204,7 @@ test("one hair asset fits cap and glasses, restores on removal, and isolates oth
         }
     assert.equal(
       requests.filter((p) => /hair-.*\.glb$/.test(p)).length,
-      3,
+      catalog.assets.filter((a) => a.slot === "hair").length,
       "one download per original hairstyle, independent of cap state",
     );
   } finally {
@@ -282,7 +286,10 @@ test("every head/hair/hat/glasses state stays in budget with the heaviest remain
         .sort((a, b) => b.triangles - a.triangles)[0]!.id;
     let worst = 0;
     for (const head of ["head-scout", "head-spark"])
-      for (const hair of [null, "hair-sweep", "hair-curls", "hair-pony"])
+      for (const hair of [
+        null,
+        ...catalog.assets.filter((a) => a.slot === "hair").map((a) => a.id),
+      ])
         for (const hat of [null, "hat-club-cap"])
           for (const glasses of [null, "acc-glasses"]) {
             Object.assign(recipe.parts, {
@@ -335,6 +342,45 @@ test("a surface fitting failure retains the previous complete appearance", async
     assert.deepEqual(avatar.recipe, recipe);
   } finally {
     avatar.dispose();
+    library.dispose();
+  }
+});
+
+test("collection scalps cover the crown on both heads from overhead", async () => {
+  const library = new AvatarLibrary(catalog, "https://assets.test/", fetcher);
+  try {
+    for (const head of ["head-scout", "head-spark"])
+      for (const hair of ["hair-ember", "hair-tide", "hair-volt"]) {
+        const avatar = library.create();
+        try {
+          const recipe = defaultRecipe(catalog);
+          Object.assign(recipe.parts, { head, hair });
+          await avatar.setAppearance(recipe);
+          avatar.object.updateMatrixWorld(true);
+          const skin = meshes(avatar.object, head),
+            cap = meshes(avatar.object, hair);
+          let checked = 0;
+          for (let x = -0.15; x <= 0.15; x += 0.015)
+            for (let z = -0.17; z <= 0.13; z += 0.015) {
+              const ray = new THREE.Raycaster(
+                new THREE.Vector3(x, 3, z),
+                new THREE.Vector3(0, -1, 0),
+              );
+              const headHit = ray.intersectObjects(skin, false)[0];
+              if (!headHit || headHit.point.y < 1.95) continue;
+              const hairHit = ray.intersectObjects(cap, false)[0];
+              checked++;
+              assert.ok(
+                hairHit && hairHit.distance < headHit.distance - 0.001,
+                `${head}/${hair} crown exposed at ${x.toFixed(3)},${z.toFixed(3)} (skin ${headHit.point.y}, hair ${hairHit?.point.y})`,
+              );
+            }
+          assert.ok(checked > 100);
+        } finally {
+          avatar.dispose();
+        }
+      }
+  } finally {
     library.dispose();
   }
 });
