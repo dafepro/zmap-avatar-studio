@@ -33,6 +33,7 @@ def render_novelty_views(styles=None):
     output=ROOT/'docs/evidence/novelty';output.mkdir(parents=True,exist_ok=True)
     review_roots=[study_front,study_side,look_front,look_three,look_side]
     review_roots+=list(collection_previews.values())+list(hair_previews.values())+list(novelty_previews.values())
+    review_roots+=list(globals().get('wield_previews',{}).values())
     visibility={o:o.hide_render for root in review_roots for o in [root,*root.children_recursive]}
     previous=(scene.camera,scene.render.resolution_x,scene.render.resolution_y,scene.render.resolution_percentage,
               scene.render.filepath,scene.render.image_settings.file_format)

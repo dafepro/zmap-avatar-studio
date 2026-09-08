@@ -1,8 +1,12 @@
 {
   "version": 1,
   "id": "zoomap-athletics",
-  "revision": "2.4.0",
-  "compatibleRecipeRevisions": ["2.2.0", "2.3.0"],
+  "revision": "2.5.0",
+  "compatibleRecipeRevisions": [
+    "2.2.0",
+    "2.3.0",
+    "2.4.0"
+  ],
   "rig": {
     "id": "athlete-reference-v2",
     "height": 2.04,
@@ -10,82 +14,146 @@
       {
         "id": "root",
         "parent": null,
-        "position": [0, 0, 0]
+        "position": [
+          0,
+          0,
+          0
+        ]
       },
       {
         "id": "hips",
         "parent": "root",
-        "position": [0, 0.99, 0]
+        "position": [
+          0,
+          0.99,
+          0
+        ]
       },
       {
         "id": "chest",
         "parent": "hips",
-        "position": [0, 0.31, 0]
+        "position": [
+          0,
+          0.31,
+          0
+        ]
       },
       {
         "id": "head",
         "parent": "chest",
-        "position": [0, 0.51, 0]
+        "position": [
+          0,
+          0.51,
+          0
+        ]
       },
       {
         "id": "arm_L",
         "parent": "chest",
-        "position": [-0.204, 0.155, 0]
+        "position": [
+          -0.204,
+          0.155,
+          0
+        ]
       },
       {
         "id": "forearm_L",
         "parent": "arm_L",
-        "position": [-0.065, -0.27, 0]
+        "position": [
+          -0.065,
+          -0.27,
+          0
+        ]
       },
       {
         "id": "hand_L",
         "parent": "forearm_L",
-        "position": [-0.064, -0.217, 0.007]
+        "position": [
+          -0.064,
+          -0.217,
+          0.007
+        ]
       },
       {
         "id": "leg_L",
         "parent": "hips",
-        "position": [-0.11, 0, 0]
+        "position": [
+          -0.11,
+          0,
+          0
+        ]
       },
       {
         "id": "shin_L",
         "parent": "leg_L",
-        "position": [-0.06, -0.43, 0.013]
+        "position": [
+          -0.06,
+          -0.43,
+          0.013
+        ]
       },
       {
         "id": "foot_L",
         "parent": "shin_L",
-        "position": [-0.055, -0.44, -0.003]
+        "position": [
+          -0.055,
+          -0.44,
+          -0.003
+        ]
       },
       {
         "id": "arm_R",
         "parent": "chest",
-        "position": [0.204, 0.155, 0]
+        "position": [
+          0.204,
+          0.155,
+          0
+        ]
       },
       {
         "id": "forearm_R",
         "parent": "arm_R",
-        "position": [0.065, -0.27, 0]
+        "position": [
+          0.065,
+          -0.27,
+          0
+        ]
       },
       {
         "id": "hand_R",
         "parent": "forearm_R",
-        "position": [0.064, -0.217, 0.007]
+        "position": [
+          0.064,
+          -0.217,
+          0.007
+        ]
       },
       {
         "id": "leg_R",
         "parent": "hips",
-        "position": [0.11, 0, 0]
+        "position": [
+          0.11,
+          0,
+          0
+        ]
       },
       {
         "id": "shin_R",
         "parent": "leg_R",
-        "position": [0.06, -0.43, 0.013]
+        "position": [
+          0.06,
+          -0.43,
+          0.013
+        ]
       },
       {
         "id": "foot_R",
         "parent": "shin_R",
-        "position": [0.055, -0.44, -0.003]
+        "position": [
+          0.055,
+          -0.44,
+          -0.003
+        ]
       }
     ]
   },
@@ -169,7 +237,9 @@
           "socket": "root"
         }
       ],
-      "channels": ["skin"],
+      "channels": [
+        "skin"
+      ],
       "tags": [],
       "skin": {
         "bones": [
@@ -192,8 +262,8 @@
         ]
       },
       "url": "models/body-athletic.glb",
-      "bytes": 341076,
-      "sha256": "ec50b5518755adc49b53c33f5292b3f90ffe99553d913ea2703a8492fc0d69d2",
+      "bytes": 341168,
+      "sha256": "812b9559306a52557324461ddeca796a119c910521f79f77c7233dac96892011",
       "triangles": 5791
     },
     {
@@ -208,15 +278,22 @@
           "socket": "head"
         }
       ],
-      "channels": ["skin"],
+      "channels": [
+        "skin"
+      ],
       "tags": [],
       "surface": {
         "id": "face-v2",
-        "frame": [0, -0.041, 0.326, 0.318]
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ]
       },
       "url": "models/head-scout.glb",
       "bytes": 23072,
-      "sha256": "2ba36990f98e438d193ed500fa79aa0182b793df66cf35b62deb959be74d5ee8",
+      "sha256": "297c1d67ce89d193cec3895f02937d4f4077b6706c772f4394fbb5f24a0a3292",
       "triangles": 1074
     },
     {
@@ -231,15 +308,22 @@
           "socket": "head"
         }
       ],
-      "channels": ["skin"],
+      "channels": [
+        "skin"
+      ],
       "tags": [],
       "surface": {
         "id": "face-v2",
-        "frame": [0, -0.041, 0.34719, 0.318]
+        "frame": [
+          0,
+          -0.041,
+          0.34719,
+          0.318
+        ]
       },
       "url": "models/head-spark.glb",
       "bytes": 23072,
-      "sha256": "48b7bc1b376a7d44384e716847aff805e6225acb14a541f4f2abc394d7a33c91",
+      "sha256": "0a6e516f60e3ba30c02b522d420d2ed33d0fc8d26e45ef9e742b53cf5a8e81bd",
       "triangles": 1074
     },
     {
@@ -263,7 +347,12 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [0, -0.041, 0.326, 0.318],
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -271,7 +360,7 @@
       },
       "url": "models/face-focus.glb",
       "bytes": 84764,
-      "sha256": "a67eb85680422126e92a83113450ed2ad41e3a73c1735cd3568907dec60fb74e",
+      "sha256": "357c734ffb1bef2feed9cee661e4396b00b73c150a789c3b00b319cc28f5c7a0",
       "triangles": 788
     },
     {
@@ -295,7 +384,12 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [0, -0.041, 0.326, 0.318],
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -303,7 +397,7 @@
       },
       "url": "models/face-grin.glb",
       "bytes": 84760,
-      "sha256": "e2b0ca813965d5252d8be2ba184b5cb0de98ad601bd5961e13138156ead0a841",
+      "sha256": "b628d420f780e856a112c82fc27433d2b4915001e737d8965b3a2f665392d454",
       "triangles": 788
     },
     {
@@ -327,7 +421,12 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [0, -0.041, 0.326, 0.318],
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -335,7 +434,7 @@
       },
       "url": "models/face-wink.glb",
       "bytes": 84760,
-      "sha256": "b58f6bf199744012bfa9f23dad86c1d4181d38cac2024d2e42445ecb5a9267ee",
+      "sha256": "5c3bc71f37259b73f37a7a8a2c1ee606247c03a9677055e92d9ec28e3459b8b6",
       "triangles": 788
     },
     {
@@ -350,11 +449,13 @@
           "socket": "head"
         }
       ],
-      "channels": ["hair"],
+      "channels": [
+        "hair"
+      ],
       "tags": [],
       "url": "models/hair-sweep.glb",
       "bytes": 30220,
-      "sha256": "d65b2b84cee8efcda47d6b8eeee07bff8ef7639db98831e8b2695e694afb719c",
+      "sha256": "7f80580deb2e61d467197f03770d4e95ee6e5ab1d840196228e41c71dd2d4ba1",
       "triangles": 750
     },
     {
@@ -369,11 +470,13 @@
           "socket": "head"
         }
       ],
-      "channels": ["hair"],
+      "channels": [
+        "hair"
+      ],
       "tags": [],
       "url": "models/hair-curls.glb",
       "bytes": 30220,
-      "sha256": "20cc745c0b0536a0c948ae9906576bd4cb5c917d138f6858d423344a825b50ca",
+      "sha256": "26995204c8caf184b2612e56b83af2c59bfed3c0c20d41a15a165dfe30538503",
       "triangles": 750
     },
     {
@@ -388,11 +491,14 @@
           "socket": "head"
         }
       ],
-      "channels": ["secondary", "hair"],
+      "channels": [
+        "secondary",
+        "hair"
+      ],
       "tags": [],
       "url": "models/hair-pony.glb",
       "bytes": 52176,
-      "sha256": "ad0569caa6f91e6734c85af0ce73b29c7b374de4418167c38dbb3e80c61d5b0b",
+      "sha256": "33d533ac8c5c0c35fabf55fd2c2274ab0919dfd568951823b2bcc11a79dbd6d3",
       "triangles": 998
     },
     {
@@ -407,9 +513,14 @@
           "socket": "root"
         }
       ],
-      "channels": ["primary", "secondary"],
+      "channels": [
+        "primary",
+        "secondary"
+      ],
       "tags": [],
-      "covers": ["torso"],
+      "covers": [
+        "torso"
+      ],
       "texture": {
         "maxDimension": 256,
         "maxCount": 1
@@ -436,7 +547,7 @@
       },
       "url": "models/shirt-jersey.glb",
       "bytes": 47532,
-      "sha256": "2a546f0a9136220b87c70ce93620cd1c892cd5403871f2ee4ad4a9ceaf04f0af",
+      "sha256": "6524a235e0d2ef7b620f72129e8725cdb8caa0873f26760e49e6e8fcf30e2df2",
       "triangles": 298
     },
     {
@@ -451,9 +562,14 @@
           "socket": "root"
         }
       ],
-      "channels": ["primary", "secondary"],
+      "channels": [
+        "primary",
+        "secondary"
+      ],
       "tags": [],
-      "covers": ["torso"],
+      "covers": [
+        "torso"
+      ],
       "texture": {
         "maxDimension": 256,
         "maxCount": 1
@@ -480,7 +596,7 @@
       },
       "url": "models/shirt-hoodie.glb",
       "bytes": 54180,
-      "sha256": "cc26c00852f95663e062e725f450d3dd0bc970c0ffb7a434d89b6ebd3a04697c",
+      "sha256": "91040a7cc6bdf60f563bbee3c1c91414e759071f3e9bb041c67a4f1f325a0250",
       "triangles": 366
     },
     {
@@ -495,9 +611,14 @@
           "socket": "root"
         }
       ],
-      "channels": ["primary", "secondary"],
+      "channels": [
+        "primary",
+        "secondary"
+      ],
       "tags": [],
-      "covers": ["torso"],
+      "covers": [
+        "torso"
+      ],
       "texture": {
         "maxDimension": 256,
         "maxCount": 1
@@ -524,7 +645,7 @@
       },
       "url": "models/shirt-track.glb",
       "bytes": 52160,
-      "sha256": "e89a447d5d5d2183c89cdefa0df3cabb321c93f0400a8e18d869b5e1ff191b59",
+      "sha256": "54d392357bbcec572213d98af644e92d7dd700847cef94fac5d4b4fbbf09c576",
       "triangles": 342
     },
     {
@@ -539,9 +660,14 @@
           "socket": "root"
         }
       ],
-      "channels": ["secondary", "trim"],
+      "channels": [
+        "secondary",
+        "trim"
+      ],
       "tags": [],
-      "covers": ["upper-legs"],
+      "covers": [
+        "upper-legs"
+      ],
       "skin": {
         "bones": [
           "root",
@@ -564,7 +690,7 @@
       },
       "url": "models/bottom-court.glb",
       "bytes": 21148,
-      "sha256": "e02b7c64f423d35120c5724633492af01f7e69b8a165dcc02cb086853f7ae5ab",
+      "sha256": "3a40a09c0d60fec50ed5242d6270af2ddfd6bc54653b32db2fc20ac65b1d77dc",
       "triangles": 183
     },
     {
@@ -579,9 +705,14 @@
           "socket": "root"
         }
       ],
-      "channels": ["secondary", "trim"],
+      "channels": [
+        "secondary",
+        "trim"
+      ],
       "tags": [],
-      "covers": ["upper-legs"],
+      "covers": [
+        "upper-legs"
+      ],
       "skin": {
         "bones": [
           "root",
@@ -604,7 +735,7 @@
       },
       "url": "models/bottom-training.glb",
       "bytes": 21868,
-      "sha256": "4ae2ffc04ea670602bb0404919f2eab3a4b54337cb1dd9a81cba7eb54363b950",
+      "sha256": "0cf6238cc0651045f3401c7eaed0e99732ab568db916efa8d8b1d21bb0730e9e",
       "triangles": 183
     },
     {
@@ -623,12 +754,17 @@
           "socket": "foot_R"
         }
       ],
-      "channels": ["secondary", "trim"],
+      "channels": [
+        "secondary",
+        "trim"
+      ],
       "tags": [],
-      "covers": ["feet"],
+      "covers": [
+        "feet"
+      ],
       "url": "models/shoes-court.glb",
       "bytes": 73832,
-      "sha256": "1bcbb3adeacdef179f83f600ca56b658ac74bca1bc2ddf579bca74fd8d6812ae",
+      "sha256": "53506c088e978d401471e8ce5c071535b63f455afba160d4f825489b8e3e36d8",
       "triangles": 1360
     },
     {
@@ -647,12 +783,17 @@
           "socket": "foot_R"
         }
       ],
-      "channels": ["secondary", "trim"],
+      "channels": [
+        "secondary",
+        "trim"
+      ],
       "tags": [],
-      "covers": ["feet"],
+      "covers": [
+        "feet"
+      ],
       "url": "models/shoes-runner.glb",
       "bytes": 74272,
-      "sha256": "e42b193958d50d3d7c056ed1faac90edd14e844b2acac98ed022e1c27789d51a",
+      "sha256": "f1a9d4ef3afc44894d8898a46f93c96e28d657ca632a81d475f3eeafa4bc595e",
       "triangles": 1368
     },
     {
@@ -671,12 +812,17 @@
           "socket": "foot_R"
         }
       ],
-      "channels": ["secondary", "trim"],
+      "channels": [
+        "secondary",
+        "trim"
+      ],
       "tags": [],
-      "covers": ["feet"],
+      "covers": [
+        "feet"
+      ],
       "url": "models/shoes-high.glb",
       "bytes": 92500,
-      "sha256": "277ab02fd04b1c38b7cd87db6a08fd38a56ba2a6ac39bbafc3d6979d46b40dfa",
+      "sha256": "cba6f32359ecb60f1ad869fbecde8c398f6e344658a36e49741f5b6938663d47",
       "triangles": 1712
     },
     {
@@ -691,11 +837,13 @@
           "socket": "head"
         }
       ],
-      "channels": ["hair"],
+      "channels": [
+        "hair"
+      ],
       "tags": [],
       "url": "models/hair-ember.glb",
       "bytes": 92364,
-      "sha256": "394e90bf9db1fd392e2bb51dc15f2e0d8ed45c3c4dde72481065a44a4d4226c8",
+      "sha256": "893affbce60f23e92a10aef5e5b9a5bbcc53c4967e782c09811aba86633b1c74",
       "triangles": 1796
     },
     {
@@ -710,11 +858,13 @@
           "socket": "head"
         }
       ],
-      "channels": ["hair"],
+      "channels": [
+        "hair"
+      ],
       "tags": [],
       "url": "models/hair-tide.glb",
       "bytes": 38516,
-      "sha256": "312363780136f32b6a021e104838536c5441a39324de3219ab3a2913bee4aea5",
+      "sha256": "3f84ad195dade985072ee52e765d64125340ea9cdf25b00c069cfc9e7a370d59",
       "triangles": 1400
     },
     {
@@ -729,11 +879,13 @@
           "socket": "head"
         }
       ],
-      "channels": ["hair"],
+      "channels": [
+        "hair"
+      ],
       "tags": [],
       "url": "models/hair-volt.glb",
       "bytes": 44940,
-      "sha256": "c9417729a7bc5922134ad4916b3b2bdada301ffce7f0b32e8fea46852e70b75f",
+      "sha256": "0fb18cfe8dd68d20a03a5c6334dbdbf77fb468c7ab1e773e8b32654dd84371df",
       "triangles": 1874
     },
     {
@@ -748,9 +900,15 @@
           "socket": "root"
         }
       ],
-      "channels": ["primary", "secondary", "trim"],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
       "tags": [],
-      "covers": ["torso"],
+      "covers": [
+        "torso"
+      ],
       "skin": {
         "bones": [
           "root",
@@ -773,7 +931,7 @@
       },
       "url": "models/shirt-ember.glb",
       "bytes": 36116,
-      "sha256": "2258cde55701aa5dd0384bc7505262d8d8b90858477542117b8565a6784daee0",
+      "sha256": "2ba6c2511247f0df2430b2bee1c5ed59ef2fd9d6aca1f8e1b927ec38039733ce",
       "triangles": 318
     },
     {
@@ -788,9 +946,15 @@
           "socket": "root"
         }
       ],
-      "channels": ["primary", "secondary", "trim"],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
       "tags": [],
-      "covers": ["torso"],
+      "covers": [
+        "torso"
+      ],
       "skin": {
         "bones": [
           "root",
@@ -813,7 +977,7 @@
       },
       "url": "models/shirt-tide.glb",
       "bytes": 33108,
-      "sha256": "cf078b10881421c7b9d4de68263d42f8e162d10de5992c586b93b659709e5b22",
+      "sha256": "cb0d7a4681e6492431d052b114a54877c3485c84ea0767675502f4d81fade4f8",
       "triangles": 298
     },
     {
@@ -828,9 +992,15 @@
           "socket": "root"
         }
       ],
-      "channels": ["primary", "secondary", "trim"],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
       "tags": [],
-      "covers": ["torso"],
+      "covers": [
+        "torso"
+      ],
       "skin": {
         "bones": [
           "root",
@@ -853,7 +1023,7 @@
       },
       "url": "models/shirt-volt.glb",
       "bytes": 33672,
-      "sha256": "dd2167593e086ec21ee4a18272b6418f8523308bf074e11d1239a49b17e2d923",
+      "sha256": "ea3c77788b5d632a811513e650b175014d3a20ad1c3c11270ee3f160d021422f",
       "triangles": 302
     },
     {
@@ -877,7 +1047,12 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [0, -0.041, 0.326, 0.318],
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -885,7 +1060,7 @@
       },
       "url": "models/face-ember.glb",
       "bytes": 92568,
-      "sha256": "f92844e46249d0ce3fd87b29e67c9ae0e4d6f723f6328827cee9924b253950bd",
+      "sha256": "247185b51f505be01cf72dab14eb6c7e3d685295f6d98cfbfa99aed40255369b",
       "triangles": 788
     },
     {
@@ -909,7 +1084,12 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [0, -0.041, 0.326, 0.318],
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -917,7 +1097,7 @@
       },
       "url": "models/face-tide.glb",
       "bytes": 92564,
-      "sha256": "3dec641224a6b1fbc21edc340d7eb67065bcef534dc99f5053cd3472129866a8",
+      "sha256": "44ce9e81d3c5833983f7fe156a1e9ff85a0a76496b7e0ece908a3f832ab70bb1",
       "triangles": 788
     },
     {
@@ -941,7 +1121,12 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [0, -0.041, 0.326, 0.318],
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -949,7 +1134,7 @@
       },
       "url": "models/face-volt.glb",
       "bytes": 92564,
-      "sha256": "c8498ff54611b160f0ab81444ab944cc72f0ae6e1fc010f4b7c186d47c82556a",
+      "sha256": "3b0c41948af2c294b13c8f859f9447dc6e962254ae375cc8b614e80106f9ea02",
       "triangles": 788
     },
     {
@@ -964,11 +1149,15 @@
           "socket": "head"
         }
       ],
-      "channels": ["hair"],
-      "tags": ["hair-study-03"],
+      "channels": [
+        "hair"
+      ],
+      "tags": [
+        "hair-study-03"
+      ],
       "url": "models/hair-nova.glb",
       "bytes": 60948,
-      "sha256": "6af0614f2c23786f3997e087d78fdd2fd5703e972c0615fb48f43dc27f81ee3c",
+      "sha256": "cc03474e8bbc692d8aaaae5286500804d78f2642760cd27d228781f2146f24d8",
       "triangles": 1785
     },
     {
@@ -983,11 +1172,15 @@
           "socket": "head"
         }
       ],
-      "channels": ["hair"],
-      "tags": ["hair-study-03"],
+      "channels": [
+        "hair"
+      ],
+      "tags": [
+        "hair-study-03"
+      ],
       "url": "models/hair-halo.glb",
       "bytes": 59440,
-      "sha256": "5ec585f17885299f15f45e562ecd54dff3dc0931d0e5be936e36793674786cb0",
+      "sha256": "2f76f056a93e378c0b88bb1f057c0852f33f2672968f296bd42597be2c85de11",
       "triangles": 1768
     },
     {
@@ -1002,11 +1195,15 @@
           "socket": "head"
         }
       ],
-      "channels": ["hair"],
-      "tags": ["hair-study-03"],
+      "channels": [
+        "hair"
+      ],
+      "tags": [
+        "hair-study-03"
+      ],
       "url": "models/hair-reed.glb",
       "bytes": 46004,
-      "sha256": "aaa7e96ac1878c3b9437f5fdb6a46fe81532fdd16fa3b9fe4dd6b06d87f26b00",
+      "sha256": "c60a5dec84717e4f00e00deb3da51718c798e42380db439661fd7e58346ac325",
       "triangles": 1800
     },
     {
@@ -1021,19 +1218,26 @@
           "socket": "head"
         }
       ],
-      "channels": ["hair"],
+      "channels": [
+        "hair"
+      ],
       "tags": [],
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [0, -0.041, 0.326, 0.318],
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
         "mode": "surface",
         "offset": 0.0055,
         "maxDistance": 0.085
       },
       "url": "models/facial-mustache.glb",
       "bytes": 3900,
-      "sha256": "8675774efa67ac3a7195ab0c9d12644010c7161b656536dc7871e317a2787bb5",
+      "sha256": "f0f1ec4f9c7d19b34ea882bceaab4127be24c55e5ffd417b743b19bb40181f4c",
       "triangles": 48
     },
     {
@@ -1048,20 +1252,35 @@
           "socket": "head"
         }
       ],
-      "channels": ["primary", "secondary", "trim"],
+      "channels": [
+        "primary",
+        "secondary",
+        "trim"
+      ],
       "tags": [],
       "hairFit": [
         {
           "targetSlot": "hair",
           "mode": "contain",
-          "center": [0.0, 0.1125, -0.009600000000000001],
-          "radii": [0.20971440000000002, 0.1908, 0.20240000000000002],
-          "transition": [-0.054, 0.0675]
+          "center": [
+            0.0,
+            0.1125,
+            -0.009600000000000001
+          ],
+          "radii": [
+            0.20971440000000002,
+            0.1908,
+            0.20240000000000002
+          ],
+          "transition": [
+            -0.054,
+            0.0675
+          ]
         }
       ],
       "url": "models/hat-club-cap.glb",
       "bytes": 18460,
-      "sha256": "359921e72bc8f1827f4f42c3c16a5ad1738ca0581e2ecba1db11174fc0496a40",
+      "sha256": "c0641067ef931372444ebdac5dda48ed6c84e2066af31a9f38fd0001eea50da1",
       "triangles": 596
     },
     {
@@ -1076,12 +1295,19 @@
           "socket": "head"
         }
       ],
-      "channels": ["secondary"],
+      "channels": [
+        "secondary"
+      ],
       "tags": [],
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [0, -0.041, 0.326, 0.318],
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
         "mode": "clearance",
         "offset": 0.016,
         "maxDistance": 0.085,
@@ -1096,7 +1322,7 @@
       ],
       "url": "models/acc-glasses.glb",
       "bytes": 11704,
-      "sha256": "550441c2248c0ae7c8fa5fdb7ef6238770f4509f74d8453b17244f40fbfdba23",
+      "sha256": "4be0f954e0f3c08e02b7439f10e5d8f5225878411eacb1ae98c18f43859a6221",
       "triangles": 528
     },
     {
@@ -1111,12 +1337,16 @@
           "socket": "head"
         }
       ],
-      "channels": ["accent"],
+      "channels": [
+        "accent"
+      ],
       "tags": [],
-      "excludesTags": ["tall-headwear"],
+      "excludesTags": [
+        "tall-headwear"
+      ],
       "url": "models/acc-band.glb",
       "bytes": 5264,
-      "sha256": "7efd2e95e91d822ac2197ec1d1215862a0ef0cea28029939979fe364fbdd366a",
+      "sha256": "db8e1fac17b4a4f2b5d970615a87a30f13d065ea359dd8b0d00dd0acd02d2271",
       "triangles": 92
     },
     {
@@ -1131,11 +1361,14 @@
           "socket": "head"
         }
       ],
-      "channels": ["secondary", "accent"],
+      "channels": [
+        "secondary",
+        "accent"
+      ],
       "tags": [],
       "url": "models/acc-headphones.glb",
       "bytes": 18540,
-      "sha256": "709034a462bbd6e5ecda705847ac23abff8ec80ea84218e05d912437cfaa944e",
+      "sha256": "18b179f7b146a8d6991560fa999614eaf04cd7220b93440d4c20541a4d42b2ad",
       "triangles": 240
     },
     {
@@ -1150,12 +1383,14 @@
           "socket": "root"
         }
       ],
-      "channels": ["accent"],
+      "channels": [
+        "accent"
+      ],
       "tags": [],
       "effect": "orbit",
       "url": "models/effect-orbit.glb",
       "bytes": 22332,
-      "sha256": "d4b4d688b971ccd1fdfd9f47902083489dea39f070a290f7e35387f62f964a48",
+      "sha256": "da85c2717ea16dc8593b4d42a7bc91bcda5e47201f6aa269bb967ca6b0e6065b",
       "triangles": 392
     },
     {
@@ -1170,12 +1405,14 @@
           "socket": "root"
         }
       ],
-      "channels": ["accent"],
+      "channels": [
+        "accent"
+      ],
       "tags": [],
       "effect": "spark",
       "url": "models/effect-spark.glb",
       "bytes": 11692,
-      "sha256": "74731967b52973c3bb4b5c882b18391d254329fbe649522c0f1e6970b5d5ae55",
+      "sha256": "e4cb6ad884a5cd867b74254e94ea5ebee7bec203a10f959f2ae50eeda91b1373",
       "triangles": 100
     },
     {
@@ -1191,19 +1428,32 @@
         }
       ],
       "channels": [],
-      "tags": ["novelty-collection"],
+      "tags": [
+        "novelty-collection"
+      ],
       "hairFit": [
         {
           "targetSlot": "hair",
           "mode": "contain",
-          "center": [0, 0.1125, -0.0096],
-          "radii": [0.2097144, 0.1908, 0.2024],
-          "transition": [-0.054, 0.0675]
+          "center": [
+            0,
+            0.1125,
+            -0.0096
+          ],
+          "radii": [
+            0.2097144,
+            0.1908,
+            0.2024
+          ],
+          "transition": [
+            -0.054,
+            0.0675
+          ]
         }
       ],
       "url": "models/hat-quack-captain.glb",
       "bytes": 20416,
-      "sha256": "6b99e3ee6c3b2dc06ba5d6348b04da90c424faefd939885d9014e62df1b9dba0",
+      "sha256": "060fce5224ccc4a3737bf2aaf7c4bcadb653800225a52cd9cabd090bd0a835c3",
       "triangles": 584
     },
     {
@@ -1219,11 +1469,18 @@
         }
       ],
       "channels": [],
-      "tags": ["novelty-collection"],
+      "tags": [
+        "novelty-collection"
+      ],
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [0, -0.041, 0.326, 0.318],
+        "frame": [
+          0,
+          -0.041,
+          0.326,
+          0.318
+        ],
         "mode": "clearance",
         "offset": 0.016,
         "maxDistance": 0.085,
@@ -1238,7 +1495,7 @@
       ],
       "url": "models/acc-starstruck.glb",
       "bytes": 24912,
-      "sha256": "71a00bcf4f47247cfa474d02f9a3c9ab747f1ff4ab398417a2cd479da6855c4d",
+      "sha256": "6813eb7fab7b01e14128625a99cde934c374f43ff11588547c48113f15de0dcc",
       "triangles": 480
     },
     {
@@ -1254,11 +1511,13 @@
         }
       ],
       "channels": [],
-      "tags": ["novelty-collection"],
+      "tags": [
+        "novelty-collection"
+      ],
       "effect": "orbit",
       "url": "models/effect-pocket-galaxy.glb",
       "bytes": 25216,
-      "sha256": "3649fa3bc887e892e6c68e5aeab9a8bc5fb1b5461f340820b763f0feff4fc3af",
+      "sha256": "154a339aed1ec952cd35539934dc58002aeb6d7900d8be3b5ba5c8ef1f9c453a",
       "triangles": 364
     }
   ],
@@ -1267,17 +1526,55 @@
     "maxBytes": 1500000,
     "maxParts": 12
   },
-  "bodyRegions": ["torso", "upper-legs", "feet"],
+  "bodyRegions": [
+    "torso",
+    "upper-legs",
+    "feet",
+    "hand-left",
+    "hand-right"
+  ],
   "bodyShape": {
     "weightProfile": [
-      [0, 0, 0],
-      [0.8, 0, 0],
-      [0.99, 0.18, 0.24],
-      [1.13, 0.34, 0.46],
-      [1.3, 0.24, 0.32],
-      [1.48, 0.06, 0.06],
-      [1.61, 0, 0],
-      [2.04, 0, 0]
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0.8,
+        0,
+        0
+      ],
+      [
+        0.99,
+        0.18,
+        0.24
+      ],
+      [
+        1.13,
+        0.34,
+        0.46
+      ],
+      [
+        1.3,
+        0.24,
+        0.32
+      ],
+      [
+        1.48,
+        0.06,
+        0.06
+      ],
+      [
+        1.61,
+        0,
+        0
+      ],
+      [
+        2.04,
+        0,
+        0
+      ]
     ],
     "leanFactor": 0.55,
     "neck": {
@@ -1290,55 +1587,131 @@
     },
     "limbs": [
       {
-        "joints": ["arm_L", "forearm_L", "hand_L"],
+        "joints": [
+          "arm_L",
+          "forearm_L",
+          "hand_L"
+        ],
         "radius": 0.095,
         "falloff": 0.055,
         "endMargin": 0.15,
         "profile": [
-          [0, 0.22],
-          [0.4, 0.34],
-          [0.58, 0.24],
-          [0.78, 0.3],
-          [1, 0]
+          [
+            0,
+            0.22
+          ],
+          [
+            0.4,
+            0.34
+          ],
+          [
+            0.58,
+            0.24
+          ],
+          [
+            0.78,
+            0.3
+          ],
+          [
+            1,
+            0
+          ]
         ]
       },
       {
-        "joints": ["arm_R", "forearm_R", "hand_R"],
+        "joints": [
+          "arm_R",
+          "forearm_R",
+          "hand_R"
+        ],
         "radius": 0.095,
         "falloff": 0.055,
         "endMargin": 0.15,
         "profile": [
-          [0, 0.22],
-          [0.4, 0.34],
-          [0.58, 0.24],
-          [0.78, 0.3],
-          [1, 0]
+          [
+            0,
+            0.22
+          ],
+          [
+            0.4,
+            0.34
+          ],
+          [
+            0.58,
+            0.24
+          ],
+          [
+            0.78,
+            0.3
+          ],
+          [
+            1,
+            0
+          ]
         ]
       },
       {
-        "joints": ["leg_L", "shin_L", "foot_L"],
+        "joints": [
+          "leg_L",
+          "shin_L",
+          "foot_L"
+        ],
         "radius": 0.11,
         "falloff": 0.045,
         "endMargin": 0.2,
         "profile": [
-          [0, 0.28],
-          [0.3, 0.38],
-          [0.53, 0.18],
-          [0.7, 0.38],
-          [1, 0]
+          [
+            0,
+            0.28
+          ],
+          [
+            0.3,
+            0.38
+          ],
+          [
+            0.53,
+            0.18
+          ],
+          [
+            0.7,
+            0.38
+          ],
+          [
+            1,
+            0
+          ]
         ]
       },
       {
-        "joints": ["leg_R", "shin_R", "foot_R"],
+        "joints": [
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ],
         "radius": 0.11,
         "falloff": 0.045,
         "endMargin": 0.2,
         "profile": [
-          [0, 0.28],
-          [0.3, 0.38],
-          [0.53, 0.18],
-          [0.7, 0.38],
-          [1, 0]
+          [
+            0,
+            0.28
+          ],
+          [
+            0.3,
+            0.38
+          ],
+          [
+            0.53,
+            0.18
+          ],
+          [
+            0.7,
+            0.38
+          ],
+          [
+            1,
+            0
+          ]
         ]
       }
     ]

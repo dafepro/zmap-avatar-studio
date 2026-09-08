@@ -12,6 +12,10 @@
     "./core": {
       "types": "./lib/core.d.ts",
       "import": "./lib/core.js"
+    },
+    "./wield-core": {
+      "types": "./lib/wield-core.d.ts",
+      "import": "./lib/wield-core.js"
     }
   },
   "files": [
@@ -26,7 +30,8 @@
     "docs/collection-02-workflow.md",
     "docs/fit-quality-review.md",
     "docs/hair-03-workflow.md",
-    "docs/novelty-workflow.md"
+    "docs/novelty-workflow.md",
+    "docs/wielding.md"
   ],
   "scripts": {
     "dev": "vite --host 0.0.0.0",

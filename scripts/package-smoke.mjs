@@ -50,11 +50,50 @@ try {
     "--no-fund",
   ]);
 
+  // A data-only consumer must not pull in Three.js or the rendering runtime.
+  writeFileSync(
+    join(dir, "data-only-loader.mjs"),
+    `
+export async function resolve(specifier, context, nextResolve) {
+  if (specifier === 'three' || specifier.startsWith('three/')) throw Error('Data-only export imported Three.js');
+  return nextResolve(specifier, context);
+}
+`,
+  );
+  writeFileSync(
+    join(dir, "register-data-only.mjs"),
+    `import { register } from 'node:module'; register('./data-only-loader.mjs', import.meta.url);`,
+  );
+  writeFileSync(
+    join(dir, "check-wield-core.mjs"),
+    `
+import { validateWieldCatalog, validateWieldLoadout, emptyWieldLoadout, wieldAssetDescriptor, WIELD_LIMITS } from '@zmap/avatar-studio/wield-core';
+import { inspectGlb } from '@zmap/avatar-studio/core';
+import { createHash } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
+const packageRoot = new URL('./node_modules/@zmap/avatar-studio/', import.meta.url);
+// Equipment is an explicitly loaded, separate catalog; appearance-only consumers need not fetch it.
+const base = new URL('public/wield/', packageRoot);
+const catalog = JSON.parse(await readFile(new URL('catalog.json', base), 'utf8'));
+validateWieldCatalog(catalog);
+validateWieldLoadout(emptyWieldLoadout(catalog), catalog);
+const assets = [...Object.values(catalog.grips), ...catalog.items];
+if (assets.length !== 7 || catalog.items.length !== 5) throw Error('Packed playful equipment collection is incomplete');
+for (const asset of assets) {
+  const bytes = await readFile(new URL(asset.url, base));
+  if (bytes.length !== asset.bytes || createHash('sha256').update(bytes).digest('hex') !== asset.sha256) throw Error('Packed equipment integrity mismatch: ' + asset.id);
+  inspectGlb(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength), wieldAssetDescriptor(asset, catalog.rig));
+}
+if (!WIELD_LIMITS.held || !WIELD_LIMITS.visible) throw Error('Missing public equipment budgets');
+`,
+  );
+  run("node", ["--import", "./register-data-only.mjs", "check-wield-core.mjs"]);
+
   // Node proves ESM exports and packaged binary integrity. Actual texture decoding belongs to a browser.
   writeFileSync(
     join(dir, "check.mjs"),
     `
-import { AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex } from '@zmap/avatar-studio';
+import { AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex, WieldLibrary, WieldController, playfulWieldBehaviors } from '@zmap/avatar-studio';
 import { validateCatalog, inspectGlb } from '@zmap/avatar-studio/core';
 import { readFile } from 'node:fs/promises';
 const base = new URL('./node_modules/@zmap/avatar-studio/public/', import.meta.url);
@@ -64,7 +103,7 @@ for (const asset of catalog.assets) {
   const bytes = await readFile(new URL(asset.url, base));
   inspectGlb(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength), asset);
 }
-if ([AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex].some(value => typeof value !== 'function')) throw Error('Incomplete ESM exports');
+if ([AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex, WieldLibrary, WieldController, playfulWieldBehaviors].some(value => typeof value !== 'function')) throw Error('Incomplete ESM exports');
 `,
   );
   run("node", ["check.mjs"]);
@@ -76,8 +115,9 @@ if ([AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex].some(value
   );
   const source = `
 import * as THREE from 'three';
-import { AvatarLibrary, ComicStyle, bakeDirectionalAtlas } from '@zmap/avatar-studio';
+import { AvatarLibrary, ComicStyle, bakeDirectionalAtlas, WieldLibrary, WieldController, playfulWieldBehaviors, type WieldEvent } from '@zmap/avatar-studio';
 import { defaultRecipe } from '@zmap/avatar-studio/core';
+import { emptyWieldLoadout, WIELD_LIMITS } from '@zmap/avatar-studio/wield-core';
 async function check() {
   const base = new URL('./avatars/', location.href);
   const catalog = await (await fetch(new URL('catalog.json', base))).json();
@@ -91,6 +131,46 @@ async function check() {
   scene.add(avatar.object);
   const character = avatar.asCharacter();
   character.update({vx:1,vz:0,gesture:0}, 1);
+  const wieldBase = new URL('wield/', base);
+  const wieldCatalog = await (await fetch(new URL('catalog.json', wieldBase))).json();
+  const wieldLibrary = new WieldLibrary(wieldCatalog, wieldBase.href);
+  const wieldEvents: WieldEvent[] = [], wieldErrors: string[] = [];
+  const wield = new WieldController(avatar, wieldLibrary, playfulWieldBehaviors(), {
+    onEvent: event => wieldEvents.push(event),
+    onError: error => wieldErrors.push(String(error)),
+  });
+  const loadout = {
+    ...emptyWieldLoadout(wieldLibrary.catalog),
+    left: 'wield-firefly-lantern',
+    right: 'wield-whirl-pop',
+  };
+  if (!await wield.setLoadout(loadout)) throw Error('Dual-hand loadout did not commit');
+  const left = wield.getHand('left'), right = wield.getHand('right');
+  if (left?.state !== 'ready' || right?.state !== 'ready') throw Error('Both packed held items must be ready');
+  if (left.item.id !== loadout.left || right.item.id !== loadout.right) throw Error('Packed hand assignments changed');
+  let heldMeshes = 0;
+  for (const held of [left, right]) {
+    held.object.traverse(object => { if (object instanceof THREE.Mesh) heldMeshes++; });
+    if (!held.grip.getObjectByProperty('isMesh', true)) throw Error('Packed grip has no real geometry');
+  }
+  if (heldMeshes < 4 || !left.anchor('core').children.length || !right.anchor('rotor').children.length) throw Error('Packed movable item geometry is incomplete');
+  avatar.update(1.016, { gesture: 'idle' });
+  const rotorRest = right.anchor('rotor').quaternion.clone();
+  wield.press('left'); wield.press('right');
+  avatar.update(1.032, { gesture: 'idle' });
+  avatar.update(1.064, { gesture: 'idle' });
+  const light = wieldEvents.find(event => event.hand === 'left' && event.itemId === loadout.left && event.type === 'light' && event.value === 1);
+  const spin = wieldEvents.find(event => event.hand === 'right' && event.itemId === loadout.right && event.type === 'spin-start');
+  if (!light || !spin || light.eventId === spin.eventId) throw Error('Independent left/right behavior events were not delivered');
+  for (const event of [light, spin]) {
+    if (!event.position?.every(Number.isFinite) || !event.direction?.every(Number.isFinite) || event.sequence < 1) throw Error('Behavior event is missing its resolved anchor or input sequence');
+  }
+  if (rotorRest.angleTo(right.anchor('rotor').quaternion) < 0.001) throw Error('Packed pinwheel rotor did not animate');
+  wield.release('left'); wield.release('right');
+  avatar.update(1.08, { gesture: 'idle', reducedMotion: true });
+  if (rotorRest.angleTo(right.anchor('rotor').quaternion) > 0.0001) throw Error('Packed pinwheel did not honor reduced motion');
+  const wieldDiagnostics = wield.diagnostics();
+  if (wieldDiagnostics.equippedHands !== 2 || wieldDiagnostics.heldTriangles > WIELD_LIMITS.held || wieldDiagnostics.visibleTriangles > WIELD_LIMITS.visible || wieldErrors.length) throw Error('Packed equipment failed its runtime contract: ' + JSON.stringify({wieldDiagnostics, wieldErrors}));
   let skinnedMeshes = 0, paintedMeshes = 0;
   avatar.object.traverse(object => {
     if (object instanceof THREE.SkinnedMesh) skinnedMeshes++;
@@ -117,8 +197,8 @@ async function check() {
   for (let offset=3;offset<pixels.length;offset+=4) if(pixels[offset]>10) visiblePixels++;
   if (visiblePixels < 1000) throw Error('Independent consumer did not render an avatar');
   const atlas = await bakeDirectionalAtlas(renderer, avatar.object, {tileSize:64});
-  const result = {triangles:avatar.diagnostics().triangles, skinnedMeshes, paintedMeshes, visiblePixels, directions:atlas.metadata.frames.length};
-  atlas.dispose(); style.dispose(); avatar.dispose(); library.dispose(); renderer.dispose(); renderer.forceContextLoss();
+  const result = {triangles:avatar.diagnostics().triangles, skinnedMeshes, paintedMeshes, visiblePixels, directions:atlas.metadata.frames.length, wieldAssets:7, heldMeshes, heldTriangles:wieldDiagnostics.heldTriangles, visibleTriangles:wieldDiagnostics.visibleTriangles, wieldEvents:wieldEvents.map(event => event.hand + ':' + event.type)};
+  atlas.dispose(); style.dispose(); wield.dispose(); wieldLibrary.dispose(); avatar.dispose(); library.dispose(); renderer.dispose(); renderer.forceContextLoss();
   (window as any).consumerResult = {ok:true,...result};
 }
 void check().catch(error => { (window as any).consumerResult = {ok:false,error:String(error)}; });
@@ -195,8 +275,12 @@ void check().catch(error => { (window as any).consumerResult = {ok:false,error:S
   const result = await page.evaluate(() => window.consumerResult);
   if (!result.ok || errors.length)
     throw Error(JSON.stringify({ result, errors }));
+  readFileSync(
+    join(dir, "node_modules/@zmap/avatar-studio/docs/wielding.md"),
+    "utf8",
+  );
   console.log(
-    "Packed independent consumer passed: ESM exports, every packaged GLB contract, TypeScript declarations, production build, real browser texture decode/skinning/render and 16-direction capture.",
+    "Packed independent consumer passed: data-only and runtime ESM exports, docs, every appearance GLB and all seven wield GLBs, TypeScript declarations, production build, dual-hand behavior events and reduced motion, real browser texture decode/skinning/render and 16-direction capture.",
     result,
   );
 } finally {

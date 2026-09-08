@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import {
   ComicStyle,
+  isWieldHandCovered,
   bakeDirectionalAtlas,
   type DirectionalAtlas,
   type DirectionalPreview,
@@ -95,13 +96,21 @@ export class Stage {
         .flatMap((a) => a.covers ?? []),
     );
     root.traverse((object) => {
+      for (
+        let parent: THREE.Object3D | null = object;
+        parent;
+        parent = parent.parent
+      )
+        if (parent.userData.wieldOwned) return;
       const id = object.userData.assetId;
       if (id)
         object.visible =
           !slots ||
           slots.includes(catalog.assets.find((a) => a.id === id)?.slot ?? "");
       if (object instanceof THREE.Mesh && object.userData.avatarRegion)
-        object.visible = !covered.has(object.userData.avatarRegion);
+        object.visible =
+          !covered.has(object.userData.avatarRegion) &&
+          !isWieldHandCovered(object);
     });
     this.inspectionRoot = root;
     this.fitInspection();
@@ -234,7 +243,7 @@ export class Stage {
       this.leaveProjection();
       this.onProjectionInvalidated();
     }
-    if (!this.projected) {
+    if (!this.projected && !this.capture) {
       this.applyInspection();
       this.lastUpdateSeconds = ms / 1000;
       this.avatar.update(this.lastUpdateSeconds, {

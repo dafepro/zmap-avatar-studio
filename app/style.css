@@ -1095,3 +1095,105 @@ dialog form > div {
   background: #782e43;
   color: white;
 }
+
+.wield-panel {
+  margin: 2rem 0;
+  padding: 1.6rem;
+  border: 1px solid #d8d8ca;
+  border-radius: 18px;
+  background: #f1f0e7;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+.wield-panel h2 {
+  margin: 0.35rem 0;
+  font-size: 1.45rem;
+}
+.wield-panel p {
+  font-size: 0.85rem;
+  color: #687063;
+}
+.wield-choices {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.wield-choices label {
+  flex: 1;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.wield-choices select {
+  display: block;
+  width: 100%;
+  margin-top: 0.6rem;
+  padding: 0.7rem;
+  border: 1px solid #c7cbbb;
+  border-radius: 9px;
+  background: #fffdf5;
+  color: #263b3c;
+}
+.wield-bottom {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.wield-bottom button,
+.wield-bottom a {
+  border: 1px solid #c7cbbb;
+  border-radius: 20px;
+  padding: 0.55rem 0.85rem;
+  background: transparent;
+  color: #354b42;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+#wield-status {
+  flex: 1 1 25rem;
+  margin: 0.25rem;
+}
+.wield-use-controls {
+  position: absolute;
+  z-index: 6;
+  right: 1.2rem;
+  bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.wield-use-controls[hidden] {
+  display: none;
+}
+.wield-use {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #bec5b3;
+  border-radius: 22px;
+  background: #f7f5eae8;
+  color: #31433b;
+  font-size: 0.74rem;
+  touch-action: none;
+  user-select: none;
+}
+.wield-use[aria-pressed="true"] {
+  background: #315b53;
+  color: #fff9e7;
+}
+.wield-use:disabled {
+  display: none;
+}
+@media (max-width: 700px) {
+  .wield-panel {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  .wield-use-controls {
+    bottom: 4.6rem;
+    right: 0.6rem;
+  }
+  .wield-choices {
+    gap: 0.5rem;
+  }
+}

@@ -1,0 +1,305 @@
+{
+  "version": 1,
+  "id": "zoomap-playful-hands",
+  "revision": "1.0.0",
+  "rig": "athlete-reference-v2",
+  "grips": {
+    "left": {
+      "id": "grip-left",
+      "label": "Power grip \u00b7 left",
+      "url": "models/grip-left.glb",
+      "bytes": 36624,
+      "sha256": "985af1b45718bf934687dee3c9336accd8a628efac9456fc696f8517cda77f6a",
+      "triangles": 462,
+      "node": "ref2_grip-left__root",
+      "hand": "left",
+      "frame": {
+        "position": [
+          -0.024,
+          -0.073,
+          0.046
+        ],
+        "rotation": [
+          1.5707963267948966,
+          0,
+          1.5707963267948966
+        ]
+      }
+    },
+    "right": {
+      "id": "grip-right",
+      "label": "Power grip \u00b7 right",
+      "url": "models/grip-right.glb",
+      "bytes": 36476,
+      "sha256": "8c7fd134d630a164a3be45c16ac2c15bcca27123c20313b289ec2bbd51e24944",
+      "triangles": 460,
+      "node": "ref2_grip-right__root",
+      "hand": "right",
+      "frame": {
+        "position": [
+          0.024,
+          -0.073,
+          0.046
+        ],
+        "rotation": [
+          1.5707963267948966,
+          0,
+          -1.5707963267948966
+        ]
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "wield-bubble-comet",
+      "label": "Bubble Comet",
+      "url": "models/wield-bubble-comet.glb",
+      "bytes": 14260,
+      "sha256": "262dad56b875d32b947fe7eb21d64cd0a037952d1312c4ad77b066a0ad6b7eef",
+      "triangles": 402,
+      "node": "ref2_wield-bubble-comet__root",
+      "behavior": "bubble-comet",
+      "gripAnchor": "bubble__grip",
+      "anchors": {
+        "emitter": "bubble__emitter"
+      },
+      "pose": {
+        "left": {
+          "arm": [
+            -0.1,
+            0,
+            -0.1
+          ],
+          "forearm": [
+            -1.15,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            1.5707963267948966,
+            0
+          ]
+        },
+        "right": {
+          "arm": [
+            -0.1,
+            0,
+            0.1
+          ],
+          "forearm": [
+            -1.15,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            -1.5707963267948966,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "label": "Bonk Bouquet",
+      "url": "models/wield-bonk-bouquet.glb",
+      "bytes": 26384,
+      "sha256": "8ec5173ed8f70545c63ffb154288018467f10348b54f81a0117804f3e161657f",
+      "triangles": 470,
+      "node": "ref2_wield-bonk-bouquet__root",
+      "behavior": "bonk-bouquet",
+      "gripAnchor": "bonk__grip",
+      "anchors": {
+        "impact": "bonk__impact"
+      },
+      "pose": {
+        "left": {
+          "arm": [
+            -0.1,
+            0,
+            -0.1
+          ],
+          "forearm": [
+            -1.15,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            1.5707963267948966,
+            0
+          ]
+        },
+        "right": {
+          "arm": [
+            -0.1,
+            0,
+            0.1
+          ],
+          "forearm": [
+            -1.15,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            -1.5707963267948966,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "label": "Firefly Lantern",
+      "url": "models/wield-firefly-lantern.glb",
+      "bytes": 43684,
+      "sha256": "493a13a78d2d45482e6b61fafdafeae46a06fee06b9ea1c367f2d08075e659b6",
+      "triangles": 500,
+      "node": "ref2_wield-firefly-lantern__root",
+      "behavior": "firefly-lantern",
+      "gripAnchor": "lantern__grip",
+      "anchors": {
+        "light": "lantern__light",
+        "core": "lantern__core"
+      },
+      "pose": {
+        "left": {
+          "arm": [
+            -0.06,
+            0,
+            -0.16
+          ],
+          "forearm": [
+            -0.22,
+            0,
+            0
+          ],
+          "wrist": [
+            0.27923544,
+            0.0095535033,
+            0.1597169621
+          ]
+        },
+        "right": {
+          "arm": [
+            -0.06,
+            0,
+            0.16
+          ],
+          "forearm": [
+            -0.22,
+            0,
+            0
+          ],
+          "wrist": [
+            0.27923544,
+            -0.0095535033,
+            -0.1597169621
+          ]
+        }
+      }
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "label": "Doodle Rocket",
+      "url": "models/wield-doodle-rocket.glb",
+      "bytes": 28404,
+      "sha256": "456afc50a9763b18fccd37e91163e83a2a9c7ae2c15962cf1fb6ea260dd3b05a",
+      "triangles": 412,
+      "node": "ref2_wield-doodle-rocket__root",
+      "behavior": "doodle-rocket",
+      "gripAnchor": "marker__grip",
+      "anchors": {
+        "tip": "marker__tip"
+      },
+      "pose": {
+        "left": {
+          "arm": [
+            -0.1,
+            0,
+            -0.1
+          ],
+          "forearm": [
+            -1.15,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            1.5707963267948966,
+            0
+          ]
+        },
+        "right": {
+          "arm": [
+            -0.1,
+            0,
+            0.1
+          ],
+          "forearm": [
+            -1.15,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            -1.5707963267948966,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "wield-whirl-pop",
+      "label": "Whirl Pop",
+      "url": "models/wield-whirl-pop.glb",
+      "bytes": 20784,
+      "sha256": "0215634466517315ad06c638b4beb01a7fe5dad31119f5f6f74142e418d425e5",
+      "triangles": 312,
+      "node": "ref2_wield-whirl-pop__root",
+      "behavior": "whirl-pop",
+      "gripAnchor": "pinwheel__grip",
+      "anchors": {
+        "rotor": "pinwheel__rotor"
+      },
+      "pose": {
+        "left": {
+          "arm": [
+            -0.1,
+            0,
+            -0.1
+          ],
+          "forearm": [
+            -1.15,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            1.5707963267948966,
+            0
+          ]
+        },
+        "right": {
+          "arm": [
+            -0.1,
+            0,
+            0.1
+          ],
+          "forearm": [
+            -1.15,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            -1.5707963267948966,
+            0
+          ]
+        }
+      }
+    }
+  ]
+}

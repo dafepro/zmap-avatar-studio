@@ -1,5 +1,5 @@
 {
-  "catalogRevision": "2.4.0",
+  "catalogRevision": "2.5.0",
   "views": [
     {
       "name": "FRONT",
@@ -17,7 +17,7 @@
   "recipe": {
     "version": 1,
     "catalog": "zoomap-athletics",
-    "revision": "2.4.0",
+    "revision": "2.5.0",
     "rig": "athlete-reference-v2",
     "parts": {
       "head": "head-scout",
@@ -49,31 +49,31 @@
   "assets": [
     {
       "id": "body-athletic",
-      "sha256": "ec50b5518755adc49b53c33f5292b3f90ffe99553d913ea2703a8492fc0d69d2"
+      "sha256": "812b9559306a52557324461ddeca796a119c910521f79f77c7233dac96892011"
     },
     {
       "id": "head-scout",
-      "sha256": "2ba36990f98e438d193ed500fa79aa0182b793df66cf35b62deb959be74d5ee8"
+      "sha256": "297c1d67ce89d193cec3895f02937d4f4077b6706c772f4394fbb5f24a0a3292"
     },
     {
       "id": "face-focus",
-      "sha256": "a67eb85680422126e92a83113450ed2ad41e3a73c1735cd3568907dec60fb74e"
+      "sha256": "357c734ffb1bef2feed9cee661e4396b00b73c150a789c3b00b319cc28f5c7a0"
     },
     {
       "id": "hair-sweep",
-      "sha256": "d65b2b84cee8efcda47d6b8eeee07bff8ef7639db98831e8b2695e694afb719c"
+      "sha256": "7f80580deb2e61d467197f03770d4e95ee6e5ab1d840196228e41c71dd2d4ba1"
     },
     {
       "id": "shirt-jersey",
-      "sha256": "2a546f0a9136220b87c70ce93620cd1c892cd5403871f2ee4ad4a9ceaf04f0af"
+      "sha256": "6524a235e0d2ef7b620f72129e8725cdb8caa0873f26760e49e6e8fcf30e2df2"
     },
     {
       "id": "bottom-court",
-      "sha256": "e02b7c64f423d35120c5724633492af01f7e69b8a165dcc02cb086853f7ae5ab"
+      "sha256": "3a40a09c0d60fec50ed5242d6270af2ddfd6bc54653b32db2fc20ac65b1d77dc"
     },
     {
       "id": "shoes-court",
-      "sha256": "1bcbb3adeacdef179f83f600ca56b658ac74bca1bc2ddf579bca74fd8d6812ae"
+      "sha256": "53506c088e978d401471e8ce5c071535b63f455afba160d4f825489b8e3e36d8"
     }
   ]
 }

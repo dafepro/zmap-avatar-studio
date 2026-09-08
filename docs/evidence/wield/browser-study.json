@@ -1,0 +1,2108 @@
+{
+  "provenance": {
+    "kind": "actual-browser-geometry",
+    "appearanceRevision": "2.5.0",
+    "wieldRevision": "1.0.0",
+    "behavior": "playfulWieldBehaviors"
+  },
+  "items": [
+    {
+      "id": "wield-bubble-comet",
+      "view": 0,
+      "triangles": 402
+    },
+    {
+      "id": "wield-bubble-comet",
+      "view": 1,
+      "triangles": 402
+    },
+    {
+      "id": "wield-bubble-comet",
+      "view": 2,
+      "triangles": 402
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "view": 0,
+      "triangles": 470
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "view": 1,
+      "triangles": 470
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "view": 2,
+      "triangles": 470
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "view": 0,
+      "triangles": 500
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "view": 1,
+      "triangles": 500
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "view": 2,
+      "triangles": 500
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "view": 0,
+      "triangles": 412
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "view": 1,
+      "triangles": 412
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "view": 2,
+      "triangles": 412
+    },
+    {
+      "id": "wield-whirl-pop",
+      "view": 0,
+      "triangles": 312
+    },
+    {
+      "id": "wield-whirl-pop",
+      "view": 1,
+      "triangles": 312
+    },
+    {
+      "id": "wield-whirl-pop",
+      "view": 2,
+      "triangles": 312
+    }
+  ],
+  "grips": [
+    {
+      "id": "wield-bubble-comet",
+      "hand": "left",
+      "view": 0,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1726,
+      "visibleTriangles": 8896,
+      "effectTriangles": 432,
+      "replacedTriangles": 2239,
+      "heldBytes": 101620,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bubble-comet",
+      "hand": "left",
+      "view": 1,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1726,
+      "visibleTriangles": 8896,
+      "effectTriangles": 432,
+      "replacedTriangles": 2239,
+      "heldBytes": 101620,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bubble-comet",
+      "hand": "left",
+      "view": 2,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1726,
+      "visibleTriangles": 8896,
+      "effectTriangles": 432,
+      "replacedTriangles": 2239,
+      "heldBytes": 101620,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bubble-comet",
+      "hand": "right",
+      "view": 0,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1726,
+      "visibleTriangles": 8896,
+      "effectTriangles": 432,
+      "replacedTriangles": 2239,
+      "heldBytes": 101620,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bubble-comet",
+      "hand": "right",
+      "view": 1,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1726,
+      "visibleTriangles": 8896,
+      "effectTriangles": 432,
+      "replacedTriangles": 2239,
+      "heldBytes": 101620,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bubble-comet",
+      "hand": "right",
+      "view": 2,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1726,
+      "visibleTriangles": 8896,
+      "effectTriangles": 432,
+      "replacedTriangles": 2239,
+      "heldBytes": 101620,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "hand": "left",
+      "view": 0,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1862,
+      "visibleTriangles": 8760,
+      "effectTriangles": 160,
+      "replacedTriangles": 2239,
+      "heldBytes": 125868,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "hand": "left",
+      "view": 1,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1862,
+      "visibleTriangles": 8760,
+      "effectTriangles": 160,
+      "replacedTriangles": 2239,
+      "heldBytes": 125868,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "hand": "left",
+      "view": 2,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1862,
+      "visibleTriangles": 8760,
+      "effectTriangles": 160,
+      "replacedTriangles": 2239,
+      "heldBytes": 125868,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "hand": "right",
+      "view": 0,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1862,
+      "visibleTriangles": 8760,
+      "effectTriangles": 160,
+      "replacedTriangles": 2239,
+      "heldBytes": 125868,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "hand": "right",
+      "view": 1,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1862,
+      "visibleTriangles": 8760,
+      "effectTriangles": 160,
+      "replacedTriangles": 2239,
+      "heldBytes": 125868,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "hand": "right",
+      "view": 2,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1862,
+      "visibleTriangles": 8760,
+      "effectTriangles": 160,
+      "replacedTriangles": 2239,
+      "heldBytes": 125868,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "hand": "left",
+      "view": 0,
+      "wrist": [
+        -0.4078636359043357,
+        1.0055093385786045,
+        0.08128664335630628
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1922,
+      "visibleTriangles": 8748,
+      "effectTriangles": 88,
+      "replacedTriangles": 2239,
+      "heldBytes": 160468,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "hand": "left",
+      "view": 1,
+      "wrist": [
+        -0.4078636359043357,
+        1.0055093385786045,
+        0.08128664335630628
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1922,
+      "visibleTriangles": 8748,
+      "effectTriangles": 88,
+      "replacedTriangles": 2239,
+      "heldBytes": 160468,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "hand": "left",
+      "view": 2,
+      "wrist": [
+        -0.4078636359043357,
+        1.0055093385786045,
+        0.08128664335630628
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1922,
+      "visibleTriangles": 8748,
+      "effectTriangles": 88,
+      "replacedTriangles": 2239,
+      "heldBytes": 160468,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "hand": "right",
+      "view": 0,
+      "wrist": [
+        0.4078636359043357,
+        1.0055093385786045,
+        0.08128664335630628
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1922,
+      "visibleTriangles": 8748,
+      "effectTriangles": 88,
+      "replacedTriangles": 2239,
+      "heldBytes": 160468,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "hand": "right",
+      "view": 1,
+      "wrist": [
+        0.4078636359043357,
+        1.0055093385786045,
+        0.08128664335630628
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1922,
+      "visibleTriangles": 8748,
+      "effectTriangles": 88,
+      "replacedTriangles": 2239,
+      "heldBytes": 160468,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "hand": "right",
+      "view": 2,
+      "wrist": [
+        0.4078636359043357,
+        1.0055093385786045,
+        0.08128664335630628
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1922,
+      "visibleTriangles": 8748,
+      "effectTriangles": 88,
+      "replacedTriangles": 2239,
+      "heldBytes": 160468,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "hand": "left",
+      "view": 0,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1746,
+      "visibleTriangles": 8608,
+      "effectTriangles": 124,
+      "replacedTriangles": 2239,
+      "heldBytes": 129908,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "hand": "left",
+      "view": 1,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1746,
+      "visibleTriangles": 8608,
+      "effectTriangles": 124,
+      "replacedTriangles": 2239,
+      "heldBytes": 129908,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "hand": "left",
+      "view": 2,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1746,
+      "visibleTriangles": 8608,
+      "effectTriangles": 124,
+      "replacedTriangles": 2239,
+      "heldBytes": 129908,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "hand": "right",
+      "view": 0,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1746,
+      "visibleTriangles": 8608,
+      "effectTriangles": 124,
+      "replacedTriangles": 2239,
+      "heldBytes": 129908,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "hand": "right",
+      "view": 1,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1746,
+      "visibleTriangles": 8608,
+      "effectTriangles": 124,
+      "replacedTriangles": 2239,
+      "heldBytes": 129908,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "hand": "right",
+      "view": 2,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1746,
+      "visibleTriangles": 8608,
+      "effectTriangles": 124,
+      "replacedTriangles": 2239,
+      "heldBytes": 129908,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-whirl-pop",
+      "hand": "left",
+      "view": 0,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1546,
+      "visibleTriangles": 8284,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 114668,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-whirl-pop",
+      "hand": "left",
+      "view": 1,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1546,
+      "visibleTriangles": 8284,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 114668,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-whirl-pop",
+      "hand": "left",
+      "view": 2,
+      "wrist": [
+        -0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1546,
+      "visibleTriangles": 8284,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 114668,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-whirl-pop",
+      "hand": "right",
+      "view": 0,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1546,
+      "visibleTriangles": 8284,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 114668,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-whirl-pop",
+      "hand": "right",
+      "view": 1,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1546,
+      "visibleTriangles": 8284,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 114668,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-whirl-pop",
+      "hand": "right",
+      "view": 2,
+      "wrist": [
+        0.3675221006394016,
+        1.1391319901685906,
+        0.23363054936425356
+      ],
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1546,
+      "visibleTriangles": 8284,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 114668,
+      "equippedHands": 2
+    }
+  ],
+  "actions": [
+    {
+      "id": "wield-bubble-comet",
+      "gesture": "idle",
+      "changed": true,
+      "activeEffects": 72,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1726,
+      "visibleTriangles": 8896,
+      "effectTriangles": 432,
+      "replacedTriangles": 2239,
+      "heldBytes": 101620,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bubble-comet",
+      "gesture": "walk",
+      "changed": true,
+      "activeEffects": 72,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1726,
+      "visibleTriangles": 8896,
+      "effectTriangles": 432,
+      "replacedTriangles": 2239,
+      "heldBytes": 101620,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bubble-comet",
+      "gesture": "wave",
+      "changed": true,
+      "activeEffects": 72,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1726,
+      "visibleTriangles": 8896,
+      "effectTriangles": 432,
+      "replacedTriangles": 2239,
+      "heldBytes": 101620,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "gesture": "idle",
+      "changed": true,
+      "activeEffects": 160,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1862,
+      "visibleTriangles": 8760,
+      "effectTriangles": 160,
+      "replacedTriangles": 2239,
+      "heldBytes": 125868,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "gesture": "walk",
+      "changed": true,
+      "activeEffects": 0,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1862,
+      "visibleTriangles": 8760,
+      "effectTriangles": 160,
+      "replacedTriangles": 2239,
+      "heldBytes": 125868,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-bonk-bouquet",
+      "gesture": "wave",
+      "changed": true,
+      "activeEffects": 160,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1862,
+      "visibleTriangles": 8760,
+      "effectTriangles": 160,
+      "replacedTriangles": 2239,
+      "heldBytes": 125868,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "gesture": "idle",
+      "changed": true,
+      "activeEffects": 88,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1922,
+      "visibleTriangles": 8748,
+      "effectTriangles": 88,
+      "replacedTriangles": 2239,
+      "heldBytes": 160468,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "gesture": "walk",
+      "changed": true,
+      "activeEffects": 0,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1922,
+      "visibleTriangles": 8748,
+      "effectTriangles": 88,
+      "replacedTriangles": 2239,
+      "heldBytes": 160468,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-firefly-lantern",
+      "gesture": "wave",
+      "changed": true,
+      "activeEffects": 88,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1922,
+      "visibleTriangles": 8748,
+      "effectTriangles": 88,
+      "replacedTriangles": 2239,
+      "heldBytes": 160468,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "gesture": "idle",
+      "changed": true,
+      "activeEffects": 124,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1746,
+      "visibleTriangles": 8608,
+      "effectTriangles": 124,
+      "replacedTriangles": 2239,
+      "heldBytes": 129908,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "gesture": "walk",
+      "changed": true,
+      "activeEffects": 124,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1746,
+      "visibleTriangles": 8608,
+      "effectTriangles": 124,
+      "replacedTriangles": 2239,
+      "heldBytes": 129908,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-doodle-rocket",
+      "gesture": "wave",
+      "changed": true,
+      "activeEffects": 124,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1746,
+      "visibleTriangles": 8608,
+      "effectTriangles": 124,
+      "replacedTriangles": 2239,
+      "heldBytes": 129908,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-whirl-pop",
+      "gesture": "idle",
+      "changed": true,
+      "activeEffects": 0,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1546,
+      "visibleTriangles": 8284,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 114668,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-whirl-pop",
+      "gesture": "walk",
+      "changed": true,
+      "activeEffects": 0,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1546,
+      "visibleTriangles": 8284,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 114668,
+      "equippedHands": 2
+    },
+    {
+      "id": "wield-whirl-pop",
+      "gesture": "wave",
+      "changed": true,
+      "activeEffects": 0,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 11279,
+      "heldTriangles": 1546,
+      "visibleTriangles": 8284,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 114668,
+      "equippedHands": 2
+    }
+  ],
+  "events": [
+    {
+      "type": "bubble",
+      "anchor": "emitter",
+      "eventId": 1,
+      "hand": "left",
+      "itemId": "wield-bubble-comet",
+      "sequence": 1,
+      "time": 0.39999999999999997,
+      "position": [
+        -0.30513266078111995,
+        1.3169826728015246,
+        0.3930598243835073
+      ],
+      "direction": [
+        -0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "bubble",
+      "anchor": "emitter",
+      "eventId": 2,
+      "hand": "right",
+      "itemId": "wield-bubble-comet",
+      "sequence": 1,
+      "time": 0.39999999999999997,
+      "position": [
+        0.30513266078111995,
+        1.3169826728015246,
+        0.3930598243835073
+      ],
+      "direction": [
+        0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "bubble",
+      "anchor": "emitter",
+      "eventId": 3,
+      "hand": "left",
+      "itemId": "wield-bubble-comet",
+      "sequence": 3,
+      "time": 0.8666666666666666,
+      "position": [
+        -0.30513266078111995,
+        1.3169826728015246,
+        0.3930598243835073
+      ],
+      "direction": [
+        -0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "bubble",
+      "anchor": "emitter",
+      "eventId": 4,
+      "hand": "right",
+      "itemId": "wield-bubble-comet",
+      "sequence": 3,
+      "time": 0.8666666666666666,
+      "position": [
+        0.30513266078111995,
+        1.3169826728015246,
+        0.3930598243835073
+      ],
+      "direction": [
+        0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "bubble",
+      "anchor": "emitter",
+      "eventId": 5,
+      "hand": "left",
+      "itemId": "wield-bubble-comet",
+      "sequence": 5,
+      "time": 1.3333333333333341,
+      "position": [
+        -0.30513266078111995,
+        1.3169826728015246,
+        0.3930598243835073
+      ],
+      "direction": [
+        -0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "bubble",
+      "anchor": "emitter",
+      "eventId": 6,
+      "hand": "right",
+      "itemId": "wield-bubble-comet",
+      "sequence": 5,
+      "time": 1.3333333333333341,
+      "position": [
+        0.30513266078111995,
+        1.3169826728015246,
+        0.3930598243835073
+      ],
+      "direction": [
+        0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "bonk",
+      "anchor": "impact",
+      "value": 1,
+      "eventId": 7,
+      "hand": "left",
+      "itemId": "wield-bonk-bouquet",
+      "sequence": 8,
+      "time": 1.7666666666666688,
+      "position": [
+        -0.2837166836808567,
+        1.528027675773624,
+        0.3584544604415384
+      ],
+      "direction": [
+        0.0006719448042749658,
+        0.10649473296173506,
+        0.9943130394104208
+      ]
+    },
+    {
+      "type": "bonk",
+      "anchor": "impact",
+      "value": 1,
+      "eventId": 8,
+      "hand": "right",
+      "itemId": "wield-bonk-bouquet",
+      "sequence": 8,
+      "time": 1.7666666666666688,
+      "position": [
+        0.2837166836808567,
+        1.528027675773624,
+        0.3584544604415384
+      ],
+      "direction": [
+        -0.0006719448042749658,
+        0.10649473296173506,
+        0.9943130394104208
+      ]
+    },
+    {
+      "type": "bonk",
+      "anchor": "impact",
+      "value": 1,
+      "eventId": 9,
+      "hand": "left",
+      "itemId": "wield-bonk-bouquet",
+      "sequence": 12,
+      "time": 2.7,
+      "position": [
+        -0.28371668368085673,
+        1.528027675773623,
+        0.35845446044153906
+      ],
+      "direction": [
+        0.0006719448042747819,
+        0.10649473296173323,
+        0.9943130394104209
+      ]
+    },
+    {
+      "type": "bonk",
+      "anchor": "impact",
+      "value": 1,
+      "eventId": 10,
+      "hand": "right",
+      "itemId": "wield-bonk-bouquet",
+      "sequence": 12,
+      "time": 2.7,
+      "position": [
+        0.28371668368085673,
+        1.528027675773623,
+        0.35845446044153906
+      ],
+      "direction": [
+        -0.0006719448042747819,
+        0.10649473296173323,
+        0.9943130394104209
+      ]
+    },
+    {
+      "type": "light",
+      "anchor": "light",
+      "value": 1,
+      "eventId": 11,
+      "hand": "left",
+      "itemId": "wield-firefly-lantern",
+      "sequence": 15,
+      "time": 2.999999999999999,
+      "position": [
+        -0.43186363590376814,
+        0.7325093355976309,
+        0.12728664335220277
+      ],
+      "direction": [
+        7.692319003993471e-13,
+        -1.5098755579145973e-11,
+        1
+      ]
+    },
+    {
+      "type": "light",
+      "anchor": "light",
+      "value": 1,
+      "eventId": 12,
+      "hand": "right",
+      "itemId": "wield-firefly-lantern",
+      "sequence": 15,
+      "time": 2.999999999999999,
+      "position": [
+        0.43186363590376814,
+        0.7325093355976309,
+        0.12728664335220277
+      ],
+      "direction": [
+        7.692319003993471e-13,
+        1.5098755579145973e-11,
+        -1
+      ]
+    },
+    {
+      "type": "light",
+      "anchor": "light",
+      "value": 0,
+      "eventId": 13,
+      "hand": "left",
+      "itemId": "wield-firefly-lantern",
+      "sequence": 17,
+      "time": 3.466666666666664,
+      "position": [
+        -0.43186363590376814,
+        0.7325093355976309,
+        0.12728664335220277
+      ],
+      "direction": [
+        7.692319003993471e-13,
+        -1.5098755579145973e-11,
+        1
+      ]
+    },
+    {
+      "type": "light",
+      "anchor": "light",
+      "value": 0,
+      "eventId": 14,
+      "hand": "right",
+      "itemId": "wield-firefly-lantern",
+      "sequence": 17,
+      "time": 3.466666666666664,
+      "position": [
+        0.43186363590376814,
+        0.7325093355976309,
+        0.12728664335220277
+      ],
+      "direction": [
+        7.692319003993471e-13,
+        1.5098755579145973e-11,
+        -1
+      ]
+    },
+    {
+      "type": "light",
+      "anchor": "light",
+      "value": 1,
+      "eventId": 15,
+      "hand": "left",
+      "itemId": "wield-firefly-lantern",
+      "sequence": 19,
+      "time": 3.933333333333329,
+      "position": [
+        -0.43186363590376814,
+        0.7325093355976309,
+        0.12728664335220277
+      ],
+      "direction": [
+        7.692319003993471e-13,
+        -1.5098755579145973e-11,
+        1
+      ]
+    },
+    {
+      "type": "light",
+      "anchor": "light",
+      "value": 1,
+      "eventId": 16,
+      "hand": "right",
+      "itemId": "wield-firefly-lantern",
+      "sequence": 19,
+      "time": 3.933333333333329,
+      "position": [
+        0.43186363590376814,
+        0.7325093355976309,
+        0.12728664335220277
+      ],
+      "direction": [
+        7.692319003993471e-13,
+        1.5098755579145973e-11,
+        -1
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 17,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 22,
+      "time": 4.433333333333327,
+      "position": [
+        -0.2681803458628757,
+        1.413558062643205,
+        0.4138481298207776
+      ],
+      "direction": [
+        -0.04293018217012513,
+        -0.3356006646529733,
+        0.941025607166629
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 18,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 22,
+      "time": 4.433333333333327,
+      "position": [
+        0.32229853758505506,
+        1.426070156365821,
+        0.41584144767087
+      ],
+      "direction": [
+        0.04293018217012512,
+        -0.3356006646529732,
+        0.941025607166629
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 19,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 22,
+      "time": 4.499999999999994,
+      "position": [
+        -0.24579541701447127,
+        1.3968535216365794,
+        0.4166333774827066
+      ],
+      "direction": [
+        -0.04490609812753333,
+        -0.35616352824444253,
+        0.9333439791949325
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 20,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 22,
+      "time": 4.499999999999994,
+      "position": [
+        0.34779464144668837,
+        1.4203245165531488,
+        0.42068239399092583
+      ],
+      "direction": [
+        0.04490609812753332,
+        -0.3561635282444425,
+        0.9333439791949325
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 21,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 22,
+      "time": 4.56666666666666,
+      "position": [
+        -0.22916336688804867,
+        1.3822590830405912,
+        0.41839688415043086
+      ],
+      "direction": [
+        -0.046574822125437676,
+        -0.3735722140332426,
+        0.926431102050382
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 22,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 22,
+      "time": 4.56666666666666,
+      "position": [
+        0.367508174657922,
+        1.4139579177930022,
+        0.42422399752661655
+      ],
+      "direction": [
+        0.04657482212543767,
+        -0.37357221403324253,
+        0.926431102050382
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 23,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 22,
+      "time": 4.633333333333327,
+      "position": [
+        -0.21976987470567766,
+        1.372055571045018,
+        0.4196885779556147
+      ],
+      "direction": [
+        -0.04782763182929312,
+        -0.38666837200179677,
+        0.9209777889434043
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 24,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 22,
+      "time": 4.633333333333327,
+      "position": [
+        0.3791847205425047,
+        1.408458926288903,
+        0.42669373229288743
+      ],
+      "direction": [
+        0.04782763182929311,
+        -0.3866683720017967,
+        0.9209777889434043
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 25,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 22,
+      "time": 4.7666666666666595,
+      "position": [
+        -0.2249981393771732,
+        1.3699380441291176,
+        0.4224454189591561
+      ],
+      "direction": [
+        -0.0488024280486841,
+        -0.3968743898667577,
+        0.9165746241765816
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 26,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 22,
+      "time": 4.7666666666666595,
+      "position": [
+        0.3743338927594631,
+        1.4039465859308247,
+        0.4292197412614491
+      ],
+      "direction": [
+        0.048802428048684086,
+        -0.39687438986675766,
+        0.9165746241765816
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 27,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 4.899999999999992,
+      "position": [
+        -0.2598563972096639,
+        1.389640644739498,
+        0.42401223991010983
+      ],
+      "direction": [
+        -0.04759329839990551,
+        -0.38421703272500757,
+        0.9220152654438039
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 28,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 4.899999999999992,
+      "position": [
+        0.3354340525874561,
+        1.4069103789696076,
+        0.42730756076970455
+      ],
+      "direction": [
+        0.047593298399905504,
+        -0.3842170327250075,
+        0.9220152654438039
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 29,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 4.966666666666659,
+      "position": [
+        -0.28487693287293303,
+        1.4034808082341712,
+        0.42275861487165406
+      ],
+      "direction": [
+        -0.04624155595137688,
+        -0.370092286593658,
+        0.9278434231631292
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 30,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 4.966666666666659,
+      "position": [
+        0.3082448312158411,
+        1.4088397555554746,
+        0.4237315560669571
+      ],
+      "direction": [
+        0.04624155595137688,
+        -0.37009228659365795,
+        0.9278434231631292
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 31,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 5.033333333333325,
+      "position": [
+        -0.31156037009018506,
+        1.4173527388342202,
+        0.4195833429595828
+      ],
+      "direction": [
+        -0.04449528826517039,
+        -0.35188387201488885,
+        0.9349855132236053
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 32,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 5.033333333333325,
+      "position": [
+        0.2800137372492975,
+        1.4100862118110546,
+        0.41834985096783495
+      ],
+      "direction": [
+        0.04449528826517039,
+        -0.3518838720148889,
+        0.9349855132236053
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 33,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 5.099999999999992,
+      "position": [
+        -0.3367660577651515,
+        1.4299645278484756,
+        0.4146819853156358
+      ],
+      "direction": [
+        -0.04246919362184392,
+        -0.33081098061540626,
+        0.9427409308486524
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 34,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 5.099999999999992,
+      "position": [
+        0.25398161158088184,
+        1.4108046597284185,
+        0.41168804923518976
+      ],
+      "direction": [
+        0.042469193621843926,
+        -0.3308109806154063,
+        0.9427409308486524
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 35,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 5.166666666666658,
+      "position": [
+        -0.35744783896986754,
+        1.4408457803364603,
+        0.40870804789379794
+      ],
+      "direction": [
+        -0.040301398797936185,
+        -0.3083257034442873,
+        0.9504267766906167
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 36,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 5.166666666666658,
+      "position": [
+        0.23289974244344025,
+        1.4118841107388502,
+        0.4045939333298293
+      ],
+      "direction": [
+        0.04030139879793619,
+        -0.30832570344428734,
+        0.9504267766906167
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 37,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 5.2333333333333245,
+      "position": [
+        -0.3711324666325364,
+        1.450138467310175,
+        0.4025187577454114
+      ],
+      "direction": [
+        -0.03814492422313683,
+        -0.28601885139436634,
+        0.9574644543809753
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 38,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 24,
+      "time": 5.2333333333333245,
+      "position": [
+        0.2187257451182123,
+        1.414546354069399,
+        0.39795830384596365
+      ],
+      "direction": [
+        0.038144924223136846,
+        -0.2860188513943664,
+        0.9574644543809753
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 39,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.366666666666657,
+      "position": [
+        -0.3721185059659502,
+        1.464721303440488,
+        0.3924076298816623
+      ],
+      "direction": [
+        -0.03448425328331075,
+        -0.24828669503316772,
+        0.9680725971459988
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 40,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.366666666666657,
+      "position": [
+        0.2149291099650868,
+        1.4277752040834697,
+        0.3885311995709191
+      ],
+      "direction": [
+        0.03448425328331076,
+        -0.24828669503316783,
+        0.9680725971459988
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 41,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.433333333333324,
+      "position": [
+        -0.3592365978933941,
+        1.4692818445905917,
+        0.389325730350777
+      ],
+      "direction": [
+        -0.033254505295985025,
+        -0.2356479486241675,
+        0.9712693664410202
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 42,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.433333333333324,
+      "position": [
+        0.22556171856056426,
+        1.4378018410164708,
+        0.38626488401408793
+      ],
+      "direction": [
+        0.03325450529598503,
+        -0.23564794862416757,
+        0.9712693664410202
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 43,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.49999999999999,
+      "position": [
+        -0.33900338730165536,
+        1.4706932486164657,
+        0.3877246392955571
+      ],
+      "direction": [
+        -0.032561350493254856,
+        -0.22853202349244356,
+        0.9729917125507825
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 44,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.49999999999999,
+      "position": [
+        0.2436516181624695,
+        1.4482148393268064,
+        0.3856359740391631
+      ],
+      "direction": [
+        0.03256135049325486,
+        -0.22853202349244361,
+        0.9729917125507825
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 45,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.566666666666657,
+      "position": [
+        -0.3137665060761578,
+        1.4678648144219526,
+        0.38751532437427794
+      ],
+      "direction": [
+        -0.032458113537051976,
+        -0.2274726817141109,
+        0.973243366244747
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 46,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.566666666666657,
+      "position": [
+        0.2675645315661129,
+        1.4569714170713255,
+        0.38651010676070574
+      ],
+      "direction": [
+        0.032458113537051976,
+        -0.22747268171411092,
+        0.973243366244747
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 47,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.633333333333323,
+      "position": [
+        -0.28653716612379826,
+        1.4603134709993983,
+        0.3885046829351903
+      ],
+      "direction": [
+        -0.0329527545123073,
+        -0.23254947295211378,
+        0.9720261614790756
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 48,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.633333333333323,
+      "position": [
+        0.2948325040247617,
+        1.4622678898303278,
+        0.38869104091894835
+      ],
+      "direction": [
+        0.0329527545123073,
+        -0.23254947295211378,
+        0.9720261614790756
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 49,
+      "hand": "left",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.6999999999999895,
+      "position": [
+        -0.2605362455409456,
+        1.448583470993783,
+        0.39046206958355634
+      ],
+      "direction": [
+        -0.0340071759367887,
+        -0.24338136652214493,
+        0.9693343192184096
+      ]
+    },
+    {
+      "type": "ink-point",
+      "anchor": "tip",
+      "value": 0.014,
+      "eventId": 50,
+      "hand": "right",
+      "itemId": "wield-doodle-rocket",
+      "sequence": 26,
+      "time": 5.6999999999999895,
+      "position": [
+        0.3223677765796411,
+        1.4631275722706134,
+        0.39194457924057147
+      ],
+      "direction": [
+        0.034007175936788696,
+        -0.24338136652214487,
+        0.9693343192184096
+      ]
+    },
+    {
+      "type": "spin-start",
+      "anchor": "rotor",
+      "eventId": 51,
+      "hand": "left",
+      "itemId": "wield-whirl-pop",
+      "sequence": 29,
+      "time": 5.866666666666656,
+      "position": [
+        -0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        -0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-start",
+      "anchor": "rotor",
+      "eventId": 52,
+      "hand": "right",
+      "itemId": "wield-whirl-pop",
+      "sequence": 29,
+      "time": 5.866666666666656,
+      "position": [
+        0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-release",
+      "anchor": "rotor",
+      "eventId": 53,
+      "hand": "left",
+      "itemId": "wield-whirl-pop",
+      "sequence": 30,
+      "time": 6.266666666666654,
+      "position": [
+        -0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        -0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-release",
+      "anchor": "rotor",
+      "eventId": 54,
+      "hand": "right",
+      "itemId": "wield-whirl-pop",
+      "sequence": 30,
+      "time": 6.266666666666654,
+      "position": [
+        0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-start",
+      "anchor": "rotor",
+      "eventId": 55,
+      "hand": "left",
+      "itemId": "wield-whirl-pop",
+      "sequence": 31,
+      "time": 6.333333333333321,
+      "position": [
+        -0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        -0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-start",
+      "anchor": "rotor",
+      "eventId": 56,
+      "hand": "right",
+      "itemId": "wield-whirl-pop",
+      "sequence": 31,
+      "time": 6.333333333333321,
+      "position": [
+        0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-release",
+      "anchor": "rotor",
+      "eventId": 57,
+      "hand": "left",
+      "itemId": "wield-whirl-pop",
+      "sequence": 32,
+      "time": 6.733333333333319,
+      "position": [
+        -0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        -0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-release",
+      "anchor": "rotor",
+      "eventId": 58,
+      "hand": "right",
+      "itemId": "wield-whirl-pop",
+      "sequence": 32,
+      "time": 6.733333333333319,
+      "position": [
+        0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-start",
+      "anchor": "rotor",
+      "eventId": 59,
+      "hand": "left",
+      "itemId": "wield-whirl-pop",
+      "sequence": 33,
+      "time": 6.799999999999986,
+      "position": [
+        -0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        -0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-start",
+      "anchor": "rotor",
+      "eventId": 60,
+      "hand": "right",
+      "itemId": "wield-whirl-pop",
+      "sequence": 33,
+      "time": 6.799999999999986,
+      "position": [
+        0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-release",
+      "anchor": "rotor",
+      "eventId": 61,
+      "hand": "left",
+      "itemId": "wield-whirl-pop",
+      "sequence": 34,
+      "time": 7.199999999999984,
+      "position": [
+        -0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        -0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    },
+    {
+      "type": "spin-release",
+      "anchor": "rotor",
+      "eventId": 62,
+      "hand": "right",
+      "itemId": "wield-whirl-pop",
+      "sequence": 34,
+      "time": 7.199999999999984,
+      "position": [
+        0.3024945603869705,
+        1.3421374528108934,
+        0.38039975786645186
+      ],
+      "direction": [
+        0.04078069688078444,
+        -0.3132918218330807,
+        0.948780885734123
+      ]
+    }
+  ]
+}

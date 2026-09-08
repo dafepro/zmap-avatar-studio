@@ -52,21 +52,36 @@ function ownTexture(texture: THREE.Texture) {
 function releaseTexture(texture: THREE.Texture) {
   texture.dispose();
 }
-function dispose(root: THREE.Object3D) {
+export function disposeAvatarResources(root: THREE.Object3D) {
   if (disposedRoots.has(root)) return;
   disposedRoots.add(root);
+  // Render styles release their derived resources and restore source materials
+  // before this owner collects geometry/materials. Never serialize this callback.
+  const styled: THREE.Mesh[] = [];
+  root.traverse((o) => {
+    if (o instanceof THREE.Mesh) styled.push(o);
+  });
+  for (const mesh of styled)
+    if (typeof mesh.userData.beforeAvatarDispose === "function")
+      mesh.userData.beforeAvatarDispose();
   const geometries = new Set<THREE.BufferGeometry>(),
     materials = new Set<THREE.Material>(),
     textures = new Set<THREE.Texture>(templateTextures.get(root)),
-    skeletons = new Set<THREE.Skeleton>();
+    skeletons = new Set<THREE.Skeleton>(),
+    instances = new Set<THREE.InstancedMesh>(),
+    lights = new Set<THREE.Light>();
   root.traverse((o) => {
     if (o instanceof THREE.Mesh) {
       geometries.add(o.geometry);
       for (const m of Array.isArray(o.material) ? o.material : [o.material])
         materials.add(m);
       if (o instanceof THREE.SkinnedMesh) skeletons.add(o.skeleton);
+      if (o instanceof THREE.InstancedMesh) instances.add(o);
     }
+    if (o instanceof THREE.Light) lights.add(o);
   });
+  for (const instance of instances) instance.dispose();
+  for (const light of lights) light.dispose();
   for (const g of geometries) g.dispose();
   for (const m of materials) {
     for (const value of Object.values(m))
@@ -77,30 +92,27 @@ function dispose(root: THREE.Object3D) {
   for (const skeleton of skeletons) skeleton.dispose();
   templateTextures.delete(root);
 }
-type Assembly = {
+const dispose = disposeAvatarResources;
+
+export type Assembly = {
   root: THREE.Group;
   sockets: Map<string, THREE.Bone>;
   effects: { object: THREE.Object3D; kind: string }[];
 };
-export class AvatarLibrary {
-  readonly catalog: Catalog;
-  private cache = new Map<string, Promise<THREE.Group>>();
+export class VerifiedAssetLibrary {
+  protected cache = new Map<string, Promise<THREE.Group>>();
   // A synchronous prepared factory cannot refetch an evicted image. Keep its
   // template lease until library disposal; one entry per approved catalog asset.
-  private preparedTemplates = new Map<string, Promise<THREE.Group>>();
-  private assemblyLeases = new Map<Promise<THREE.Group>, number>();
-  private retiredTemplates = new Set<Promise<THREE.Group>>();
+  protected preparedTemplates = new Map<string, Promise<THREE.Group>>();
+  protected assemblyLeases = new Map<Promise<THREE.Group>, number>();
+  protected retiredTemplates = new Set<Promise<THREE.Group>>();
   private controllers = new Set<AbortController>();
-  private closed = false;
+  protected closed = false;
   constructor(
-    catalog: unknown,
     readonly baseUrl: string,
     private fetcher: typeof fetch = (...args) => fetch(...args),
-  ) {
-    validateCatalog(catalog);
-    this.catalog = structuredClone(catalog);
-  }
-  private load(asset: Asset, prepare = false): Promise<THREE.Group> {
+  ) {}
+  protected load(asset: Asset, prepare = false): Promise<THREE.Group> {
     const key = `${asset.id}:${asset.sha256}`;
     if (this.closed)
       return Promise.reject(
@@ -225,6 +237,103 @@ export class AvatarLibrary {
       }
     }
     return work;
+  }
+  /** Each instance owns its geometry, materials and image leases. */
+  protected async instantiateAsset(asset: Asset): Promise<THREE.Group> {
+    const request = this.load(asset);
+    this.assemblyLeases.set(
+      request,
+      (this.assemblyLeases.get(request) ?? 0) + 1,
+    );
+    let result: THREE.Group | undefined;
+    try {
+      const source = await request;
+      if (this.closed)
+        throw new AvatarError("disposed", "Asset library is disposed");
+      source.traverse((object) => {
+        if (object instanceof THREE.SkinnedMesh)
+          throw new AvatarError(
+            "asset",
+            "Rigid equipment must not contain a skin",
+          );
+      });
+      result = source.clone(true);
+      const geometries = new Map<THREE.BufferGeometry, THREE.BufferGeometry>();
+      const materials = new Map<THREE.Material, THREE.Material>();
+      const textures = new Map<THREE.Texture, THREE.Texture>();
+      result.traverse((object) => {
+        if (!(object instanceof THREE.Mesh)) return;
+        if (object instanceof THREE.SkinnedMesh)
+          throw new AvatarError(
+            "asset",
+            "Rigid equipment must not contain a skin",
+          );
+        const geometry = object.geometry;
+        if (!geometries.has(geometry))
+          geometries.set(geometry, geometry.clone());
+        object.geometry = geometries.get(geometry)!;
+        const cloneMaterial = (source: THREE.Material) => {
+          if (!materials.has(source)) {
+            const material = source.clone();
+            for (const [key, value] of Object.entries(source)) {
+              if (!(value instanceof THREE.Texture)) continue;
+              if (!textures.has(value))
+                textures.set(value, ownTexture(value.clone()));
+              (material as unknown as Record<string, unknown>)[key] =
+                textures.get(value)!;
+            }
+            materials.set(source, material);
+          }
+          return materials.get(source)!;
+        };
+        object.material = Array.isArray(object.material)
+          ? object.material.map(cloneMaterial)
+          : cloneMaterial(object.material);
+      });
+      return result;
+    } catch (error) {
+      // Only completed clones may own resources; structural validation occurs
+      // before cloning, so no shared template geometry enters this disposal path.
+      if (result) dispose(result);
+      throw error;
+    } finally {
+      const remaining = (this.assemblyLeases.get(request) ?? 1) - 1;
+      if (remaining > 0) this.assemblyLeases.set(request, remaining);
+      else {
+        this.assemblyLeases.delete(request);
+        if (this.retiredTemplates.delete(request))
+          void request.then(dispose, () => {});
+      }
+    }
+  }
+  diagnostics() {
+    return {
+      cachedAssets: this.cache.size,
+      preparedAssets: this.preparedTemplates.size,
+      pendingRequests: this.controllers.size,
+    };
+  }
+  dispose() {
+    if (this.closed) return;
+    this.closed = true;
+    for (const c of this.controllers) c.abort();
+    for (const value of new Set([
+      ...this.cache.values(),
+      ...this.preparedTemplates.values(),
+      ...this.retiredTemplates,
+    ]))
+      void value.then(dispose, () => {});
+    this.cache.clear();
+    this.preparedTemplates.clear();
+    this.retiredTemplates.clear();
+  }
+}
+export class AvatarLibrary extends VerifiedAssetLibrary {
+  readonly catalog: Catalog;
+  constructor(catalog: unknown, baseUrl: string, fetcher?: typeof fetch) {
+    super(baseUrl, fetcher);
+    validateCatalog(catalog);
+    this.catalog = structuredClone(catalog);
   }
   async assemble(recipe: Recipe): Promise<Assembly> {
     validateRecipe(recipe, this.catalog);
@@ -483,27 +592,27 @@ export class AvatarLibrary {
       throw new AvatarError("disposed", "Avatar library is disposed");
     return new AvatarInstance(this);
   }
-  diagnostics() {
-    return {
-      cachedAssets: this.cache.size,
-      preparedAssets: this.preparedTemplates.size,
-      pendingRequests: this.controllers.size,
-    };
-  }
-  dispose() {
-    if (this.closed) return;
-    this.closed = true;
-    for (const c of this.controllers) c.abort();
-    for (const value of new Set([
-      ...this.cache.values(),
-      ...this.preparedTemplates.values(),
-      ...this.retiredTemplates,
-    ]))
-      void value.then(dispose, () => {});
-    this.cache.clear();
-    this.preparedTemplates.clear();
-    this.retiredTemplates.clear();
-  }
+}
+/** One exclusive equipment layer owns both wrist ports and their pose lifecycle. */
+export type AvatarAttachmentView = {
+  root: THREE.Group;
+  sockets: ReadonlyMap<string, THREE.Bone>;
+  recipe: Recipe;
+  rig: string;
+};
+export type AvatarPoseFrame = {
+  time: number;
+  dt: number;
+  interrupted: boolean;
+  reducedMotion: boolean;
+};
+export interface AvatarHandLayer {
+  validate(view: AvatarAttachmentView): void;
+  attach(view: AvatarAttachmentView): void;
+  detach(): void;
+  pose(frame: AvatarPoseFrame, view: AvatarAttachmentView): void;
+  update(frame: AvatarPoseFrame, view: AvatarAttachmentView): void;
+  dispose(): void;
 }
 export class AvatarInstance {
   readonly object = new THREE.Group();
@@ -513,6 +622,10 @@ export class AvatarInstance {
   private closed = false;
   private phase = 0;
   private lastTime?: number;
+  private lastMotion: Motion = {};
+  private refreshingPose = false;
+  private handLayer?: AvatarHandLayer;
+  private poseView?: AvatarAttachmentView;
   constructor(
     private library: AvatarLibrary,
     initial?: { assembly: Assembly; recipe: Recipe },
@@ -522,10 +635,41 @@ export class AvatarInstance {
       this.assembly = initial.assembly;
       this.current = structuredClone(initial.recipe);
       this.object.add(initial.assembly.root);
+      this.poseView = this.attachmentView();
     }
   }
   get recipe() {
     return this.current ? structuredClone(this.current) : undefined;
+  }
+  get rig() {
+    return this.library.catalog.rig.id;
+  }
+  attachmentView(): AvatarAttachmentView | undefined {
+    return this.assembly && this.current
+      ? {
+          root: this.assembly.root,
+          sockets: this.assembly.sockets,
+          recipe: structuredClone(this.current),
+          rig: this.rig,
+        }
+      : undefined;
+  }
+  /** The lease must be released before another controller may own the wrists. */
+  claimHandLayer(layer: AvatarHandLayer): () => void {
+    if (this.closed) throw new AvatarError("disposed", "Avatar is disposed");
+    if (this.handLayer)
+      throw new AvatarError("wield", "Avatar already has a hand controller");
+    const view = this.attachmentView();
+    if (view) {
+      layer.validate(view);
+      layer.attach(view);
+    }
+    this.handLayer = layer;
+    return () => {
+      if (this.handLayer !== layer) return;
+      layer.detach();
+      this.handLayer = undefined;
+    };
   }
   /** Latest request wins; prior appearance remains intact on load/validation failure. */
   async setAppearance(recipe: Recipe): Promise<boolean> {
@@ -538,6 +682,19 @@ export class AvatarInstance {
       dispose(next.root);
       return false;
     }
+    const view: AvatarAttachmentView = {
+      root: next.root,
+      sockets: next.sockets,
+      recipe: requested,
+      rig: this.rig,
+    };
+    try {
+      this.handLayer?.validate(view);
+    } catch (error) {
+      dispose(next.root);
+      throw error;
+    }
+    this.handLayer?.detach();
     if (this.assembly) {
       this.object.remove(this.assembly.root);
       dispose(this.assembly.root);
@@ -545,15 +702,44 @@ export class AvatarInstance {
     this.assembly = next;
     this.current = requested;
     this.object.add(next.root);
+    this.poseView = view;
+    this.handLayer?.attach(view);
     return true;
   }
+  /** Reapply the last base motion and equipment pose without advancing behavior time. */
+  refreshPose() {
+    if (this.refreshingPose || this.closed || !this.assembly) return;
+    this.refreshingPose = true;
+    try {
+      this.update(this.lastTime ?? 0, this.lastMotion);
+    } finally {
+      this.refreshingPose = false;
+    }
+  }
   update(time: number, motion: Motion = {}) {
-    if (!this.assembly || this.closed || !Number.isFinite(time)) return;
+    if (!this.assembly || this.closed) return;
+    if (!Number.isFinite(time)) {
+      const view = this.poseView!;
+      this.handLayer?.pose(
+        {
+          time: this.lastTime ?? 0,
+          dt: 0,
+          interrupted: true,
+          reducedMotion: true,
+        },
+        view,
+      );
+      return;
+    }
+    const interrupted =
+      this.lastTime !== undefined &&
+      (time - this.lastTime > 0.25 || time < this.lastTime);
     const dt =
       this.lastTime === undefined
         ? 0
         : Math.max(0, Math.min(0.1, time - this.lastTime));
     this.lastTime = time;
+    this.lastMotion = { ...motion };
     const { sockets, effects } = this.assembly;
     for (const s of sockets.values()) s.rotation.set(0, 0, 0);
     const speed = motion.reducedMotion
@@ -597,6 +783,16 @@ export class AvatarInstance {
         ? 0
         : time * (e.kind === "orbit" ? 0.5 : 0.25);
     }
+    const view = this.poseView!;
+    const frame = {
+      time,
+      dt,
+      interrupted,
+      reducedMotion: !!motion.reducedMotion,
+    };
+    this.handLayer?.pose(frame, view);
+    this.object.updateMatrixWorld(true);
+    if (!this.refreshingPose) this.handLayer?.update(frame, view);
   }
   /** ZMap visual adapter: the caller still resolves approved recipes from app identity. */
   asCharacter(reducedMotion: () => boolean = () => false) {
@@ -639,9 +835,12 @@ export class AvatarInstance {
     if (this.closed) return;
     this.closed = true;
     ++this.generation;
+    this.handLayer?.dispose();
+    this.handLayer = undefined;
     if (this.assembly) dispose(this.assembly.root);
     this.object.clear();
     this.assembly = undefined;
     this.current = undefined;
+    this.poseView = undefined;
   }
 }

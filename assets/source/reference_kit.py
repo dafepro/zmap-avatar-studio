@@ -212,7 +212,9 @@ def hand_mesh(sign):
     palm.data.remesh_voxel_size=.003;bpy.ops.object.voxel_remesh()
     mod=palm.modifiers.new('Relax knuckles','SMOOTH');mod.factor=.35;mod.iterations=2;bpy.ops.object.modifier_apply(modifier=mod.name)
     mod=palm.modifiers.new('Broad hand planes','DECIMATE');mod.ratio=.07;bpy.ops.object.modifier_apply(modifier=mod.name)
-    palm.name='Relaxed five-finger hand';palm['family']='hand';return planar(palm)
+    palm.name='Relaxed five-finger hand';palm['family']='hand'
+    palm['handSide']='left' if sign<0 else 'right';palm['avatarRegion']='hand-'+palm['handSide']
+    return planar(palm)
 
 def make_body():
     r,d=asset('body-athletic','Reference athlete','body','Fixed-height reference anatomy: connected collarbone and shoulders, long athletic legs, relaxed five-finger hands.')
@@ -615,8 +617,8 @@ for id,label,style in [('effect-orbit','Golden orbit','orbit'),('effect-spark','
 
 exec(compile((ROOT/'assets/source/novelty_collection.py').read_text(), 'novelty_collection.py', 'exec'),globals())
 slots=[{'id':s,'label':label,'required':required} for s,label,required in [('head','Head',True),('face','Face',True),('hair','Hair',False),('facialHair','Facial hair',False),('eyewear','Glasses',False),('headwear','Hats',False),('shirt','Tops',True),('bottom','Bottoms',True),('shoes','Footwear',True),('accessory','Accessories',False),('effect','Effects',False)]]
-catalog={'version':1,'id':'zoomap-athletics','revision':'2.4.0','compatibleRecipeRevisions':['2.2.0','2.3.0'],'rig':{'id':'athlete-reference-v2','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
-catalog['bodyRegions']=['torso','upper-legs','feet']
+catalog={'version':1,'id':'zoomap-athletics','revision':'2.5.0','compatibleRecipeRevisions':['2.2.0','2.3.0','2.4.0'],'rig':{'id':'athlete-reference-v2','height':2.04,'sockets':sockets},'base':'body-athletic','slots':slots,'channels':channels,'assets':assets,'budgets':{'maxTriangles':14000,'maxBytes':1500000,'maxParts':12}}
+catalog['bodyRegions']=['torso','upper-legs','feet','hand-left','hand-right']
 catalog['bodyShape']={
     'weightProfile':[[0,0,0],[.80,0,0],[.99,.18,.24],[1.13,.34,.46],[1.30,.24,.32],[1.48,.06,.06],[1.61,0,0],[2.04,0,0]],
     'leanFactor':.55,
@@ -740,6 +742,7 @@ lines.select_by_collection=True;lines.collection=excluded;lines.collection_negat
 exec(compile((ROOT/'assets/source/collection_review.py').read_text(), 'collection_review.py', 'exec'),globals())
 exec(compile((ROOT/'assets/source/hair_review.py').read_text(), 'hair_review.py', 'exec'),globals())
 exec(compile((ROOT/'assets/source/novelty_review.py').read_text(), 'novelty_review.py', 'exec'),globals())
+exec(compile((ROOT/'assets/source/wield_kit.py').read_text(), 'wield_kit.py', 'exec'),globals())
 for obj in set(bpy.data.objects)-before:obj['zmap_reference']=True
 for source in roots:
     source.hide_set(True)

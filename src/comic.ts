@@ -47,6 +47,7 @@ export class ComicStyle {
     original: THREE.Material | THREE.Material[];
     painted: THREE.Material | THREE.Material[];
     outline?: THREE.Mesh;
+    cleanup?: () => void;
   }[] = [];
   private resolution = new THREE.Vector2(1000, 1000);
   private readonly options: Required<ComicStyleOptions>;
@@ -225,15 +226,28 @@ export class ComicStyle {
 
   update(root: THREE.Object3D | undefined, resolution: THREE.Vector2) {
     this.resolution.set(Math.max(1, resolution.x), Math.max(1, resolution.y));
-    if (root === this.root) return;
-    this.clear(false);
     this.root = root;
-    if (!root) return;
+    if (!root) {
+      this.clear(false);
+      return;
+    }
     const meshes: THREE.Mesh[] = [];
     root.traverse((o) => {
-      if (o instanceof THREE.Mesh && !o.userData.comicOutline) meshes.push(o);
+      if (!(o instanceof THREE.Mesh) || o.userData.comicOutline) return;
+      let parent: THREE.Object3D | null = o;
+      while (parent && !parent.userData.comicSkip) parent = parent.parent;
+      if (!parent) meshes.push(o);
     });
+    const current = new Set(meshes);
+    for (const entry of [...this.entries])
+      if (!current.has(entry.mesh))
+        this.releaseEntry(entry, this.isHeld(entry.mesh));
+    const paintedMeshes = new Set(this.entries.map((entry) => entry.mesh));
     for (const mesh of meshes) {
+      if (paintedMeshes.has(mesh)) continue;
+      // A mesh has one active style owner, including after scene reparenting.
+      if (typeof mesh.userData.beforeAvatarDispose === "function")
+        mesh.userData.beforeAvatarDispose();
       const original = mesh.material;
       let part: THREE.Object3D | null = mesh;
       while (part && !part.userData.assetId) part = part.parent;
@@ -254,28 +268,71 @@ export class ComicStyle {
         outline = this.outline(mesh);
         mesh.add(outline);
       }
-      this.entries.push({ mesh, original, painted: mesh.material, outline });
+      const entry = {
+        mesh,
+        original,
+        painted: mesh.material,
+        outline,
+        cleanup: undefined as (() => void) | undefined,
+      };
+      entry.cleanup = () => this.releaseEntry(entry, true);
+      mesh.userData.beforeAvatarDispose = entry.cleanup;
+      this.entries.push(entry);
     }
   }
 
-  /** Restore originals on a live avatar; release both sets after replacement. */
-  clear(restore = true) {
-    const materials = new Set<THREE.Material>();
-    for (const e of this.entries) {
-      for (const m of Array.isArray(e.painted) ? e.painted : [e.painted])
-        materials.add(m);
-      if (restore && this.root?.parent) e.mesh.material = e.original;
-      else
-        for (const m of Array.isArray(e.original) ? e.original : [e.original])
-          materials.add(m);
-      if (e.outline) {
-        e.mesh.remove(e.outline);
-        e.outline.geometry.dispose();
-        (e.outline.material as THREE.Material).dispose();
-      }
+  private isHeld(mesh: THREE.Object3D) {
+    let owner: THREE.Object3D | null = mesh;
+    while (owner && !owner.userData.wieldOwned) owner = owner.parent;
+    return !!owner;
+  }
+
+  private releaseEntry(entry: (typeof this.entries)[number], restore: boolean) {
+    const index = this.entries.indexOf(entry);
+    if (index < 0) return;
+    this.entries.splice(index, 1);
+    if (entry.mesh.userData.beforeAvatarDispose === entry.cleanup)
+      delete entry.mesh.userData.beforeAvatarDispose;
+    const materials = new Set<THREE.Material>(
+      Array.isArray(entry.painted) ? entry.painted : [entry.painted],
+    );
+    if (restore) {
+      // Runtime palettes and item behaviors may recolor a currently painted
+      // material. Carry that state back when illustrated mode is removed.
+      const originals = Array.isArray(entry.original)
+        ? entry.original
+        : [entry.original];
+      const paints = Array.isArray(entry.painted)
+        ? entry.painted
+        : [entry.painted];
+      originals.forEach((material, i) => {
+        const source = material as THREE.MeshStandardMaterial;
+        const painted = paints[i] as THREE.MeshBasicMaterial;
+        if (source.color && painted?.color) source.color.copy(painted.color);
+      });
+      entry.mesh.material = entry.original;
+    } else
+      for (const material of Array.isArray(entry.original)
+        ? entry.original
+        : [entry.original])
+        materials.add(material);
+    if (entry.outline) {
+      entry.outline.removeFromParent();
+      entry.outline.geometry.dispose();
+      (entry.outline.material as THREE.Material).dispose();
     }
-    for (const m of materials) m.dispose();
-    this.entries = [];
+    for (const material of materials) material.dispose();
+  }
+
+  /** Restore live originals; retired owners release both material sets. */
+  clear(restore = true) {
+    // Hidden hand ports remain live and owned by WieldController. Detachment
+    // cannot transfer ownership of their source materials to the renderer.
+    for (const entry of [...this.entries])
+      this.releaseEntry(
+        entry,
+        this.isHeld(entry.mesh) || (restore && !!this.root?.parent),
+      );
     this.root = undefined;
   }
 

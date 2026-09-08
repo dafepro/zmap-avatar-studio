@@ -94,6 +94,7 @@ def render_hair_views(styles=None, views=None):
     review_roots = [study_front, study_side, look_front, look_three, look_side]
     review_roots += list(collection_previews.values()) + list(hair_previews.values())
     review_roots += list(globals().get('novelty_previews',{}).values())
+    review_roots += list(globals().get('wield_previews',{}).values())
     visibility = {
         obj: obj.hide_render
         for root in review_roots

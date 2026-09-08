@@ -10,6 +10,9 @@ import {
   type Motion,
 } from "../src";
 import { Stage, Thumbnails } from "./stage";
+import { mountWieldPanel } from "./wield-panel";
+let wieldPanel: Awaited<ReturnType<typeof mountWieldPanel>> | undefined;
+const wieldLifecycle = new AbortController();
 const icons: Record<string, string> = {
   head: "◉",
   face: "⌣",
@@ -45,6 +48,7 @@ $("body-shape").insertAdjacentHTML(
 document.querySelectorAll<HTMLButtonElement>("[data-inspect]").forEach(
   (button) =>
     (button.onclick = () => {
+      wieldPanel?.setInspection(button.dataset.inspect !== "avatar");
       stage.inspect(
         button.dataset.inspect as "avatar" | "base" | "hair" | "outfit",
         catalog,
@@ -391,6 +395,11 @@ $("reference").onclick = () => {
       "novelty/quack",
       "novelty/starstruck",
       "novelty/galaxy",
+      "wield/bubble",
+      "wield/bonk",
+      "wield/lantern",
+      "wield/marker",
+      "wield/pinwheel",
     ]) {
       const img = new Image();
       img.alt = `Zoomap ${name} component study: front, side and elevated top views.`;
@@ -473,6 +482,7 @@ $("reduced").onchange = () =>
   stage?.setReduced($<HTMLInputElement>("reduced").checked);
 $("scale").onchange = () => stage?.scale($<HTMLInputElement>("scale").checked);
 function projectionControls(state: "live" | "capturing" | "projected") {
+  wieldPanel?.setFrozen(state !== "live");
   $("live-view").hidden = state === "live";
   $("live-view").textContent =
     state === "capturing" ? "Cancel capture" : "Back to live 3D";
@@ -706,6 +716,35 @@ async function start() {
       stage,
       apply,
     };
+    void mountWieldPanel(
+      stage.avatar,
+      () => {
+        stage.inspect("avatar", catalog);
+        document
+          .querySelectorAll<HTMLElement>("[data-inspect]")
+          .forEach((button) =>
+            button.setAttribute(
+              "aria-pressed",
+              String(button.dataset.inspect === "avatar"),
+            ),
+          );
+        wieldPanel?.setInspection(false);
+      },
+      wieldLifecycle.signal,
+    )
+      .then((panel) => {
+        wieldPanel = panel;
+        Object.assign((window as any).avatarStudio, {
+          wield: panel.controller,
+          wieldLibrary: panel.library,
+        });
+      })
+      .catch((error) =>
+        status(
+          `Your avatar is ready; the toy collection could not start: ${error.message}`,
+          true,
+        ),
+      );
   } catch (error) {
     $("loading").textContent = "Your studio could not start.";
     status((error as Error).message, true);
@@ -716,6 +755,8 @@ async function start() {
   }
 }
 window.addEventListener("pagehide", () => {
+  wieldLifecycle.abort();
+  wieldPanel?.dispose();
   thumbs?.dispose();
   stage?.dispose();
   library?.dispose();

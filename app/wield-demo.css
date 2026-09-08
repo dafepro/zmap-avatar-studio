@@ -1,0 +1,593 @@
+:root {
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: #263c3b;
+  background: #f5efdf;
+  font-synthesis: none;
+  font-size: 15px;
+  --ink: #263c3b;
+  --coral: #ec6c52;
+  --teal: #24796d;
+  --line: #263c3b26;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+select,
+input {
+  font: inherit;
+}
+button,
+a,
+select,
+input {
+  touch-action: manipulation;
+}
+button,
+a,
+select {
+  outline-offset: 5px;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+  opacity: 0.48;
+}
+button {
+  color: inherit;
+}
+a {
+  color: inherit;
+}
+header {
+  max-width: 1440px;
+  margin: auto;
+  padding: 26px 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--ink);
+  background: var(--coral);
+  border-radius: 10px;
+  transform: rotate(-8deg);
+  font-size: 25px;
+}
+.back {
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 4px;
+}
+.intro {
+  max-width: 1440px;
+  margin: auto;
+  padding: 35px 44px 25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+}
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2.2px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+.intro h1 {
+  font:
+    700 clamp(34px, 4vw, 55px)/1.04 "Trebuchet MS",
+    sans-serif;
+  letter-spacing: -2.5px;
+  margin: 0;
+}
+.intro h1 em {
+  font-style: normal;
+  color: var(--coral);
+}
+.intro p:last-child {
+  max-width: 280px;
+  line-height: 1.6;
+  font-size: 13px;
+  margin: 0 0 3px;
+  color: #536762;
+}
+.workspace {
+  max-width: 1440px;
+  margin: auto;
+  padding: 0 44px 36px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 345px;
+  gap: 22px;
+}
+.play-room {
+  position: relative;
+  min-width: 0;
+  background: #e8eadb;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 620px;
+}
+.room-top {
+  position: absolute;
+  top: 23px;
+  left: 25px;
+  right: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  pointer-events: none;
+}
+.room-top span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.room-top i {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+.room-bottom {
+  position: absolute;
+  bottom: 22px;
+  left: 25px;
+  right: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+  z-index: 2;
+}
+.room-bottom p {
+  font-size: 11px;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 180px;
+  color: #5e7265;
+}
+.orbit {
+  display: flex;
+  background: #f9f5e9;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: 4px;
+  gap: 2px;
+}
+.orbit button {
+  border: 0;
+  background: transparent;
+  border-radius: 20px;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+.orbit button[aria-pressed="true"] {
+  background: var(--ink);
+  color: #fff;
+}
+.room-art {
+  position: absolute;
+  top: 90px;
+  left: 29px;
+  font:
+    700 clamp(42px, 5.5vw, 80px)/0.85 "Trebuchet MS",
+    sans-serif;
+  letter-spacing: -5px;
+  color: #263c3b0b;
+  pointer-events: none;
+  transform: rotate(-7deg);
+}
+.stamp {
+  position: absolute;
+  right: 25px;
+  top: 83px;
+  border: 1px solid #cc775f;
+  color: #b9654c;
+  border-radius: 50%;
+  width: 78px;
+  height: 78px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font: 600 11px/1.2 "Trebuchet MS";
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+.stage {
+  position: absolute;
+  inset: 56px 0 55px;
+}
+.stage canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+.loading {
+  position: absolute;
+  inset: 40% 10% auto;
+  text-align: center;
+  color: #536762;
+  pointer-events: none;
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.hand-card,
+.look-card,
+.notebook {
+  background: #fcf8ed;
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  padding: 20px;
+}
+.hand-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+.hand-title h2 {
+  margin: 0;
+  font: 600 20px "Trebuchet MS";
+  letter-spacing: -0.7px;
+}
+.key {
+  font-size: 11px;
+  border: 1px solid var(--line);
+  border-bottom: 3px solid #bac1b5;
+  border-radius: 5px;
+  padding: 4px 8px;
+  background: #f5efdf;
+}
+select {
+  appearance: none;
+  background: #f3efe3
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23263c3b' stroke-width='1.5'/%3E%3C/svg%3E")
+    no-repeat right 12px center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px 32px 11px 12px;
+  width: 100%;
+  font-size: 13px;
+}
+.hint {
+  font-size: 11px;
+  color: #64736b;
+  min-height: 16px;
+  margin: 9px 0 13px;
+}
+.use {
+  width: 100%;
+  border: 0;
+  border-bottom: 3px solid #a74832;
+  background: var(--coral);
+  border-radius: 10px;
+  color: #fffdf5;
+  padding: 11px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  user-select: none;
+  touch-action: none;
+}
+.right-card .use {
+  background: var(--teal);
+  border-bottom-color: #125348;
+}
+.use[aria-pressed="true"] {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+  filter: brightness(0.92);
+}
+.card-label {
+  font: 600 14px "Trebuchet MS";
+  margin: 0 0 11px;
+}
+.look-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.look-row button,
+.clear {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 11px;
+  font-size: 11px;
+}
+.look-row label {
+  font-size: 11px;
+}
+.look-row input {
+  width: 115px;
+  accent-color: var(--teal);
+}
+.reduced {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  gap: 7px;
+  margin-top: 13px;
+  color: #596d65;
+}
+.reduced input {
+  accent-color: var(--teal);
+}
+.notebook {
+  background: transparent;
+  padding: 15px 5px 0;
+  border: 0;
+}
+.log-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.log-title h2 {
+  font: 600 13px "Trebuchet MS";
+  margin: 0;
+}
+.log-title span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #66796c;
+}
+.notebook ol {
+  font-size: 11px;
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+  min-height: 54px;
+}
+.notebook li {
+  padding: 5px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.notebook li span {
+  color: #6c7b70;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+.status {
+  max-width: 1352px;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 0 0 14px;
+  font-size: 11px;
+  color: #5e7166;
+}
+.status p {
+  margin: 0;
+}
+.status .error {
+  color: #a63c29;
+}
+.status small {
+  font-size: 10px;
+}
+footer {
+  border-top: 1px solid var(--line);
+  max-width: 1352px;
+  margin: auto;
+  padding: 17px 0 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #637368;
+}
+footer strong {
+  letter-spacing: 2px;
+  font-size: 9px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+@media (min-width: 1500px) {
+  .play-room {
+    min-height: 680px;
+  }
+}
+@media (max-width: 1000px) {
+  header {
+    padding: 20px 25px;
+  }
+  .intro {
+    padding: 28px 25px 22px;
+  }
+  .workspace {
+    padding: 0 25px 25px;
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: 15px;
+  }
+  .hand-card,
+  .look-card {
+    padding: 16px;
+  }
+  .play-room {
+    min-height: 650px;
+  }
+  .room-art {
+    font-size: 55px;
+  }
+  .stamp {
+    width: 60px;
+    height: 60px;
+    font-size: 9px;
+  }
+  .status,
+  footer {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  .room-bottom {
+    flex-direction: column;
+    align-items: center;
+  }
+  .room-bottom p {
+    display: none;
+  }
+}
+@media (max-width: 680px) {
+  header {
+    padding: 18px 20px;
+  }
+  .brand {
+    font-size: 20px;
+  }
+  .back {
+    font-size: 11px;
+  }
+  .intro {
+    padding: 26px 20px 22px;
+    display: block;
+  }
+  .intro h1 {
+    font-size: 40px;
+    letter-spacing: -2px;
+  }
+  .intro p:last-child {
+    margin-top: 14px;
+    max-width: 330px;
+    font-size: 12px;
+  }
+  .workspace {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 20px;
+  }
+  .play-room {
+    min-height: 485px;
+  }
+  .room-top {
+    left: 20px;
+    right: 20px;
+    top: 20px;
+    font-size: 9px;
+  }
+  .stage {
+    inset: 45px 0 48px;
+  }
+  .room-art {
+    left: 20px;
+    top: 78px;
+    font-size: 52px;
+  }
+  .stamp {
+    right: 19px;
+    top: 74px;
+    width: 62px;
+    height: 62px;
+  }
+  .room-bottom {
+    bottom: 15px;
+  }
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .hand-card {
+    padding: 14px 11px;
+    border-radius: 15px;
+  }
+  .hand-title h2 {
+    font-size: 17px;
+  }
+  .key {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+  select {
+    font-size: 11px;
+    padding-left: 8px;
+    padding-right: 25px;
+    background-position: right 7px center;
+  }
+  .hint {
+    font-size: 10px;
+    min-height: 28px;
+    line-height: 1.45;
+  }
+  .use {
+    font-size: 11px;
+    padding: 11px 5px;
+  }
+  .look-card,
+  .notebook {
+    grid-column: 1/-1;
+  }
+  .look-row input {
+    width: 130px;
+  }
+  .notebook {
+    padding: 12px 8px 0;
+  }
+  .status {
+    margin: 0 23px 12px;
+    align-items: start;
+  }
+  .status small {
+    display: none;
+  }
+  footer {
+    margin: 0 23px;
+    padding-top: 15px;
+    gap: 18px;
+    font-size: 9px;
+  }
+  footer strong {
+    white-space: nowrap;
+  }
+  .notebook ol {
+    min-height: 35px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}
