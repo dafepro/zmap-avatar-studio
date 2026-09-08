@@ -57,6 +57,10 @@ test("weight changes the real meshes and skeleton together, preserves height, an
     recipe.parts.hair = "hair-sweep";
     await a.setAppearance(recipe);
     await b.setAppearance(recipe);
+    // Compare tissue and joint centers in one fixed pose: appearance replacement
+    // now preserves the prior live animation rather than resetting it implicitly.
+    a.update(0, { reducedMotion: true });
+    b.update(0, { reducedMotion: true });
     const rest = vertices(a),
       other = vertices(b);
     for (const weight of [-1, -0.5, 0.5, 1]) {
@@ -65,6 +69,7 @@ test("weight changes the real meshes and skeleton together, preserves height, an
         parseRecipe(JSON.stringify(next), catalog).body!.weight,
         weight,
       );
+      a.update(0, { reducedMotion: true });
       await a.setAppearance(next);
       const shaped = vertices(a);
       assert.equal(shaped.length, rest.length);
@@ -77,22 +82,21 @@ test("weight changes the real meshes and skeleton together, preserves height, an
         extent(rest),
         "weight must preserve floor and total height",
       );
-      a.object.traverse((o) => {
-        if (o instanceof THREE.Bone) {
-          const original: THREE.Bone[] = [];
-          b.object.traverse((p) => {
-            if (p instanceof THREE.Bone && p.name === o.name) original.push(p);
-          });
-          assert.ok(original.length > 0);
-          assert.ok(
-            o
-              .getWorldPosition(new THREE.Vector3())
-              .distanceTo(original[0].getWorldPosition(new THREE.Vector3())) <
-              1e-6,
-            `${o.name} center must not move with weight`,
-          );
-        }
-      });
+      // Exported clothing retains unused source armatures with duplicate names.
+      // Compare the actual shared rig sockets that drive the bound skin, not an
+      // unused source bone against the first same-named animated runtime joint.
+      const originalSockets = b.attachmentView()!.sockets;
+      assert.equal(a.attachmentView()!.sockets.size, originalSockets.size);
+      for (const [name, joint] of a.attachmentView()!.sockets) {
+        const original = originalSockets.get(name);
+        assert.ok(original);
+        assert.ok(
+          joint
+            .getWorldPosition(new THREE.Vector3())
+            .distanceTo(original.getWorldPosition(new THREE.Vector3())) < 1e-6,
+          `${name} center must not move with weight`,
+        );
+      }
       let moved = 0;
       for (let i = 0; i < rest.length; i++) {
         assert.ok(shaped[i].toArray().every(Number.isFinite));
@@ -129,6 +133,7 @@ test("weight changes the real meshes and skeleton together, preserves height, an
       other.map((p) => p.toArray()),
       "another instance must remain unchanged",
     );
+    a.update(0, { reducedMotion: true });
     await a.setAppearance(recipe);
     assert.deepEqual(
       vertices(a).map((p) => p.toArray()),

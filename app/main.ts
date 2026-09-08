@@ -541,15 +541,25 @@ $("save-look").onclick = () => {
   $<HTMLInputElement>("look-name").value = "";
   $<HTMLDialogElement>("save-dialog").showModal();
 };
-$("save-dialog").addEventListener("close", () => {
-  if ($<HTMLDialogElement>("save-dialog").returnValue !== "save") return;
-  const name = $<HTMLInputElement>("look-name").value.trim();
-  if (!name) return;
-  saved.push({ name, recipe: structuredClone(recipe) });
-  const stored = writeSaved();
-  renderSaved();
-  if (stored) status(`Saved “${name}” to your lineup.`);
-});
+$("save-dialog")
+  .querySelector("form")!
+  .addEventListener("submit", (event) => {
+    event.preventDefault();
+    const dialog = $<HTMLDialogElement>("save-dialog");
+    if ((event.submitter as HTMLButtonElement | null)?.value !== "save") {
+      dialog.close("cancel");
+      return;
+    }
+    const name = $<HTMLInputElement>("look-name").value.trim();
+    if (!name) return;
+    // A dialog's close event is queued; navigation can discard it. Commit the
+    // validated submission synchronously before closing the editor.
+    saved.push({ name, recipe: structuredClone(recipe) });
+    const stored = writeSaved();
+    renderSaved();
+    if (stored) status(`Saved “${name}” to your lineup.`);
+    dialog.close("save");
+  });
 async function start() {
   try {
     const response = await fetch(

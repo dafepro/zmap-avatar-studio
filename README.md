@@ -14,6 +14,8 @@ npm run test:package
 
 The current reference kit is catalog **2.5.0**, rig **athlete-reference-v2**. It rebuilds the supplied body, swept hair and sportswear sheets. [Actual browser components](docs/evidence/reference-v2/browser-components.png), [weight comparison](docs/evidence/reference-v2/browser-weight-study.png) and the [documented Blender workflow](docs/reference-workflow.md) show the result and its limits.
 
+**[Field Tools](http://localhost:5180/action.html)** adds Tether Winch, Rebound Panel and Wake Driver: one shared object held by two fitted hands. Inspect body builds, primary-hand ownership, views and mechanisms in the workbench; try their real shared forces in [Action Yard](http://localhost:5173/action.html). The [two-hand contract and Blender workflow](docs/field-tools.md) describe the independent optional catalog and integration.
+
 Use the **Build** slider for lean through heavier tissue volume at fixed height. Arms and legs grow around their own centerlines; joint positions stay fixed. **Avatar / Base mesh / Hair / Outfit** inspect the assembled look or its components. **Illustrated / Studio** compare cel ink and lit materials. Front, side, back, turntable and motion controls inspect fit.
 
 **Try accessories** equips a mustache, glasses and cap together. One original hair mesh fits accessory-owned volumes, with no per-hat hairstyle variants. Removing equipment restores the original. New assets still need correct pivots and a declared fitting contract; see [accessory fitting](docs/accessory-fitting.md).

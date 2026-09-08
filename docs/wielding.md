@@ -1,5 +1,7 @@
 # Held items · two independent hands
 
+The same controller now also supports one shared two-handed object with measured physical grip frames and analytic arm fitting. See [Field Tools](field-tools.md) for the separate three-device catalog, two-hand loadout and shared-world integration. The original independent-hand API below remains supported.
+
 The optional handheld system adds **Bubble Comet**, **Bonk Bouquet**, **Firefly Lantern**, **Doodle Rocket** and **Whirl Pop**. One source model works in either hand; two copies can be used together. The shipping integrations are the customization studio and the standalone [toy playground](../app/wield.html), served at `/wield.html`.
 
 Equipment uses a separate `WieldCatalog` and `WieldLoadout`. It does not add appearance slots, multiply the wardrobe combination matrix, or require consumers to download toys. Applications own equipment permissions, persistence, input mapping and world effects. The runtime owns approved loading, attachment, hand poses, presentation behavior, resource limits and disposal.

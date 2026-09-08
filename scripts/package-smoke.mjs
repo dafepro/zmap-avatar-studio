@@ -84,7 +84,19 @@ for (const asset of assets) {
   if (bytes.length !== asset.bytes || createHash('sha256').update(bytes).digest('hex') !== asset.sha256) throw Error('Packed equipment integrity mismatch: ' + asset.id);
   inspectGlb(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength), wieldAssetDescriptor(asset, catalog.rig));
 }
-if (!WIELD_LIMITS.held || !WIELD_LIMITS.visible) throw Error('Missing public equipment budgets');
+const fieldBase = new URL('public/action/', packageRoot);
+const fieldCatalog = JSON.parse(await readFile(new URL('catalog.json', fieldBase), 'utf8'));
+validateWieldCatalog(fieldCatalog);
+if (fieldCatalog.items.length !== 3 || fieldCatalog.items.some(item => !item.twoHanded)) throw Error('Packed shared field collection is incomplete');
+const fieldAssets = [...Object.values(fieldCatalog.grips), ...fieldCatalog.items];
+if (fieldAssets.length !== 5) throw Error('Packed field grip pair is incomplete');
+for (const asset of fieldAssets) {
+  const bytes = await readFile(new URL(asset.url, fieldBase));
+  if (bytes.length !== asset.bytes || createHash('sha256').update(bytes).digest('hex') !== asset.sha256) throw Error('Packed field integrity mismatch: ' + asset.id);
+  inspectGlb(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength), wieldAssetDescriptor(asset, fieldCatalog.rig));
+}
+for (const item of fieldCatalog.items) validateWieldLoadout({...emptyWieldLoadout(fieldCatalog), twoHanded:{item:item.id, primary:'left'}}, fieldCatalog);
+if (!WIELD_LIMITS.held || !WIELD_LIMITS.visible || !WIELD_LIMITS.twoHandItem) throw Error('Missing public equipment budgets');
 `,
   );
   run("node", ["--import", "./register-data-only.mjs", "check-wield-core.mjs"]);
@@ -93,7 +105,7 @@ if (!WIELD_LIMITS.held || !WIELD_LIMITS.visible) throw Error('Missing public equ
   writeFileSync(
     join(dir, "check.mjs"),
     `
-import { AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex, WieldLibrary, WieldController, playfulWieldBehaviors } from '@zmap/avatar-studio';
+import { AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex, WieldLibrary, WieldController, playfulWieldBehaviors, fieldToolBehaviors } from '@zmap/avatar-studio';
 import { validateCatalog, inspectGlb } from '@zmap/avatar-studio/core';
 import { readFile } from 'node:fs/promises';
 const base = new URL('./node_modules/@zmap/avatar-studio/public/', import.meta.url);
@@ -103,7 +115,7 @@ for (const asset of catalog.assets) {
   const bytes = await readFile(new URL(asset.url, base));
   inspectGlb(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength), asset);
 }
-if ([AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex, WieldLibrary, WieldController, playfulWieldBehaviors].some(value => typeof value !== 'function')) throw Error('Incomplete ESM exports');
+if ([AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex, WieldLibrary, WieldController, playfulWieldBehaviors, fieldToolBehaviors].some(value => typeof value !== 'function')) throw Error('Incomplete ESM exports');
 `,
   );
   run("node", ["check.mjs"]);
@@ -115,7 +127,7 @@ if ([AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex, WieldLibra
   );
   const source = `
 import * as THREE from 'three';
-import { AvatarLibrary, ComicStyle, bakeDirectionalAtlas, WieldLibrary, WieldController, playfulWieldBehaviors, type WieldEvent } from '@zmap/avatar-studio';
+import { AvatarLibrary, ComicStyle, bakeDirectionalAtlas, WieldLibrary, WieldController, playfulWieldBehaviors, fieldToolBehaviors, disposeAvatarResources, type WieldEvent } from '@zmap/avatar-studio';
 import { defaultRecipe } from '@zmap/avatar-studio/core';
 import { emptyWieldLoadout, WIELD_LIMITS } from '@zmap/avatar-studio/wield-core';
 async function check() {
@@ -171,6 +183,56 @@ async function check() {
   if (rotorRest.angleTo(right.anchor('rotor').quaternion) > 0.0001) throw Error('Packed pinwheel did not honor reduced motion');
   const wieldDiagnostics = wield.diagnostics();
   if (wieldDiagnostics.equippedHands !== 2 || wieldDiagnostics.heldTriangles > WIELD_LIMITS.held || wieldDiagnostics.visibleTriangles > WIELD_LIMITS.visible || wieldErrors.length) throw Error('Packed equipment failed its runtime contract: ' + JSON.stringify({wieldDiagnostics, wieldErrors}));
+  // Swap the exclusive hand lease to an independently loaded two-handed collection.
+  wield.dispose(); wieldLibrary.dispose();
+  const fieldBase = new URL('action/', base);
+  const fieldCatalog = await (await fetch(new URL('catalog.json', fieldBase))).json();
+  const fieldLibrary = new WieldLibrary(fieldCatalog, fieldBase.href);
+  const fieldAssets = [...fieldLibrary.catalog.items, ...Object.values(fieldLibrary.catalog.grips)];
+  for (const asset of fieldAssets) disposeAvatarResources(await fieldLibrary.instantiate(asset));
+  let fieldCreated = 0, fieldDisposed = 0;
+  const fieldRegistry = fieldToolBehaviors();
+  for (const definition of Object.values(fieldRegistry)) {
+    const createBehavior = definition.create;
+    definition.create = context => {
+      fieldCreated++;
+      const behavior = createBehavior(context);
+      return {...behavior, dispose() { fieldDisposed++; behavior.dispose?.(); }};
+    };
+  }
+  const field = new WieldController(avatar, fieldLibrary, fieldRegistry, {onError: error => wieldErrors.push(String(error))});
+  const sharedLoadout = {...emptyWieldLoadout(fieldLibrary.catalog), twoHanded:{item:'wield-tether-winch', primary:'left' as const}};
+  if (!await field.setLoadout(sharedLoadout)) throw Error('Packed shared field loadout did not commit');
+  const main = field.getHand('left'), support = field.getHand('right');
+  if (main?.state !== 'ready' || support?.state !== 'ready' || main.object !== support.object || main.effects !== support.effects || main.grip === support.grip || fieldCreated !== 1) throw Error('Packed shared tool must have one behavior/model and two distinct ready grips');
+  const sourceDisposals: number[] = [];
+  const watched = new Set<THREE.BufferGeometry | THREE.Material>();
+  for (const owner of [main.object, main.grip, support.grip, main.effects]) owner.traverse(object => {
+    if (!(object instanceof THREE.Mesh)) return;
+    for (const resource of [object.geometry, ...(Array.isArray(object.material) ? object.material : [object.material])]) {
+      if (watched.has(resource)) continue;
+      watched.add(resource); const index = sourceDisposals.push(0) - 1;
+      resource.addEventListener('dispose', () => sourceDisposals[index]++);
+    }
+  });
+  const spool = main.anchor('spool'), spoolRest = spool.quaternion.clone();
+  field.press('right'); avatar.update(1.096);
+  if (spoolRest.angleTo(spool.quaternion) > .0001) throw Error('Packed support hand incorrectly activated its shared tool');
+  field.press('left'); avatar.update(1.112); avatar.update(1.128);
+  if (spoolRest.angleTo(spool.quaternion) < .001) throw Error('Packed primary hand did not animate its real shared mechanism');
+  field.release('left');
+  avatar.update(1.144, {reducedMotion:true});
+  avatar.object.updateMatrixWorld(true);
+  for (const hand of ['left', 'right'] as const) {
+    const wrist = avatar.attachmentView()!.sockets.get(hand === 'left' ? 'hand_L' : 'hand_R')!;
+    const grip = fieldLibrary.catalog.grips[hand].frame;
+    const expected = wrist.matrixWorld.clone().multiply(new THREE.Matrix4().compose(new THREE.Vector3().fromArray(grip.position),new THREE.Quaternion().setFromEuler(new THREE.Euler(...grip.rotation)),new THREE.Vector3(1,1,1)));
+    const actual = field.getHand(hand)!.anchor('grip').matrixWorld;
+    if (!actual.elements.every((value,index) => Math.abs(value-expected.elements[index]) < 1e-5)) throw Error('Packed ' + hand + ' grip frame is not fitted to the shared model');
+  }
+  const fieldDiagnostics = field.diagnostics();
+  const fieldExpected = main.item.triangles + fieldLibrary.catalog.grips.left.triangles + fieldLibrary.catalog.grips.right.triangles;
+  if (fieldDiagnostics.equippedHands !== 2 || fieldDiagnostics.heldTriangles !== fieldExpected || fieldExpected > WIELD_LIMITS.held || fieldDiagnostics.visibleTriangles > WIELD_LIMITS.visible || fieldDiagnostics.effectTriangles > WIELD_LIMITS.effects || wieldErrors.length) throw Error('Packed field tool failed its shared ownership or budgets: ' + JSON.stringify({fieldDiagnostics,wieldErrors}));
   let skinnedMeshes = 0, paintedMeshes = 0;
   avatar.object.traverse(object => {
     if (object instanceof THREE.SkinnedMesh) skinnedMeshes++;
@@ -197,8 +259,10 @@ async function check() {
   for (let offset=3;offset<pixels.length;offset+=4) if(pixels[offset]>10) visiblePixels++;
   if (visiblePixels < 1000) throw Error('Independent consumer did not render an avatar');
   const atlas = await bakeDirectionalAtlas(renderer, avatar.object, {tileSize:64});
-  const result = {triangles:avatar.diagnostics().triangles, skinnedMeshes, paintedMeshes, visiblePixels, directions:atlas.metadata.frames.length, wieldAssets:7, heldMeshes, heldTriangles:wieldDiagnostics.heldTriangles, visibleTriangles:wieldDiagnostics.visibleTriangles, wieldEvents:wieldEvents.map(event => event.hand + ':' + event.type)};
-  atlas.dispose(); style.dispose(); wield.dispose(); wieldLibrary.dispose(); avatar.dispose(); library.dispose(); renderer.dispose(); renderer.forceContextLoss();
+  const result = {triangles:avatar.diagnostics().triangles, skinnedMeshes, paintedMeshes, visiblePixels, directions:atlas.metadata.frames.length, wieldAssets:7, fieldAssets:fieldAssets.length, fieldHeldTriangles:fieldDiagnostics.heldTriangles, fieldVisibleTriangles:fieldDiagnostics.visibleTriangles, fieldOwners:fieldCreated, fittedFieldHands:fieldDiagnostics.equippedHands, heldMeshes, heldTriangles:wieldDiagnostics.heldTriangles, visibleTriangles:wieldDiagnostics.visibleTriangles, wieldEvents:wieldEvents.map(event => event.hand + ':' + event.type)};
+  atlas.dispose(); style.dispose(); field.dispose();
+  if (fieldDisposed !== 1 || field.getHand('left') || field.getHand('right') || !sourceDisposals.length || sourceDisposals.some(count => count !== 1)) throw Error('Packed field resources or shared owner were not disposed exactly once');
+  fieldLibrary.dispose(); avatar.dispose(); library.dispose(); renderer.dispose(); renderer.forceContextLoss();
   (window as any).consumerResult = {ok:true,...result};
 }
 void check().catch(error => { (window as any).consumerResult = {ok:false,error:String(error)}; });
@@ -280,7 +344,7 @@ void check().catch(error => { (window as any).consumerResult = {ok:false,error:S
     "utf8",
   );
   console.log(
-    "Packed independent consumer passed: data-only and runtime ESM exports, docs, every appearance GLB and all seven wield GLBs, TypeScript declarations, production build, dual-hand behavior events and reduced motion, real browser texture decode/skinning/render and 16-direction capture.",
+    "Packed independent consumer passed: data-only and runtime ESM exports, docs, every appearance GLB, all seven playful and five field GLBs, TypeScript declarations, production build, independent-hand events and reduced motion, one shared field owner with both complete grip frames and exact disposal, real browser texture decode/skinning/render and 16-direction capture.",
     result,
   );
 } finally {

@@ -101,3 +101,55 @@ test("two hand loadouts do not become appearance part combinations or escape bud
   assert.equal(WIELD_LIMITS.held, 2200);
   assert.equal(WIELD_LIMITS.visible, 16000);
 });
+
+test("shared equipment is explicitly exclusive, preserves both physical grip identities and counts its model once", () => {
+  const catalog = wieldCatalog();
+  const item = catalog.items[0];
+  item.twoHanded = {
+    grips: { left: "wand_left", right: item.gripAnchor },
+    hold: { socket: "chest", position: [0, -0.2, 0.3], rotation: [0, 0, 0] },
+  };
+  item.triangles = 1200;
+  catalog.grips.left.triangles = 500;
+  catalog.grips.right.triangles = 500;
+  validateWieldCatalog(catalog);
+  const valid = {
+    ...emptyWieldLoadout(catalog),
+    twoHanded: { item: item.id, primary: "left" as const },
+  };
+  validateWieldLoadout(valid, catalog);
+  for (const invalid of [
+    { ...valid, left: item.id },
+    { ...valid, right: item.id },
+    { ...valid, twoHanded: { item: item.id, primary: "center" } },
+    { ...valid, twoHanded: { item: item.id, primary: "left", extra: true } },
+    { ...emptyWieldLoadout(catalog), left: item.id },
+    { ...valid, twoHanded: { item: "unknown", primary: "right" } },
+  ])
+    assert.throws(() => validateWieldLoadout(invalid, catalog));
+  const changes: ((c: any) => void)[] = [
+    (c) => (c.items[0].twoHanded.grips.left = c.items[0].twoHanded.grips.right),
+    (c) => (c.items[0].anchors.tip = c.items[0].twoHanded.grips.left),
+    (c) => (c.items[0].gripAnchor = "unrelated"),
+    (c) => (c.items[0].twoHanded.hold.socket = "root"),
+    (c) => (c.items[0].twoHanded.hold.position[2] = 0.751),
+    (c) => (c.items[0].twoHanded.hold.rotation[1] = Infinity),
+    (c) => (c.items[0].triangles = 1201),
+    (c) => (c.items[0].twoHanded.grips.extra = "third"),
+  ];
+  for (const change of changes) {
+    const c = structuredClone(catalog);
+    change(c);
+    assert.throws(() => validateWieldCatalog(c));
+  }
+  const legacy = wieldCatalog();
+  assert.throws(() =>
+    validateWieldLoadout(
+      {
+        ...emptyWieldLoadout(legacy),
+        twoHanded: { item: "wand", primary: "right" },
+      },
+      legacy,
+    ),
+  );
+});

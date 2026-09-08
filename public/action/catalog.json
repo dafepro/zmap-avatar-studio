@@ -1,0 +1,264 @@
+{
+  "version": 1,
+  "id": "zoomap-field-tools",
+  "revision": "1.0.0",
+  "rig": "athlete-reference-v2",
+  "grips": {
+    "left": {
+      "id": "grip-left",
+      "label": "Power grip \u00b7 left",
+      "url": "models/grip-left.glb",
+      "bytes": 36624,
+      "sha256": "985af1b45718bf934687dee3c9336accd8a628efac9456fc696f8517cda77f6a",
+      "triangles": 462,
+      "node": "ref2_grip-left__root",
+      "hand": "left",
+      "frame": {
+        "position": [
+          -0.024,
+          -0.073,
+          0.046
+        ],
+        "rotation": [
+          1.5707963267948966,
+          0,
+          1.5707963267948966
+        ]
+      }
+    },
+    "right": {
+      "id": "grip-right",
+      "label": "Power grip \u00b7 right",
+      "url": "models/grip-right.glb",
+      "bytes": 36476,
+      "sha256": "8c7fd134d630a164a3be45c16ac2c15bcca27123c20313b289ec2bbd51e24944",
+      "triangles": 460,
+      "node": "ref2_grip-right__root",
+      "hand": "right",
+      "frame": {
+        "position": [
+          0.024,
+          -0.073,
+          0.046
+        ],
+        "rotation": [
+          1.5707963267948966,
+          0,
+          -1.5707963267948966
+        ]
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "wield-tether-winch",
+      "label": "Tether Winch",
+      "url": "models/wield-tether-winch.glb",
+      "bytes": 84388,
+      "sha256": "6347b6901a6d4b69b9d88ec00ffd45850e5091bd3662eaf9494a6caa47b22968",
+      "triangles": 1164,
+      "node": "ref2_wield-tether-winch__root",
+      "behavior": "tether-winch",
+      "gripAnchor": "Winch__gripRight",
+      "anchors": {
+        "spool": "Winch__spool",
+        "cable": "Winch__cable"
+      },
+      "pose": {
+        "left": {
+          "arm": [
+            0,
+            0,
+            0
+          ],
+          "forearm": [
+            0,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            0,
+            0
+          ]
+        },
+        "right": {
+          "arm": [
+            0,
+            0,
+            0
+          ],
+          "forearm": [
+            0,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "twoHanded": {
+        "grips": {
+          "left": "Winch__gripLeft",
+          "right": "Winch__gripRight"
+        },
+        "hold": {
+          "socket": "chest",
+          "position": [
+            0,
+            -0.2,
+            0.3
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "wield-rebound-panel",
+      "label": "Rebound Panel",
+      "url": "models/wield-rebound-panel.glb",
+      "bytes": 54312,
+      "sha256": "78576f393dc227b94b8cb9465450b5077a957074128978a41a914bc99788ad11",
+      "triangles": 760,
+      "node": "ref2_wield-rebound-panel__root",
+      "behavior": "rebound-panel",
+      "gripAnchor": "Panel__gripRight",
+      "anchors": {
+        "face": "Panel__face",
+        "impact": "Panel__impact"
+      },
+      "pose": {
+        "left": {
+          "arm": [
+            0,
+            0,
+            0
+          ],
+          "forearm": [
+            0,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            0,
+            0
+          ]
+        },
+        "right": {
+          "arm": [
+            0,
+            0,
+            0
+          ],
+          "forearm": [
+            0,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "twoHanded": {
+        "grips": {
+          "left": "Panel__gripLeft",
+          "right": "Panel__gripRight"
+        },
+        "hold": {
+          "socket": "chest",
+          "position": [
+            0,
+            -0.2,
+            0.3
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "wield-wake-driver",
+      "label": "Wake Driver",
+      "url": "models/wield-wake-driver.glb",
+      "bytes": 48340,
+      "sha256": "21a3e0f8e3aae92133a76f75eae00a12809811e55e1ac8f936a83c2b1b290659",
+      "triangles": 636,
+      "node": "ref2_wield-wake-driver__root",
+      "behavior": "wake-driver",
+      "gripAnchor": "Driver__gripRight",
+      "anchors": {
+        "piston": "Driver__piston",
+        "ground": "Driver__ground"
+      },
+      "pose": {
+        "left": {
+          "arm": [
+            0,
+            0,
+            0
+          ],
+          "forearm": [
+            0,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            0,
+            0
+          ]
+        },
+        "right": {
+          "arm": [
+            0,
+            0,
+            0
+          ],
+          "forearm": [
+            0,
+            0,
+            0
+          ],
+          "wrist": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "twoHanded": {
+        "grips": {
+          "left": "Driver__gripLeft",
+          "right": "Driver__gripRight"
+        },
+        "hold": {
+          "socket": "chest",
+          "position": [
+            0,
+            -0.2,
+            0.3
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    }
+  ]
+}

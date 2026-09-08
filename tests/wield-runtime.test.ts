@@ -14,6 +14,8 @@ import {
   WieldLibrary,
   WieldController,
   isWieldHandCovered,
+  solveWieldArm,
+  WIELD_IK_LIMITS,
   type WieldBehaviorRegistry,
   type WieldEvent,
 } from "../src/wield-runtime";
@@ -77,6 +79,7 @@ function setup(
     delay?: (id: string) => Promise<void>;
     fail?: (id: string) => boolean;
     mutateItem?: (nodes: any[]) => void;
+    shared?: boolean;
   } = {},
 ) {
   const files = new Map<string, Uint8Array>(),
@@ -123,25 +126,46 @@ function setup(
       height: 2,
       sockets: [
         { id: "root", parent: null, position: [0, 0, 0] },
+        ...(options.shared
+          ? [
+              {
+                id: "chest",
+                parent: "root",
+                position: [0, 1.5, 0] as [number, number, number],
+              },
+            ]
+          : []),
         ...(["L", "R"] as const).flatMap((side) => [
           {
             id: `arm_${side}`,
-            parent: "root",
-            position: [side === "L" ? -0.2 : 0.2, 1.5, 0] as [
-              number,
-              number,
-              number,
-            ],
+            parent: options.shared ? "chest" : "root",
+            position: [
+              side === "L" ? -0.204 : 0.204,
+              options.shared ? 0.155 : 1.5,
+              0,
+            ] as [number, number, number],
           },
           {
             id: `forearm_${side}`,
             parent: `arm_${side}`,
-            position: [0, -0.3, 0] as [number, number, number],
+            position: options.shared
+              ? ([side === "L" ? -0.065 : 0.065, -0.27, 0] as [
+                  number,
+                  number,
+                  number,
+                ])
+              : ([0, -0.3, 0] as [number, number, number]),
           },
           {
             id: `hand_${side}`,
             parent: `forearm_${side}`,
-            position: [0, -0.25, 0] as [number, number, number],
+            position: options.shared
+              ? ([side === "L" ? -0.064 : 0.064, -0.217, 0.007] as [
+                  number,
+                  number,
+                  number,
+                ])
+              : ([0, -0.25, 0] as [number, number, number]),
           },
         ]),
       ],
@@ -198,13 +222,45 @@ function setup(
       pose: { left: pose(-1), right: pose(1) },
     };
   };
+  const sharedItem = (id: string, depth = 0.3) => ({
+    ...item(id),
+    ...describe(
+      id,
+      glb(
+        [
+          { name: id, mesh: 0, children: [1, 2, 3] },
+          { name: `${id}-left`, translation: [-0.21, 0, 0] },
+          { name: `${id}-right`, translation: [0.21, 0, 0] },
+          { name: `${id}-tip`, translation: [0, 0, 0.2] },
+        ],
+        [0],
+      ),
+      1,
+    ),
+    gripAnchor: `${id}-right`,
+    twoHanded: {
+      grips: { left: `${id}-left`, right: `${id}-right` },
+      hold: {
+        socket: "chest" as const,
+        position: [0, -0.2, depth] as [number, number, number],
+        rotation: [0, 0, 0] as [number, number, number],
+      },
+    },
+  });
   const wield: WieldCatalog = {
     version: 1,
     id: "equipment",
     revision: "1.0.0",
     rig: "test-rig",
     grips: { left: grip("left"), right: grip("right") },
-    items: [item("wand"), item("flower"), item("slow")],
+    items: [
+      item("wand"),
+      item("flower"),
+      item("slow"),
+      ...(options.shared
+        ? [sharedItem("shared"), sharedItem("far", 0.72)]
+        : []),
+    ],
   };
   const fetcher: typeof fetch = async (input) => {
     const id = String(input).split("/").pop()!.replace(".glb", "");
@@ -1143,6 +1199,353 @@ test("hand coverage composes with inspection without serialized state and clears
   assert.equal(isWieldHandCovered(next.right), true);
   s.avatar.dispose();
   assert.equal(isWieldHandCovered(next.right), false);
+  s.avatars.dispose();
+  s.library.dispose();
+});
+
+function assertSharedFrames(
+  s: ReturnType<typeof setup>,
+  controller: WieldController,
+) {
+  const view = s.avatar.attachmentView()!;
+  s.avatar.object.updateMatrixWorld(true);
+  for (const hand of ["left", "right"] as const) {
+    const grip = s.wield.grips[hand].frame;
+    const wrist = view.sockets.get(hand === "left" ? "hand_L" : "hand_R")!;
+    const expected = wrist.matrixWorld
+      .clone()
+      .multiply(
+        new THREE.Matrix4().compose(
+          new THREE.Vector3().fromArray(grip.position),
+          new THREE.Quaternion().setFromEuler(
+            new THREE.Euler(...grip.rotation),
+          ),
+          new THREE.Vector3(1, 1, 1),
+        ),
+      );
+    const actual = controller.getHand(hand)!.anchor("grip").matrixWorld;
+    assert.ok(
+      actual.elements.every(
+        (value, i) => Math.abs(value - expected.elements[i]) < 1e-6,
+      ),
+      `${hand} full grip basis must match`,
+    );
+    const solution = solveWieldArm(view, hand, wrist.matrixWorld);
+    assert.ok(solution.reach < solution.upperLength + solution.lowerLength);
+    assert.ok(
+      solution.elbowDegrees >= WIELD_IK_LIMITS.minElbowDegrees &&
+        solution.elbowDegrees <= WIELD_IK_LIMITS.maxElbowDegrees,
+    );
+    assert.ok(solution.wristDegrees <= WIELD_IK_LIMITS.maxWristDegrees);
+  }
+}
+
+test("two-handed item owns one model and two fitted grips; either primary drives one behavior under world and locomotion transforms", async () => {
+  for (const primary of ["left", "right"] as const) {
+    const s = setup({ shared: true }),
+      events: WieldEvent[] = [],
+      inputs: string[] = [];
+    let updates = 0,
+      disposed = 0;
+    s.registry.tool.create = (ctx) => ({
+      input: (event) => {
+        inputs.push(event.type);
+        if (event.type === "press") ctx.emit({ type: "action", anchor: "tip" });
+      },
+      objectPose: (frame) => ({
+        position: [0, 0.006 * Math.sin(frame.elapsed), 0],
+        rotation: [0, 0.015 * Math.sin(frame.elapsed), 0],
+      }),
+      update: () => {
+        updates++;
+      },
+      dispose: () => {
+        disposed++;
+      },
+    });
+    await s.avatar.setAppearance(s.recipe);
+    s.avatar.object.position.set(5, 2, -4);
+    s.avatar.object.rotation.set(0.1, 0.7, -0.2);
+    s.avatar.object.scale.set(1.3, 0.8, 1.1);
+    const controller = new WieldController(s.avatar, s.library, s.registry, {
+      onEvent: (e) => events.push(e),
+    });
+    const loadout = {
+      ...s.loadout(null, null),
+      twoHanded: { item: "shared", primary },
+    };
+    assert.equal(await controller.setLoadout(loadout), true);
+    const left = controller.getHand("left")!,
+      right = controller.getHand("right")!;
+    assert.equal(left.object, right.object);
+    assert.equal(left.effects, right.effects);
+    assert.notEqual(left.grip, right.grip);
+    assert.equal(s.fetches.get("shared"), 1);
+    assert.equal(controller.diagnostics().heldTriangles, 3);
+    assert.equal(controller.diagnostics().equippedHands, 2);
+    const lengths = [...s.avatar.attachmentView()!.sockets.values()].map(
+      (bone) => [bone, bone.position.clone(), bone.scale.clone()] as const,
+    );
+    assertSharedFrames(s, controller);
+    controller.press(primary === "left" ? "right" : "left");
+    assert.deepEqual(inputs, []);
+    controller.press(primary);
+    for (let i = 0; i < 50; i++) {
+      s.avatar.update(i / 60, { speed: 0.6, gesture: "wave" });
+      assertSharedFrames(s, controller);
+    }
+    assert.equal(updates, 50);
+    assert.equal(events.length, 1);
+    assert.equal(events[0].hand, primary);
+    for (const [bone, position, scale] of lengths) {
+      assert.deepEqual(bone.position, position);
+      assert.deepEqual(bone.scale, scale);
+    }
+    await controller.setLoadout(loadout);
+    assert.equal(controller.getHand("left"), left);
+    assert.equal(disposed, 0);
+    controller.cancel();
+    assert.equal(inputs.filter((input) => input === "cancel").length, 1);
+    controller.dispose();
+    assert.equal(disposed, 1);
+    s.avatar.dispose();
+    s.avatars.dispose();
+    s.library.dispose();
+  }
+});
+
+test("two-handed ownership transitions atomically and rejects unreachable authored grips before replacing ready hands", async () => {
+  const gate = deferred(),
+    s = setup({
+      shared: true,
+      delay: (id) => (id === "shared" ? gate.promise : Promise.resolve()),
+    });
+  await s.avatar.setAppearance(s.recipe);
+  const controller = new WieldController(s.avatar, s.library, s.registry);
+  await controller.setLoadout(s.loadout("wand", "flower"));
+  const oldLeft = controller.getHand("left"),
+    oldRight = controller.getHand("right");
+  const pending = controller.setLoadout({
+    ...s.loadout(null, null),
+    twoHanded: { item: "shared", primary: "right" },
+  });
+  assert.equal(controller.getHand("left"), oldLeft);
+  assert.equal(controller.getHand("right"), oldRight);
+  gate.release();
+  assert.equal(await pending, true);
+  const shared = controller.getHand("left")!;
+  await assert.rejects(
+    controller.setLoadout({
+      ...s.loadout(null, null),
+      twoHanded: { item: "far", primary: "left" },
+    }),
+    /reach/,
+  );
+  assert.equal(controller.getHand("left"), shared);
+  assert.equal(controller.getHand("right")!.object, shared.object);
+  assertSharedFrames(s, controller);
+  await controller.setLoadout(s.loadout("wand", "flower"));
+  assert.notEqual(
+    controller.getHand("left")!.object,
+    controller.getHand("right")!.object,
+  );
+  controller.dispose();
+  s.avatar.dispose();
+  s.avatars.dispose();
+  s.library.dispose();
+});
+
+test("shared grips survive hidden appearance swaps; invalid object motion retires both hands without stretching", async () => {
+  const s = setup({ shared: true });
+  let updates = 0,
+    bad = false,
+    disposed = 0;
+  s.registry.tool.create = () => ({
+    objectPose: () => ({ position: [0, 0, bad ? 0.081 : 0] }),
+    update: () => {
+      updates++;
+    },
+    dispose: () => {
+      disposed++;
+    },
+  });
+  await s.avatar.setAppearance(s.recipe);
+  const controller = new WieldController(s.avatar, s.library, s.registry);
+  await controller.setLoadout({
+    ...s.loadout(null, null),
+    twoHanded: { item: "shared", primary: "left" },
+  });
+  const left = controller.getHand("left")!,
+    right = controller.getHand("right")!;
+  controller.setVisible(false);
+  const before = updates;
+  await s.avatar.setAppearance(s.recipe);
+  s.avatar.update(0.1);
+  assert.equal(updates, before);
+  s.avatar.object.traverse((o) => {
+    if (o.userData.handSide) assert.equal(isWieldHandCovered(o), false);
+  });
+  controller.setVisible(true);
+  assert.equal(controller.getHand("left"), left);
+  assert.equal(controller.getHand("right"), right);
+  assertSharedFrames(s, controller);
+  await s.avatar.setAppearance(s.recipe);
+  assertSharedFrames(s, controller);
+  bad = true;
+  s.avatar.update(0.2);
+  assert.equal(left.state, "error");
+  assert.equal(right.state, "error");
+  assert.equal(disposed, 1);
+  assert.equal(controller.diagnostics().equippedHands, 0);
+  s.avatar.object.traverse((o) => {
+    if (o.userData.handSide) assert.equal(isWieldHandCovered(o), false);
+  });
+  controller.dispose();
+  assert.equal(disposed, 1);
+  s.avatar.dispose();
+  s.avatars.dispose();
+  s.library.dispose();
+});
+
+test("shared asynchronous supersession and disposal retire each owned resource once without disposing retained owners", async () => {
+  const gate = deferred(),
+    s = setup({
+      shared: true,
+      delay: (id) => (id === "shared" ? gate.promise : Promise.resolve()),
+    });
+  await s.avatar.setAppearance(s.recipe);
+  const controller = new WieldController(s.avatar, s.library, s.registry);
+  await controller.setLoadout(s.loadout("wand", "flower"));
+  const left = controller.getHand("left")!,
+    right = controller.getHand("right")!;
+  const pending = controller.setLoadout({
+    ...s.loadout(null, null),
+    twoHanded: { item: "shared", primary: "left" },
+  });
+  assert.equal(await controller.setLoadout(s.loadout("wand", "flower")), true);
+  gate.release();
+  assert.equal(await pending, false);
+  assert.equal(controller.getHand("left"), left);
+  assert.equal(controller.getHand("right"), right);
+  await controller.setLoadout({
+    ...s.loadout(null, null),
+    twoHanded: { item: "shared", primary: "left" },
+  });
+  const counts = new Map<object, number>();
+  for (const root of [
+    controller.getHand("left")!.object,
+    controller.getHand("left")!.grip,
+    controller.getHand("right")!.grip,
+  ])
+    root.traverse((node) => {
+      if (!(node instanceof THREE.Mesh)) return;
+      for (const resource of [
+        node.geometry,
+        ...(Array.isArray(node.material) ? node.material : [node.material]),
+      ]) {
+        if (counts.has(resource)) continue;
+        counts.set(resource, 0);
+        resource.addEventListener("dispose", () =>
+          counts.set(resource, counts.get(resource)! + 1),
+        );
+      }
+    });
+  const bones = s.avatar.attachmentView()!.sockets;
+  await controller.setLoadout(s.loadout(null, null));
+  assert.equal(bones.get("forearm_L")!.rotation.x, -0.1);
+  assert.equal(bones.get("forearm_R")!.rotation.x, -0.1);
+  for (const value of counts.values()) assert.equal(value, 1);
+  await controller.setLoadout({
+    ...s.loadout(null, null),
+    twoHanded: { item: "shared", primary: "right" },
+  });
+  controller.dispose();
+  assert.equal(bones.get("forearm_L")!.rotation.x, -0.1);
+  assert.equal(bones.get("forearm_R")!.rotation.x, -0.1);
+  for (const value of counts.values()) assert.equal(value, 1);
+  s.avatar.dispose();
+  s.avatars.dispose();
+  s.library.dispose();
+});
+
+test("shared effects are counted once, both grip branches are protected, and failed arm reach recovers the normal pose", async () => {
+  const s = setup({ shared: true });
+  let mutate = false,
+    disposed = 0;
+  s.registry.tool.create = (ctx) => {
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(new Float32Array(300 * 3 * 3), 3),
+    );
+    const effect = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial());
+    ctx.effects.add(effect);
+    return {
+      update: () => {
+        if (mutate)
+          ctx.object.getObjectByName("shared-right")!.position.x += 0.01;
+      },
+      dispose: () => {
+        disposed++;
+      },
+    };
+  };
+  await s.avatar.setAppearance(s.recipe);
+  const controller = new WieldController(s.avatar, s.library, s.registry);
+  await controller.setLoadout({
+    ...s.loadout(null, null),
+    twoHanded: { item: "shared", primary: "left" },
+  });
+  assert.equal(controller.diagnostics().effectTriangles, 300);
+  const left = controller.getHand("left")!,
+    right = controller.getHand("right")!;
+  mutate = true;
+  s.avatar.update(0.1);
+  assert.equal(left.state, "error");
+  assert.equal(right.state, "error");
+  assert.equal(disposed, 1);
+  assert.equal(
+    s.avatar.attachmentView()!.sockets.get("forearm_R")!.rotation.x,
+    -0.1,
+  );
+  assert.equal(controller.diagnostics().effectTriangles, 0);
+  controller.dispose();
+  s.avatar.dispose();
+  s.avatars.dispose();
+  s.library.dispose();
+});
+
+test("shared grip ancestry is immutable and failed staging recovers detached descendants for disposal", async () => {
+  const s = setup({ shared: true }),
+    foreign = new THREE.Group();
+  let geometryDisposals = 0;
+  s.registry.tool.create = (ctx) => {
+    if (ctx.itemId === "shared") {
+      const root = ctx.object.getObjectByName("shared")!;
+      mesh(root).geometry.addEventListener(
+        "dispose",
+        () => geometryDisposals++,
+      );
+      foreign.add(root);
+    }
+    return {};
+  };
+  await s.avatar.setAppearance(s.recipe);
+  const controller = new WieldController(s.avatar, s.library, s.registry);
+  await controller.setLoadout(s.loadout("wand", "flower"));
+  const retained = controller.getHand("left");
+  await assert.rejects(
+    controller.setLoadout({
+      ...s.loadout(null, null),
+      twoHanded: { item: "shared", primary: "left" },
+    }),
+    /grip frame/,
+  );
+  assert.equal(controller.getHand("left"), retained);
+  assert.equal(foreign.children.length, 0);
+  assert.equal(geometryDisposals, 1);
+  controller.dispose();
+  s.avatar.dispose();
   s.avatars.dispose();
   s.library.dispose();
 });

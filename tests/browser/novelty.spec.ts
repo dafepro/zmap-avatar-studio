@@ -176,8 +176,27 @@ test("novelty choices retain saved customization, fixed pigments and reversible 
   }
   await page.locator("#save-look").click();
   await page.getByLabel("Name", { exact: true }).fill("Playful matchday");
+  // Capture storage in the submission task, before the deferred dialog close
+  // event. Immediate reload must not be able to discard a confirmed save.
+  await page.evaluate(() => {
+    document.querySelector("#save-dialog form")!.addEventListener(
+      "submit",
+      () => {
+        (window as any).savedDuringSubmission = JSON.parse(
+          localStorage.getItem("avatar-studio:looks")!,
+        );
+      },
+      { once: true },
+    );
+  });
   await page.locator("#confirm-save").click();
   const final = await recipeOf(page);
+  expect(
+    await page.evaluate(() => (window as any).savedDuringSubmission),
+  ).toEqual([
+    { name: "Before the silliness", recipe: saved },
+    { name: "Playful matchday", recipe: final },
+  ]);
   await page.reload();
   await page.waitForFunction(() => !!(window as any).avatarStudio);
   expect(await recipeOf(page)).toEqual(final);

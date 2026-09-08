@@ -40,7 +40,7 @@ const descriptions: Record<string, { hint: string; action: string }> = {
   },
 };
 $("app").innerHTML = `
-<header><a class="brand" href="/wield.html"><span class="brand-mark" aria-hidden="true">✳</span>pocket play.</a><a class="back" href="/">Back to the avatar studio ↗</a></header>
+<header><a class="brand" href="/wield.html"><span class="brand-mark" aria-hidden="true">✳</span>pocket play.</a><a class="back" href="/action.html">Two-handed field tools ↗</a><a class="back" href="/">Avatar studio ↗</a></header>
 <section class="intro"><div><p class="eyebrow">Zoomap / A little room for play</p><h1>Pick a toy.<br>Make a little <em>mischief.</em></h1></div><p>Two hands. Five wonderfully silly things.<br>Mix, match, and see what happens.</p></section>
 <main class="workspace">
 <section class="play-room" aria-label="Interactive avatar playground"><div class="room-top"><span><i></i> THE PLAYROOM</span><span>NO RULES. JUST LITTLE JOYS.</span></div><div class="room-art" aria-hidden="true">GOOD<br>ODD<br>FUN.</div><div class="stamp" aria-hidden="true">100%<br>POCKET-SIZED<br>NON SENSE</div><div id="toy-stage" class="stage"></div><p id="toy-loading" class="loading" role="status">Unpacking the toy box…</p><div class="room-bottom"><p>Drag to turn your character.<br>A different angle, a different kind of silly.</p><div class="orbit" role="group" aria-label="Camera views"><button data-camera="front" aria-pressed="true">Front</button><button data-camera="side" aria-pressed="false">Side</button><button data-camera="back" aria-pressed="false">Back</button></div></div></section>

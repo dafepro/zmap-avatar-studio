@@ -25,7 +25,7 @@ export async function mountWieldPanel(
   const panel = document.createElement("section");
   panel.id = "wield-panel";
   panel.className = "wield-panel";
-  panel.innerHTML = `<div><p class="eyebrow">A LITTLE MISCHIEF</p><h2>Put your hands to good use.</h2><p>One toy. Either hand. Or mix a pair.</p></div><div class="wield-choices"></div><div class="wield-bottom"><button id="wield-demo">Try a playful pair</button><button id="wield-clear">Empty both hands</button><a href="/wield.html">Open the toy playground ↗</a><p id="wield-status" role="status">Loading the toy collection…</p></div>`;
+  panel.innerHTML = `<div><p class="eyebrow">A LITTLE MISCHIEF</p><h2>Put your hands to good use.</h2><p>One toy. Either hand. Or mix a pair.</p></div><div class="wield-choices"></div><div class="wield-bottom"><button id="wield-demo">Try a playful pair</button><button id="wield-clear">Empty both hands</button><a href="/action.html">Two-handed field tools ↗</a><a href="/wield.html">Open the toy playground ↗</a><p id="wield-status" role="status">Loading the toy collection…</p></div>`;
   document.querySelector(".saved-section")!.before(panel);
   const feedback = panel.querySelector<HTMLElement>("#wield-status")!;
   const response = await fetch("/wield/catalog.json", { signal: lifecycle });

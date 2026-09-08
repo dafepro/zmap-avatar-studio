@@ -743,6 +743,7 @@ exec(compile((ROOT/'assets/source/collection_review.py').read_text(), 'collectio
 exec(compile((ROOT/'assets/source/hair_review.py').read_text(), 'hair_review.py', 'exec'),globals())
 exec(compile((ROOT/'assets/source/novelty_review.py').read_text(), 'novelty_review.py', 'exec'),globals())
 exec(compile((ROOT/'assets/source/wield_kit.py').read_text(), 'wield_kit.py', 'exec'),globals())
+exec(compile((ROOT/'assets/source/action_kit.py').read_text(), 'action_kit.py', 'exec'),globals())
 for obj in set(bpy.data.objects)-before:obj['zmap_reference']=True
 for source in roots:
     source.hide_set(True)

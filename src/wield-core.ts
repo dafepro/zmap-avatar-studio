@@ -18,12 +18,18 @@ export type WieldGrip = WieldAsset & {
   hand: Hand;
   frame: { position: Euler3; rotation: Euler3 };
 };
+export type TwoHandedHold = {
+  grips: Record<Hand, string>;
+  hold: { socket: "chest"; position: Euler3; rotation: Euler3 };
+};
 export type WieldItem = WieldAsset & {
   /** A trusted, app-registered factory key; never executable manifest content. */
   behavior: string;
   gripAnchor: string;
   anchors: Record<string, string>;
   pose: Record<Hand, HandPose>;
+  /** One shared model with physical grip frames; legacy pose is unused in this mode. */
+  twoHanded?: TwoHandedHold;
 };
 export type WieldCatalog = {
   version: 1;
@@ -40,9 +46,12 @@ export type WieldLoadout = {
   rig: string;
   left: string | null;
   right: string | null;
+  /** Occupies both hands; ordinary left/right slots must be null. */
+  twoHanded?: { item: string; primary: Hand };
 };
 export const WIELD_LIMITS = Object.freeze({
   item: 600,
+  twoHandItem: 1200,
   grip: 500,
   held: 2200,
   heldBytes: 200000,
@@ -137,8 +146,15 @@ export function validateWieldCatalog(
     c.items.length > 0 &&
     c.items.length <= 128, "Invalid bounded equipment collection");
   for (const item of c.items) {
-    keys(item, [...common, "behavior", "gripAnchor", "anchors", "pose"]);
-    validateAsset(item, WIELD_LIMITS.item);
+    keys(
+      item,
+      [...common, "behavior", "gripAnchor", "anchors", "pose"],
+      ["twoHanded"],
+    );
+    validateAsset(
+      item,
+      item.twoHanded ? WIELD_LIMITS.twoHandItem : WIELD_LIMITS.item,
+    );
     require(validId(item.behavior) &&
       validId(item.gripAnchor), "Invalid equipment behavior or grip anchor");
     require(record(item.anchors) &&
@@ -149,6 +165,27 @@ export function validateWieldCatalog(
     require(new Set([item.gripAnchor, ...Object.values(item.anchors)]).size ===
       Object.keys(item.anchors).length +
         1, "Equipment anchors must name distinct nodes");
+    if (Object.hasOwn(item, "twoHanded")) {
+      keys(item.twoHanded, ["grips", "hold"]);
+      const two = item.twoHanded!;
+      keys(two.grips, [...HANDS]);
+      require(validId(two.grips.left) &&
+        validId(two.grips.right) &&
+        two.grips.left !==
+          two.grips
+            .right, "Two-handed grips must name distinct physical frames");
+      require(Object.values(two.grips).includes(
+        item.gripAnchor,
+      ), "Main grip must belong to the two-handed grip mapping");
+      require(!Object.values(item.anchors).some((node) =>
+        Object.values(two.grips).includes(node),
+      ), "Auxiliary anchors must not duplicate two-handed grips");
+      keys(two.hold, ["socket", "position", "rotation"]);
+      require(two.hold.socket ===
+        "chest", "Two-handed equipment uses the shared chest frame");
+      validateEuler(two.hold.position, 0.75);
+      validateEuler(two.hold.rotation);
+    }
     require(!ids.has(item.id), "Duplicate equipment identifier");
     ids.add(item.id);
     keys(item.pose, [...HANDS]);
@@ -169,7 +206,11 @@ export function validateWieldLoadout(
   value: unknown,
   catalog: WieldCatalog,
 ): asserts value is WieldLoadout {
-  keys(value, ["version", "catalog", "revision", "rig", ...HANDS]);
+  keys(
+    value,
+    ["version", "catalog", "revision", "rig", ...HANDS],
+    ["twoHanded"],
+  );
   const loadout = value as WieldLoadout;
   require(loadout.version === 1 &&
     loadout.catalog === catalog.id &&
@@ -184,8 +225,24 @@ export function validateWieldLoadout(
     if (id === null) continue;
     const item = catalog.items.find((asset) => asset.id === id);
     require(item, `Unknown held item ${id}`);
+    require(!item.twoHanded, "Two-handed equipment cannot occupy an independent hand slot");
     triangles += item.triangles + catalog.grips[hand].triangles;
     bytes += item.bytes + catalog.grips[hand].bytes;
+  }
+  if (Object.hasOwn(loadout, "twoHanded")) {
+    keys(loadout.twoHanded, ["item", "primary"]);
+    const two = loadout.twoHanded!;
+    require(loadout.left === null &&
+      loadout.right === null, "Two-handed equipment occupies both hand slots");
+    require(validId(two.item) &&
+      HANDS.includes(two.primary), "Invalid two-handed item or primary hand");
+    const item = catalog.items.find((asset) => asset.id === two.item);
+    require(item?.twoHanded, "Loadout requires an approved two-handed item");
+    triangles =
+      item.triangles +
+      catalog.grips.left.triangles +
+      catalog.grips.right.triangles;
+    bytes = item.bytes + catalog.grips.left.bytes + catalog.grips.right.bytes;
   }
   require(triangles <= WIELD_LIMITS.held &&
     bytes <= WIELD_LIMITS.heldBytes, "Held equipment budget exceeded");

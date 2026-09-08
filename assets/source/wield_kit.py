@@ -88,6 +88,7 @@ def render_wield_views(keys=None):
     if set(selected)-set(wield_previews):raise ValueError('Unknown wield study')
     output=ROOT/'docs/evidence/wield';output.mkdir(parents=True,exist_ok=True)
     review_roots=[study_front,study_side,look_front,look_three,look_side,*collection_previews.values(),*hair_previews.values(),*novelty_previews.values(),*wield_previews.values()]
+    review_roots += list(globals().get('action_previews',{}).values())
     visibility={obj:obj.hide_render for root in review_roots for obj in [root,*root.children_recursive]}
     previous=(scene.camera,scene.render.resolution_x,scene.render.resolution_y,scene.render.resolution_percentage,scene.render.filepath)
     paths=[]

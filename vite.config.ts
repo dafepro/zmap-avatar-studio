@@ -11,6 +11,9 @@ export default defineConfig({
       input: {
         studio: fileURLToPath(new URL("./app/index.html", import.meta.url)),
         playground: fileURLToPath(new URL("./app/wield.html", import.meta.url)),
+        fieldTools: fileURLToPath(
+          new URL("./app/action.html", import.meta.url),
+        ),
       },
     },
   },

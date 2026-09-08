@@ -22,6 +22,7 @@ def render_collection_views():
     """Capture every sheet view without neighboring models occluding profiles."""
     review_roots=[study_front,study_side,look_front,look_three,look_side]+list(collection_previews.values())+list(globals().get('hair_previews',{}).values())+list(globals().get('novelty_previews',{}).values())
     review_roots+=list(globals().get('wield_previews',{}).values())
+    review_roots += list(globals().get('action_previews',{}).values())
     visibility={o:o.hide_render for root in review_roots for o in root.children_recursive}
     previous=(scene.camera,scene.render.resolution_x,scene.render.resolution_y,scene.render.filepath,scene.cycles.samples)
     try:

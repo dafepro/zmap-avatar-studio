@@ -669,6 +669,7 @@ export class AvatarInstance {
       if (this.handLayer !== layer) return;
       layer.detach();
       this.handLayer = undefined;
+      this.refreshPose();
     };
   }
   /** Latest request wins; prior appearance remains intact on load/validation failure. */
@@ -704,15 +705,19 @@ export class AvatarInstance {
     this.object.add(next.root);
     this.poseView = view;
     this.handLayer?.attach(view);
+    this.refreshPose();
     return true;
   }
   /** Reapply the last base motion and equipment pose without advancing behavior time. */
   refreshPose() {
     if (this.refreshingPose || this.closed || !this.assembly) return;
     this.refreshingPose = true;
+    const previousTime = this.lastTime;
     try {
-      this.update(this.lastTime ?? 0, this.lastMotion);
+      this.update(previousTime ?? 0, this.lastMotion);
     } finally {
+      // A visual refresh must not start the application clock before its first tick.
+      this.lastTime = previousTime;
       this.refreshingPose = false;
     }
   }
