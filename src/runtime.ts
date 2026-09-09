@@ -14,11 +14,110 @@ import {
   type Recipe,
   type Asset,
 } from "./core.js";
+/** Generic presentation pose; physical translation/jumps remain application-owned. */
+export type AvatarActionPose = {
+  crouch?: number;
+  /** Signed forward lean. */
+  lean?: number;
+  stance?: number;
+  tuck?: number;
+  recoil?: number;
+};
 export type Motion = {
   speed?: number;
   gesture?: "idle" | "walk" | "wave" | "run";
   reducedMotion?: boolean;
+  /** Metres/second in avatar-facing space (+X right, +Z forward). Supplying
+   * velocity enables world-space stance contacts; speed-only previews use a treadmill. */
+  velocity?: { x: number; z: number };
+  grounded?: boolean;
+  pose?: AvatarActionPose;
 };
+type AnimatedFoot = {
+  contact: boolean;
+  initialized: boolean;
+  target: THREE.Vector3;
+  start: THREE.Vector3;
+  phase: number;
+  knee: number;
+};
+const animationScalar = (
+  value: number | undefined,
+  min: number,
+  max: number,
+) => {
+  if (value === undefined) return 0;
+  if (!Number.isFinite(value))
+    throw new AvatarError("animation", "Animation inputs must be finite");
+  return THREE.MathUtils.clamp(value, min, max);
+};
+/** Positive knee pole and flat sole frame; joint translations/scales never stretch. */
+function poseLeg(
+  hips: THREE.Bone,
+  thigh: THREE.Bone,
+  shin: THREE.Bone,
+  foot: THREE.Bone,
+  targetWorld: THREE.Vector3,
+  toeLift: number,
+): number {
+  hips.updateWorldMatrix(true, false);
+  const target = hips.worldToLocal(targetWorld.clone());
+  const upper = shin.position.clone(),
+    lower = foot.position.clone(),
+    a = upper.length(),
+    b = lower.length();
+  const direction = target.sub(thigh.position),
+    distance = direction.length();
+  const reach = THREE.MathUtils.clamp(
+    distance,
+    Math.abs(a - b) + 0.005,
+    a + b - 0.0001,
+  );
+  direction.normalize();
+  const along = (a * a - b * b + reach * reach) / (2 * reach),
+    height = Math.sqrt(Math.max(0, a * a - along * along));
+  const pole = new THREE.Vector3(thigh.position.x < 0 ? -0.12 : 0.12, 0, 1)
+    .addScaledVector(
+      direction,
+      -new THREE.Vector3(thigh.position.x < 0 ? -0.12 : 0.12, 0, 1).dot(
+        direction,
+      ),
+    )
+    .normalize();
+  const elbow = direction
+    .clone()
+    .multiplyScalar(along)
+    .addScaledVector(pole, height);
+  const upperRotation = new THREE.Quaternion().setFromUnitVectors(
+    upper.normalize(),
+    elbow.clone().normalize(),
+  );
+  const lowerRotation = new THREE.Quaternion()
+    .setFromUnitVectors(
+      lower.normalize().applyQuaternion(upperRotation),
+      direction.clone().multiplyScalar(reach).sub(elbow).normalize(),
+    )
+    .multiply(upperRotation);
+  thigh.quaternion.copy(upperRotation);
+  shin.quaternion.copy(upperRotation.clone().invert().multiply(lowerRotation));
+  foot.quaternion.copy(
+    lowerRotation
+      .clone()
+      .invert()
+      .multiply(
+        new THREE.Quaternion().setFromEuler(new THREE.Euler(-toeLift, 0, 0)),
+      ),
+  );
+  return THREE.MathUtils.radToDeg(
+    Math.acos(
+      THREE.MathUtils.clamp(
+        (reach * reach - a * a - b * b) / (2 * a * b),
+        -1,
+        1,
+      ),
+    ),
+  );
+}
 const imageReferences = new WeakMap<object, number>();
 const ownedTextures = new WeakSet<THREE.Texture>();
 const templateTextures = new WeakMap<THREE.Object3D, Set<THREE.Texture>>();
@@ -621,6 +720,28 @@ export class AvatarInstance {
   private generation = 0;
   private closed = false;
   private phase = 0;
+  private gaitVelocity = new THREE.Vector2();
+  private poseValues = { crouch: 0, lean: 0, stance: 0, tuck: 0, recoil: 0 };
+  private feet: Record<"left" | "right", AnimatedFoot> = {
+    left: {
+      contact: true,
+      initialized: false,
+      target: new THREE.Vector3(),
+      start: new THREE.Vector3(),
+      phase: 0,
+      knee: 0,
+    },
+    right: {
+      contact: true,
+      initialized: false,
+      target: new THREE.Vector3(),
+      start: new THREE.Vector3(),
+      phase: 0.5,
+      knee: 0,
+    },
+  };
+  private previousGrounded = true;
+  private previousOrigin?: THREE.Vector3;
   private lastTime?: number;
   private lastMotion: Motion = {};
   private refreshingPose = false;
@@ -736,6 +857,29 @@ export class AvatarInstance {
       );
       return;
     }
+    const firstFrame = this.lastTime === undefined;
+    const requestedPose = Object.fromEntries(
+      ["crouch", "lean", "stance", "tuck", "recoil"].map((key) => [
+        key,
+        animationScalar(
+          motion.pose?.[key as keyof AvatarActionPose],
+          key === "lean" ? -1 : 0,
+          1,
+        ),
+      ]),
+    ) as Required<AvatarActionPose>;
+    const requestedSpeed = animationScalar(
+      motion.speed ??
+        (motion.gesture === "walk" ? 0.65 : motion.gesture === "run" ? 1 : 0),
+      0,
+      1,
+    );
+    const requestedVelocity = motion.velocity
+      ? new THREE.Vector2(
+          animationScalar(motion.velocity.x, -8, 8),
+          animationScalar(motion.velocity.z, -8, 8),
+        )
+      : new THREE.Vector2(0, requestedSpeed * 4);
     const interrupted =
       this.lastTime !== undefined &&
       (time - this.lastTime > 0.25 || time < this.lastTime);
@@ -744,37 +888,64 @@ export class AvatarInstance {
         ? 0
         : Math.max(0, Math.min(0.1, time - this.lastTime));
     this.lastTime = time;
-    this.lastMotion = { ...motion };
+    this.lastMotion = {
+      ...motion,
+      velocity: motion.velocity && { ...motion.velocity },
+      pose: motion.pose && { ...motion.pose },
+    };
     const { sockets, effects } = this.assembly;
     for (const s of sockets.values()) s.rotation.set(0, 0, 0);
-    const speed = motion.reducedMotion
-      ? 0
-      : Math.max(
-          0,
-          Math.min(
-            1,
-            motion.speed ??
-              (motion.gesture === "walk"
-                ? 0.65
-                : motion.gesture === "run"
-                  ? 1
-                  : 0),
-          ),
-        );
-    this.phase += dt * (motion.gesture === "run" ? 12 : 8) * speed;
-    const swing = Math.sin(this.phase) * 0.55 * speed;
+    if (requestedVelocity.length() > 8) requestedVelocity.setLength(8);
+    const blend = this.refreshingPose ? 0 : 1 - Math.exp(-12 * dt);
+    const poseBlend = this.refreshingPose ? 0 : 1 - Math.exp(-20 * dt);
+    if (motion.reducedMotion) this.gaitVelocity.set(0, 0);
+    else this.gaitVelocity.lerp(requestedVelocity, blend);
+    for (const key of ["crouch", "lean", "stance", "tuck", "recoil"] as const) {
+      const value = requestedPose[key];
+      this.poseValues[key] =
+        motion.reducedMotion || firstFrame
+          ? value
+          : THREE.MathUtils.lerp(this.poseValues[key], value, poseBlend);
+    }
+    const gaitSpeed = Math.min(1, this.gaitVelocity.length() / 4),
+      frequency =
+        (1.25 + 1.15 * gaitSpeed) *
+        (1 +
+          (0.7 * Math.abs(this.gaitVelocity.x)) /
+            Math.max(0.001, this.gaitVelocity.length()));
+    if (
+      !this.refreshingPose &&
+      !motion.reducedMotion &&
+      (motion.grounded ?? true)
+    )
+      this.phase =
+        (this.phase +
+          dt * frequency * Math.min(1, this.gaitVelocity.length() / 0.3)) %
+        1;
+    const swing = Math.sin(this.phase * Math.PI * 2) * 0.55 * gaitSpeed;
+    this.assembly.root.position.y = -(
+      this.poseValues.crouch * 0.55 +
+      (motion.reducedMotion ? 0 : 0.12 * gaitSpeed) +
+      (motion.reducedMotion ? 0 : (0.018 * Math.abs(this.gaitVelocity.x)) / 4) +
+      this.poseValues.recoil * 0.035
+    );
     const rotate = (name: string, x: number, z = 0) => {
       const n = sockets.get(name);
       if (n) n.rotation.set(x, 0, z);
     };
-    rotate("leg_L", swing);
-    rotate("leg_R", -swing);
-    rotate("shin_L", Math.max(0, -swing) * 0.7);
-    rotate("shin_R", Math.max(0, swing) * 0.7);
-    rotate("arm_L", -swing * 0.6, -0.14);
-    rotate("arm_R", swing * 0.6, 0.14);
-    rotate("forearm_L", -0.1 - Math.abs(swing) * 0.25);
-    rotate("forearm_R", -0.1 - Math.abs(swing) * 0.25);
+    this.poseFeet(motion, dt, frequency, interrupted);
+    rotate(
+      "chest",
+      this.poseValues.lean * 0.36 - this.poseValues.recoil * 0.12,
+    );
+    const forward =
+      this.gaitVelocity.y / Math.max(0.001, this.gaitVelocity.length());
+    const lateral =
+      this.gaitVelocity.x / Math.max(0.001, this.gaitVelocity.length());
+    rotate("arm_L", -swing * 1.35 * forward, -0.14 + swing * 0.4 * lateral);
+    rotate("arm_R", swing * 1.35 * forward, 0.14 + swing * 0.4 * lateral);
+    rotate("forearm_L", -0.1 - Math.max(0, swing * forward) * 0.7);
+    rotate("forearm_R", -0.1 - Math.max(0, -swing * forward) * 0.7);
     if (motion.gesture === "wave") {
       rotate("arm_R", -2.7, 0.55);
       rotate(
@@ -782,7 +953,11 @@ export class AvatarInstance {
         motion.reducedMotion ? -0.2 : -0.2 + Math.sin(time * 7) * 0.16,
       );
     }
-    rotate("head", 0, motion.reducedMotion ? 0 : Math.sin(time * 1.5) * 0.016);
+    rotate(
+      "head",
+      -this.poseValues.lean * 0.12,
+      motion.reducedMotion ? 0 : Math.sin(time * 1.5) * 0.016,
+    );
     for (const e of effects) {
       e.object.rotation.y = motion.reducedMotion
         ? 0
@@ -799,17 +974,209 @@ export class AvatarInstance {
     this.object.updateMatrixWorld(true);
     if (!this.refreshingPose) this.handLayer?.update(frame, view);
   }
+  private poseFeet(
+    motion: Motion,
+    dt: number,
+    frequency: number,
+    interrupted: boolean,
+  ) {
+    const view = this.poseView!,
+      hips = view.sockets.get("hips");
+    if (
+      !hips ||
+      !["leg_L", "shin_L", "foot_L", "leg_R", "shin_R", "foot_R"].every((id) =>
+        view.sockets.has(id),
+      )
+    ) {
+      if (motion.velocity || motion.pose)
+        throw new AvatarError(
+          "animation",
+          "Directional/action poses require a complete hips/leg/shin/foot rig",
+        );
+      return;
+    }
+    this.object.updateWorldMatrix(true, false);
+    const origin = this.object.getWorldPosition(new THREE.Vector3());
+    const grounded = motion.grounded ?? true;
+    const reset =
+      interrupted ||
+      this.previousGrounded !== grounded ||
+      (this.previousOrigin && origin.distanceTo(this.previousOrigin) > 0.7);
+    this.previousOrigin = origin;
+    this.previousGrounded = grounded;
+    const speed = this.gaitVelocity.length(),
+      gait = Math.min(1, speed / 4),
+      stanceFraction = 0.62 - 0.2 * gait;
+    const inverse = this.object.matrixWorld.clone().invert(),
+      up = new THREE.Vector3(0, 1, 0).transformDirection(
+        this.object.matrixWorld,
+      );
+    for (const [hand, suffix, side] of [
+      ["left", "L", -1],
+      ["right", "R", 1],
+    ] as const) {
+      const thigh = view.sockets.get(`leg_${suffix}`)!,
+        shin = view.sockets.get(`shin_${suffix}`)!,
+        ankle = view.sockets.get(`foot_${suffix}`)!,
+        foot = this.feet[hand];
+      if (
+        thigh.parent !== hips ||
+        shin.parent !== thigh ||
+        ankle.parent !== shin
+      )
+        throw new AvatarError(
+          "animation",
+          "Foot planting requires the declared leg hierarchy",
+        );
+      const base = hips.position
+        .clone()
+        .add(thigh.position)
+        .add(shin.position)
+        .add(ankle.position);
+      base.x += side * this.poseValues.stance * 0.09;
+      base.x +=
+        (side * 0.06 * Math.abs(this.gaitVelocity.x)) / Math.max(0.001, speed);
+      const phase = (this.phase + (hand === "right" ? 0.5 : 0)) % 1,
+        contact = phase < stanceFraction;
+      let lift = 0;
+      if (!grounded || motion.reducedMotion || speed < 0.025) {
+        const target = base.clone();
+        if (!grounded) {
+          target.y += 0.05 + this.poseValues.tuck * 0.24;
+          target.z += this.poseValues.tuck * 0.08;
+        }
+        target.applyMatrix4(this.object.matrixWorld);
+        if (!foot.initialized || reset || motion.reducedMotion || !grounded)
+          foot.target.copy(target);
+        else foot.target.lerp(target, 1 - Math.exp(-14 * dt));
+        foot.contact = grounded;
+        foot.start.copy(foot.target);
+        foot.initialized = true;
+      } else if (motion.velocity) {
+        if (!foot.initialized || reset) {
+          foot.target.copy(base).applyMatrix4(this.object.matrixWorld);
+          foot.start.copy(foot.target);
+          foot.contact = contact;
+          foot.initialized = true;
+        }
+        if (contact && !foot.contact) {
+          const landing = base.clone();
+          landing.x += (this.gaitVelocity.x * stanceFraction) / (frequency * 2);
+          landing.z += (this.gaitVelocity.y * stanceFraction) / (frequency * 2);
+          foot.target.copy(landing).applyMatrix4(this.object.matrixWorld);
+        }
+        if (!contact) {
+          if (foot.contact) foot.start.copy(foot.target);
+          const progress = (phase - stanceFraction) / (1 - stanceFraction),
+            remaining = ((1 - progress) * (1 - stanceFraction)) / frequency;
+          const goal = base.clone();
+          goal.x +=
+            this.gaitVelocity.x *
+            (remaining + stanceFraction / (frequency * 2));
+          goal.z +=
+            this.gaitVelocity.y *
+            (remaining + stanceFraction / (frequency * 2));
+          goal.applyMatrix4(this.object.matrixWorld);
+          lift = Math.sin(Math.PI * progress) * (0.075 + 0.12 * gait);
+          foot.target
+            .copy(foot.start)
+            .lerp(goal, THREE.MathUtils.smoothstep(progress, 0, 1))
+            .addScaledVector(up, lift);
+        }
+        foot.contact = contact;
+      } else {
+        const progress = contact
+          ? phase / stanceFraction
+          : (phase - stanceFraction) / (1 - stanceFraction);
+        const lead = (speed * stanceFraction) / (frequency * 2),
+          along = contact
+            ? lead * (1 - 2 * progress)
+            : THREE.MathUtils.lerp(
+                -lead,
+                lead,
+                THREE.MathUtils.smoothstep(progress, 0, 1),
+              );
+        const target = base
+          .clone()
+          .add(
+            new THREE.Vector3(this.gaitVelocity.x, 0, this.gaitVelocity.y)
+              .normalize()
+              .multiplyScalar(along),
+          );
+        lift = contact
+          ? 0
+          : Math.sin(Math.PI * progress) * (0.075 + 0.12 * gait);
+        target.y += lift;
+        foot.target.copy(target).applyMatrix4(this.object.matrixWorld);
+        foot.contact = contact;
+        foot.initialized = true;
+      }
+      // Limit ground-plane reach before IK, preserving foot height and both bone lengths.
+      const local = foot.target.clone().applyMatrix4(inverse),
+        hip = hips.position.clone().add(thigh.position);
+      hip.y += this.assembly!.root.position.y;
+      const total = shin.position.length() + ankle.position.length() - 0.0001,
+        dy = local.y - hip.y;
+      const radius = Math.sqrt(Math.max(0.0001, total * total - dy * dy)),
+        planar = new THREE.Vector2(local.x - hip.x, local.z - hip.z);
+      if (planar.length() > radius) {
+        planar.setLength(radius);
+        local.x = hip.x + planar.x;
+        local.z = hip.z + planar.y;
+        foot.target.copy(local).applyMatrix4(this.object.matrixWorld);
+        foot.contact = false;
+      }
+      foot.knee = poseLeg(
+        hips,
+        thigh,
+        shin,
+        ankle,
+        foot.target,
+        lift > 0 ? 0.25 * Math.min(1, lift / 0.12) : 0,
+      );
+      foot.phase = phase;
+    }
+  }
+  animationDiagnostics() {
+    return {
+      velocity: this.gaitVelocity.toArray(),
+      pose: { ...this.poseValues },
+      feet: Object.fromEntries(
+        Object.entries(this.feet).map(([hand, foot]) => [
+          hand,
+          {
+            contact: foot.contact,
+            position: foot.target.toArray(),
+            kneeDegrees: foot.knee,
+            phase: foot.phase,
+          },
+        ]),
+      ),
+    };
+  }
   /** ZMap visual adapter: the caller still resolves approved recipes from app identity. */
   asCharacter(reducedMotion: () => boolean = () => false) {
     return {
       object: this.object,
       update: (
-        body: { vx: number; vz: number; gesture: number },
+        body: { vx: number; vz: number; gesture: number; facing?: number },
         time: number,
       ) =>
         this.update(time, {
           reducedMotion: reducedMotion(),
           speed: Math.min(1, Math.hypot(body.vx, body.vz) / 4),
+          ...(body.facing === undefined
+            ? {}
+            : {
+                velocity: {
+                  x:
+                    body.vx * Math.cos(body.facing) -
+                    body.vz * Math.sin(body.facing),
+                  z:
+                    body.vx * Math.sin(body.facing) +
+                    body.vz * Math.cos(body.facing),
+                },
+              }),
           gesture: body.gesture > 0 ? "wave" : "idle",
         }),
     };

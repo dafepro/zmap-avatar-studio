@@ -32,7 +32,8 @@
     "docs/hair-03-workflow.md",
     "docs/novelty-workflow.md",
     "docs/wielding.md",
-    "docs/field-tools.md"
+    "docs/field-tools.md",
+    "docs/motion.md"
   ],
   "scripts": {
     "dev": "vite --host 0.0.0.0",

@@ -107,7 +107,7 @@ test("the panel presents a real bounded face indicator with rigid source anchors
     "field-panel-ready",
   ) as THREE.Mesh<THREE.RingGeometry, THREE.MeshBasicMaterial>;
   assert.ok(indicator);
-  assert.equal(s.controller.diagnostics().effectTriangles, 24);
+  assert.equal(s.controller.diagnostics().effectTriangles, 120);
   assert.equal(indicator.visible, false);
   let geometryDisposals = 0,
     materialDisposals = 0;
@@ -186,5 +186,63 @@ test("accepted simulation time freezes a reeling mechanism during paused state a
   state = { phase: "reeling", time: 3.1 };
   s.avatar.update(0.5);
   assert.ok(spool.quaternion.angleTo(active) > 0.01);
+  s.dispose();
+});
+
+test("accepted panel hits drive bounded rigid recoil and ripple while frozen and reduced presentations stay deterministic", async () => {
+  let state: FieldToolPresentation = { phase: "braced", time: 1 };
+  const s = await setup(() => state);
+  await s.equip("wield-rebound-panel");
+  const held = s.controller.getHand("right")!,
+    ripple = held.effects.getObjectByName("field-panel-impact") as THREE.Mesh<
+      THREE.RingGeometry,
+      THREE.MeshBasicMaterial
+    >;
+  s.avatar.update(0.1);
+  assert.equal(ripple.visible, false);
+  s.controller.press("right");
+  s.avatar.update(0.15);
+  assert.equal(
+    ripple.visible,
+    false,
+    "local input cannot invent an accepted hit",
+  );
+  const resting = held.object.getWorldPosition(new THREE.Vector3());
+  state = {
+    phase: "braced",
+    time: 1.05,
+    impact: { id: 7, kind: "rebound", age: 0 },
+  };
+  s.avatar.update(0.2);
+  assert.equal(ripple.visible, true);
+  assert.ok(
+    held.object.getWorldPosition(new THREE.Vector3()).distanceTo(resting) >
+      0.025,
+  );
+  const snapshot = held.object.matrixWorld.toArray(),
+    radius = ripple.scale.toArray();
+  s.avatar.update(0.25);
+  assert.deepEqual(held.object.matrixWorld.toArray(), snapshot);
+  assert.deepEqual(ripple.scale.toArray(), radius);
+  state = {
+    phase: "braced",
+    time: 1.1,
+    impact: { id: 7, kind: "rebound", age: 0.15 },
+  };
+  s.avatar.update(0.3);
+  assert.ok(ripple.scale.x > radius[0]);
+  s.avatar.update(0.35, { reducedMotion: true });
+  const reduced = held.object.matrixWorld.toArray();
+  s.avatar.update(0.4, { reducedMotion: true });
+  assert.deepEqual(held.object.matrixWorld.toArray(), reduced);
+  assert.equal(ripple.material.opacity, 0.8);
+  state = { phase: "idle", time: 2 };
+  s.avatar.update(0.45);
+  assert.equal(ripple.visible, false);
+  assert.equal(
+    held.effects.getObjectByName("field-panel-surface")!.visible,
+    false,
+  );
+  assert.ok(s.controller.diagnostics().effectTriangles <= 512);
   s.dispose();
 });
