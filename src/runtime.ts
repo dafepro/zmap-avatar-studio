@@ -47,6 +47,8 @@ export type Motion = {
    * velocity enables world-space stance contacts; speed-only previews use a treadmill. */
   velocity?: { x: number; z: number };
   grounded?: boolean;
+  /** Upper-body equipment lean, independent of the locomotion/leg pose. */
+  carryLean?: number;
   pose?: AvatarActionPose;
 };
 type AnimatedFoot = {
@@ -769,6 +771,7 @@ export class AvatarInstance {
   };
   private contactOffset = new THREE.Vector2();
   private gaitSpeed = 0;
+  private carryLean = 0;
   private gaitWeights = directionWeights({ x: 0, z: 1 });
   private gaitVelocity = new THREE.Vector2();
   private poseValues = { crouch: 0, lean: 0, stance: 0, tuck: 0, recoil: 0 };
@@ -988,6 +991,16 @@ export class AvatarInstance {
     if (requestedVelocity.length() > 8) requestedVelocity.setLength(8);
     const blend = this.refreshingPose ? 0 : 1 - Math.exp(-12 * dt);
     const poseBlend = this.refreshingPose ? 0 : 1 - Math.exp(-20 * dt);
+    const carryTarget = THREE.MathUtils.clamp(
+      Number.isFinite(motion.carryLean) ? motion.carryLean! : 0,
+      -1,
+      1,
+    );
+    this.carryLean = THREE.MathUtils.lerp(
+      this.carryLean,
+      carryTarget,
+      motion.reducedMotion ? 1 : poseBlend,
+    );
     if (motion.reducedMotion) {
       this.gaitVelocity.set(0, 0);
       this.gaitSpeed = 0;
@@ -1167,7 +1180,9 @@ export class AvatarInstance {
     if (actionWeight > 0.025 || this.handLayer?.controlsCarrierPose) {
       rotate(
         "chest",
-        this.poseValues.lean * 0.36 - this.poseValues.recoil * 0.12,
+        this.poseValues.lean * 0.36 -
+          this.poseValues.recoil * 0.12 +
+          this.carryLean * 0.36,
       );
       // Authored strafes rotate the pelvis. A two-hand item must continue to
       // aim in avatar space, so compensate the parent rather than resetting

@@ -184,23 +184,33 @@ export function locomotionPace(
   const sprinting = THREE.MathUtils.smoothstep(speed, 2.6, 4.4);
   const lateralAmplitude = THREE.MathUtils.lerp(0.42, 1, sprinting);
   const { forward, back, left, right } = weights;
+  const retreat = THREE.MathUtils.smoothstep(back, 0, 0.7);
+  const retreatWeight = back + (left + right) * retreat;
   const components = (
     [
       { clip: "Walking_B", weight: forward * (1 - sprinting), offset: 0.125 },
       { clip: "Running_A", weight: forward * sprinting, offset: 0.104167 },
       {
         clip: "Walking_Backwards",
-        weight: back * (1 - sprinting),
+        weight: retreatWeight * (1 - sprinting),
         offset: 0.645833,
       },
       {
         clip: "Running_A",
-        weight: back * sprinting,
+        weight: retreatWeight * sprinting,
         offset: 0.395833,
         reverse: true,
       },
-      { clip: "Running_Strafe_Left", weight: left, offset: 0.817708 },
-      { clip: "Running_Strafe_Right", weight: right, offset: 0.817708 },
+      {
+        clip: "Running_Strafe_Left",
+        weight: left * (1 - retreat),
+        offset: 0.817708,
+      },
+      {
+        clip: "Running_Strafe_Right",
+        weight: right * (1 - retreat),
+        offset: 0.817708,
+      },
     ] satisfies Component[]
   ).filter((c) => c.weight > 0);
   const dominant = components.reduce((a, b) => (a.weight >= b.weight ? a : b));
@@ -260,6 +270,31 @@ export function movingLocomotion(
     );
     weight += c.weight;
     pose = pose ? mixLocomotion(pose, next, c.weight / weight) : next;
+  }
+  // Backward diagonals use the backward stride, oriented as one pelvis/leg
+  // chain. Mixing a forward-moving strafe into a reversed run cancels the
+  // longitudinal foot stroke. Keep the upper body in its authored aim frame.
+  const retreat = THREE.MathUtils.smoothstep(weights.back, 0, 0.7);
+  if (retreat > 0) {
+    const yaw =
+      THREE.MathUtils.clamp(
+        Math.atan2(-velocity.x, -velocity.z),
+        -Math.PI / 4,
+        Math.PI / 4,
+      ) * retreat;
+    const turn = new THREE.Quaternion().setFromAxisAngle(
+      new THREE.Vector3(0, 1, 0),
+      yaw,
+    );
+    const hips = pose!.rotations.get("hips")!;
+    const old = hips.clone();
+    hips.premultiply(turn);
+    pose!.rotations
+      .get("chest")!
+      .premultiply(
+        old.clone().invert().multiply(turn.clone().invert()).multiply(old),
+      );
+    pose!.root.applyQuaternion(turn);
   }
   pose!.support = Math.min(pose!.support, contactEnvelope);
   return pose!;

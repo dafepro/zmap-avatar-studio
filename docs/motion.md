@@ -70,3 +70,16 @@ Foot targets currently use the avatar's grounded root plane. Contact qualificati
 ## Continuous gait playback
 
 The runtime reconstructs periodic rotation curves without per-joint damping, and smooths conservative shoe support changes so contact-vertex switches do not jerk the entire character. Rotation controls retain extension poses; root/contact controls receive a symmetric five-sample filter. Ground support smoothing fades out for idle and full-weight emotes. `tests/locomotion-continuity.test.ts` checks the actual FK joint heights at 60/120 Hz and acceleration through the loop seam; floor, limb-length and grip checks remain separate. The repository review `docs/locomotion-continuity.md` records before/after measurements and clearance bounds.
+
+### Moving with active equipment
+
+`Motion.carryLean` is an optional upper-body lean in [-1, 1], eased using the
+animation clock. It does not select the full-body action/leg solver. The Action
+Yard uses it for panel bracing and winch reeling, preserving the complete sourced
+gait and shoe support while the equipment layer owns both hand grips. Full-body
+Wake impacts continue to use `Motion.pose`.
+
+Backward diagonals now favor backward travel rather than blending opposing
+longitudinal foot strokes. The pelvis and entire leg chain turn together by a
+bounded heading offset; chest compensation preserves the upper-body aim frame.
+The cardinal strafe and source reverse-run clips remain intact.

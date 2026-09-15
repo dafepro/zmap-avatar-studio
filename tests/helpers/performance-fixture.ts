@@ -54,6 +54,7 @@ export async function createPerformanceFixture(
     delay?: (url: URL) => Promise<void>;
     fail?: (url: URL) => boolean;
     weight?: number;
+    behaviors?: WieldBehaviorRegistry;
   } = {},
 ) {
   const requested: string[] = [];
@@ -111,10 +112,15 @@ export async function createPerformanceFixture(
       },
     ]),
   );
-  const controller = new WieldController(avatar, gear, registry, {
-    onEvent: (event) => events.push(event),
-    onError: (error) => errors.push(error),
-  });
+  const controller = new WieldController(
+    avatar,
+    gear,
+    { ...registry, ...options.behaviors },
+    {
+      onEvent: (event) => events.push(event),
+      onError: (error) => errors.push(error),
+    },
+  );
   let time = 0;
   avatar.update(time);
   const tick = (motion: Motion = {}, dt = 1 / 60) => {
