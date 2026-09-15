@@ -136,11 +136,11 @@ test("backward panel walking keeps head and equipment bounce bounded across body
               .map((v, i) => (v - acceleration[i]) * fps);
             const peakJerk = Math.max(...jerk.map(Math.abs));
             assert.ok(
-              range > 0.015 && range < 0.08,
+              range > 0.015 && range < 0.06,
               `${weight}/${fps}/${phase}/${name}: vertical travel ${range}`,
             );
             assert.ok(
-              peakJerk < 10000,
+              peakJerk < 2500,
               `${weight}/${fps}/${phase}/${name}: jerk ${peakJerk}`,
             );
             row[name] = { range, peakJerk };

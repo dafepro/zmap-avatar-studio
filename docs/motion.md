@@ -2,13 +2,13 @@
 
 `AvatarInstance.update(time, motion)` now accepts avatar-facing `velocity: {x, z}` in metres per second, `grounded`, and a generic bounded `pose` containing `crouch`, signed `lean`, `stance`, `tuck`, and `recoil`. Existing `speed` / `gesture` previews retain treadmill animation. These inputs never apply a world impulse or move the application's physical body. Invalid non-finite values reject before changing the pose. The reference rig keeps its height and limb lengths.
 
-The active movement source is **KayKit Character Animations 1.1** by Kay Lousberg, under CC0. Its authored `Walking_B`, `Running_A`, `Running_Strafe_Left` and `Running_Strafe_Right` supply coherent whole-body poses. The native `Walking_Backwards` remains in the source audit but is no longer selected for playback. Original GLBs, license, hashes, independent source samples and the comparison audit live in [`assets/source/locomotion/kaykit`](../assets/source/locomotion/kaykit/README.md). The former Quaternius locomotion audit and source remain historical review material; the old directional ankle-warping runtime is replaced. Source mannequins never ship as player models, and compact baked curves require no animation CDN.
+Walking now uses **Quaternius Universal Animation Library Standard `Walk_Loop`**, under CC0. Runs and strafes retain **KayKit Character Animations 1.1** `Running_A`, `Running_Strafe_Left` and `Running_Strafe_Right`. The walking selection, original samples, comparison candidates and adaptation are documented in [`assets/source/locomotion/relaxed`](../assets/source/locomotion/relaxed/README.md). Original KayKit GLBs and audits remain in [`assets/source/locomotion/kaykit`](../assets/source/locomotion/kaykit/README.md). Source mannequins never ship as player models; local baked curves need no animation CDN.
 
-`node scripts/retarget-locomotion.mjs` rebuilds the curves from checked-in samples. It reflects +X-left into the catalog's −X-left, converts world rest frames into target local rotations, aligns actual catalog bind vectors, and preserves authored limb directions and the reference model's bone lengths. Physical wrists and palm bones are distinct. Playback pace is measured from the **retargeted** foot travel because this model has proportionally longer shins than the source. The baked six-clip set also retains `Walking_A` for comparison; `Walking_B` gives a more suitable stride at the app's 2.2 m/s walking pace.
+`node scripts/retarget-locomotion.mjs` rebuilds the curves from checked-in samples. It reflects +X-left into the catalog's −X-left, converts world rest frames into target local rotations, aligns actual catalog bind vectors, and preserves authored limb directions and the reference model's bone lengths. Physical wrists and palm bones are distinct. Playback pace is measured from the **retargeted** foot travel because this model has proportionally longer shins than the source. The baked six-clip set also retains `Walking_A` for comparison; `node scripts/retarget-walking.mjs` separately rebuilds the active Quaternius walk.
 
 The runtime blends complete poses in a four-cardinal blend space, with support/extension phases aligned before blending diagonals. Speed and directional weights smooth independently: reversing a velocity vector must not cancel the gait speed and accidentally switch a sprint into a walk. Backward motion has no angular ±π seam, and ankles are never redirected independently of knees. Low-speed side stepping reduces the **entire** lateral pose to 42% amplitude and adjusts its cadence; at sprint speed it reaches the authored strafe. The source strafe intentionally crosses the trailing leg and keeps that knee modestly bent; its supporting leg extends.
 
-The free pack has no authored backward sprint. The high-speed backward pose is an explicitly derived **reverse playback of the complete `Running_A` pose**, blended from compact reversed `Walking_B` walking. No claim is made that this is a separately authored backward-run clip. `animationDiagnostics().locomotion` reports the dominant source `clip`, its actual sampled `phase`, absolute `playbackRate`, `reversed`, and `transition`. Source review can therefore sample the exact same pose without reversing the phase twice. `Rest` is the approved neutral fitting/stopped/reduced-motion pose.
+The free pack has no authored backward sprint. The high-speed backward pose is an explicitly derived **reverse playback of the complete `Running_A` pose**, blended from full-stride reversed `Walk_Loop` walking. No claim is made that this is a separately authored backward-run clip. `animationDiagnostics().locomotion` reports the dominant source `clip`, its actual sampled `phase`, absolute `playbackRate`, `reversed`, and `transition`. Source review can therefore sample the exact same pose without reversing the phase twice. `Rest` is the approved neutral fitting/stopped/reduced-motion pose.
 
 Actual shoe convex hulls determine support height after assembly and body fitting. Walking stays grounded; source running flight timing is adapted to a maximum 7 cm of flight rather than scaling the toy mannequin's toe height into half-metre hops. A continuous contact envelope prevents out-of-phase diagonal blends from hovering for an entire cycle. Brief support locks may translate the visual carrier by at most 6 cm and release smoothly; **the authored joint rotations remain intact**, with no locomotion leg IK, limb stretch or crouch inserted to rescue an unreachable warped stride. Contact flags describe conservative ankle locks, not every rolling heel/toe contact. Flexible socks still follow shin/ankle skin; see [articulated footwear](articulated-footwear.md).
 
@@ -84,17 +84,22 @@ longitudinal foot strokes. The pelvis and entire leg chain turn together by a
 bounded heading offset; chest compensation preserves the upper-body aim frame.
 The cardinal strafe and source reverse-run clips remain intact.
 
-### Compact backward walking
+### Relaxed walking and backward travel
 
-Backward walking uses the existing `Walking_B` source in reverse at 65% pose
-amplitude, with the same factor applied to stride length when computing cadence.
-This replaces the native backward clip's deep support dip and rapid knee lift.
-The reduction applies to the coherent pose before ground fitting and hand
-constraints; it does not smooth the panel independently or lower shoes through
-the floor. Native source samples remain unchanged and independently audited.
+The regular Quaternius walk replaces the former compact reversed KayKit walk.
+Hip swing expands by 15% for the target proportions. Knee flexion and world
+ankle orientation remain authored; limb lengths stay fixed. Cadence is measured
+from the adapted target foot trajectory. Backward travel reverses this complete
+pose at full amplitude, giving longer steps without accelerating a short shuffle.
 
-The panel-specific regression checks head and item vertical travel under 8 cm,
-jerk under 10,000 m/s³, and exact grips at 60/120 Hz, weights -1/0/+1, both held
-and braced. Measured travel is 6.54 cm, versus approximately 15.7 cm for the
-previous backward gait. This is a deterministic animation check, not a claim
-about whole-device rendering performance.
+On the default target at 2.2 m/s, peak knee bend drops from about 130° to 88°,
+the trailing knee retains about 12° of bend, and backward foot excursion grows
+from 0.69 m to 0.77 m. Head vertical excursion is about 4.9 cm; measured 60 Hz
+backward head jerk is about 1,161 m/s³. These are deterministic fixture metrics,
+not whole-device frame-performance claims.
+
+Regression checks cover forward/backward knee shape and step reach, eight
+movement directions with empty, either, both and shared hand grips, plus the
+existing active panel/winch checks at three weights and 60/120 Hz. Browser
+review compares original source meshes with the actual avatar at matched phases.
+Shoe contact is measured every frame to avoid aliasing brief running contacts.

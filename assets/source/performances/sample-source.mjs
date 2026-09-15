@@ -1,11 +1,17 @@
-/** Evaluate original KayKit TRS curves in their untouched +Y-up, +Z-forward frame.
+/** Evaluate original KayKit and Quaternius TRS curves in their untouched +Y-up, +Z-forward frame.
  * Source and CC0 provenance: README.md. No target retargeting occurs here.
  */
 import fs from "node:fs";
+import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
+const selectionURL = process.argv[2]
+  ? pathToFileURL(resolve(process.argv[2]))
+  : new URL("selection.json", import.meta.url);
+const outputURL = process.argv[3]
+  ? pathToFileURL(resolve(process.argv[3]))
+  : new URL("source-samples.json", import.meta.url);
 import * as THREE from "three";
-const inputs = JSON.parse(
-  fs.readFileSync(new URL("selection.json", import.meta.url)),
-);
+const inputs = JSON.parse(fs.readFileSync(selectionURL));
 const kaykit = {
   root: "root",
   pelvis: "hips",
@@ -88,7 +94,7 @@ const round = (array) => array.map((value) => +value.toFixed(8));
 for (const [filename, selection] of Object.entries(inputs)) {
   const selected = selection.clips;
   const semantic = selection.rig === "kaykit" ? kaykit : quaternius;
-  const bytes = fs.readFileSync(new URL(filename, import.meta.url));
+  const bytes = fs.readFileSync(new URL(filename, selectionURL));
   const jsonLength = bytes.readUInt32LE(12),
     document = JSON.parse(bytes.subarray(20, 20 + jsonLength)),
     binary = bytes.subarray(28 + jsonLength);
@@ -218,10 +224,7 @@ for (const [filename, selection] of Object.entries(inputs)) {
     };
   }
 }
-fs.writeFileSync(
-  new URL("source-samples.json", import.meta.url),
-  JSON.stringify(result) + "\n",
-);
+fs.writeFileSync(outputURL, JSON.stringify(result) + "\n");
 console.log(
   JSON.stringify({
     sources: Object.keys(result.sources),

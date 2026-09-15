@@ -3,7 +3,12 @@ import assert from "node:assert/strict";
 import * as THREE from "three";
 import { createPerformanceFixture } from "./helpers/performance-fixture";
 import { smoothLocomotion, type LocomotionClip } from "../src/locomotion";
-import { locomotionData } from "../src/locomotion-data";
+import { locomotionData as kaykitData } from "../src/locomotion-data";
+import { walkingData } from "../src/walking-data";
+const locomotionData = {
+  bones: kaykitData.bones,
+  clips: { ...kaykitData.clips, ...walkingData.clips },
+};
 
 // Measure the rendered FK chain after shoe support fitting, not just source keys.
 // Limits are in avatar metres / seconds cubed. Feet have genuine contact events;

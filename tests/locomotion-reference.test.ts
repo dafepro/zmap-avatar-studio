@@ -37,7 +37,9 @@ const sourcePosition = (frame: SourceFrame, name: string) => {
     .fromArray(frame.positions, index * 3)
     .multiply(new THREE.Vector3(-1, 1, 1));
 };
-const clips = Object.keys(locomotionData.clips) as LocomotionClip[];
+const clips = Object.keys(
+  locomotionData.clips,
+) as (keyof typeof locomotionData.clips)[];
 
 test("baked retarget preserves the reference's evaluated limb directions on the actual catalog bind vectors", () => {
   let checks = 0,
