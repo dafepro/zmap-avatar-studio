@@ -176,6 +176,10 @@ export function directionWeights(velocity: {
     right: total > 1e-7 ? Math.max(0, velocity.x) / total : 0,
   };
 }
+// A compact reversed brisk walk avoids the large knee lift and support dip
+// in the native backward clip. Cadence uses the same stride scale.
+const BACKWARD_WALK_STRIDE = 0.65;
+
 export function locomotionPace(
   speed: number,
   velocity = { x: 0, z: speed },
@@ -191,9 +195,10 @@ export function locomotionPace(
       { clip: "Walking_B", weight: forward * (1 - sprinting), offset: 0.125 },
       { clip: "Running_A", weight: forward * sprinting, offset: 0.104167 },
       {
-        clip: "Walking_Backwards",
+        clip: "Walking_B",
         weight: retreatWeight * (1 - sprinting),
-        offset: 0.645833,
+        offset: 0.375,
+        reverse: true,
       },
       {
         clip: "Running_A",
@@ -220,6 +225,7 @@ export function locomotionPace(
       sum +
       c.weight *
         locomotionData.clips[c.clip].contactSpeed *
+        (c.clip === "Walking_B" && c.reverse ? BACKWARD_WALK_STRIDE : 1) *
         (c.clip.startsWith("Running_Strafe") ? lateralAmplitude : 1) *
         locomotionData.clips[c.clip].duration,
     0,
@@ -256,6 +262,8 @@ export function movingLocomotion(
       c.clip,
       c.offset + (c.reverse ? -phase : phase),
     );
+    if (c.clip === "Walking_B" && c.reverse)
+      next = mixLocomotion(restingLocomotion(), next, BACKWARD_WALK_STRIDE);
     // Slow lateral steps remain grounded; running gains a modest flight phase.
     if (c.clip.startsWith("Running_Strafe")) {
       next = mixLocomotion(restingLocomotion(), next, lateralAmplitude);
