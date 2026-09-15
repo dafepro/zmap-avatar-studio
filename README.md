@@ -20,11 +20,19 @@ Use the **Build** slider for lean through heavier tissue volume at fixed height.
 
 **Try accessories** equips a mustache, glasses and cap together. One original hair mesh fits accessory-owned volumes, with no per-hat hairstyle variants. Removing equipment restores the original. New assets still need correct pivots and a declared fitting contract; see [accessory fitting](docs/accessory-fitting.md).
 
-Walking, sprinting, backward steps and strafing use retargeted KayKit CC0 poses, a continuous directional blend space, actual shoe support and occupied-hand pose ownership. Backward sprint is an explicitly derived reversed run. Pass avatar-facing `velocity: {x, z}` in metres/second to match physical movement; preview `walk` and `run` gestures use 2.2 and 5.4 m/s. In Action Yard, hold Shift or use the Sprint toggle. The dev-only [motion comparison](http://localhost:5173/locomotion-review.html) shows source and target together. See [motion and retargeting](docs/motion.md) and [third-party attribution](THIRD_PARTY_NOTICES.md).
+Walking, sprinting, backward steps and strafing use retargeted Quaternius walking and KayKit running/strafe CC0 poses, a continuous directional blend space, actual shoe support and occupied-hand pose ownership. Backward sprint is an explicitly derived reversed run. Pass avatar-facing `velocity: {x, z}` in metres/second to match physical movement; preview `walk` and `run` gestures use 2.2 and 5.4 m/s. In Action Yard, hold Shift or use the Sprint toggle. The dev-only [motion comparison](http://localhost:5173/review/locomotion.html) shows source and target together. See [motion and retargeting](docs/motion.md) and [third-party attribution](THIRD_PARTY_NOTICES.md).
 
 Use `avatar.playEmote("wave")` for a bounded wave, cheer, dance, yes or no performance, and `cancelEmote()` to end it. Dance plays three authored cycles. A registered equipment controller clears and restores the hands around the emote; `Motion.emote: {id, elapsed}` supports an explicit playback time in seconds. `hands.setDrawn(false)` stows selected equipment, and `setDrawn(true)` draws it again without reloading assets or changing the selection. One-hand transitions take 0.8 seconds and two-hand transitions take 1 second, using an explicitly documented pickup adaptation. See [emote timing](docs/motion.md#reusable-emotes) and [draw/stow controls](docs/wielding.md#draw-and-stow-without-changing-the-selection).
 
 **16-view drawing** captures one equipped look and pose every 22.5° into an exportable transparent atlas. It is a fixed-pose cache, not animation. Export look saves appearance JSON; Portrait saves rendered PNG. Saved looks remain in this browser. Catalog 2.5.0 explicitly accepts saved 2.2.0, 2.3.0 and 2.4.0 recipes with their selections intact; undeclared revisions fail validation.
+
+## Install the released runtime
+
+```sh
+npm install --save-exact https://github.com/dafepro/zmap-avatar-studio/releases/download/v0.1.1/zmap-avatar-studio-0.1.1.tgz
+```
+
+The package remains private to prevent accidental npm-registry publication. Built GitHub Release tarballs contain runtime/declarations and approved assets; editable Blender source stays in this repository. Commit your application's lockfile.
 
 ## Consume the runtime
 
@@ -55,11 +63,11 @@ library.dispose();
 
 Copy `public/catalog.json` and `public/models/` to your static asset path. Serve over HTTPS or localhost for Web Crypto integrity checks. Resolve one Three.js copy when developing through symlinks (Vite `resolve.dedupe: ['three']`). Import `@zmap/avatar-studio/core` for validation without Three.js.
 
-The runtime has no DOM, CSS, renderer, network room, identity, inventory or account dependency. Applications approve parts and persist recipes. For a synchronous ZMap visual factory, preload with `const create = await library.prepare(recipe)`, then return `create().asCharacter()` from `visuals.character`. The app maps identity to approved appearance; ZMap owns world simulation. See `../examples/models.ts`.
+The runtime has no DOM, CSS, renderer, network room, identity, inventory or account dependency. Applications approve parts and persist recipes. For a synchronous ZMap visual factory, preload with `const create = await library.prepare(recipe)`, then return `create().asCharacter()` from `visuals.character`. The app maps identity to approved appearance; ZMap owns world simulation. See [zmap’s character adapter](https://github.com/dafepro/zmap/blob/main/examples/models.ts).
 
 ## Source and package boundary
 
-This directory has its own lockfile, build, tests and contracts. It can be extracted with `git subtree split --prefix=avatar-studio`; there is no unpublished submodule dependency. The packed-consumer test runs outside this checkout.
+This is the independent repository [dafepro/zmap-avatar-studio](https://github.com/dafepro/zmap-avatar-studio), with its own history, lockfile, CI, builds and releases. zmap pins it as a development submodule. Consumers install the built release tarball and serve the approved assets through the exported `@zmap/avatar-studio/assets/*` paths; they do not need a zmap checkout. The packed-consumer test runs outside this repository.
 
 The active source is `assets/source/reference_kit.py`, with the editable `assets/source/reference-kit.blend`. The small `build_kit.py` entry point invokes it. The dedicated Blender scene preserves unrelated open work. The workflow documents interactive MCP construction, render corrections, supplied references and generated weight-reference provenance.
 

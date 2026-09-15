@@ -47,7 +47,7 @@ Equipment transactions preserve the previous complete loadout until replacement 
 
 `fieldToolBehaviors(readState?)` animates the authored mechanisms. With no callback, its input drives a local inspection preview. A world integration supplies accepted phase/progress from its simulation. This callback never applies force or creates durable inventory. The root example maps a simulation tool ID to an approved `wield-${id}` asset and draws a tether to the accepted target. The reusable avatar package does not import ZMap or a transport.
 
-See [the world action contract](../../docs/field-tools.md) for intent ordering, cooldowns, shared ownership and authority limits.
+See [the world action contract](https://github.com/dafepro/zmap/blob/main/docs/field-tools.md) for intent ordering, cooldowns, shared ownership and authority limits.
 
 ## Reference-to-model workflow
 

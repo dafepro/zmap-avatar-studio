@@ -1,6 +1,6 @@
 {
   "name": "@zmap/avatar-studio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "description": "Independent modular avatar runtime, Blender kit and design studio",
@@ -16,7 +16,8 @@
     "./wield-core": {
       "types": "./lib/wield-core.d.ts",
       "import": "./lib/wield-core.js"
-    }
+    },
+    "./assets/*": "./public/*"
   },
   "files": [
     "lib",
@@ -61,5 +62,9 @@
     "vite": "^7.1.5",
     "@playwright/test": "^1.55.0",
     "prettier": "^3.9.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dafepro/zmap-avatar-studio.git"
   }
 }

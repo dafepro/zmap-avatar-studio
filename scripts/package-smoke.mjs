@@ -108,7 +108,7 @@ if (!WIELD_LIMITS.held || !WIELD_LIMITS.visible || !WIELD_LIMITS.twoHandItem) th
 import { AvatarLibrary, ComicStyle, bakeDirectionalAtlas, directionIndex, WieldLibrary, WieldController, playfulWieldBehaviors, fieldToolBehaviors } from '@zmap/avatar-studio';
 import { validateCatalog, inspectGlb } from '@zmap/avatar-studio/core';
 import { readFile } from 'node:fs/promises';
-const base = new URL('./node_modules/@zmap/avatar-studio/public/', import.meta.url);
+const base = new URL('./', import.meta.resolve('@zmap/avatar-studio/assets/catalog.json'));
 const catalog = JSON.parse(await readFile(new URL('catalog.json', base), 'utf8'));
 validateCatalog(catalog);
 for (const asset of catalog.assets) {
