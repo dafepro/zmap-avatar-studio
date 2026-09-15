@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { mountPerformanceControls } from "./performance-controls";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import {
   AvatarLibrary,
@@ -155,6 +156,24 @@ async function start() {
     const button = $<HTMLButtonElement>("mechanism"),
       reduced = $<HTMLInputElement>("reduced");
     const recipe = defaultRecipe(catalog);
+    mountPerformanceControls(
+      avatar,
+      wield,
+      document.querySelector(".settings")!,
+      {
+        signal,
+        beforeEmote: () => {
+          $<HTMLInputElement>("motion").checked = false;
+        },
+        onRefresh: () => {
+          button.disabled =
+            wield.state !== "ready" ||
+            !wield.getHand(primary) ||
+            !wield.isDrawn() ||
+            !!avatar.animationDiagnostics().emote;
+        },
+      },
+    );
     recipe.parts.hair = "hair-sweep";
     recipe.colors = {
       skin: "#c68b60",

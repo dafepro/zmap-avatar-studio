@@ -1,4 +1,9 @@
 import * as THREE from "three";
+import {
+  samplePerformance,
+  performanceMarker,
+  WIELD_TRANSITION_SECONDS,
+} from "./performances.js";
 import { AvatarError } from "./core.js";
 import {
   AvatarInstance,
@@ -101,6 +106,16 @@ export type WieldHandInstance = {
   anchor(name: string): THREE.Object3D;
 };
 type Held = WieldHandInstance & {
+  draw: {
+    target: boolean;
+    amount: number;
+    from: number;
+    age: number;
+    external?: number;
+    externalFrom?: number;
+    settled?: boolean;
+  };
+  bounds: THREE.Box3;
   hand: Hand;
   port: THREE.Group;
   behavior?: WieldBehavior;
@@ -397,11 +412,17 @@ export class WieldController implements AvatarHandLayer {
         (instance) =>
           !instance.closed &&
           instance.state === "ready" &&
-          !!instance.item.twoHanded,
+          !!instance.item.twoHanded &&
+          instance.draw.amount > 0,
       )
     );
   }
   private hands: Partial<Record<Hand, Held>> = {};
+  private drawnTargets: Record<Hand, boolean> = { left: true, right: true };
+  private drawIntents: Record<Hand, number> = { left: 0, right: 0 };
+  private externalDraw: Partial<Record<Hand, number>> = {};
+  private externalFrom: Partial<Record<Hand, number>> = {};
+  private emoteRestore?: Record<Hand, { drawn: boolean; generation: number }>;
   private current: WieldLoadout;
   private generation = 0;
   private closed = false;
@@ -468,6 +489,208 @@ export class WieldController implements AvatarHandLayer {
   getHand(hand: Hand): WieldHandInstance | undefined {
     this.checkHand(hand);
     return this.hands[hand]?.views[hand];
+  }
+  /** Presentation intent, independent of selected equipment and allocated assets.
+   * elapsed is optional accepted timeline time in seconds, never a wall clock. */
+  setDrawn(
+    drawn: boolean,
+    options: {
+      hand?: Hand;
+      elapsed?: number;
+      from?: number;
+      immediate?: boolean;
+    } = {},
+  ) {
+    this.assertOpen();
+    if (
+      typeof drawn !== "boolean" ||
+      (options.elapsed !== undefined &&
+        (!Number.isFinite(options.elapsed) || options.elapsed < 0))
+    )
+      fail("Invalid equipment transition");
+    if (
+      options.from !== undefined &&
+      (!Number.isFinite(options.from) || options.from < 0 || options.from > 1)
+    )
+      fail("Invalid equipment transition start");
+    if (
+      options.immediate !== undefined &&
+      typeof options.immediate !== "boolean"
+    )
+      fail("Invalid immediate transition");
+    if (options.hand !== undefined) this.checkHand(options.hand);
+    const owner = options.hand && this.hands[options.hand];
+    const sides = owner?.item.twoHanded
+      ? HANDS
+      : options.hand
+        ? [options.hand]
+        : HANDS;
+    for (const side of sides) {
+      this.drawIntents[side]++;
+      this.drawnTargets[side] = drawn;
+      this.externalDraw[side] = options.immediate ? undefined : options.elapsed;
+      this.externalFrom[side] = options.from;
+    }
+    for (const instance of this.owners())
+      if (instance.occupied.some((side) => sides.includes(side)))
+        this.drawIntent(instance, drawn, options);
+    this.avatar.refreshPose();
+  }
+  private retireDrawClock(instance: Held) {
+    for (const hand of instance.occupied) {
+      this.externalDraw[hand] = undefined;
+      this.externalFrom[hand] = undefined;
+    }
+  }
+  private initialDraw(hand: Hand, shared: boolean): Held["draw"] {
+    const target = this.emoteRestore ? false : this.drawnTargets[hand];
+    const external = this.emoteRestore ? undefined : this.externalDraw[hand];
+    const from = this.externalFrom[hand] ?? (target ? 0 : 1);
+    const duration = shared
+      ? WIELD_TRANSITION_SECONDS.twoHand
+      : WIELD_TRANSITION_SECONDS.oneHand;
+    const amount =
+      external === undefined
+        ? target
+          ? 1
+          : 0
+        : THREE.MathUtils.lerp(
+            from,
+            target ? 1 : 0,
+            THREE.MathUtils.clamp(external / duration, 0, 1),
+          );
+    return {
+      target,
+      amount,
+      from: amount,
+      age: 0,
+      external,
+      externalFrom: this.externalFrom[hand],
+    };
+  }
+  private drawIntent(
+    instance: Held,
+    drawn: boolean,
+    options: { elapsed?: number; from?: number; immediate?: boolean } = {},
+  ) {
+    const d = instance.draw;
+    if (d.target !== drawn) {
+      this.input(instance.hand, "cancel");
+      this.events = Math.max(0, this.events - instance.pending.length);
+      instance.pending = [];
+      d.target = drawn;
+      d.settled = false;
+      d.from = d.amount;
+      d.age = 0;
+    }
+    if (d.external !== undefined && options.elapsed === undefined) {
+      this.retireDrawClock(instance);
+      // Handing an accepted checkpoint to the local clock preserves the exact
+      // displayed pose, even when its target is unchanged.
+      d.from = d.amount;
+      d.age = 0;
+    }
+    d.external = options.elapsed;
+    d.externalFrom = options.from;
+    if (options.immediate) {
+      this.retireDrawClock(instance);
+      d.settled = true;
+      d.external = undefined;
+      d.amount = drawn ? 1 : 0;
+      d.from = d.amount;
+      d.age = this.transitionDuration(instance);
+    }
+  }
+  private transitionDuration(instance: Held) {
+    return instance.item.twoHanded
+      ? WIELD_TRANSITION_SECONDS.twoHand
+      : WIELD_TRANSITION_SECONDS.oneHand;
+  }
+  isDrawn(hand?: Hand) {
+    if (hand !== undefined) this.checkHand(hand);
+    const owners = hand
+      ? this.hands[hand]
+        ? [this.hands[hand]!]
+        : []
+      : this.owners();
+    return owners.every(
+      (instance) =>
+        !instance.closed &&
+        instance.state === "ready" &&
+        instance.draw.target &&
+        instance.draw.amount >= 1 - 1e-7,
+    );
+  }
+  prepareEmote() {
+    if (!this.emoteRestore) {
+      this.emoteRestore = {
+        left: {
+          drawn: this.drawnTargets.left,
+          generation: this.drawIntents.left,
+        },
+        right: {
+          drawn: this.drawnTargets.right,
+          generation: this.drawIntents.right,
+        },
+      };
+    }
+    for (const instance of this.owners())
+      if (instance.draw.target || instance.draw.external !== undefined)
+        this.drawIntent(instance, false);
+    return this.owners().every(
+      (instance) => instance.closed || instance.draw.amount <= 1e-7,
+    );
+  }
+  finishEmote() {
+    const restore = this.emoteRestore;
+    if (!restore) return;
+    this.emoteRestore = undefined;
+    for (const instance of this.owners()) {
+      const hand = instance.hand;
+      const target =
+        restore[hand].generation === this.drawIntents[hand]
+          ? restore[hand].drawn
+          : this.drawnTargets[hand];
+      this.drawIntent(
+        instance,
+        target,
+        restore[hand].generation === this.drawIntents[hand]
+          ? {}
+          : {
+              elapsed: this.externalDraw[hand],
+              from: this.externalFrom[hand],
+            },
+      );
+    }
+  }
+  private presented(instance: Held) {
+    return (
+      instance.draw.amount >=
+        performanceMarker(instance.item.twoHanded ? "equipTwo" : "equipOne") &&
+      !instance.closed
+    );
+  }
+  private updatePresentation() {
+    if (!this.view) return;
+    for (const [mesh, visible] of this.hiddenHands) {
+      coveredRelaxedHands.delete(mesh);
+      mesh.visible = visible;
+    }
+    this.hiddenHands.clear();
+    for (const instance of this.owners()) {
+      const visible = this.presented(instance) && this.visible;
+      instance.object.visible = visible;
+      instance.effects.visible = visible && this.isDrawn(instance.hand);
+      for (const side of instance.occupied) {
+        instance.grips[side]!.visible = visible;
+        if (visible)
+          for (const mesh of this.relaxedHands(this.view, side)) {
+            this.hiddenHands.set(mesh, mesh.visible);
+            coveredRelaxedHands.add(mesh);
+            mesh.visible = false;
+          }
+      }
+    }
   }
   private checkHand(hand: Hand) {
     if (!HANDS.includes(hand)) fail("Unknown hand slot");
@@ -543,6 +766,8 @@ export class WieldController implements AvatarHandLayer {
       gripPorts[side] = gripPort;
     }
     const instance: Held = {
+      draw: this.initialDraw(hand, !!item.twoHanded),
+      bounds: new THREE.Box3(),
       hand,
       object,
       grip: grips[hand]!,
@@ -640,6 +865,22 @@ export class WieldController implements AvatarHandLayer {
                     ? instance.physicalAnchors![side]
                     : instance.anchor(name),
               };
+      // A conservative local volume is retained once; transition fitting never
+      // traverses source meshes or allocates new assets every animation frame.
+      object.updateWorldMatrix(true, true);
+      const inversePort = port.matrixWorld.clone().invert();
+      object.traverse((node) => {
+        if (node instanceof THREE.Mesh) {
+          const points = node.geometry.getAttribute("position");
+          for (let i = 0; i < points.count; i++)
+            instance.bounds.expandByPoint(
+              new THREE.Vector3()
+                .fromBufferAttribute(points, i)
+                .applyMatrix4(node.matrixWorld)
+                .applyMatrix4(inversePort),
+            );
+        }
+      });
       const behavior = this.registry[item.behavior].create({
         hand,
         itemId: item.id,
@@ -671,6 +912,7 @@ export class WieldController implements AvatarHandLayer {
   async setLoadout(loadout: WieldLoadout): Promise<boolean> {
     this.assertOpen();
     validateWieldLoadout(loadout, this.library.catalog);
+    for (const side of HANDS) this.drawIntents[side]++;
     const approved = structuredClone(loadout),
       generation = ++this.generation;
     const plans = approved.twoHanded
@@ -738,6 +980,13 @@ export class WieldController implements AvatarHandLayer {
           fail(
             "An unchanged hand failed while equipment was loading; retry the loadout",
           );
+      // Asset requests can finish at different times. Presentation is sampled
+      // once at atomic commit, never retained from an early staged candidate.
+      for (const instance of owned)
+        instance.draw = this.initialDraw(
+          instance.hand,
+          !!instance.item.twoHanded,
+        );
       const view = this.avatar.attachmentView();
       if (!view && plans.length)
         fail("Equip items after the avatar appearance is ready");
@@ -820,10 +1069,16 @@ export class WieldController implements AvatarHandLayer {
     view: AvatarAttachmentView,
     hands: Partial<Record<Hand, Held>>,
     visible = this.visible,
+    presentation = false,
   ) {
     const replaced = new Set<THREE.Mesh>();
     for (const hand of HANDS)
-      if (visible && hands[hand] && !hands[hand]!.closed)
+      if (
+        visible &&
+        hands[hand] &&
+        !hands[hand]!.closed &&
+        (!presentation || this.presented(hands[hand]!))
+      )
         for (const mesh of this.relaxedHands(view, hand)) replaced.add(mesh);
     let appearance = 0,
       visibleAppearance = 0,
@@ -948,6 +1203,7 @@ export class WieldController implements AvatarHandLayer {
         view.sockets.get("chest")!.add(instance.port);
         this.applyShared(instance, view, instance.objectMotion);
       }
+    this.updatePresentation();
     view.root.updateWorldMatrix(true, true);
   }
   detach() {
@@ -965,7 +1221,9 @@ export class WieldController implements AvatarHandLayer {
       instance.closed ||
       instance.state !== "ready" ||
       !instance.committed ||
-      !this.visible
+      !this.visible ||
+      !this.isDrawn(instance.hand) ||
+      !!this.emoteRestore
     )
       return;
     if (
@@ -1003,7 +1261,14 @@ export class WieldController implements AvatarHandLayer {
     if (!instance || instance.state !== "ready" || this.closed) return;
     if (instance.item.twoHanded && hand !== instance.hand && type !== "cancel")
       return;
-    if (type === "press" && (this.paused || !this.visible || instance.pressed))
+    if (
+      type === "press" &&
+      (this.paused ||
+        !this.visible ||
+        instance.pressed ||
+        !this.isDrawn(hand) ||
+        !!this.emoteRestore)
+    )
       return;
     if (type === "release" && !instance.pressed) return;
     instance.pressed = type === "press";
@@ -1088,6 +1353,14 @@ export class WieldController implements AvatarHandLayer {
           new THREE.Euler(...(motion?.rotation ?? [0, 0, 0])),
         ),
       );
+    return this.sharedAt(instance, view, position, quaternion);
+  }
+  private sharedAt(
+    instance: Held,
+    view: AvatarAttachmentView,
+    position: THREE.Vector3,
+    quaternion: THREE.Quaternion,
+  ) {
     const matrix = new THREE.Matrix4().compose(
       position,
       quaternion,
@@ -1139,6 +1412,126 @@ export class WieldController implements AvatarHandLayer {
     }
     instance.objectMotion = motion ? structuredClone(motion) : undefined;
   }
+  private poseTransitionShared(instance: Held, view: AvatarAttachmentView) {
+    const amount = instance.draw.amount;
+    const source = samplePerformance(
+      "equipTwo",
+      amount * WIELD_TRANSITION_SECONDS.twoHand,
+    );
+    const hand = instance.hand,
+      suffix = hand === "left" ? "L" : "R";
+    // Retarget the source primary wrist through this avatar's actual limb lengths.
+    // The carrier follows that complete frame, then returns to its approved hold.
+    const wrist = new THREE.Matrix4();
+    for (const part of ["arm", "forearm", "hand"]) {
+      const node = view.sockets.get(`${part}_${suffix}`)!;
+      const q = source.rotations.get(`${part}_R`)!.clone();
+      if (part === "arm")
+        q.premultiply(
+          source.rotations
+            .get("hips")!
+            .clone()
+            .multiply(source.rotations.get("chest")!),
+        );
+      if (hand === "left") q.set(q.x, -q.y, -q.z, q.w);
+      wrist.multiply(
+        new THREE.Matrix4().compose(
+          node.position,
+          q,
+          new THREE.Vector3(1, 1, 1),
+        ),
+      );
+    }
+    instance.port.updateWorldMatrix(true, true);
+    const anchor = instance.port.matrixWorld
+      .clone()
+      .invert()
+      .multiply(instance.physicalAnchors![hand].matrixWorld);
+    const desired = wrist
+      .multiply(this.gripFrame(hand))
+      .multiply(anchor.invert());
+    const position = new THREE.Vector3(),
+      quaternion = new THREE.Quaternion();
+    desired.decompose(position, quaternion, new THREE.Vector3());
+    const hold = this.sharedSolutions(instance, view);
+    const recovery = THREE.MathUtils.smoothstep(amount, 0.56, 1);
+    position.lerp(hold.position, recovery);
+    quaternion.slerp(hold.quaternion, recovery);
+    const chest = view.sockets.get("chest")!;
+    const avatarInverse = this.avatar.object.matrixWorld.clone().invert();
+    const clearance = (p: THREE.Vector3, q: THREE.Quaternion) => {
+      const matrix = avatarInverse
+        .clone()
+        .multiply(chest.matrixWorld)
+        .multiply(
+          new THREE.Matrix4().compose(p, q, new THREE.Vector3(1, 1, 1)),
+        );
+      let bottom = Infinity,
+        front = Infinity;
+      for (const x of [instance.bounds.min.x, instance.bounds.max.x])
+        for (const y of [instance.bounds.min.y, instance.bounds.max.y])
+          for (const z of [instance.bounds.min.z, instance.bounds.max.z]) {
+            const point = new THREE.Vector3(x, y, z).applyMatrix4(matrix);
+            bottom = Math.min(bottom, point.y);
+            front = Math.min(front, point.z);
+          }
+      return { bottom, front };
+    };
+    const approved = clearance(hold.position, hold.quaternion);
+    const floor = Math.min(0.025, approved.bottom);
+    const forward = new THREE.Vector3(0, 0, 1).transformDirection(
+      avatarInverse.clone().multiply(chest.matrixWorld).invert(),
+    );
+    // Project toward the reference reach while satisfying BOTH rigid grips,
+    // unstretched arms, joint limits, floor clearance and the approved hold's
+    // whole-volume forward separation. A broad panel/base cannot sweep backward
+    // through the pelvis just because both wrist frames are reachable.
+    // One generic constraint solve handles every approved shared item/body size.
+    let result = hold,
+      lo = 0,
+      hi = 1;
+    for (let i = 0; i < 11; i++) {
+      const weight = i === 0 ? 1 : (lo + hi) / 2;
+      const p = hold.position.clone().lerp(position, weight);
+      const q = hold.quaternion.clone().slerp(quaternion, weight);
+      try {
+        p.addScaledVector(
+          forward,
+          Math.max(0, approved.front - clearance(p, q).front),
+        );
+        if (clearance(p, q).bottom < floor - 1e-6)
+          throw new AvatarError("wield", "Transition floor clearance");
+        const candidate = this.sharedAt(instance, view, p, q);
+        result = candidate;
+        lo = weight;
+        if (weight === 1) break;
+      } catch (error) {
+        if (!(error instanceof AvatarError)) throw error;
+        hi = weight;
+      }
+    }
+    instance.port.position.copy(result.position);
+    instance.port.quaternion.copy(result.quaternion);
+    // Reach with relaxed hands before the authored contact marker; after contact
+    // the solver owns complete grip frames, with no independent hand blending.
+    const contact = THREE.MathUtils.smoothstep(
+      amount,
+      0,
+      performanceMarker("equipTwo") * 0.8,
+    );
+    for (const side of HANDS) {
+      const end = side === "left" ? "L" : "R",
+        solution = result.solutions[side];
+      view.sockets.get(`arm_${end}`)!.quaternion.slerp(solution.arm, contact);
+      view.sockets
+        .get(`forearm_${end}`)!
+        .quaternion.slerp(solution.forearm, contact);
+      view.sockets
+        .get(`hand_${end}`)!
+        .quaternion.slerp(solution.wrist, contact);
+    }
+    instance.objectMotion = undefined;
+  }
   private alignWithGravity(instance: Held, view: AvatarAttachmentView) {
     const arm = view.sockets.get(instance.hand === "left" ? "arm_L" : "arm_R")!;
     arm.updateWorldMatrix(true, true);
@@ -1163,22 +1556,61 @@ export class WieldController implements AvatarHandLayer {
   pose(frame: AvatarPoseFrame, view: AvatarAttachmentView) {
     this.frame = frame;
     if (frame.interrupted) this.cancel();
-    if (!this.visible) return;
     for (const instance of this.owners()) {
       if (instance.closed) continue;
+      const d = instance.draw,
+        duration = this.transitionDuration(instance);
+      if (d.settled || frame.reducedMotion || frame.interrupted) {
+        this.retireDrawClock(instance);
+        d.settled = true;
+        d.external = undefined;
+        d.amount = d.target ? 1 : 0;
+        d.from = d.amount;
+        d.age = duration;
+      } else if (!this.paused) {
+        if (d.external !== undefined) {
+          d.age = d.external;
+          d.amount = THREE.MathUtils.lerp(
+            d.externalFrom ?? (d.target ? 0 : 1),
+            d.target ? 1 : 0,
+            THREE.MathUtils.clamp(d.external / duration, 0, 1),
+          );
+        } else {
+          d.age += frame.dt;
+          d.amount = THREE.MathUtils.lerp(
+            d.from,
+            d.target ? 1 : 0,
+            THREE.MathUtils.clamp(d.age / duration, 0, 1),
+          );
+        }
+      }
+      if (!this.visible || d.amount <= 1e-7) continue;
       try {
         if (instance.item.twoHanded) {
-          const motion = instance.behavior?.objectPose?.(
-            this.behaviorFrame(instance, frame),
-          );
-          this.applyShared(instance, view, motion || undefined);
+          const motion =
+            d.amount >= 1 - 1e-7 && !this.emoteRestore
+              ? instance.behavior?.objectPose?.(
+                  this.behaviorFrame(instance, frame),
+                )
+              : undefined;
+          if (d.amount < 1 - 1e-7) this.poseTransitionShared(instance, view);
+          else this.applyShared(instance, view, motion || undefined);
           continue;
         }
         const hand = instance.hand,
           pose = instance.item.pose[hand];
-        const delta = instance.behavior?.pose?.(
-          this.behaviorFrame(instance, frame),
+        const base = new Map(
+          ["arm", "forearm", "hand"].map((part) => [
+            part,
+            view.sockets
+              .get(`${part}_${hand === "left" ? "L" : "R"}`)!
+              .quaternion.clone(),
+          ]),
         );
+        const delta =
+          d.amount >= 1 - 1e-7 && !this.emoteRestore
+            ? instance.behavior?.pose?.(this.behaviorFrame(instance, frame))
+            : undefined;
         if (
           delta &&
           (typeof delta !== "object" ||
@@ -1198,17 +1630,49 @@ export class WieldController implements AvatarHandLayer {
           );
           node.rotation.set(angles[0], angles[1], angles[2]);
         }
+        if (d.amount < 1 - 1e-7) {
+          const source = samplePerformance(
+            "equipOne",
+            d.amount * WIELD_TRANSITION_SECONDS.oneHand,
+          );
+          for (const part of ["arm", "forearm", "hand"]) {
+            const node = view.sockets.get(
+              `${part}_${hand === "left" ? "L" : "R"}`,
+            )!;
+            let q = source.rotations.get(`${part}_R`)!.clone();
+            if (part === "arm")
+              q.premultiply(
+                source.rotations
+                  .get("hips")!
+                  .clone()
+                  .multiply(source.rotations.get("chest")!),
+              );
+            if (hand === "left") q.set(q.x, -q.y, -q.z, q.w);
+            const held = node.quaternion.clone();
+            node.quaternion
+              .copy(base.get(part)!)
+              .slerp(q, THREE.MathUtils.smoothstep(d.amount, 0, 0.15))
+              .slerp(held, THREE.MathUtils.smoothstep(d.amount, 0.6, 1));
+          }
+        }
         if (instance.item.orientation === "gravity")
           this.alignWithGravity(instance, view);
       } catch (error) {
         this.breakHand(instance, error);
       }
     }
+    this.updatePresentation();
   }
   update(frame: AvatarPoseFrame, view: AvatarAttachmentView) {
     if (!this.visible) return;
     for (const instance of this.owners()) {
-      if (instance.state !== "ready" || instance.closed) continue;
+      if (
+        instance.state !== "ready" ||
+        instance.closed ||
+        !this.isDrawn(instance.hand) ||
+        this.emoteRestore
+      )
+        continue;
       const hand = instance.hand;
       try {
         if (!this.paused) instance.elapsed += frame.dt;
@@ -1368,7 +1832,7 @@ export class WieldController implements AvatarHandLayer {
   diagnostics() {
     const view = this.avatar.attachmentView();
     const appearance = view
-      ? this.appearanceBudget(view, this.hands)
+      ? this.appearanceBudget(view, this.hands, this.visible, true)
       : { appearance: 0, visibleAppearance: 0, replacedTriangles: 0 };
     let held = 0,
       heldBytes = 0,
@@ -1390,11 +1854,55 @@ export class WieldController implements AvatarHandLayer {
       appearanceTriangles: appearance.appearance,
       heldTriangles: held,
       visibleTriangles:
-        appearance.visibleAppearance + (this.visible ? held + effects : 0),
+        appearance.visibleAppearance +
+        (this.visible
+          ? this.owners().reduce(
+              (sum, instance) =>
+                sum +
+                count(instance.object, true) +
+                count(instance.effects, true) +
+                instance.occupied.reduce(
+                  (n, hand) => n + count(instance.grips[hand]!, true),
+                  0,
+                ),
+              0,
+            )
+          : 0),
       effectTriangles: effects,
       replacedTriangles: appearance.replacedTriangles,
       heldBytes,
       equippedHands,
+      presentation: Object.fromEntries(
+        HANDS.flatMap((hand) => {
+          const instance = this.hands[hand];
+          if (!instance) return [];
+          const d = instance.draw;
+          return [
+            [
+              hand,
+              {
+                phase:
+                  d.amount <= 1e-7
+                    ? "holstered"
+                    : d.amount >= 1 - 1e-7
+                      ? "drawn"
+                      : d.target
+                        ? "drawing"
+                        : "stowing",
+                progress: d.amount,
+              },
+            ],
+          ];
+        }),
+      ) as Partial<
+        Record<
+          Hand,
+          {
+            phase: "holstered" | "drawn" | "drawing" | "stowing";
+            progress: number;
+          }
+        >
+      >,
     };
   }
   dispose() {

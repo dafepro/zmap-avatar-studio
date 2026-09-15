@@ -22,6 +22,8 @@ Use the **Build** slider for lean through heavier tissue volume at fixed height.
 
 Walking, sprinting, backward steps and strafing use retargeted KayKit CC0 poses, a continuous directional blend space, actual shoe support and occupied-hand pose ownership. Backward sprint is an explicitly derived reversed run. Pass avatar-facing `velocity: {x, z}` in metres/second to match physical movement; preview `walk` and `run` gestures use 2.2 and 5.4 m/s. In Action Yard, hold Shift or use the Sprint toggle. The dev-only [motion comparison](http://localhost:5173/locomotion-review.html) shows source and target together. See [motion and retargeting](docs/motion.md) and [third-party attribution](THIRD_PARTY_NOTICES.md).
 
+Use `avatar.playEmote("wave")` for a bounded wave, cheer, dance, yes or no performance, and `cancelEmote()` to end it. Dance plays three authored cycles. A registered equipment controller clears and restores the hands around the emote; `Motion.emote: {id, elapsed}` supports an explicit playback time in seconds. `hands.setDrawn(false)` stows selected equipment, and `setDrawn(true)` draws it again without reloading assets or changing the selection. One-hand transitions take 0.8 seconds and two-hand transitions take 1 second, using an explicitly documented pickup adaptation. See [emote timing](docs/motion.md#reusable-emotes) and [draw/stow controls](docs/wielding.md#draw-and-stow-without-changing-the-selection).
+
 **16-view drawing** captures one equipped look and pose every 22.5° into an exportable transparent atlas. It is a fixed-pose cache, not animation. Export look saves appearance JSON; Portrait saves rendered PNG. Saved looks remain in this browser. Catalog 2.5.0 explicitly accepts saved 2.2.0, 2.3.0 and 2.4.0 recipes with their selections intact; undeclared revisions fail validation.
 
 ## Consume the runtime
@@ -61,7 +63,7 @@ This directory has its own lockfile, build, tests and contracts. It can be extra
 
 The active source is `assets/source/reference_kit.py`, with the editable `assets/source/reference-kit.blend`. The small `build_kit.py` entry point invokes it. The dedicated Blender scene preserves unrelated open work. The workflow documents interactive MCP construction, render corrections, supplied references and generated weight-reference provenance.
 
-The 39-part kit supports 11 slots, two heads, six expressions, interchangeable hair/clothes/shoes, facial hair, eyewear, hats and effects. It approximates the drawings; it is not a claim of final production art. Finger animation, facial blend shapes and a production animation library remain unimplemented. Source limits are 14,000 triangles, 1.5 MB and 12 selected parts; outlines add rendering work. Phone/full-room performance needs qualification by the consumer.
+The 39-part kit supports 11 slots, two heads, six expressions, interchangeable hair/clothes/shoes, facial hair, eyewear, hats and effects. It approximates the drawings; it is not a claim of final production art. Finger animation and facial blend shapes remain unimplemented. Motion currently covers the documented directional gaits, five authored emotes, and equipment reach/recover adaptations. Source limits are 14,000 triangles, 1.5 MB and 12 selected parts; outlines add rendering work. Phone/full-room performance needs qualification by the consumer.
 
 See [contracts](docs/contracts.md), [rendering](docs/illustrated-rendering.md), [directional capture](docs/directional-projection.md) and [reference workflow](docs/reference-workflow.md).
 

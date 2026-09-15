@@ -1,0 +1,33 @@
+{
+  "Rig_Medium_Simulation.glb": {
+    "rig": "kaykit",
+    "clips": [
+      "Waving",
+      "Cheering"
+    ]
+  },
+  "Rig_Medium_General.glb": {
+    "rig": "kaykit",
+    "clips": [
+      "PickUp",
+      "Interact",
+      "Use_Item"
+    ]
+  },
+  "UAL1_Standard.glb": {
+    "rig": "quaternius",
+    "clips": [
+      "Dance_Loop",
+      "PickUp_Table",
+      "Interact"
+    ]
+  },
+  "UAL2_Standard.glb": {
+    "rig": "quaternius",
+    "clips": [
+      "Yes",
+      "Idle_No_Loop",
+      "Chest_Open"
+    ]
+  }
+}

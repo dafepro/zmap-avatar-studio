@@ -96,11 +96,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8464,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bubble-comet",
@@ -115,11 +125,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8464,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bubble-comet",
@@ -134,11 +154,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8464,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bubble-comet",
@@ -153,11 +183,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8464,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bubble-comet",
@@ -172,11 +212,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8464,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bubble-comet",
@@ -191,11 +241,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8464,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bonk-bouquet",
@@ -210,11 +270,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1862,
-      "visibleTriangles": 8760,
+      "visibleTriangles": 8600,
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bonk-bouquet",
@@ -229,11 +299,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1862,
-      "visibleTriangles": 8760,
+      "visibleTriangles": 8600,
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bonk-bouquet",
@@ -248,11 +328,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1862,
-      "visibleTriangles": 8760,
+      "visibleTriangles": 8600,
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bonk-bouquet",
@@ -267,11 +357,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1862,
-      "visibleTriangles": 8760,
+      "visibleTriangles": 8600,
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bonk-bouquet",
@@ -286,11 +386,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1862,
-      "visibleTriangles": 8760,
+      "visibleTriangles": 8600,
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bonk-bouquet",
@@ -305,11 +415,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1862,
-      "visibleTriangles": 8760,
+      "visibleTriangles": 8600,
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-firefly-lantern",
@@ -324,11 +444,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1922,
-      "visibleTriangles": 8748,
+      "visibleTriangles": 8660,
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-firefly-lantern",
@@ -343,11 +473,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1922,
-      "visibleTriangles": 8748,
+      "visibleTriangles": 8660,
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-firefly-lantern",
@@ -362,11 +502,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1922,
-      "visibleTriangles": 8748,
+      "visibleTriangles": 8660,
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-firefly-lantern",
@@ -381,11 +531,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1922,
-      "visibleTriangles": 8748,
+      "visibleTriangles": 8660,
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-firefly-lantern",
@@ -400,11 +560,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1922,
-      "visibleTriangles": 8748,
+      "visibleTriangles": 8660,
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-firefly-lantern",
@@ -419,11 +589,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1922,
-      "visibleTriangles": 8748,
+      "visibleTriangles": 8660,
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-doodle-rocket",
@@ -442,7 +622,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-doodle-rocket",
@@ -461,7 +651,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-doodle-rocket",
@@ -480,7 +680,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-doodle-rocket",
@@ -499,7 +709,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-doodle-rocket",
@@ -518,7 +738,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-doodle-rocket",
@@ -537,7 +767,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-whirl-pop",
@@ -556,7 +796,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-whirl-pop",
@@ -575,7 +825,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-whirl-pop",
@@ -594,7 +854,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-whirl-pop",
@@ -613,7 +883,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-whirl-pop",
@@ -632,7 +912,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-whirl-pop",
@@ -651,7 +941,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     }
   ],
   "actions": [
@@ -664,11 +964,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8536,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bubble-comet",
@@ -679,11 +989,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8536,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bubble-comet",
@@ -694,11 +1014,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8536,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bonk-bouquet",
@@ -713,7 +1043,17 @@
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bonk-bouquet",
@@ -724,11 +1064,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1862,
-      "visibleTriangles": 8760,
+      "visibleTriangles": 8600,
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bonk-bouquet",
@@ -743,7 +1093,17 @@
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-firefly-lantern",
@@ -758,7 +1118,17 @@
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-firefly-lantern",
@@ -769,11 +1139,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1922,
-      "visibleTriangles": 8748,
+      "visibleTriangles": 8660,
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-firefly-lantern",
@@ -788,7 +1168,17 @@
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-doodle-rocket",
@@ -803,7 +1193,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-doodle-rocket",
@@ -818,7 +1218,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-doodle-rocket",
@@ -833,7 +1243,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-whirl-pop",
@@ -848,7 +1268,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-whirl-pop",
@@ -863,7 +1293,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-whirl-pop",
@@ -878,7 +1318,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     }
   ],
   "events": [
@@ -929,14 +1379,14 @@
       "sequence": 3,
       "time": 0.8666666666666666,
       "position": [
-        -0.30546214091545587,
-        1.238469068031924,
-        0.3908116654447332
+        -0.30546291270054277,
+        1.242204003224428,
+        0.39082985458445574
       ],
       "direction": [
-        -0.033814153183190504,
-        -0.23360940333793456,
-        0.9717423782652468
+        -0.03383516393597702,
+        -0.23407553003817122,
+        0.9716294704869624
       ]
     },
     {
@@ -948,14 +1398,14 @@
       "sequence": 3,
       "time": 0.8666666666666666,
       "position": [
-        0.3046500389529031,
-        1.2520951616430234,
-        0.3897070158872181
+        0.3046500390559348,
+        1.2557964224292248,
+        0.38973672118768393
       ],
       "direction": [
-        0.04772677333314154,
-        -0.23178828857492978,
-        0.9715947428772513
+        0.047705865742485615,
+        -0.2322589158283112,
+        0.9714833742231606
       ]
     },
     {
@@ -1126,14 +1576,14 @@
       "sequence": 17,
       "time": 3.466666666666664,
       "position": [
-        -0.42774146090747855,
-        0.6349534656875347,
-        0.11440716176442245
+        -0.4277598460533497,
+        0.6399052116486362,
+        0.11452786371602584
       ],
       "direction": [
-        -0.0009570163793181166,
-        -5.551115123125783e-17,
-        0.9999995420597201
+        -0.0009407594330446479,
+        -5.551115123125784e-17,
+        0.9999995574857466
       ]
     },
     {
@@ -1146,14 +1596,14 @@
       "sequence": 17,
       "time": 3.466666666666664,
       "position": [
-        0.43583791812437883,
-        0.6240076965904071,
-        0.1156670354327973
+        0.43582093597122556,
+        0.629010638857819,
+        0.11576775888352317
       ],
       "direction": [
-        0.0009570163810110055,
-        0,
-        -0.9999995420597185
+        0.0009407594347361076,
+        5.551115123125785e-17,
+        -0.9999995574857451
       ]
     },
     {
@@ -1406,14 +1856,14 @@
       "sequence": 24,
       "time": 4.899999999999992,
       "position": [
-        -0.2627662523648555,
-        1.2349440520925,
-        0.4256838389512998
+        -0.2627536319817544,
+        1.2454717871817982,
+        0.4256510729930024
       ],
       "direction": [
-        -0.0248618569138644,
-        -0.3965403815898685,
-        0.9176805619818673
+        -0.024942645727528197,
+        -0.39612603080048187,
+        0.917857304893504
       ]
     },
     {
@@ -1426,14 +1876,14 @@
       "sequence": 24,
       "time": 4.899999999999992,
       "position": [
-        0.3308590467437392,
-        1.2827461660314534,
-        0.4276292542803751
+        0.33088102770038924,
+        1.2931583003448708,
+        0.42757714828165816
       ],
       "direction": [
-        0.07019863158307994,
-        -0.3916484974690344,
-        0.9174331619001522
+        0.07011880148947347,
+        -0.3912529075088331,
+        0.9176080405290509
       ]
     },
     {
@@ -1446,14 +1896,14 @@
       "sequence": 24,
       "time": 4.966666666666659,
       "position": [
-        -0.28897970464742084,
-        1.283357403035186,
-        0.4210742428793361
+        -0.28895431219773576,
+        1.2942590357187898,
+        0.4210801881208827
       ],
       "direction": [
-        -0.027495752582797597,
-        -0.3518814552086668,
-        0.9356406495392005
+        -0.02753204539158901,
+        -0.3518725201583325,
+        0.935642942598286
       ]
     },
     {
@@ -1466,14 +1916,14 @@
       "sequence": 24,
       "time": 4.966666666666659,
       "position": [
-        0.3032165686076257,
-        1.3169203253605701,
-        0.4206313494883778
+        0.3032473870898965,
+        1.3277259029663644,
+        0.4206239817911229
       ],
       "direction": [
-        0.06488261822710537,
-        -0.3474858395514828,
-        0.9354377783493658
+        0.06484703263020006,
+        -0.3474918890324694,
+        0.9354379987020539
       ]
     },
     {
@@ -1486,14 +1936,14 @@
       "sequence": 24,
       "time": 5.033333333333325,
       "position": [
-        -0.3156737933786427,
-        1.3449292074947277,
-        0.4123330151570375
+        -0.31566157761196195,
+        1.3512378626305754,
+        0.41237046886369527
       ],
       "direction": [
-        -0.03156113952841326,
-        -0.2955538022765552,
-        0.9548046106044624
+        -0.03157542844492752,
+        -0.29580798463424096,
+        0.9547254204980341
       ]
     },
     {
@@ -1506,14 +1956,14 @@
       "sequence": 24,
       "time": 5.033333333333325,
       "position": [
-        0.27576784647366864,
-        1.3593039062800514,
-        0.41023466446716483
+        0.27578106692730375,
+        1.3655711200950604,
+        0.41027181624015474
       ],
       "direction": [
-        0.05736933823273598,
-        -0.2922897589258086,
-        0.9546074878492368
+        0.05735527952542471,
+        -0.29255020433142537,
+        0.9545285484762631
       ]
     },
     {
@@ -1526,14 +1976,14 @@
       "sequence": 24,
       "time": 5.099999999999992,
       "position": [
-        -0.3392876028939562,
-        1.3476886676792392,
-        0.402666956461924
+        -0.33928599814834043,
+        1.3513479094705283,
+        0.4027387612139994
       ],
       "direction": [
-        -0.03595620882594017,
-        -0.25011959398962447,
-        0.9675470736606725
+        -0.03598239672864663,
+        -0.25058803001491814,
+        0.9674248840808806
       ]
     },
     {
@@ -1546,14 +1996,14 @@
       "sequence": 24,
       "time": 5.099999999999992,
       "position": [
-        0.2517235853287496,
-        1.3399911173397654,
-        0.40034399461144743
+        0.2517248565602075,
+        1.3436233051901785,
+        0.40042075716186926
       ],
       "direction": [
-        0.04896556270613035,
-        -0.2484454186019033,
-        0.9674074878997976
+        0.04893945658009871,
+        -0.24891783668153428,
+        0.9672873617345725
       ]
     },
     {
@@ -1566,14 +2016,14 @@
       "sequence": 24,
       "time": 5.166666666666658,
       "position": [
-        -0.3574677826810734,
-        1.3447562274467222,
-        0.3970761510799688
+        -0.3574768232015682,
+        1.3515549536127787,
+        0.39712644537502273
       ],
       "direction": [
-        -0.041387588998823985,
-        -0.23806555276089028,
-        0.9703668688004122
+        -0.041395829609559835,
+        -0.23837993220375467,
+        0.9702893347932201
       ]
     },
     {
@@ -1586,14 +2036,14 @@
       "sequence": 24,
       "time": 5.166666666666658,
       "position": [
-        0.23283411613768834,
-        1.3146362613954006,
-        0.3955182611287393
+        0.23282573313481553,
+        1.3214479622487605,
+        0.395566900952485
       ],
       "direction": [
-        0.0392150859271763,
-        -0.23819325210765213,
-        0.9704257579465337
+        0.03920684718368272,
+        -0.23850594788816698,
+        0.9703492855440675
       ]
     },
     {
@@ -1606,14 +2056,14 @@
       "sequence": 24,
       "time": 5.2333333333333245,
       "position": [
-        -0.36884648501378475,
-        1.3874476567002247,
-        0.3960272695554051
+        -0.36885620712450706,
+        1.3905809187823392,
+        0.39603568632833386
       ],
       "direction": [
-        -0.047400038084997834,
-        -0.25358666357344295,
-        0.9661506303093893
+        -0.04735922901822086,
+        -0.2536032349650863,
+        0.9661482819122762
       ]
     },
     {
@@ -1626,14 +2076,14 @@
       "sequence": 24,
       "time": 5.2333333333333245,
       "position": [
-        0.22007215289894605,
-        1.3385226505705954,
-        0.3948074627125697
+        0.22006710532565582,
+        1.34171248021515,
+        0.3948052395651839
       ],
       "direction": [
-        0.028870153034939124,
-        -0.255295395214879,
-        0.9664319817999703
+        0.02891113061582939,
+        -0.25530464609289155,
+        0.9664283130216633
       ]
     },
     {
@@ -1961,14 +2411,14 @@
       "sequence": 31,
       "time": 6.333333333333321,
       "position": [
-        -0.30276565026625785,
-        1.1842985924281793,
-        0.37926037701819454
+        -0.3027562631969542,
+        1.1898121901647332,
+        0.3792562900739952
       ],
       "direction": [
-        -0.057318434947046255,
-        -0.32020678784846157,
-        0.945612082215002
+        -0.05725858964452621,
+        -0.31992972357722566,
+        0.9457094828136808
       ]
     },
     {
@@ -1980,14 +2430,14 @@
       "sequence": 31,
       "time": 6.333333333333321,
       "position": [
-        0.3018065195251937,
-        1.162045316250959,
-        0.3822802226868647
+        0.30181783673009166,
+        1.1676093980721438,
+        0.3822612818413373
       ],
       "direction": [
-        0.02418674771568736,
-        -0.32320685538430965,
-        0.9460192016378546
+        0.02424685322875301,
+        -0.3229229851191081,
+        0.9461145997130938
       ]
     },
     {

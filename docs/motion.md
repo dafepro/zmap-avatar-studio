@@ -2,7 +2,7 @@
 
 `AvatarInstance.update(time, motion)` now accepts avatar-facing `velocity: {x, z}` in metres per second, `grounded`, and a generic bounded `pose` containing `crouch`, signed `lean`, `stance`, `tuck`, and `recoil`. Existing `speed` / `gesture` previews retain treadmill animation. These inputs never apply a world impulse or move the application's physical body. Invalid non-finite values reject before changing the pose. The reference rig keeps its height and limb lengths.
 
-The active movement source is **KayKit Character Animations 1.1** by Kay Lousberg, under CC0. Its authored `Walking_B`, `Running_A`, `Walking_Backwards`, `Running_Strafe_Left` and `Running_Strafe_Right` supply coherent whole-body poses. Original GLBs, license, hashes, independent source samples and the comparison audit live in [`assets/source/locomotion/kaykit`](../assets/source/locomotion/kaykit/README.md). The former Quaternius audit and source remain historical review material; the old directional ankle-warping runtime is replaced. Source mannequins never ship as player models, and compact baked curves require no animation CDN.
+The active movement source is **KayKit Character Animations 1.1** by Kay Lousberg, under CC0. Its authored `Walking_B`, `Running_A`, `Walking_Backwards`, `Running_Strafe_Left` and `Running_Strafe_Right` supply coherent whole-body poses. Original GLBs, license, hashes, independent source samples and the comparison audit live in [`assets/source/locomotion/kaykit`](../assets/source/locomotion/kaykit/README.md). The former Quaternius locomotion audit and source remain historical review material; the old directional ankle-warping runtime is replaced. Source mannequins never ship as player models, and compact baked curves require no animation CDN.
 
 `node scripts/retarget-locomotion.mjs` rebuilds the curves from checked-in samples. It reflects +X-left into the catalog's −X-left, converts world rest frames into target local rotations, aligns actual catalog bind vectors, and preserves authored limb directions and the reference model's bone lengths. Physical wrists and palm bones are distinct. Playback pace is measured from the **retargeted** foot travel because this model has proportionally longer shins than the source. The baked six-clip set also retains `Walking_A` for comparison; `Walking_B` gives a more suitable stride at the app's 2.2 m/s walking pace.
 
@@ -18,6 +18,41 @@ The native opposing strides also exposed a real skin-weight seam: the pelvis mid
 
 The consuming action adapter maps authoritative Wake phases to anticipation, tuck, descending preparation, impact, recoil and settling. Body Y and airborne motion come from the actual simulation. `FieldToolPresentation.carrierPitch` supplies the current chest pitch so the driver counter-rotates around its grip axis and strikes with a level plate. Its small authored hold offset remains inside the shared wrist/reach limits. A `pulse` event alone creates the world-space shock ring and twelve bounded dust instances; reduced motion hides the dust. Rebound Panel has a shield-sized amber edge, translucent field, and an accepted-event ripple/kickback. Its controller effects total 120 triangles. Local presses cannot invent accepted impact feedback.
 
+## Reusable emotes
+
+`AvatarInstance.playEmote(id)` starts one bounded performance. Call it once per request and continue the ordinary `avatar.update(time, motion)` loop. `cancelEmote()` fades out local playback. Full-body entry and exit use 0.18-second and 0.2-second blends. The public `emoteDescriptors` list supplies each ID, label, total duration, and loop eligibility.
+
+| ID      | Authored source                |                              Total playback |
+| ------- | ------------------------------ | ------------------------------------------: |
+| `wave`  | KayKit `Waving`                |                               2.133 seconds |
+| `cheer` | KayKit `Cheering`              |                               1.667 seconds |
+| `dance` | Quaternius UAL1 `Dance_Loop`   | 3 seconds: three authored one-second cycles |
+| `yes`   | Quaternius UAL2 `Yes`          |                                 2.5 seconds |
+| `no`    | Quaternius UAL2 `Idle_No_Loop` |               2.5 seconds: one source cycle |
+
+```ts
+avatar.playEmote("wave");
+// In the existing render loop; all times are seconds:
+avatar.update(appTimeSeconds, { velocity: { x: 0, z: 0 } });
+// A later user action can end the local performance:
+avatar.cancelEmote();
+```
+
+A registered equipment controller stows occupied hands before the local emote clock advances, then restores the prior draw intentions after completion or cancellation. New caller intentions take precedence over that restoration. Deliberate movement and physical action poses interrupt local full-body emotes. `animationDiagnostics().emote` reports the ID, elapsed seconds, blend weight, and whether playback is waiting for hands to become free. Reduced motion uses a representative static pose while preserving the bounded lifetime.
+
+For a caller-owned timeline or a seekable preview, pass **`Motion.emote: { id, elapsed }`** on each update. `elapsed` is finite, nonnegative performance time in seconds, distinct from the outer application clock. It takes precedence over local playback for that update; the runtime samples that time instead of restarting the clip. Omit `emote` on later updates to end externally driven playback. Keep one owner for the performance clock.
+
+```ts
+avatar.update(appTimeSeconds, {
+  velocity: { x: 0, z: 0 },
+  emote: { id: "dance", elapsed: 1.4 },
+});
+```
+
+The five emotes use original authored motion and duration; the dance cycle count is runtime policy. The equipment source is KayKit `PickUp`, uniformly retimed to **0.8 seconds for one hand** and **1 second for two hands**. The baked stow source is exact whole-pose reverse playback. The two-handed variant adds item clearance and secondary-hand constraints to the authored primary-hand reach; it is explicitly an adaptation, not a native two-handed draw. See [draw/stow API and ownership](wielding.md#draw-and-stow-without-changing-the-selection).
+
+Source licenses, unchanged GLBs, original key samples, rejected alternatives, and measured grip/release markers are documented in [`assets/source/performances`](../assets/source/performances/README.md). `node scripts/retarget-performances.mjs` rebuilds the compact pose data using the same rest-vector calibration as locomotion. An independent Three loader/mixer check validates 557 original-key poses against the source sampler; runtime interaction and visual qualification are separate. These APIs animate presentation and equipment ownership; application simulation still owns physical movement and item consequences.
+
 ## Geometry and timing qualification
 
 The first tilted-plate attempt demonstrated why checking a named ground anchor was insufficient: a forward source vertex could be below the floor while the anchor remained above it. The final browser fixture traverses the actual source vertices and compares the entire plate with the floor, verifies its upward normal and both full grip matrices, and runs the actual physics sequence at weights −1, 0 and +1.
@@ -31,3 +66,7 @@ Open the dev-only `/locomotion-review.html` route for a playable source/target c
 ## Scope
 
 Foot targets currently use the avatar's grounded root plane. Contact qualification is for level support; there is no arbitrary-terrain per-foot raycast or slope-normal foot alignment. Ramps still use the world's physical support and height, but precise terrain-conforming soles are a separate extension. The visual rig is the fixed-height reference family, not a general retargeter for arbitrary skeleton proportions. Reduced motion suppresses oscillation, recoil and particles while preserving essential static fitting and accepted body movement.
+
+## Continuous gait playback
+
+The runtime reconstructs periodic rotation curves without per-joint damping, and smooths conservative shoe support changes so contact-vertex switches do not jerk the entire character. Rotation controls retain extension poses; root/contact controls receive a symmetric five-sample filter. Ground support smoothing fades out for idle and full-weight emotes. `tests/locomotion-continuity.test.ts` checks the actual FK joint heights at 60/120 Hz and acceleration through the loop seam; floor, limb-length and grip checks remain separate. The repository review `docs/locomotion-continuity.md` records before/after measurements and clearance bounds.

@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "method": "Independent Three GLTFLoader/AnimationMixer evaluation at every original selected key. Materials are replaced only in the in-memory verification document so Node does not need image decoding. Bone, animation, and geometry buffers are unchanged.",
+  "samplesSha256": "09c38feff899cdd348b9dad152503992fa0382aec7a2ca713b0634811b0af254",
+  "clips": {
+    "Rig_Medium_Simulation.glb:Waving": {
+      "samples": 65,
+      "maxPositionErrorMetres": 1.0250136135818884e-8,
+      "maxRotationErrorRadians": 5.16191365590357e-8
+    },
+    "Rig_Medium_Simulation.glb:Cheering": {
+      "samples": 51,
+      "maxPositionErrorMetres": 3.200857666822371e-8,
+      "maxRotationErrorRadians": 1.0745380149674385e-7
+    },
+    "Rig_Medium_General.glb:PickUp": {
+      "samples": 40,
+      "maxPositionErrorMetres": 1.8619233653320523e-7,
+      "maxRotationErrorRadians": 2.615143176136055e-7
+    },
+    "Rig_Medium_General.glb:Interact": {
+      "samples": 40,
+      "maxPositionErrorMetres": 4.649908818065847e-8,
+      "maxRotationErrorRadians": 2.40274004587488e-7
+    },
+    "Rig_Medium_General.glb:Use_Item": {
+      "samples": 49,
+      "maxPositionErrorMetres": 1.36882592847201e-7,
+      "maxRotationErrorRadians": 1.2990531157078367e-7
+    },
+    "UAL1_Standard.glb:Dance_Loop": {
+      "samples": 31,
+      "maxPositionErrorMetres": 1.144019431178849e-8,
+      "maxRotationErrorRadians": 1.4292691717483762e-7
+    },
+    "UAL1_Standard.glb:PickUp_Table": {
+      "samples": 26,
+      "maxPositionErrorMetres": 1.549666116982415e-7,
+      "maxRotationErrorRadians": 4.380028979986637e-7
+    },
+    "UAL1_Standard.glb:Interact": {
+      "samples": 61,
+      "maxPositionErrorMetres": 2.197664959421299e-7,
+      "maxRotationErrorRadians": 3.1959430261741937e-7
+    },
+    "UAL2_Standard.glb:Yes": {
+      "samples": 76,
+      "maxPositionErrorMetres": 3.513707144447711e-7,
+      "maxRotationErrorRadians": 3.7223088731756253e-7
+    },
+    "UAL2_Standard.glb:Idle_No_Loop": {
+      "samples": 76,
+      "maxPositionErrorMetres": 2.500242291248022e-7,
+      "maxRotationErrorRadians": 2.1900144899933154e-7
+    },
+    "UAL2_Standard.glb:Chest_Open": {
+      "samples": 42,
+      "maxPositionErrorMetres": 2.33999108109383e-7,
+      "maxRotationErrorRadians": 4.693274422891038e-7
+    }
+  }
+}

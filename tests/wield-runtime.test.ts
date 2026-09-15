@@ -1,3 +1,4 @@
+import { samplePerformance } from "../src/performances.js";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -382,6 +383,10 @@ test("same item in both hands has independent resources, input, exact proper gri
       s.wield.grips.left.bytes +
       s.wield.grips.right.bytes,
     equippedHands: 2,
+    presentation: {
+      left: { phase: "drawn", progress: 1 },
+      right: { phase: "drawn", progress: 1 },
+    },
   });
   controller.release("left");
   controller.release("left");
@@ -931,9 +936,14 @@ test("inspection visibility restores base hands/poses across swaps without losin
   s.avatar.update(1.3, { gesture: "wave" });
   assert.equal(c.getHand("left"), left);
   assert.equal(c.getHand("right"), right);
-  assert.equal(
-    s.avatar.attachmentView()!.sockets.get("arm_R")!.rotation.x,
-    -2.7,
+  assert.ok(
+    s.avatar
+      .attachmentView()!
+      .sockets.get("arm_R")!
+      .quaternion.angleTo(
+        samplePerformance("wave", 1.3).rotations.get("arm_R")!,
+      ) < 1e-7,
+    "inspection restores the authored unoccupied wave arm",
   );
   c.setPaused(true);
   c.setVisible(true);

@@ -55,6 +55,42 @@ toys.dispose();
 
 `setPaused(true)` cancels input and passes a stationary reduced-motion frame. `setVisible(false)` is for component inspection: it detaches the hand layer, restores relaxed anatomy and base poses, and retains allocated equipment/toggle state without advancing it. Re-showing reuses the same items. Visibility and explicit pause are independent. The studio also freezes held input and avatar animation throughout its sixteen-view capture. A renderer that composes its own visibility must respect `isWieldHandCovered(object)` when showing anatomy; this ancestry-aware weak ownership query prevents inspection from exposing a relaxed hand over its grip.
 
+## Draw and stow without changing the selection
+
+`setLoadout` chooses equipment and loads approved assets. **`setDrawn(drawn, options?)`** changes how that selection is presented. Stowing retains the selected IDs, item instances, loaded geometry, and behavior allocations; drawing reuses them. It cancels held input and queued intents at the transition boundary. Semantic use and effects are gated until the selected item is fully drawn, and remain gated while an emote owns the hands.
+
+```ts
+// After selecting equipment:
+hands.setDrawn(false); // animate stow for all occupied hands
+hands.setDrawn(true, { hand: "right" }); // animate one independent hand
+if (hands.getHand("right") && hands.isDrawn("right")) {
+  hands.press("right");
+}
+
+// Optional caller-owned transition time, in seconds:
+hands.setDrawn(true, { hand: "right", elapsed: 0.3 });
+// Continue a reversal from a partially drawn checkpoint:
+hands.setDrawn(false, { hand: "right", from: 0.6, elapsed: 0.1 });
+// Resolve immediately for an initial/static presentation:
+hands.setDrawn(false, { immediate: true });
+```
+
+`hand` is optional: omission addresses all selected owners. Either hand of a two-handed item addresses its single shared owner, so it draws or stows both grips together. `elapsed` is finite, nonnegative elapsed transition time, supplied by the caller on subsequent updates when the caller owns that clock. Omitting it returns advancement to the avatar's update clock. With `elapsed`, optional `from` supplies the normalized draw amount at transition start (0 is stowed, 1 is drawn), preserving a partially completed reversal. `immediate` resolves directly to the requested stable state. Reduced motion also resolves equipment transitions immediately.
+
+`isDrawn(hand?)` reports whether the addressed selected owners are ready and fully drawn; use `getHand` separately to check whether a slot has an item. It does not report selection or inventory ownership. The controller retains the requested state when a new loadout is installed. Existing callers get an initially drawn selection by default. To animate the first draw, set the desired state to stowed before loading, then draw after the load completes:
+
+```ts
+hands.setDrawn(false, { immediate: true });
+await hands.setLoadout(approvedLoadout);
+hands.setDrawn(true);
+```
+
+One-hand transitions last **0.8 seconds**; two-hand transitions last **1 second**. Both reuse KayKit's authored `PickUp` reach/recover motion, originally 1.3 seconds. The baked stow data reverses the entire source pose sequence. The original minimum right-wrist height marks the pickup: draw grip occurs at **0.348718 seconds** for one hand or **0.4358975 seconds** for two hands; the corresponding reverse release occurs at **0.451282 seconds** or **0.5641025 seconds**. These are application timing annotations derived from the source motion.
+
+The source is a right-handed pickup, not a native two-handed inventory animation. The one-hand variant mirrors for the other side. The two-hand presentation computes the source primary wrist through the model's actual bone lengths, then derives a rigid item carrier from that wrist. It projects toward that source pose within both arms' reach, elbow and wrist limits and the item's floor clearance, solving the secondary hand against its real grip. It cannot move an oversized object down to the original wrist path while leaving the second hand behind. Both gripping hands and the item change visibility together at the handoff marker. Source metadata preserves the original motion and names the adaptation explicitly; see [performance provenance](../assets/source/performances/README.md).
+
+`avatar.playEmote(id)` coordinates this controller automatically: it stows the occupied hands, waits for them to become free, plays the bounded full-body emote, and restores draw intentions that the caller has not replaced. A draw/stow request made during the emote remains the caller's current intent. `cancelEmote()` ends local playback with the same ownership cleanup. `setVisible` remains an inspection control and `setPaused` remains a clock/input control; neither substitutes for the selected equipment's draw state. See [emote timing](motion.md#reusable-emotes).
+
 ## Five behaviors
 
 | Item / behavior key                 | Interaction                              | Logical anchors | Presentation                                                                                    |
@@ -87,7 +123,7 @@ The current content targets `athlete-reference-v2`, appearance revision **2.5.0*
 
 All source coordinates are metres, Y-up, +Z front. Blender conversion is `(x, y, z) -> (x, -z, y)`. Two reusable gripping hands share a 20 mm handle radius and a clear 110 mm grip zone. Their wrist-local grip center is `[side * 0.024, -0.073, 0.046]`, where left is −1. Frame Euler XYZ is `[π/2, 0, -side * π/2]`. Fitting uses the full rigid matrix `wristWorld × gripFrame × inverse(authoredItemGrip)`, checking all three axes and positive determinant. Aligning only the center or handle axis is insufficient.
 
-The gripping hands are connected anatomical volumes with curled fingers and an opposing thumb. They replace only their own semantic relaxed-hand mesh, retain the exact wrist attachment ring and recolor with skin. Hands are reusable grip poses, not per-item duplicates. Two-handed tools, articulated finger gestures and arbitrary grip profiles would require additional explicit contracts; they should not be represented as a silent approximation to this power grip.
+The gripping hands are connected anatomical volumes with curled fingers and an opposing thumb. They replace only their own semantic relaxed-hand mesh, retain the exact wrist attachment ring and recolor with skin. Hands are reusable grip poses, not per-item duplicates. Two-handed tools use the separate explicit paired-grip contract in [Field Tools](field-tools.md). Articulated finger gestures and arbitrary new grip profiles require their own authoring and qualification.
 
 The five generated [front/side/top/held concepts](references/wield/provenance.json) establish shape and style targets. They are packed in the editable Blender scene and linked in the studio reference viewer. Actual geometry evidence is separate: [Blender items](evidence/wield/review.png), [Blender grips](evidence/wield/grip-review.png), [browser grips](evidence/wield/browser-grips.png) and [active assembled items](evidence/wield/browser-actions.png).
 

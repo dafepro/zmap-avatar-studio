@@ -6,3 +6,4 @@ export * from "./wield-core.js";
 export * from "./wield-runtime.js";
 export * from "./wield-behaviors.js";
 export * from "./field-tools.js";
+export * from "./performances.js";

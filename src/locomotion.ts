@@ -54,6 +54,88 @@ export function sampleLocomotion(
   };
 }
 
+// A symmetric five-key filter removes root/contact spikes without shifting
+// phase. Keep rotation controls unfiltered to preserve knee extension; periodic
+// cubic reconstruction smooths their velocity. The raw source stays auditable.
+const playbackFrames = Object.fromEntries(
+  Object.entries(locomotionData.clips).map(([id, clip]) => {
+    const keys = clip.frames.slice(0, -1),
+      n = keys.length,
+      kernel = [1, 4, 6, 4, 1];
+    return [
+      id,
+      keys.map((reference, i) => {
+        const around = kernel.map((_, j) => keys[(i + j - 2 + n) % n]);
+        const root = [0, 1, 2].map((axis) =>
+          around.reduce(
+            (sum, key, j) => sum + (key.root[axis] * kernel[j]) / 16,
+            0,
+          ),
+        );
+        const support = around.reduce(
+          (sum, key, j) => sum + (key.support * kernel[j]) / 16,
+          0,
+        );
+        const rotations = [...reference.rotations];
+        return { root, support, rotations };
+      }),
+    ];
+  }),
+) as Record<
+  LocomotionClip,
+  { root: number[]; support: number; rotations: number[] }[]
+>;
+
+/** Periodic cubic pose reconstruction removes velocity breaks at baked sample
+ * boundaries. Quaternion hemispheres are aligned before normalized blending. */
+export function smoothLocomotion(
+  clip: LocomotionClip,
+  phase: number,
+): ReferencePose {
+  const frames = playbackFrames[clip],
+    count = frames.length;
+  const cursor = (((phase % 1) + 1) % 1) * count,
+    index = Math.floor(cursor),
+    t = cursor - index;
+  const weights = [
+    (1 - t) ** 3,
+    3 * t ** 3 - 6 * t * t + 4,
+    -3 * t ** 3 + 3 * t * t + 3 * t + 1,
+    t ** 3,
+  ].map((w) => w / 6);
+  const keys = [-1, 0, 1, 2].map(
+    (offset) => frames[(index + offset + count) % count],
+  );
+  const root = new THREE.Vector3();
+  let support = 0;
+  for (let i = 0; i < 4; i++) {
+    root.addScaledVector(
+      new THREE.Vector3().fromArray(keys[i].root),
+      weights[i],
+    );
+    support += weights[i] * keys[i].support;
+  }
+  const rotations = new Map(
+    locomotionData.bones.map((bone, b) => {
+      const reference = new THREE.Quaternion().fromArray(
+        keys[1].rotations,
+        b * 4,
+      );
+      const sum = new THREE.Vector4(0, 0, 0, 0);
+      for (let i = 0; i < 4; i++) {
+        const q = new THREE.Quaternion().fromArray(keys[i].rotations, b * 4);
+        const w = weights[i] * (q.dot(reference) < 0 ? -1 : 1);
+        sum.addScaledVector(new THREE.Vector4(q.x, q.y, q.z, q.w), w);
+      }
+      return [
+        bone,
+        new THREE.Quaternion(sum.x, sum.y, sum.z, sum.w).normalize(),
+      ] as const;
+    }),
+  );
+  return { root, support, rotations };
+}
+
 export function mixLocomotion(
   a: ReferencePose,
   b: ReferencePose,
@@ -160,7 +242,7 @@ export function movingLocomotion(
   let pose: ReferencePose | undefined,
     weight = 0;
   for (const c of components) {
-    let next = sampleLocomotion(
+    let next = smoothLocomotion(
       c.clip,
       c.offset + (c.reverse ? -phase : phase),
     );

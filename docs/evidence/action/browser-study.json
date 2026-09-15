@@ -129,7 +129,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -154,7 +164,7 @@
           1,
           0,
           -0.20999999344348907,
-          0.9954632542981579,
+          0.999369307880152,
           0.3,
           1
         ],
@@ -172,7 +182,7 @@
           1,
           0,
           0.20999999344348907,
-          0.9954632542981579,
+          0.999369307880152,
           0.3,
           1
         ]
@@ -190,7 +200,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -215,8 +235,8 @@
           1,
           0,
           -0.20999999344348907,
-          0.9071913352412395,
-          0.385129807529251,
+          0.9239663131470606,
+          0.3850011468399324,
           1
         ],
         "right": [
@@ -233,8 +253,8 @@
           1,
           0,
           0.20999999344348907,
-          0.9071913352412395,
-          0.385129807529251,
+          0.9239663131470606,
+          0.3850011468399324,
           1
         ]
       },
@@ -251,7 +271,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -312,7 +342,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -373,7 +413,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -398,7 +448,7 @@
           1,
           0,
           -0.20999999344348907,
-          1.0031878574870812,
+          1.0017203214225077,
           0.3,
           1
         ],
@@ -416,7 +466,7 @@
           1,
           0,
           0.20999999344348907,
-          1.0031878574870812,
+          1.0017203214225077,
           0.3,
           1
         ]
@@ -434,7 +484,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -459,8 +519,8 @@
           1,
           0,
           -0.20999999344348907,
-          0.8725239593496152,
-          0.3882889684145728,
+          0.884288059937731,
+          0.38810252071016565,
           1
         ],
         "right": [
@@ -477,8 +537,8 @@
           1,
           0,
           0.20999999344348907,
-          0.8725239593496152,
-          0.3882889684145728,
+          0.884288059937731,
+          0.38810252071016565,
           1
         ]
       },
@@ -495,7 +555,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -556,7 +626,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -617,7 +697,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -642,7 +732,7 @@
           1,
           0,
           -0.20999999344348907,
-          0.9579288992751376,
+          0.9654985778680973,
           0.3,
           1
         ],
@@ -660,7 +750,7 @@
           1,
           0,
           0.20999999344348907,
-          0.9579288992751376,
+          0.9654985778680973,
           0.3,
           1
         ]
@@ -678,256 +768,22 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
       "primary": "left",
       "weight": 1,
-      "gesture": "run",
-      "positionError": 2.0014830212433605e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          0.835104255878288,
-          0.37655251088383557,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          0.835104255878288,
-          0.37655251088383557,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "left",
-      "weight": 1,
-      "gesture": "wave",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": -1,
-      "gesture": "idle",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": -1,
-      "gesture": "walk",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          0.906724006325919,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          0.906724006325919,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": -1,
       "gesture": "run",
       "positionError": 2.0014830212433605e-16,
       "basisError": 9.159339953157543e-16,
@@ -947,8 +803,8 @@
           1,
           0,
           -0.20999999344348907,
-          1.0325276410555626,
-          0.36256734042906325,
+          0.8424565052629929,
+          0.37654677242268153,
           1
         ],
         "right": [
@@ -965,8 +821,8 @@
           1,
           0,
           0.20999999344348907,
-          1.0325276410555626,
-          0.36256734042906325,
+          0.8424565052629929,
+          0.37654677242268153,
           1
         ]
       },
@@ -983,499 +839,21 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": -1,
-      "gesture": "wave",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": 0,
-      "gesture": "idle",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": 0,
-      "gesture": "walk",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          0.9682455686831517,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          0.9682455686831517,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": 0,
-      "gesture": "run",
-      "positionError": 2.9893669801409083e-16,
-      "basisError": 6.661338147750939e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1.0000000000000002,
-          0,
-          0,
-          0,
-          0,
-          1.0000000000000002,
-          0,
-          -0.20999999344348907,
-          1.0825614125333192,
-          0.3611642362474533,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1.0000000000000002,
-          0,
-          0,
-          0,
-          0,
-          1.0000000000000002,
-          0,
-          0.20999999344348907,
-          1.0825614125333192,
-          0.3611642362474533,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": 0,
-      "gesture": "wave",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": 1,
-      "gesture": "idle",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": 1,
-      "gesture": "walk",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          1.0052207117056287,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          1.0052207117056287,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
-      "weight": 1,
-      "gesture": "run",
-      "positionError": 2.7755575615628914e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          1.0149759582619369,
-          0.3742115232482752,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          1.0149759582619369,
-          0.3742115232482752,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7789,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 2086,
-      "visibleTriangles": 7789,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 157488,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-tether-winch",
-      "primary": "right",
+      "primary": "left",
       "weight": 1,
       "gesture": "wave",
       "positionError": 2.3551386880256624e-16,
@@ -1532,11 +910,21 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": -1,
       "gesture": "idle",
       "positionError": 2.3551386880256624e-16,
@@ -1584,20 +972,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": -1,
       "gesture": "walk",
       "positionError": 2.3551386880256624e-16,
@@ -1618,7 +1016,7 @@
           1,
           0,
           -0.20999999344348907,
-          0.9682329992663572,
+          0.9189285089489849,
           0.3,
           1
         ],
@@ -1636,7 +1034,7 @@
           1,
           0,
           0.20999999344348907,
-          0.9682329992663572,
+          0.9189285089489849,
           0.3,
           1
         ]
@@ -1645,20 +1043,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": -1,
       "gesture": "run",
       "positionError": 2.7755575615628914e-16,
@@ -1679,8 +1087,8 @@
           1,
           0,
           -0.20999999344348907,
-          0.8831887973881727,
-          0.387577257677179,
+          1.0307496714530637,
+          0.3628658475926214,
           1
         ],
         "right": [
@@ -1697,8 +1105,8 @@
           1,
           0,
           0.20999999344348907,
-          0.8831887973881727,
-          0.387577257677179,
+          1.0307496714530637,
+          0.3628658475926214,
           1
         ]
       },
@@ -1706,20 +1114,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": -1,
       "gesture": "wave",
       "positionError": 2.3551386880256624e-16,
@@ -1767,20 +1185,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": 0,
       "gesture": "idle",
       "positionError": 2.3551386880256624e-16,
@@ -1828,20 +1256,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": 0,
       "gesture": "walk",
       "positionError": 2.3551386880256624e-16,
@@ -1862,7 +1300,7 @@
           1,
           0,
           -0.20999999344348907,
-          1.0367035069467854,
+          0.9779944950102484,
           0.3,
           1
         ],
@@ -1880,7 +1318,7 @@
           1,
           0,
           0.20999999344348907,
-          1.0367035069467854,
+          0.9779944950102484,
           0.3,
           1
         ]
@@ -1889,24 +1327,34 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": 0,
       "gesture": "run",
-      "positionError": 1.4946834900704541e-16,
-      "basisError": 2.775557561562892e-16,
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
       "proper": true,
       "actualFrames": {
         "left": [
@@ -1915,16 +1363,16 @@
           0,
           0,
           0,
-          0.9999999999999999,
+          1,
           0,
           0,
           0,
           0,
-          0.9999999999999999,
+          1,
           0,
           -0.20999999344348907,
-          0.849271349482768,
-          0.3869129526009484,
+          1.0827221478016857,
+          0.36155432471396715,
           1
         ],
         "right": [
@@ -1933,16 +1381,16 @@
           0,
           0,
           0,
-          0.9999999999999999,
+          1,
           0,
           0,
           0,
           0,
-          0.9999999999999999,
+          1,
           0,
           0.20999999344348907,
-          0.849271349482768,
-          0.3869129526009484,
+          1.0827221478016857,
+          0.36155432471396715,
           1
         ]
       },
@@ -1950,20 +1398,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": 0,
       "gesture": "wave",
       "positionError": 2.3551386880256624e-16,
@@ -2011,20 +1469,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": 1,
       "gesture": "idle",
       "positionError": 2.3551386880256624e-16,
@@ -2072,20 +1540,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": 1,
       "gesture": "walk",
       "positionError": 2.3551386880256624e-16,
@@ -2106,7 +1584,7 @@
           1,
           0,
           -0.20999999344348907,
-          0.9465145116083198,
+          1.0152579695637316,
           0.3,
           1
         ],
@@ -2124,7 +1602,7 @@
           1,
           0,
           0.20999999344348907,
-          0.9465145116083198,
+          1.0152579695637316,
           0.3,
           1
         ]
@@ -2133,20 +1611,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": 1,
       "gesture": "run",
       "positionError": 2.1677797545656835e-16,
@@ -2167,8 +1655,8 @@
           0.9999999999999999,
           0,
           -0.20999999344348907,
-          0.8728168144504034,
-          0.3732019303434899,
+          1.0319115000197554,
+          0.37421154686336916,
           1
         ],
         "right": [
@@ -2185,8 +1673,8 @@
           0.9999999999999999,
           0,
           0.20999999344348907,
-          0.8728168144504034,
-          0.3732019303434899,
+          1.0319115000197554,
+          0.37421154686336916,
           1
         ]
       },
@@ -2194,20 +1682,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-rebound-panel",
-      "primary": "left",
+      "id": "wield-tether-winch",
+      "primary": "right",
       "weight": 1,
       "gesture": "wave",
       "positionError": 2.3551386880256624e-16,
@@ -2255,20 +1753,30 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7441,
+      "actualVisible": 7789,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
+      "heldTriangles": 2086,
+      "visibleTriangles": 7789,
+      "effectTriangles": 0,
       "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
+      "heldBytes": 157488,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": -1,
       "gesture": "idle",
       "positionError": 2.3551386880256624e-16,
@@ -2321,15 +1829,25 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7441,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": -1,
       "gesture": "walk",
       "positionError": 2.3551386880256624e-16,
@@ -2350,7 +1868,7 @@
           1,
           0,
           -0.20999999344348907,
-          0.9066615543650753,
+          0.9734056376851383,
           0.3,
           1
         ],
@@ -2368,7 +1886,7 @@
           1,
           0,
           0.20999999344348907,
-          0.9066615543650753,
+          0.9734056376851383,
           0.3,
           1
         ]
@@ -2382,15 +1900,25 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7441,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": -1,
       "gesture": "run",
       "positionError": 2.3551386880256624e-16,
@@ -2411,8 +1939,8 @@
           1,
           0,
           -0.20999999344348907,
-          1.042250815619476,
-          0.3608508354504138,
+          0.9182998528900719,
+          0.3870666658179636,
           1
         ],
         "right": [
@@ -2429,8 +1957,8 @@
           1,
           0,
           0.20999999344348907,
-          1.042250815619476,
-          0.3608508354504138,
+          0.9182998528900719,
+          0.3870666658179636,
           1
         ]
       },
@@ -2443,15 +1971,25 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7441,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": -1,
       "gesture": "wave",
       "positionError": 2.3551386880256624e-16,
@@ -2504,15 +2042,25 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7441,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": 0,
       "gesture": "idle",
       "positionError": 2.3551386880256624e-16,
@@ -2565,15 +2113,25 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7441,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": 0,
       "gesture": "walk",
       "positionError": 2.3551386880256624e-16,
@@ -2594,7 +2152,7 @@
           1,
           0,
           -0.20999999344348907,
-          0.9808480689068058,
+          1.035610275934591,
           0.3,
           1
         ],
@@ -2612,7 +2170,7 @@
           1,
           0,
           0.20999999344348907,
-          0.9808480689068058,
+          1.035610275934591,
           0.3,
           1
         ]
@@ -2626,15 +2184,25 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7441,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": 0,
       "gesture": "run",
       "positionError": 1.2412670766236366e-16,
@@ -2655,8 +2223,8 @@
           1,
           0,
           -0.20999999344348907,
-          1.086605678154934,
-          0.36335001700104763,
+          0.8671553002079864,
+          0.38651243836868066,
           1
         ],
         "right": [
@@ -2673,8 +2241,8 @@
           1,
           0,
           0.20999999344348907,
-          1.086605678154934,
-          0.36335001700104763,
+          0.8671553002079864,
+          0.38651243836868066,
           1
         ]
       },
@@ -2687,15 +2255,25 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7441,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": 0,
       "gesture": "wave",
       "positionError": 2.3551386880256624e-16,
@@ -2748,15 +2326,25 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7441,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": 1,
       "gesture": "idle",
       "positionError": 2.3551386880256624e-16,
@@ -2809,15 +2397,25 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7441,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": 1,
       "gesture": "walk",
       "positionError": 2.3551386880256624e-16,
@@ -2838,7 +2436,7 @@
           1,
           0,
           -0.20999999344348907,
-          1.0102886456119642,
+          0.9518264741484557,
           0.3,
           1
         ],
@@ -2856,7 +2454,7 @@
           1,
           0,
           0.20999999344348907,
-          1.0102886456119642,
+          0.9518264741484557,
           0.3,
           1
         ]
@@ -2870,260 +2468,26 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7441,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
-      "primary": "right",
+      "primary": "left",
       "weight": 1,
-      "gesture": "run",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          0.9862508218723869,
-          0.37755928617542306,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          0.9862508218723869,
-          0.37755928617542306,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7441,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
-      "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-rebound-panel",
-      "primary": "right",
-      "weight": 1,
-      "gesture": "wave",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7441,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 1682,
-      "visibleTriangles": 7505,
-      "effectTriangles": 120,
-      "replacedTriangles": 2239,
-      "heldBytes": 127412,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-wake-driver",
-      "primary": "left",
-      "weight": -1,
-      "gesture": "idle",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          1.1,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7261,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 1558,
-      "visibleTriangles": 7261,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 121440,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-wake-driver",
-      "primary": "left",
-      "weight": -1,
-      "gesture": "walk",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
-      "proper": true,
-      "actualFrames": {
-        "left": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          -0.20999999344348907,
-          0.9666513209319065,
-          0.3,
-          1
-        ],
-        "right": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0.20999999344348907,
-          0.9666513209319065,
-          0.3,
-          1
-        ]
-      },
-      "oneObject": true,
-      "distinctGrips": true,
-      "oneEffectGroup": true,
-      "relaxedHidden": true,
-      "actualVisible": 7261,
-      "state": "ready",
-      "visible": true,
-      "appearanceTriangles": 10244,
-      "heldTriangles": 1558,
-      "visibleTriangles": 7261,
-      "effectTriangles": 0,
-      "replacedTriangles": 2239,
-      "heldBytes": 121440,
-      "equippedHands": 2
-    },
-    {
-      "id": "wield-wake-driver",
-      "primary": "left",
-      "weight": -1,
       "gesture": "run",
       "positionError": 2.0014830212433605e-16,
       "basisError": 9.159339953157543e-16,
@@ -3143,8 +2507,8 @@
           1,
           0,
           -0.20999999344348907,
-          0.9107506148911158,
-          0.3885953263106221,
+          0.8805233930960861,
+          0.3732036443071364,
           1
         ],
         "right": [
@@ -3161,8 +2525,8 @@
           1,
           0,
           0.20999999344348907,
-          0.9107506148911158,
-          0.3885953263106221,
+          0.8805233930960861,
+          0.3732036443071364,
           1
         ]
       },
@@ -3170,21 +2534,31 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7261,
+      "actualVisible": 7441,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1558,
-      "visibleTriangles": 7261,
-      "effectTriangles": 0,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
       "replacedTriangles": 2239,
-      "heldBytes": 121440,
-      "equippedHands": 2
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-wake-driver",
+      "id": "wield-rebound-panel",
       "primary": "left",
-      "weight": -1,
+      "weight": 1,
       "gesture": "wave",
       "positionError": 2.3551386880256624e-16,
       "basisError": 9.159339953157543e-16,
@@ -3231,21 +2605,31 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7261,
+      "actualVisible": 7441,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1558,
-      "visibleTriangles": 7261,
-      "effectTriangles": 0,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
       "replacedTriangles": 2239,
-      "heldBytes": 121440,
-      "equippedHands": 2
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-wake-driver",
-      "primary": "left",
-      "weight": 0,
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": -1,
       "gesture": "idle",
       "positionError": 2.3551386880256624e-16,
       "basisError": 9.159339953157543e-16,
@@ -3292,21 +2676,31 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7261,
+      "actualVisible": 7441,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1558,
-      "visibleTriangles": 7261,
-      "effectTriangles": 0,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
       "replacedTriangles": 2239,
-      "heldBytes": 121440,
-      "equippedHands": 2
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-wake-driver",
-      "primary": "left",
-      "weight": 0,
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": -1,
       "gesture": "walk",
       "positionError": 2.3551386880256624e-16,
       "basisError": 9.159339953157543e-16,
@@ -3326,7 +2720,7 @@
           1,
           0,
           -0.20999999344348907,
-          1.0357377883917362,
+          0.9204911361301136,
           0.3,
           1
         ],
@@ -3344,7 +2738,7 @@
           1,
           0,
           0.20999999344348907,
-          1.0357377883917362,
+          0.9204911361301136,
           0.3,
           1
         ]
@@ -3353,24 +2747,34 @@
       "distinctGrips": true,
       "oneEffectGroup": true,
       "relaxedHidden": true,
-      "actualVisible": 7261,
+      "actualVisible": 7441,
       "state": "ready",
       "visible": true,
       "appearanceTriangles": 10244,
-      "heldTriangles": 1558,
-      "visibleTriangles": 7261,
-      "effectTriangles": 0,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
       "replacedTriangles": 2239,
-      "heldBytes": 121440,
-      "equippedHands": 2
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
-      "id": "wield-wake-driver",
-      "primary": "left",
-      "weight": 0,
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": -1,
       "gesture": "run",
-      "positionError": 1.9229626863835638e-16,
-      "basisError": 4.163336342344338e-16,
+      "positionError": 2.897767167584095e-16,
+      "basisError": 3.6082248300317592e-16,
       "proper": true,
       "actualFrames": {
         "left": [
@@ -3387,8 +2791,8 @@
           1.0000000000000002,
           0,
           -0.20999999344348907,
-          0.8231862865369489,
-          0.38436091380524234,
+          1.0398822087323265,
+          0.36109791489224696,
           1
         ],
         "right": [
@@ -3405,8 +2809,718 @@
           1.0000000000000002,
           0,
           0.20999999344348907,
-          0.8231862865369489,
-          0.38436091380524234,
+          1.0398822087323265,
+          0.36109791489224696,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7441,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
+      "replacedTriangles": 2239,
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": -1,
+      "gesture": "wave",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7441,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
+      "replacedTriangles": 2239,
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": 0,
+      "gesture": "idle",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7441,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
+      "replacedTriangles": 2239,
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": 0,
+      "gesture": "walk",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          0.9885329499947375,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          0.9885329499947375,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7441,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
+      "replacedTriangles": 2239,
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": 0,
+      "gesture": "run",
+      "positionError": 2.0014830212433605e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.0900004824857012,
+          0.3635297288206685,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.0900004824857012,
+          0.3635297288206685,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7441,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
+      "replacedTriangles": 2239,
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": 0,
+      "gesture": "wave",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7441,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
+      "replacedTriangles": 2239,
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": 1,
+      "gesture": "idle",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7441,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
+      "replacedTriangles": 2239,
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": 1,
+      "gesture": "walk",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.0159721689771266,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.0159721689771266,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7441,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
+      "replacedTriangles": 2239,
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": 1,
+      "gesture": "run",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.0006085387945984,
+          0.3775398552229577,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.0006085387945984,
+          0.3775398552229577,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7441,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
+      "replacedTriangles": 2239,
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-rebound-panel",
+      "primary": "right",
+      "weight": 1,
+      "gesture": "wave",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7441,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1682,
+      "visibleTriangles": 7441,
+      "effectTriangles": 120,
+      "replacedTriangles": 2239,
+      "heldBytes": 127412,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-wake-driver",
+      "primary": "left",
+      "weight": -1,
+      "gesture": "idle",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.1,
+          0.3,
           1
         ]
       },
@@ -3423,7 +3537,443 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-wake-driver",
+      "primary": "left",
+      "weight": -1,
+      "gesture": "walk",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          0.9699408660364521,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          0.9699408660364521,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7261,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1558,
+      "visibleTriangles": 7261,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 121440,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-wake-driver",
+      "primary": "left",
+      "weight": -1,
+      "gesture": "run",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          0.9220784286504176,
+          0.38843375307063027,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          0.9220784286504176,
+          0.38843375307063027,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7261,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1558,
+      "visibleTriangles": 7261,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 121440,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-wake-driver",
+      "primary": "left",
+      "weight": -1,
+      "gesture": "wave",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7261,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1558,
+      "visibleTriangles": 7261,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 121440,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-wake-driver",
+      "primary": "left",
+      "weight": 0,
+      "gesture": "idle",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.1,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7261,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1558,
+      "visibleTriangles": 7261,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 121440,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-wake-driver",
+      "primary": "left",
+      "weight": 0,
+      "gesture": "walk",
+      "positionError": 2.3551386880256624e-16,
+      "basisError": 9.159339953157543e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          -0.20999999344348907,
+          1.035230689521109,
+          0.3,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0.20999999344348907,
+          1.035230689521109,
+          0.3,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7261,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1558,
+      "visibleTriangles": 7261,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 121440,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
+    },
+    {
+      "id": "wield-wake-driver",
+      "primary": "left",
+      "weight": 0,
+      "gesture": "run",
+      "positionError": 2.7194799110210365e-16,
+      "basisError": 4.440892098500627e-16,
+      "proper": true,
+      "actualFrames": {
+        "left": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1.0000000000000002,
+          0,
+          0,
+          0,
+          0,
+          1.0000000000000002,
+          0,
+          -0.20999999344348907,
+          0.8452967514121764,
+          0.3842637202993814,
+          1
+        ],
+        "right": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1.0000000000000002,
+          0,
+          0,
+          0,
+          0,
+          1.0000000000000002,
+          0,
+          0.20999999344348907,
+          0.8452967514121764,
+          0.3842637202993814,
+          1
+        ]
+      },
+      "oneObject": true,
+      "distinctGrips": true,
+      "oneEffectGroup": true,
+      "relaxedHidden": true,
+      "actualVisible": 7261,
+      "state": "ready",
+      "visible": true,
+      "appearanceTriangles": 10244,
+      "heldTriangles": 1558,
+      "visibleTriangles": 7261,
+      "effectTriangles": 0,
+      "replacedTriangles": 2239,
+      "heldBytes": 121440,
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -3484,7 +4034,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -3545,7 +4105,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -3570,7 +4140,7 @@
           1,
           0,
           -0.20999999344348907,
-          0.9245170113242946,
+          0.9316209401209996,
           0.3,
           1
         ],
@@ -3588,7 +4158,7 @@
           1,
           0,
           0.20999999344348907,
-          0.9245170113242946,
+          0.9316209401209996,
           0.3,
           1
         ]
@@ -3606,14 +4176,24 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
       "primary": "left",
       "weight": 1,
       "gesture": "run",
-      "positionError": 2.7755575615628914e-16,
+      "positionError": 2.0014830212433605e-16,
       "basisError": 9.159339953157543e-16,
       "proper": true,
       "actualFrames": {
@@ -3631,8 +4211,8 @@
           1,
           0,
           -0.20999999344348907,
-          0.9219717347286223,
-          0.36984226362912587,
+          0.9249749119689004,
+          0.36991581897199854,
           1
         ],
         "right": [
@@ -3649,8 +4229,8 @@
           1,
           0,
           0.20999999344348907,
-          0.9219717347286223,
-          0.36984226362912587,
+          0.9249749119689004,
+          0.36991581897199854,
           1
         ]
       },
@@ -3667,7 +4247,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -3728,7 +4318,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -3789,7 +4389,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -3814,7 +4424,7 @@
           1,
           0,
           -0.20999999344348907,
-          0.9181424740275159,
+          0.932705706598584,
           0.3,
           1
         ],
@@ -3832,7 +4442,7 @@
           1,
           0,
           0.20999999344348907,
-          0.9181424740275159,
+          0.932705706598584,
           0.3,
           1
         ]
@@ -3850,15 +4460,25 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
       "primary": "right",
       "weight": -1,
       "gesture": "run",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
+      "positionError": 2.1677797545656835e-16,
+      "basisError": 7.771561172376096e-16,
       "proper": true,
       "actualFrames": {
         "left": [
@@ -3867,16 +4487,16 @@
           0,
           0,
           0,
-          1,
+          0.9999999999999999,
           0,
           0,
           0,
           0,
-          1,
+          0.9999999999999999,
           0,
           -0.20999999344348907,
-          1.0421283188710924,
-          0.3598092694790556,
+          1.0426137900125934,
+          0.3600992837373203,
           1
         ],
         "right": [
@@ -3885,16 +4505,16 @@
           0,
           0,
           0,
-          1,
+          0.9999999999999999,
           0,
           0,
           0,
           0,
-          1,
+          0.9999999999999999,
           0,
           0.20999999344348907,
-          1.0421283188710924,
-          0.3598092694790556,
+          1.0426137900125934,
+          0.3600992837373203,
           1
         ]
       },
@@ -3911,7 +4531,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -3972,7 +4602,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -4033,7 +4673,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -4058,7 +4708,7 @@
           1,
           0,
           -0.20999999344348907,
-          0.982062460967829,
+          0.9919047332438924,
           0.3,
           1
         ],
@@ -4076,7 +4726,7 @@
           1,
           0,
           0.20999999344348907,
-          0.982062460967829,
+          0.9919047332438924,
           0.3,
           1
         ]
@@ -4094,14 +4744,24 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
       "primary": "right",
       "weight": 0,
       "gesture": "run",
-      "positionError": 2.7755575615628914e-16,
+      "positionError": 2.0014830212433605e-16,
       "basisError": 9.159339953157543e-16,
       "proper": true,
       "actualFrames": {
@@ -4119,8 +4779,8 @@
           1,
           0,
           -0.20999999344348907,
-          1.0789773156965385,
-          0.3659469809187458,
+          1.088742455154515,
+          0.36609235403883855,
           1
         ],
         "right": [
@@ -4137,8 +4797,8 @@
           1,
           0,
           0.20999999344348907,
-          1.0789773156965385,
-          0.3659469809187458,
+          1.088742455154515,
+          0.36609235403883855,
           1
         ]
       },
@@ -4155,7 +4815,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -4216,7 +4886,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -4277,7 +4957,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -4302,7 +4992,7 @@
           1,
           0,
           -0.20999999344348907,
-          1.0112717040486952,
+          1.0159502123770616,
           0.3,
           1
         ],
@@ -4320,7 +5010,7 @@
           1,
           0,
           0.20999999344348907,
-          1.0112717040486952,
+          1.0159502123770616,
           0.3,
           1
         ]
@@ -4338,15 +5028,25 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
       "primary": "right",
       "weight": 1,
       "gesture": "run",
-      "positionError": 2.3551386880256624e-16,
-      "basisError": 9.159339953157543e-16,
+      "positionError": 2.1677797545656835e-16,
+      "basisError": 7.771561172376096e-16,
       "proper": true,
       "actualFrames": {
         "left": [
@@ -4355,16 +5055,16 @@
           0,
           0,
           0,
-          1,
+          0.9999999999999999,
           0,
           0,
           0,
           0,
-          1,
+          0.9999999999999999,
           0,
           -0.20999999344348907,
-          0.9427619488110952,
-          0.3808974264765779,
+          0.9648472535917472,
+          0.38071528473340505,
           1
         ],
         "right": [
@@ -4373,16 +5073,16 @@
           0,
           0,
           0,
-          1,
+          0.9999999999999999,
           0,
           0,
           0,
           0,
-          1,
+          0.9999999999999999,
           0,
           0.20999999344348907,
-          0.9427619488110952,
-          0.3808974264765779,
+          0.9648472535917472,
+          0.38071528473340505,
           1
         ]
       },
@@ -4399,7 +5099,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -4460,7 +5170,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     }
   ],
   "grips": [
@@ -4522,7 +5242,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -4582,7 +5312,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -4642,7 +5382,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-tether-winch",
@@ -4702,7 +5452,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 157488,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
@@ -4758,11 +5518,21 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7385,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
@@ -4818,11 +5588,21 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7385,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
@@ -4878,11 +5658,21 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7385,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-rebound-panel",
@@ -4938,11 +5728,21 @@
       "visible": true,
       "appearanceTriangles": 10244,
       "heldTriangles": 1682,
-      "visibleTriangles": 7505,
+      "visibleTriangles": 7385,
       "effectTriangles": 120,
       "replacedTriangles": 2239,
       "heldBytes": 127412,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -5002,7 +5802,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -5062,7 +5872,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -5122,7 +5942,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-wake-driver",
@@ -5182,7 +6012,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 121440,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     }
   ]
 }

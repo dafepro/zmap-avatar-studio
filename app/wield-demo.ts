@@ -14,6 +14,7 @@ import {
   type WieldEvent,
 } from "../src/index.js";
 import "./wield-demo.css";
+import { mountPerformanceControls } from "./performance-controls";
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
   document.getElementById(id) as T;
@@ -213,7 +214,11 @@ async function start() {
         displayed[hand] = held;
         buttons[hand].setAttribute("aria-pressed", "false");
       }
-      buttons[hand].disabled = !held || held.state !== "ready";
+      buttons[hand].disabled =
+        !held ||
+        held.state !== "ready" ||
+        !wield.isDrawn(hand) ||
+        !!avatar.animationDiagnostics().emote;
       buttons[hand].textContent = detail?.action ?? "Choose a toy";
       $("hint-" + hand).textContent =
         detail?.hint ?? "An empty hand. Room for possibility.";
@@ -224,6 +229,12 @@ async function start() {
     for (const hand of ["left", "right"] as const)
       buttons[hand].setAttribute("aria-pressed", "false");
   };
+  mountPerformanceControls(
+    avatar,
+    wield,
+    document.querySelector(".controls")!,
+    { signal, onRefresh: refresh },
+  );
   function resize() {
     if (closed) return;
     const { width, height } = stage.getBoundingClientRect(),

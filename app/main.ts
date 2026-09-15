@@ -11,6 +11,7 @@ import {
 } from "../src";
 import { Stage, Thumbnails } from "./stage";
 import { mountWieldPanel } from "./wield-panel";
+import { mountPerformanceControls } from "./performance-controls";
 let wieldPanel: Awaited<ReturnType<typeof mountWieldPanel>> | undefined;
 const wieldLifecycle = new AbortController();
 const icons: Record<string, string> = {
@@ -744,6 +745,36 @@ async function start() {
     )
       .then((panel) => {
         wieldPanel = panel;
+        mountPerformanceControls(
+          stage!.avatar,
+          panel.controller,
+          document.querySelector(".wield-bottom")!,
+          {
+            signal: wieldLifecycle.signal,
+            beforeEmote: () => {
+              stage!.setPose("idle");
+              stage!.inspect("avatar", catalog);
+              panel.setInspection(false);
+              document
+                .querySelectorAll<HTMLElement>("[data-pose]")
+                .forEach((button) =>
+                  button.setAttribute(
+                    "aria-pressed",
+                    String(button.dataset.pose === "idle"),
+                  ),
+                );
+              document
+                .querySelectorAll<HTMLElement>("[data-inspect]")
+                .forEach((button) =>
+                  button.setAttribute(
+                    "aria-pressed",
+                    String(button.dataset.inspect === "avatar"),
+                  ),
+                );
+            },
+            onRefresh: panel.refresh,
+          },
+        );
         Object.assign((window as any).avatarStudio, {
           wield: panel.controller,
           wieldLibrary: panel.library,

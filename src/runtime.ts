@@ -6,6 +6,12 @@ import {
   locomotionPace,
   directionWeights,
 } from "./locomotion.js";
+import {
+  emoteDescriptors,
+  emotePose,
+  isEmoteId,
+  type EmoteId,
+} from "./performances.js";
 import { shoeSupportHulls } from "./foot-support.js";
 import { applyExpressionProjection } from "./expression.js";
 import { applyBodyShape } from "./body-shape.js";
@@ -32,6 +38,8 @@ export type AvatarActionPose = {
   recoil?: number;
 };
 export type Motion = {
+  /** Explicit source-clip time for accepted shared emotes; never physical root motion. */
+  emote?: { id: EmoteId; elapsed: number };
   speed?: number;
   gesture?: "idle" | "walk" | "wave" | "run";
   reducedMotion?: boolean;
@@ -725,6 +733,8 @@ export type AvatarPoseFrame = {
   reducedMotion: boolean;
 };
 export interface AvatarHandLayer {
+  prepareEmote?(): boolean;
+  finishEmote?(): void;
   /** True only while an equipped two-hand carrier owns the chest frame. */
   readonly controlsCarrierPose?: boolean;
   validate(view: AvatarAttachmentView): void;
@@ -741,6 +751,15 @@ export class AvatarInstance {
   private generation = 0;
   private closed = false;
   private phase = 0;
+  private emote?: { id: EmoteId; elapsed: number; fade?: number };
+  private externalEmote = false;
+  private externalPerformance?: { id: EmoteId; elapsed: number };
+  private emoteReport?: {
+    id: EmoteId;
+    elapsed: number;
+    weight: number;
+    waiting: boolean;
+  };
   private locomotion = {
     clip: "Rest",
     reversed: false,
@@ -788,6 +807,29 @@ export class AvatarInstance {
       this.current = structuredClone(initial.recipe);
       this.object.add(initial.assembly.root);
       this.poseView = this.attachmentView();
+    }
+  }
+  /** A local one-shot performance; dance runs three authored cycles. Equipment
+   * clears its hands first and restores only intents the caller hasn't replaced. */
+  playEmote(id: EmoteId) {
+    if (this.closed) throw new AvatarError("disposed", "Avatar is disposed");
+    if (!isEmoteId(id)) throw new AvatarError("animation", "Unknown emote");
+    this.emote = { id, elapsed: 0 };
+    // Refresh replays the last motion without advancing time. A new local intent
+    // supersedes that old external clip just as it does on the next real frame.
+    this.lastMotion = { ...this.lastMotion, emote: undefined };
+    this.externalEmote = false;
+    this.externalPerformance = undefined;
+  }
+  cancelEmote() {
+    this.lastMotion = { ...this.lastMotion, emote: undefined };
+    if (this.emote) this.emote.fade ??= 0;
+    else if (this.externalEmote) {
+      if (this.externalPerformance)
+        this.emote = { ...this.externalPerformance, fade: 0 };
+      this.externalEmote = false;
+      this.externalPerformance = undefined;
+      this.handLayer?.finishEmote?.();
     }
   }
   get recipe() {
@@ -888,6 +930,13 @@ export class AvatarInstance {
       );
       return;
     }
+    if (
+      motion.emote &&
+      (!isEmoteId(motion.emote.id) ||
+        !Number.isFinite(motion.emote.elapsed) ||
+        motion.emote.elapsed < 0)
+    )
+      throw new AvatarError("animation", "Invalid emote input");
     const firstFrame = this.lastTime === undefined;
     const requestedPose = Object.fromEntries(
       ["crouch", "lean", "stance", "tuck", "recoil"].map((key) => [
@@ -932,6 +981,7 @@ export class AvatarInstance {
       ...motion,
       velocity: motion.velocity && { ...motion.velocity },
       pose: motion.pose && { ...motion.pose },
+      emote: motion.emote && { ...motion.emote },
     };
     const { sockets, effects } = this.assembly;
     for (const s of sockets.values()) s.rotation.set(0, 0, 0);
@@ -1013,11 +1063,77 @@ export class AvatarInstance {
       this.poseValues.recoil,
       Math.abs(this.poseValues.lean),
     );
+    // Full-body performances yield to deliberate movement and physical actions.
+    // Equipment transitions own hands during preparation; source emotes start
+    // only once those hands are free. Explicit remote time never restarts a clip.
+    if (motion.emote) this.emote = undefined;
+    if (this.externalEmote && !motion.emote) {
+      if (!this.emote && this.externalPerformance)
+        this.emote = { ...this.externalPerformance, fade: 0 };
+      this.handLayer?.finishEmote?.();
+    }
+    this.externalEmote = !!motion.emote;
+    this.externalPerformance = motion.emote && { ...motion.emote };
+    if (
+      this.emote &&
+      (requestedVelocity.length() > 0.2 || actionWeight > 0.025)
+    )
+      this.cancelEmote();
+    const performance = motion.emote ?? this.emote;
+    this.emoteReport = undefined;
+    if (performance) {
+      const descriptor = emoteDescriptors.find((e) => e.id === performance.id)!;
+      // Check completed accepted clips before asking equipment to prepare. A late
+      // snapshot must never initiate another stow/draw cycle.
+      let ended = performance.elapsed >= descriptor.duration;
+      let ready = false;
+      if (!ended) {
+        // Exit blending never takes the hands back from a newly drawn item.
+        ready =
+          this.emote?.fade !== undefined
+            ? true
+            : (this.handLayer?.prepareEmote?.() ?? true);
+        if (!motion.emote && this.emote && !this.refreshingPose) {
+          if (this.emote.fade !== undefined) this.emote.fade += dt;
+          else if (ready) this.emote.elapsed += dt;
+          if (interrupted) this.emote.elapsed = descriptor.duration;
+        }
+        ended =
+          performance.elapsed >= descriptor.duration ||
+          (this.emote?.fade ?? 0) >= 0.16;
+      }
+      if (ended) {
+        if (!motion.emote) this.emote = undefined;
+        this.handLayer?.finishEmote?.();
+      } else if (ready && actionWeight < 0.025) {
+        const sampled = emotePose(
+          performance.id,
+          performance.elapsed,
+          !!motion.reducedMotion,
+        );
+        const weight =
+          sampled.weight *
+          (1 - THREE.MathUtils.smoothstep(this.emote?.fade ?? 0, 0, 0.16));
+        mixLocomotion(authored, sampled.pose, weight);
+        this.emoteReport = {
+          id: performance.id,
+          elapsed: performance.elapsed,
+          weight,
+          waiting: false,
+        };
+      } else
+        this.emoteReport = {
+          id: performance.id,
+          elapsed: performance.elapsed,
+          weight: 0,
+          waiting: true,
+        };
+    }
     const referenceFeet =
       (motion.grounded ?? true) &&
       !motion.reducedMotion &&
       actionWeight < 0.025 &&
-      moving > 0;
+      (moving > 0 || (this.emoteReport?.weight ?? 0) > 0);
     for (const [name, q] of authored.rotations)
       sockets.get(name)?.quaternion.copy(q);
     this.assembly.root.position
@@ -1030,7 +1146,13 @@ export class AvatarInstance {
       if (n) n.rotation.set(x, 0, z);
     };
     if (referenceFeet)
-      this.poseReferenceFeet(motion, interrupted, authored.support, dt);
+      this.poseReferenceFeet(
+        motion,
+        interrupted,
+        authored.support,
+        dt,
+        moving * (1 - (this.emoteReport?.weight ?? 0)),
+      );
     else {
       sockets.get("hips")?.quaternion.identity();
       this.assembly.root.position.set(
@@ -1057,19 +1179,23 @@ export class AvatarInstance {
       if (this.handLayer?.controlsCarrierPose && actionWeight < 0.025)
         rotate("head", 0);
     }
-    if (moving === 0) {
+    if (moving === 0 && !this.emoteReport?.weight) {
       rotate("arm_L", 0, -0.14);
       rotate("arm_R", 0, 0.14);
       rotate("forearm_L", -0.1);
       rotate("forearm_R", -0.1);
       rotate("head", 0);
     }
-    if (motion.gesture === "wave") {
-      rotate("arm_R", -2.7, 0.55);
-      rotate(
-        "forearm_R",
-        motion.reducedMotion ? -0.2 : -0.2 + Math.sin(time * 7) * 0.16,
-      );
+    if (motion.gesture === "wave" && !performance) {
+      // Legacy previews keep their old hand-ownership semantics; explicit
+      // playEmote() additionally coordinates stowing and a bounded lifetime.
+      const pose = emotePose(
+        "wave",
+        motion.reducedMotion ? 0.8 : time % emoteDescriptors[0].duration,
+        !!motion.reducedMotion,
+      ).pose;
+      for (const name of ["arm_R", "forearm_R", "hand_R"])
+        sockets.get(name)?.quaternion.copy(pose.rotations.get(name)!);
     }
     if (actionWeight > 0.025) rotate("head", -this.poseValues.lean * 0.12);
     for (const e of effects) {
@@ -1096,6 +1222,7 @@ export class AvatarInstance {
     interrupted: boolean,
     support: number,
     dt: number,
+    smoothing: number,
   ) {
     const { sockets, root } = this.assembly!;
     const hips = sockets.get("hips");
@@ -1131,15 +1258,39 @@ export class AvatarInstance {
       const rotation = inverse
         .clone()
         .multiply(ankle.getWorldQuaternion(new THREE.Quaternion()));
-      const sole = Math.min(
-        ...(this.assembly!.supportHulls?.get(suffix) ?? solePoints).map(
-          (p) => p.clone().applyQuaternion(rotation).y,
-        ),
-      );
+      const soleHeights = (
+        this.assembly!.supportHulls?.get(suffix) ?? solePoints
+      ).map((p) => p.clone().applyQuaternion(rotation).y);
+      const minimum = Math.min(...soleHeights);
+      // Conservative smooth minimum: no vertex can penetrate the floor. This
+      // removes carrier velocity corners when the lowest sole vertex changes.
+      // Bias is bounded by temperature * log(hull vertex count).
+      const temperature = 0.004 * smoothing;
+      const sole =
+        temperature > 1e-8
+          ? minimum -
+            temperature *
+              Math.log(
+                soleHeights.reduce(
+                  (sum, y) => sum + Math.exp((minimum - y) / temperature),
+                  0,
+                ),
+              )
+          : minimum;
       return { suffix, thigh, shin, ankle, target, sole, rotation };
     });
-    root.position.y +=
-      support - Math.min(...entries.map((e) => e.target.y + e.sole));
+    const heights = entries.map((e) => e.target.y + e.sole);
+    // C3 rounding of |left-right| joins exact single-foot support outside the
+    // blend region. Maximum extra clearance is 5*width/32 (18.75 mm). Both
+    // smoothings fade out with locomotion, so idle/emotes retain exact support.
+    const width = 0.12 * smoothing;
+    const distance = Math.abs(heights[0] - heights[1]);
+    const t = Math.min(1, distance / (width || 1));
+    const rounded =
+      distance >= width
+        ? distance
+        : (width * (5 + 15 * t * t - 5 * t ** 4 + t ** 6)) / 16;
+    root.position.y += support - (heights[0] + heights[1] - rounded) / 2;
     this.object.updateWorldMatrix(true, true);
     // A short support lock translates the carrier by at most 6cm; the authored
     // joint pose, bone lengths and knee plane stay untouched. Release smoothly
@@ -1361,6 +1512,7 @@ export class AvatarInstance {
       velocity: this.gaitVelocity.toArray(),
       pose: { ...this.poseValues },
       locomotion: { ...this.locomotion },
+      emote: this.emoteReport && { ...this.emoteReport },
       feet: Object.fromEntries(
         Object.entries(this.feet).map(([hand, foot]) => [
           hand,

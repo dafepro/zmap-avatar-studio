@@ -82,7 +82,12 @@ export async function mountWieldPanel(
       use[hand].textContent =
         `${hand === "left" ? "Q · Left" : "E · Right"} · ${action ?? "Empty hand"}`;
       use[hand].disabled =
-        !held || held.state !== "ready" || inspected || frozen;
+        !held ||
+        held.state !== "ready" ||
+        !controller.isDrawn(hand) ||
+        !!avatar.animationDiagnostics().emote ||
+        inspected ||
+        frozen;
     }
   }
   async function equip(next: WieldLoadout) {
@@ -271,6 +276,7 @@ export async function mountWieldPanel(
   return {
     controller,
     library,
+    refresh,
     setInspection(value: boolean) {
       inspected = value;
       controller.setVisible(!value);

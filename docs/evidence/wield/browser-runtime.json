@@ -13,7 +13,8 @@
       "effectTriangles": 0,
       "replacedTriangles": 0,
       "heldBytes": 0,
-      "equippedHands": 0
+      "equippedHands": 0,
+      "presentation": {}
     },
     {
       "left": null,
@@ -26,11 +27,17 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 862,
-      "visibleTriangles": 8936,
+      "visibleTriangles": 8756,
       "effectTriangles": 216,
       "replacedTriangles": 1119,
       "heldBytes": 50736,
-      "equippedHands": 1
+      "equippedHands": 1,
+      "presentation": {
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": null,
@@ -47,7 +54,13 @@
       "effectTriangles": 80,
       "replacedTriangles": 1119,
       "heldBytes": 62860,
-      "equippedHands": 1
+      "equippedHands": 1,
+      "presentation": {
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": null,
@@ -64,7 +77,13 @@
       "effectTriangles": 44,
       "replacedTriangles": 1119,
       "heldBytes": 80160,
-      "equippedHands": 1
+      "equippedHands": 1,
+      "presentation": {
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": null,
@@ -81,7 +100,13 @@
       "effectTriangles": 62,
       "replacedTriangles": 1119,
       "heldBytes": 64880,
-      "equippedHands": 1
+      "equippedHands": 1,
+      "presentation": {
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": null,
@@ -98,7 +123,13 @@
       "effectTriangles": 0,
       "replacedTriangles": 1119,
       "heldBytes": 57260,
-      "equippedHands": 1
+      "equippedHands": 1,
+      "presentation": {
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bubble-comet",
@@ -111,11 +142,17 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 864,
-      "visibleTriangles": 8937,
+      "visibleTriangles": 8757,
       "effectTriangles": 216,
       "replacedTriangles": 1120,
       "heldBytes": 50884,
-      "equippedHands": 1
+      "equippedHands": 1,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bubble-comet",
@@ -129,11 +166,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8536,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bubble-comet",
@@ -147,11 +194,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1794,
-      "visibleTriangles": 8828,
+      "visibleTriangles": 8648,
       "effectTriangles": 296,
       "replacedTriangles": 2239,
       "heldBytes": 113744,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bubble-comet",
@@ -165,11 +222,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1824,
-      "visibleTriangles": 8822,
+      "visibleTriangles": 8642,
       "effectTriangles": 260,
       "replacedTriangles": 2239,
       "heldBytes": 131044,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bubble-comet",
@@ -183,11 +250,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1736,
-      "visibleTriangles": 8752,
+      "visibleTriangles": 8572,
       "effectTriangles": 278,
       "replacedTriangles": 2239,
       "heldBytes": 115764,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bubble-comet",
@@ -201,11 +278,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1636,
-      "visibleTriangles": 8590,
+      "visibleTriangles": 8410,
       "effectTriangles": 216,
       "replacedTriangles": 2239,
       "heldBytes": 108144,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bonk-bouquet",
@@ -222,7 +309,13 @@
       "effectTriangles": 80,
       "replacedTriangles": 1120,
       "heldBytes": 63008,
-      "equippedHands": 1
+      "equippedHands": 1,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bonk-bouquet",
@@ -236,11 +329,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1794,
-      "visibleTriangles": 8828,
+      "visibleTriangles": 8648,
       "effectTriangles": 296,
       "replacedTriangles": 2239,
       "heldBytes": 113744,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bonk-bouquet",
@@ -258,7 +361,17 @@
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bonk-bouquet",
@@ -276,7 +389,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 143168,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bonk-bouquet",
@@ -294,7 +417,17 @@
       "effectTriangles": 142,
       "replacedTriangles": 2239,
       "heldBytes": 127888,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-bonk-bouquet",
@@ -312,7 +445,17 @@
       "effectTriangles": 80,
       "replacedTriangles": 2239,
       "heldBytes": 120268,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-firefly-lantern",
@@ -329,7 +472,13 @@
       "effectTriangles": 44,
       "replacedTriangles": 1120,
       "heldBytes": 80308,
-      "equippedHands": 1
+      "equippedHands": 1,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-firefly-lantern",
@@ -343,11 +492,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1824,
-      "visibleTriangles": 8822,
+      "visibleTriangles": 8598,
       "effectTriangles": 260,
       "replacedTriangles": 2239,
       "heldBytes": 131044,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-firefly-lantern",
@@ -365,7 +524,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 143168,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-firefly-lantern",
@@ -379,11 +548,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1922,
-      "visibleTriangles": 8748,
+      "visibleTriangles": 8704,
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-firefly-lantern",
@@ -401,7 +580,17 @@
       "effectTriangles": 106,
       "replacedTriangles": 2239,
       "heldBytes": 145188,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-firefly-lantern",
@@ -415,11 +604,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1734,
-      "visibleTriangles": 8516,
+      "visibleTriangles": 8472,
       "effectTriangles": 44,
       "replacedTriangles": 2239,
       "heldBytes": 137568,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-doodle-rocket",
@@ -436,7 +635,13 @@
       "effectTriangles": 62,
       "replacedTriangles": 1120,
       "heldBytes": 65028,
-      "equippedHands": 1
+      "equippedHands": 1,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-doodle-rocket",
@@ -450,11 +655,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1736,
-      "visibleTriangles": 8752,
+      "visibleTriangles": 8572,
       "effectTriangles": 278,
       "replacedTriangles": 2239,
       "heldBytes": 115764,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-doodle-rocket",
@@ -472,7 +687,17 @@
       "effectTriangles": 142,
       "replacedTriangles": 2239,
       "heldBytes": 127888,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-doodle-rocket",
@@ -490,7 +715,17 @@
       "effectTriangles": 106,
       "replacedTriangles": 2239,
       "heldBytes": 145188,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-doodle-rocket",
@@ -508,7 +743,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-doodle-rocket",
@@ -526,7 +771,17 @@
       "effectTriangles": 62,
       "replacedTriangles": 2239,
       "heldBytes": 122288,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-whirl-pop",
@@ -543,7 +798,13 @@
       "effectTriangles": 0,
       "replacedTriangles": 1120,
       "heldBytes": 57408,
-      "equippedHands": 1
+      "equippedHands": 1,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-whirl-pop",
@@ -557,11 +818,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1636,
-      "visibleTriangles": 8590,
+      "visibleTriangles": 8410,
       "effectTriangles": 216,
       "replacedTriangles": 2239,
       "heldBytes": 108144,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-whirl-pop",
@@ -579,7 +850,17 @@
       "effectTriangles": 80,
       "replacedTriangles": 2239,
       "heldBytes": 120268,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-whirl-pop",
@@ -597,7 +878,17 @@
       "effectTriangles": 44,
       "replacedTriangles": 2239,
       "heldBytes": 137568,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-whirl-pop",
@@ -615,7 +906,17 @@
       "effectTriangles": 62,
       "replacedTriangles": 2239,
       "heldBytes": 122288,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "left": "wield-whirl-pop",
@@ -633,7 +934,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     }
   ],
   "independent": true,
@@ -674,11 +985,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1726,
-      "visibleTriangles": 8896,
+      "visibleTriangles": 8464,
       "effectTriangles": 432,
       "replacedTriangles": 2239,
       "heldBytes": 101620,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-bonk-bouquet",
@@ -687,11 +1008,21 @@
       "visible": true,
       "appearanceTriangles": 11279,
       "heldTriangles": 1862,
-      "visibleTriangles": 8760,
+      "visibleTriangles": 8600,
       "effectTriangles": 160,
       "replacedTriangles": 2239,
       "heldBytes": 125868,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-firefly-lantern",
@@ -704,7 +1035,17 @@
       "effectTriangles": 88,
       "replacedTriangles": 2239,
       "heldBytes": 160468,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-doodle-rocket",
@@ -717,7 +1058,17 @@
       "effectTriangles": 124,
       "replacedTriangles": 2239,
       "heldBytes": 129908,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     },
     {
       "id": "wield-whirl-pop",
@@ -730,7 +1081,17 @@
       "effectTriangles": 0,
       "replacedTriangles": 2239,
       "heldBytes": 114668,
-      "equippedHands": 2
+      "equippedHands": 2,
+      "presentation": {
+        "left": {
+          "phase": "drawn",
+          "progress": 1
+        },
+        "right": {
+          "phase": "drawn",
+          "progress": 1
+        }
+      }
     }
   ],
   "baseline": {

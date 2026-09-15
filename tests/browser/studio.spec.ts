@@ -50,7 +50,10 @@ test("all eleven categories swap real assets; pose, colors, undo and named look 
       page.evaluate(() => (window as any).avatarStudio.recipe.colors.primary),
     )
     .toBe("#496d65");
-  await page.getByRole("button", { name: "Wave", exact: true }).click();
+  await page
+    .getByRole("group", { name: "Animation preview" })
+    .getByRole("button", { name: "Wave", exact: true })
+    .click();
   await page.getByRole("button", { name: "Front", exact: true }).click();
   await page.locator("#save-look").click();
   await page.getByLabel("Name", { exact: true }).fill("My match-day look");

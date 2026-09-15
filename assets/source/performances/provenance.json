@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "accessed": "2026-09-15",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sources": [
+    {
+      "creator": "Kay Lousberg",
+      "title": "KayKit Character Animations 1.1",
+      "url": "https://kaylousberg.itch.io/kaykit-character-animations",
+      "edition": "Free 1.1",
+      "archiveSha256": "65882f31f905ad2e953819648a59287cdeab8f623908d5ef701971d3758be20f",
+      "files": [
+        "Rig_Medium_Simulation.glb",
+        "Rig_Medium_General.glb"
+      ],
+      "archiveDirectory": "KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/",
+      "licenseFile": "LICENSE-KayKit.txt"
+    },
+    {
+      "creator": "Quaternius / Tom\u00e1s Laulh\u00e9",
+      "animationCredit": "Gonzalo Furnier, credited by the creator",
+      "title": "Universal Animation Library Standard",
+      "url": "https://quaternius.com/packs/universalanimationlibrary.html",
+      "downloadUrl": "https://quaternius.itch.io/universal-animation-library",
+      "archiveSha256": "cc73fc4e495b82958207316596317a3f40b9fa38065bde1027937452da537724",
+      "files": [
+        "UAL1_Standard.glb"
+      ],
+      "archiveDirectory": "Universal Animation Library[Standard]/Unreal-Godot/",
+      "licenseFile": "LICENSE-Quaternius-UAL1.txt"
+    },
+    {
+      "creator": "Quaternius / Tom\u00e1s Laulh\u00e9",
+      "animationCredit": "Gonzalo Furnier, credited by the creator",
+      "title": "Universal Animation Library 2 Standard",
+      "url": "https://quaternius.com/packs/universalanimationlibrary2.html",
+      "downloadUrl": "https://quaternius.itch.io/universal-animation-library-2",
+      "archiveSha256": "4008ea208a604773a2b2177d965f0f5d3195498b5bf838c3f5785d68e95f2a68",
+      "files": [
+        "UAL2_Standard.glb"
+      ],
+      "archiveDirectory": "Universal Animation Library 2[Standard]/Unreal-Godot/",
+      "licenseFile": "LICENSE-Quaternius-UAL2.txt"
+    }
+  ],
+  "acquisition": "Reuse of creator-provided free archives previously acquired in this task; no paid content, signup-only library, or third-party redistribution. Creator pages and included licenses rechecked for this performance set.",
+  "rawFiles": [
+    {
+      "file": "Rig_Medium_General.glb",
+      "bytes": 828240,
+      "sha256": "5f725c0f745f36078c7238968cd5c04843cbc6260689eb6e7f5e2bbd7ffdd7ad",
+      "modified": false
+    },
+    {
+      "file": "Rig_Medium_Simulation.glb",
+      "bytes": 855904,
+      "sha256": "ab6ffeed40c8281dd0ce0506534eadf7385151f1c266643a10fa2a0f0a7ba3b1",
+      "modified": false
+    },
+    {
+      "file": "UAL1_Standard.glb",
+      "bytes": 7618436,
+      "sha256": "69591853d817488edaa8fd9bf8fc1d821eaeaf789f8627b3cd23b41c4ed67997",
+      "modified": false
+    },
+    {
+      "file": "UAL2_Standard.glb",
+      "bytes": 8091444,
+      "sha256": "8cee20ab1bc55130092447e810e26df22dd2803eccc54f52137a7d54d7ab88a8",
+      "modified": false
+    }
+  ],
+  "licenseFiles": [
+    {
+      "file": "LICENSE-KayKit.txt",
+      "bytes": 1548,
+      "sha256": "373b159044d1a886ed15f57ca5a7673ba14e2623c460283452705f2056912ed9",
+      "modified": false
+    },
+    {
+      "file": "LICENSE-Quaternius-UAL1.txt",
+      "bytes": 332,
+      "sha256": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+      "modified": false
+    },
+    {
+      "file": "LICENSE-Quaternius-UAL2.txt",
+      "bytes": 332,
+      "sha256": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+      "modified": false
+    }
+  ],
+  "derived": [
+    "sample-source.mjs evaluates original TRS keys into source-samples.json without coordinate conversion. Original pose endpoints are preserved.",
+    "avatar-studio/scripts/retarget-performances.mjs reflects X for target handedness and uses the locomotion rest-vector calibration per source rig.",
+    "Equipment variations uniformly retime and optionally reverse the entire authored PickUp clip; two-handed grip fitting is a runtime adaptation.",
+    "Grip/release markers use the sampled minimum original right-wrist height at source time 0.56666666 seconds. These are application annotations, not creator-authored event tracks."
+  ],
+  "rejectedCandidates": [
+    {
+      "file": "UAL1_Standard.glb",
+      "clip": "PickUp_Table",
+      "reason": "Left-hand pickup crosses the torso more than the chosen KayKit right-hand pickup."
+    },
+    {
+      "file": "UAL2_Standard.glb",
+      "clip": "Chest_Open",
+      "reason": "Actual hand paths reveal a one-handed lid action, not a native two-handed draw."
+    },
+    {
+      "archive": "KayKit Character Animations 1.1",
+      "file": "Rig_Medium_CombatRanged.glb",
+      "clips": [
+        "Ranged_Magic_Raise",
+        "Ranged_2H_Reload"
+      ],
+      "reason": "Magic raise is a one-hand overhead flourish; reload assumes an already-held ranged weapon. Neither is a generic two-hand draw."
+    }
+  ],
+  "limitations": [
+    "The inspected free packs contain no named Equip/Unequip or general two-hand pickup. Native two-hand draw/stow must not be claimed.",
+    "The opposite one-hand variant requires runtime mirroring.",
+    "Item carrier clearance, second-hand IK, interruption, and one-shot/loop policies belong to the runtime and are independently tested there.",
+    "Raw source mannequins and unused archive clips are development references, not browser runtime downloads."
+  ],
+  "verification": {
+    "script": "avatar-studio/scripts/verify-performance-source.mjs",
+    "report": "verification.json",
+    "originalKeyPoses": 557,
+    "maxPositionErrorMetres": 3.513707144447711e-07,
+    "maxRotationErrorRadians": 4.693274422891038e-07
+  }
+}

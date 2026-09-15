@@ -1,0 +1,54 @@
+.performance-controls {
+  grid-column: 1 / -1;
+  margin: 18px 0;
+  padding: 18px;
+  border: 1px solid #aeb8a7;
+  border-radius: 12px;
+  background: #f6f5eb;
+  color: #263b36;
+  text-align: left;
+}
+.performance-controls h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+.performance-emotes,
+.performance-equipment {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.performance-controls button {
+  min-height: 40px;
+  padding: 8px 12px;
+  background: #e9ebdf;
+  color: #263b36;
+  border: 1px solid #819485;
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer;
+}
+.performance-controls button[aria-pressed="true"] {
+  background: #345b52;
+  color: white;
+}
+.performance-controls button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.performance-controls button[hidden] {
+  display: none;
+}
+.performance-controls p {
+  margin: 12px 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.performance-controls small {
+  display: block;
+  margin-top: 12px;
+  font-size: 11px;
+  line-height: 1.5;
+}
