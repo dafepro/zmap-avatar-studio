@@ -32,6 +32,9 @@ try {
   run("npm", ["pack", "--pack-destination", dir], root);
   const archive = readdirSync(dir).find((file) => file.endsWith(".tgz"));
   if (!archive) throw Error("npm pack did not create an archive");
+  const packed = run("tar", ["-tf", join(dir, archive)]).toString();
+  if (/package\/public\/(references\/|study-reference\.png)/.test(packed))
+    throw Error("Authoring reference images leaked into the runtime package");
   writeFileSync(
     join(dir, "package.json"),
     JSON.stringify({

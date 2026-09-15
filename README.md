@@ -32,7 +32,7 @@ Use `avatar.playEmote("wave")` for a bounded wave, cheer, dance, yes or no perfo
 npm install --save-exact https://github.com/dafepro/zmap-avatar-studio/releases/download/v0.1.1/zmap-avatar-studio-0.1.1.tgz
 ```
 
-The package remains private to prevent accidental npm-registry publication. Built GitHub Release tarballs contain runtime/declarations and approved assets; editable Blender source stays in this repository. Commit your application's lockfile.
+The package remains private to prevent accidental npm-registry publication. Built GitHub Release tarballs contain runtime/declarations and approved assets; editable Blender source and studio-only concept/reference images stay in this repository. Commit your application's lockfile.
 
 ## Consume the runtime
 

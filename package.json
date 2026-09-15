@@ -21,7 +21,10 @@
   },
   "files": [
     "lib",
-    "public",
+    "public/catalog.json",
+    "public/models",
+    "public/action",
+    "public/wield",
     "README.md",
     "THIRD_PARTY_NOTICES.md",
     "docs/contracts.md",
