@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "title": "KayKit Character Animations",
+  "version": "1.1",
+  "creator": "Kay Lousberg",
+  "creatorUrl": "https://kaylousberg.com/",
+  "sourceUrl": "https://kaylousberg.itch.io/kaykit-character-animations",
+  "creatorCatalogUrl": "https://kaylousberg.com/game-assets",
+  "accessed": "2026-09-15",
+  "license": {
+    "id": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "includedFile": "LICENSE.txt",
+    "originalCreationDateText": "10/12/2025 09:00"
+  },
+  "download": {
+    "edition": "Free 1.1",
+    "archiveBytes": 14858957,
+    "archiveSha256": "65882f31f905ad2e953819648a59287cdeab8f623908d5ef701971d3758be20f",
+    "acquisition": "Creator-provided free download; no signup, payment, or third-party redistribution used. The transient download URL is intentionally not a runtime dependency."
+  },
+  "rawFiles": [
+    {
+      "path": "Rig_Medium_MovementBasic.glb",
+      "bytes": 689624,
+      "sha256": "11422afd50abf7e8c92ea107e2e0bc94abd38023d6d15f55ad580347efbfa29e",
+      "modified": false,
+      "archivePath": "Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb"
+    },
+    {
+      "path": "Rig_Medium_MovementAdvanced.glb",
+      "bytes": 719628,
+      "sha256": "8b2317cf81e3f24149e4b791c27e1932bebd46cd378ed962e7d27d642fad8c56",
+      "modified": false,
+      "archivePath": "Animations/gltf/Rig_Medium/Rig_Medium_MovementAdvanced.glb"
+    },
+    {
+      "path": "LICENSE.txt",
+      "bytes": 1548,
+      "sha256": "373b159044d1a886ed15f57ca5a7673ba14e2623c460283452705f2056912ed9",
+      "modified": false,
+      "archivePath": "License.txt"
+    }
+  ],
+  "rig": {
+    "name": "Rig_Medium",
+    "authoredJointCount": 23,
+    "up": "+Y",
+    "forward": "+Z",
+    "anatomicalLeft": "+X",
+    "matchedMannequinMeshesIncluded": true
+  },
+  "selectedClips": [
+    "Walking_B",
+    "Running_A",
+    "Walking_Backwards",
+    "Running_Strafe_Left",
+    "Running_Strafe_Right"
+  ],
+  "comparisonClips": [
+    "T-Pose",
+    "Walking_A",
+    "Walking_C",
+    "Running_B"
+  ],
+  "derivedFiles": [
+    {
+      "path": "source-samples.json",
+      "script": "sample-source.mjs",
+      "changes": "Evaluate original TRS channels into semantic world positions and normalized world rotations at original sampler times. Explicit aliases represent absent intermediate bones; physical wrists and farther palm bones are distinct."
+    },
+    {
+      "path": "source-contact-measurements.json",
+      "script": "measure-source.mjs",
+      "changes": "Source pose, temporal continuity, and contact proximity metrics; no target retargeting or gameplay changes."
+    }
+  ],
+  "limitations": [
+    "No authored backward run or strafe walk in these free packs. Reversed Running_A, if used by the target, is a clearly identified derived adaptation.",
+    "Authored lateral runs intentionally cross the legs; target geometry clearance must be reviewed independently.",
+    "Source mannequin proportions and native sole penetration are not target anatomy or ground-contact requirements."
+  ],
+  "otherSourcesInspected": [
+    {
+      "url": "https://github.com/gdquest-demos/godot-3d-mannequin",
+      "commit": "d48a4fdb49a3930f38cdbeb854cf5be3ae4b6b2a",
+      "artLicense": "CC-BY-4.0",
+      "paths": [
+        "godot/assets/3d/mannequiny/mannequiny-0.3.0.glb"
+      ],
+      "result": "Forward run/walk references only; no authored backward or lateral clips. Not copied into this repository."
+    }
+  ]
+}

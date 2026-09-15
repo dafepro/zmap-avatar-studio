@@ -1,68 +1,68 @@
-/** Rebuild the compact runtime curves from the untouched CC0 reference samples.
- * Source: assets/source/locomotion/README.md. No hand-authored gait curves.
+/** Bake untouched CC0 KayKit world-space poses onto the catalog's bind vectors.
+ * No directional ankle warping: the entire authored pose changes direction.
  */
 import fs from "node:fs/promises";
-import { fileURLToPath } from "node:url";
-import { Matrix4, Quaternion, Vector3 } from "three";
-
+import { Quaternion, Vector3 } from "three";
 const source = JSON.parse(
   await fs.readFile(
-    new URL("../assets/source/locomotion/source-samples.json", import.meta.url),
+    new URL(
+      "../assets/source/locomotion/kaykit/source-samples.json",
+      import.meta.url,
+    ),
     "utf8",
   ),
 );
-// Each target has an identity bind rotation. Source left is +X; target left is -X.
+const catalog = JSON.parse(
+  await fs.readFile(new URL("../public/catalog.json", import.meta.url), "utf8"),
+);
+const sockets = new Map(catalog.rig.sockets.map((s) => [s.id, s]));
+const bind = (name) => new Vector3(...sockets.get(name).position);
 const bones = [
   ["hips", "pelvis", null],
   ["chest", "chest", "hips"],
   ["head", "head", "chest"],
   ...["left", "right"].flatMap((side) => {
-    const s = side === "left" ? "L" : "R",
-      x = side === "left" ? -1 : 1;
+    const s = side === "left" ? "L" : "R";
     return [
       [
         `arm_${s}`,
         `${side}UpperArm`,
         "chest",
         `${side}Forearm`,
-        [x * 0.065, -0.27, 0],
+        bind(`forearm_${s}`),
       ],
       [
         `forearm_${s}`,
         `${side}Forearm`,
         `arm_${s}`,
         `${side}Hand`,
-        [x * 0.064, -0.217, 0.007],
+        bind(`hand_${s}`),
       ],
-      // The palm continues the forearm in the target bind pose.
       [
         `hand_${s}`,
         `${side}Hand`,
         `forearm_${s}`,
-        `${side}Hand`,
-        [x * 0.064, -0.217, 0.007],
-        `${side}Forearm`,
+        `${side}Palm`,
+        bind(`hand_${s}`),
       ],
-      [
-        `leg_${s}`,
-        `${side}Thigh`,
-        "hips",
-        `${side}Shin`,
-        [x * 0.06, -0.43, 0.013],
-      ],
+      [`leg_${s}`, `${side}Thigh`, "hips", `${side}Shin`, bind(`shin_${s}`)],
       [
         `shin_${s}`,
         `${side}Shin`,
         `leg_${s}`,
         `${side}Ankle`,
-        [x * 0.055, -0.44, -0.003],
+        bind(`foot_${s}`),
       ],
       [`foot_${s}`, `${side}Ankle`, `shin_${s}`],
     ];
   }),
 ];
-const idx = (id) => source.joints.findIndex((joint) => joint.name === id);
-const position = (frame, id) =>
+const idx = (id) => {
+  const i = source.joints.findIndex((j) => j.name === id);
+  if (i < 0) throw Error(`Missing ${id}`);
+  return i;
+};
+const point = (frame, id) =>
   new Vector3()
     .fromArray(frame.positions, idx(id) * 3)
     .multiply(new Vector3(-1, 1, 1));
@@ -71,66 +71,59 @@ const rotation = (frame, id) => {
   return new Quaternion(q.x, -q.y, -q.z, q.w).normalize();
 };
 const rest = source.rest;
-const correction = bones.map(([, id, , child, vector, from]) =>
+const corrections = bones.map(([, id, , child, vector]) =>
   child
     ? new Quaternion().setFromUnitVectors(
-        new Vector3(...vector).normalize(),
-        position(rest, child)
-          .sub(position(rest, from ?? id))
-          .normalize(),
+        vector.clone().normalize(),
+        point(rest, child).sub(point(rest, id)).normalize(),
       )
     : new Quaternion(),
 );
-// A single aim vector leaves palm roll unspecified. Calibrate the second axis
-// from the author's thumb/metacarpal and the target's actual relaxed hand mesh.
-const restFrames = JSON.parse(
-  await fs.readFile(
-    new URL(
-      "../assets/source/locomotion/source-rest-frames.json",
-      import.meta.url,
-    ),
-    "utf8",
-  ),
-);
-const bindPoint = (name) =>
-  new Vector3(
-    ...restFrames.joints.find((j) => j.name === name).worldPosition,
-  ).multiply(new Vector3(-1, 1, 1));
-const palmFrame = (long, thumb) => {
-  long.normalize();
-  thumb.addScaledVector(long, -thumb.dot(long)).normalize();
-  return new Quaternion().setFromRotationMatrix(
-    new Matrix4().makeBasis(thumb, long, thumb.clone().cross(long).normalize()),
-  );
+const ratio =
+  (bind("shin_L").length() + bind("foot_L").length()) /
+  (point(rest, "leftShin").distanceTo(point(rest, "leftThigh")) +
+    point(rest, "leftAnkle").distanceTo(point(rest, "leftShin")));
+const round = (n) => {
+  if (!Number.isFinite(n)) throw Error("Nonfinite retarget");
+  return Number(n.toFixed(7));
 };
-for (const [suffix, sign] of [
-  ["l", -1],
-  ["r", 1],
-]) {
-  const wrist = bindPoint(`hand_${suffix}`);
-  const sourcePalm = palmFrame(
-    bindPoint(`middle_01_${suffix}`).sub(wrist),
-    bindPoint(`thumb_01_${suffix}`).sub(wrist),
-  );
-  const targetPalm = palmFrame(
-    new Vector3(sign * 0.023, -0.087, 0.003),
-    new Vector3(-sign * 0.047, -0.041, 0.032),
-  );
-  correction[
-    bones.findIndex(([name]) => name === `hand_${suffix.toUpperCase()}`)
-  ] = sourcePalm.multiply(targetPalm.invert());
-}
-const round = (n) => Number(n.toFixed(7));
 const clips = {};
-for (const name of ["Idle_Loop", "Walk_Loop", "Jog_Fwd_Loop", "Sprint_Loop"]) {
+const targetToe = (frame, side) => {
+  const positions = new Map(),
+    worlds = new Map();
+  for (const socket of catalog.rig.sockets) {
+    const parentQ = worlds.get(socket.parent) ?? new Quaternion();
+    const p = bind(socket.id)
+      .applyQuaternion(parentQ)
+      .add(positions.get(socket.parent) ?? new Vector3().fromArray(frame.root));
+    const i = bones.findIndex(([id]) => id === socket.id);
+    const q =
+      i < 0
+        ? new Quaternion()
+        : new Quaternion().fromArray(frame.rotations, i * 4);
+    positions.set(socket.id, p);
+    worlds.set(socket.id, parentQ.clone().multiply(q));
+  }
+  return new Vector3(0, -0.115, 0.2)
+    .applyQuaternion(worlds.get(`foot_${side}`))
+    .add(positions.get(`foot_${side}`));
+};
+for (const [name, direction] of [
+  ["Walking_A", [0, 0, 1]],
+  ["Walking_B", [0, 0, 1]],
+  ["Running_A", [0, 0, 1]],
+  ["Walking_Backwards", [0, 0, -1]],
+  ["Running_Strafe_Left", [-1, 0, 0]],
+  ["Running_Strafe_Right", [1, 0, 0]],
+]) {
   const clip = source.clips[name];
   const frames = clip.samples.map((frame) => {
     const worlds = new Map();
-    const rotations = bones.flatMap(([name, sourceName, parent], i) => {
-      const world = rotation(frame, sourceName)
-        .multiply(rotation(rest, sourceName).invert())
-        .multiply(correction[i]);
-      worlds.set(name, world);
+    const rotations = bones.flatMap(([id, sourceId, parent], i) => {
+      const world = rotation(frame, sourceId)
+        .multiply(rotation(rest, sourceId).invert())
+        .multiply(corrections[i]);
+      worlds.set(id, world);
       return (
         parent ? worlds.get(parent).clone().invert().multiply(world) : world
       )
@@ -138,40 +131,63 @@ for (const name of ["Idle_Loop", "Walk_Loop", "Jog_Fwd_Loop", "Sprint_Loop"]) {
         .toArray()
         .map(round);
     });
-    const root = position(frame, "pelvis")
-      .sub(position(rest, "pelvis"))
-      .multiplyScalar(0.8794 / 0.8298)
+    const root = point(frame, "pelvis")
+      .sub(point(rest, "pelvis"))
+      .multiplyScalar(ratio)
       .toArray()
       .map(round);
-    const support =
-      Math.max(
-        0,
-        Math.min(
-          ...["left", "right"].flatMap((side) => {
-            const ankle = position(frame, `${side}Ankle`);
-            const delta = rotation(frame, `${side}Ankle`).multiply(
-              rotation(rest, `${side}Ankle`).invert(),
-            );
-            const heel = new Vector3(0, -0.0885, -0.035)
-              .applyQuaternion(delta)
-              .add(ankle);
-            return [heel.y - 0.0152, position(frame, `${side}Toe`).y - 0.0152];
-          }),
+    // The source is a short-legged toy. Its toe arcs are not a transferable
+    // jump height. Walking retains ground support; running uses at most 7cm
+    // flight, keeping the source timing without scaling it into half-metre hops.
+    const rawFlight = Math.max(
+      0,
+      Math.min(
+        ...["left", "right"].map(
+          (side) => point(frame, `${side}Toe`).y - point(rest, `${side}Toe`).y,
         ),
-      ) *
-      (0.8794 / 0.8298);
+      ),
+    );
+    const support = name.startsWith("Walking")
+      ? 0
+      : Math.min(0.07, rawFlight * 0.32);
     return { root, rotations, support: round(support) };
   });
-  // Original jog/sprint/idle have a tiny hand seam. A closed endpoint lets slerp
-  // interpolate the last authored key into the first without a visible snap.
   frames[frames.length - 1] = structuredClone(frames[0]);
-  clips[name] = { duration: clip.duration, frames };
+  // Measure pace AFTER retargeting: this model has longer shins relative to thighs.
+  const pace = [];
+  for (const [side, s] of [
+    ["left", "L"],
+    ["right", "R"],
+  ]) {
+    const ys = clip.samples.map((f) => point(f, `${side}Toe`).y),
+      min = Math.min(...ys);
+    for (let i = 1; i < frames.length - 1; i++)
+      if (ys[i] < min + 0.015) {
+        const v =
+          targetToe(frames[i + 1], s)
+            .sub(targetToe(frames[i - 1], s))
+            .dot(new Vector3(...direction)) /
+          ((2 * clip.duration) / (frames.length - 1));
+        if (v < -0.15) pace.push(-v);
+      }
+  }
+  pace.sort((a, b) => a - b);
+  if (!pace.length) throw Error(`No contact pace for ${name}`);
+  clips[name] = {
+    duration: clip.duration,
+    contactSpeed: round(pace[Math.floor(pace.length / 2)]),
+    frames,
+  };
 }
-const output = new URL("../src/locomotion-data.ts", import.meta.url);
 await fs.writeFile(
-  output,
-  `// Generated by scripts/retarget-locomotion.mjs. Quaternius CC0; see docs/motion.md.\n// prettier-ignore\nexport const locomotionData = ${JSON.stringify({ bones: bones.map(([name]) => name), clips })};\n`,
+  new URL("../src/locomotion-data.ts", import.meta.url),
+  `// Generated by scripts/retarget-locomotion.mjs. KayKit CC0; see docs/motion.md.\n// prettier-ignore\nexport const locomotionData = ${JSON.stringify({ bones: bones.map(([name]) => name), clips })};\n`,
 );
 console.log(
-  `Retargeted ${Object.keys(clips).join(", ")} -> ${fileURLToPath(output)}`,
+  Object.fromEntries(
+    Object.entries(clips).map(([name, c]) => [
+      name,
+      { duration: c.duration, contactSpeed: c.contactSpeed },
+    ]),
+  ),
 );

@@ -44,8 +44,9 @@ export function sampleLocomotion(
         bone,
         new THREE.Quaternion()
           .fromArray(a.rotations, i * 4)
+          .normalize()
           .slerp(
-            new THREE.Quaternion().fromArray(b.rotations, i * 4),
+            new THREE.Quaternion().fromArray(b.rotations, i * 4).normalize(),
             fraction,
           ),
       ]),
@@ -64,65 +65,120 @@ export function mixLocomotion(
   return a;
 }
 
-/** Physical speed drives pace, with a continuous walk/jog/sprint blend. Stride
- * warping below the pelvis accounts for our shorter limbs without speeding up
- * every upper-body gesture. Source contact speeds are measured in the audit. */
-export function locomotionPace(speed: number) {
-  const jogging = THREE.MathUtils.smoothstep(speed, 2.35, 3.45);
-  const sprinting = THREE.MathUtils.smoothstep(speed, 4.25, 5.25);
-  const walkRate = THREE.MathUtils.clamp(speed / 1.3, 0.3, 1.6);
-  const jogRate = THREE.MathUtils.clamp(speed / 4.6, 0.7, 1.15);
-  const sprintRate = THREE.MathUtils.clamp(speed / 6.1, 0.8, 1.25);
-  const frequency = THREE.MathUtils.lerp(
-    THREE.MathUtils.lerp(walkRate / 1.3333333, jogRate / 0.9333333, jogging),
-    sprintRate / 0.6666667,
-    sprinting,
-  );
-  const stride =
-    THREE.MathUtils.lerp(
-      THREE.MathUtils.lerp(0.97938 * walkRate, 5.898 * jogRate, jogging),
-      8.905 * sprintRate,
-      sprinting,
-    ) *
-    (0.8794 / 0.8298);
-  const clip: LocomotionClip =
-    sprinting > 0.5
-      ? "Sprint_Loop"
-      : jogging > 0.5
-        ? "Jog_Fwd_Loop"
-        : "Walk_Loop";
+/** Cardinal clips share a left-support phase. Blend entire poses so the knee,
+ * ankle and hip remain a coherent chain through every direction, including -Z.
+ * The archive has no backward sprint: reverse Running_A as a complete pose,
+ * never turn just the ankles of a forward-running body. */
+type Component = {
+  clip: LocomotionClip;
+  weight: number;
+  offset: number;
+  reverse?: boolean;
+};
+const wrap = (phase: number) => ((phase % 1) + 1) % 1;
+export type DirectionWeights = {
+  forward: number;
+  back: number;
+  left: number;
+  right: number;
+};
+export function directionWeights(velocity: {
+  x: number;
+  z: number;
+}): DirectionWeights {
+  const total = Math.abs(velocity.x) + Math.abs(velocity.z);
   return {
-    jogging,
-    sprinting,
-    frequency,
-    strideScale: THREE.MathUtils.clamp(
-      speed / Math.max(0.1, stride),
-      0.3,
-      1.65,
-    ),
-    clip,
-    playbackRate: frequency * locomotionData.clips[clip].duration,
+    forward: total > 1e-7 ? Math.max(0, velocity.z) / total : 1,
+    back: total > 1e-7 ? Math.max(0, -velocity.z) / total : 0,
+    left: total > 1e-7 ? Math.max(0, -velocity.x) / total : 0,
+    right: total > 1e-7 ? Math.max(0, velocity.x) / total : 0,
   };
 }
-
-export function movingLocomotion(speed: number, phase: number): ReferencePose {
-  const pace = locomotionPace(speed);
-  if (pace.sprinting === 1) return sampleLocomotion("Sprint_Loop", phase);
-  const lower =
-    pace.jogging === 1
-      ? sampleLocomotion("Jog_Fwd_Loop", phase)
-      : pace.jogging === 0
-        ? sampleLocomotion("Walk_Loop", phase)
-        : mixLocomotion(
-            sampleLocomotion("Walk_Loop", phase),
-            sampleLocomotion("Jog_Fwd_Loop", phase),
-            pace.jogging,
-          );
-  return pace.sprinting === 0
-    ? lower
-    : mixLocomotion(
-        lower,
-        sampleLocomotion("Sprint_Loop", phase),
-        pace.sprinting,
-      );
+export function locomotionPace(
+  speed: number,
+  velocity = { x: 0, z: speed },
+  weights = directionWeights(velocity),
+) {
+  const sprinting = THREE.MathUtils.smoothstep(speed, 2.6, 4.4);
+  const lateralAmplitude = THREE.MathUtils.lerp(0.42, 1, sprinting);
+  const { forward, back, left, right } = weights;
+  const components = (
+    [
+      { clip: "Walking_B", weight: forward * (1 - sprinting), offset: 0.125 },
+      { clip: "Running_A", weight: forward * sprinting, offset: 0.104167 },
+      {
+        clip: "Walking_Backwards",
+        weight: back * (1 - sprinting),
+        offset: 0.645833,
+      },
+      {
+        clip: "Running_A",
+        weight: back * sprinting,
+        offset: 0.395833,
+        reverse: true,
+      },
+      { clip: "Running_Strafe_Left", weight: left, offset: 0.817708 },
+      { clip: "Running_Strafe_Right", weight: right, offset: 0.817708 },
+    ] satisfies Component[]
+  ).filter((c) => c.weight > 0);
+  const dominant = components.reduce((a, b) => (a.weight >= b.weight ? a : b));
+  // Distance per cycle, measured from this rig rather than source height.
+  const stride = components.reduce(
+    (sum, c) =>
+      sum +
+      c.weight *
+        locomotionData.clips[c.clip].contactSpeed *
+        (c.clip.startsWith("Running_Strafe") ? lateralAmplitude : 1) *
+        locomotionData.clips[c.clip].duration,
+    0,
+  );
+  const frequency = Math.max(0.05, speed / stride);
+  return {
+    components,
+    lateralAmplitude,
+    sprinting,
+    frequency,
+    clip: dominant.clip,
+    reversed: !!dominant.reverse,
+    sourcePhase: (phase: number) =>
+      wrap(dominant.offset + (dominant.reverse ? -phase : phase)),
+    playbackRate: frequency * locomotionData.clips[dominant.clip].duration,
+  };
+}
+export function movingLocomotion(
+  speed: number,
+  phase: number,
+  velocity = { x: 0, z: speed },
+  weights = directionWeights(velocity),
+): ReferencePose {
+  const { components, lateralAmplitude } = locomotionPace(
+    speed,
+    velocity,
+    weights,
+  );
+  let contactEnvelope = Infinity;
+  let pose: ReferencePose | undefined,
+    weight = 0;
+  for (const c of components) {
+    let next = sampleLocomotion(
+      c.clip,
+      c.offset + (c.reverse ? -phase : phase),
+    );
+    // Slow lateral steps remain grounded; running gains a modest flight phase.
+    if (c.clip.startsWith("Running_Strafe")) {
+      next = mixLocomotion(restingLocomotion(), next, lateralAmplitude);
+      next.support *= THREE.MathUtils.smoothstep(speed, 2.6, 4.4);
+    }
+    // A blended stance must still reach the ground: averaging two out-of-phase
+    // flight curves otherwise makes diagonal running hover for the whole cycle.
+    // The influence fades continuously as a contributing clip's weight vanishes.
+    contactEnvelope = Math.min(
+      contactEnvelope,
+      next.support + 0.07 * (1 - c.weight) ** 6,
+    );
+    weight += c.weight;
+    pose = pose ? mixLocomotion(pose, next, c.weight / weight) : next;
+  }
+  pose!.support = Math.min(pose!.support, contactEnvelope);
+  return pose!;
 }

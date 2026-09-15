@@ -23,7 +23,10 @@ const source: {
   clips: Record<string, { duration: number; samples: SourceFrame[] }>;
 } = JSON.parse(
   await readFile(
-    new URL("../assets/source/locomotion/source-samples.json", import.meta.url),
+    new URL(
+      "../assets/source/locomotion/kaykit/source-samples.json",
+      import.meta.url,
+    ),
     "utf8",
   ),
 );
@@ -141,7 +144,11 @@ test("all reference loops close, sample independently, and blend continuously th
         pace = locomotionPace(speed);
       assert.ok(pose.root.toArray().every(Number.isFinite));
       assert.ok(pace.frequency > 0 && Number.isFinite(pace.frequency));
-      assert.ok(pace.strideScale >= 0.3 && pace.strideScale <= 1.65);
+      assert.ok(pace.playbackRate > 0 && Number.isFinite(pace.playbackRate));
+      assert.ok(
+        Math.abs(pace.components.reduce((sum, c) => sum + c.weight, 0) - 1) <
+          1e-8,
+      );
       for (const [name, q] of pose.rotations) {
         assert.ok(q.toArray().every(Number.isFinite));
         assert.ok(Math.abs(q.length() - 1) < 2e-6);
@@ -160,26 +167,51 @@ test("all reference loops close, sample independently, and blend continuously th
   }
 });
 
-test("the retained animation review asset matches the recorded CC0 provenance", async () => {
+test("the retained animation review assets match the recorded CC0 provenance", async () => {
+  const base = new URL("../assets/source/locomotion/kaykit/", import.meta.url);
   const provenance = JSON.parse(
-    await readFile(
-      new URL("../assets/source/locomotion/provenance.json", import.meta.url),
-      "utf8",
+    await readFile(new URL("provenance.json", base), "utf8"),
+  );
+  assert.equal(provenance.license.id, "CC0-1.0");
+  for (const file of provenance.rawFiles) {
+    const bytes = await readFile(new URL(file.path, base));
+    assert.equal(bytes.length, file.bytes);
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), file.sha256);
+  }
+  assert.ok(
+    clips.every((clip) =>
+      [...provenance.selectedClips, ...provenance.comparisonClips].includes(
+        clip,
+      ),
     ),
   );
-  const bytes = await readFile(
-    new URL(
-      `../assets/source/locomotion/${provenance.subset.file}`,
-      import.meta.url,
-    ),
-  );
-  assert.equal(provenance.license, "CC0-1.0");
-  assert.equal(bytes.length, provenance.subset.bytes);
-  assert.equal(
-    createHash("sha256").update(bytes).digest("hex"),
-    provenance.subset.sha256,
-  );
-  assert.ok(clips.every((clip) => provenance.subset.clips.includes(clip)));
+});
+test("backward seam and every diagonal blend remain continuous in facing space", () => {
+  for (const speed of [2.2, 5.4])
+    for (let phase = 0; phase < 1; phase += 0.025) {
+      let previous: ReturnType<typeof movingLocomotion> | undefined;
+      for (let i = 0; i <= 360; i++) {
+        const angle = (i * Math.PI) / 180;
+        const pose = movingLocomotion(speed, phase, {
+          x: Math.sin(angle) * speed,
+          z: Math.cos(angle) * speed,
+        });
+        for (const [name, q] of pose.rotations)
+          if (previous)
+            assert.ok(
+              q.angleTo(previous.rotations.get(name)!) < 0.07,
+              `${name} seam at ${i}°, ${speed}`,
+            );
+        previous = pose;
+      }
+      const a = movingLocomotion(speed, phase, { x: 0.00001, z: -speed });
+      const b = movingLocomotion(speed, phase, { x: -0.00001, z: -speed });
+      for (const [name, q] of a.rotations)
+        assert.ok(
+          q.angleTo(b.rotations.get(name)!) < 0.0001,
+          `${name} backward epsilon flip`,
+        );
+    }
 });
 
 const fetcher: typeof fetch = async (input) =>

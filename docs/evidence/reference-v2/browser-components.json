@@ -30,7 +30,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 23.399999976158142,
+    "assemblyMs": 26.200000047683716,
     "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -67,7 +67,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 4.699999928474426,
+    "assemblyMs": 5,
     "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -104,7 +104,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 4.399999976158142,
+    "assemblyMs": 4.299999952316284,
     "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -178,7 +178,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 5.099999904632568,
+    "assemblyMs": 4.700000047683716,
     "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -215,7 +215,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 4,
+    "assemblyMs": 4.699999928474426,
     "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -252,7 +252,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 3.8000000715255737,
+    "assemblyMs": 4,
     "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -289,7 +289,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 4.299999952316284,
+    "assemblyMs": 4.600000023841858,
     "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -326,7 +326,7 @@
         "weight": -1
       }
     },
-    "assemblyMs": 21.5,
+    "assemblyMs": 22.199999928474426,
     "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -363,7 +363,7 @@
         "weight": 1
       }
     },
-    "assemblyMs": 28.399999976158142,
+    "assemblyMs": 23.5,
     "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
@@ -400,7 +400,7 @@
         "weight": 0
       }
     },
-    "assemblyMs": 26.100000023841858,
+    "assemblyMs": 26.399999976158142,
     "meshes": 50,
     "triangles": 22532,
     "sourceTriangles": 11660,
@@ -437,7 +437,7 @@
         "weight": 1
       }
     },
-    "assemblyMs": 26.09999990463257,
+    "assemblyMs": 27.100000023841858,
     "meshes": 50,
     "triangles": 22532,
     "sourceTriangles": 11660,

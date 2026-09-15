@@ -263,7 +263,7 @@
       },
       "url": "models/body-athletic.glb",
       "bytes": 341168,
-      "sha256": "812b9559306a52557324461ddeca796a119c910521f79f77c7233dac96892011",
+      "sha256": "cfa69d306d9798a2bd073ae923349ad421bbdde648fd6760a310d11afbdee67e",
       "triangles": 5791
     },
     {
@@ -1565,7 +1565,7 @@
       "effect": "orbit",
       "url": "models/effect-pocket-galaxy.glb",
       "bytes": 25272,
-      "sha256": "a896b075c8ba2162e56a1fc308dd7aca5cb9641f42873eb00d3f15538d1ca65d",
+      "sha256": "e81b60333cb262f39da75916b29b9b1ef88fac0f97b2b19e87f00103edc8cfe2",
       "triangles": 364
     }
   ],

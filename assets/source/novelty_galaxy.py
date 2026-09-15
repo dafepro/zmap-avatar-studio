@@ -6,14 +6,22 @@ reduced motion freezes it. No billboard, transparent dome or custom shader.
 """
 
 
-def fit_orbit_miniature(objects, center, inner=.825, outer=.99):
+# A qualified animation envelope, not a per-frame intersection workaround.
+# Native forward/back/strafe clips reach .968 m in the ankle-height band.
+# Keep 5 cm reserve and the original .165 m miniature band width.
+ORBIT_INNER = 1.02
+ORBIT_OUTER = 1.185
+
+
+def fit_orbit_miniature(objects, center, inner=ORBIT_INNER, outer=ORBIT_OUTER):
     """Fit a complete miniature into the qualified annulus without distortion.
 
     Each miniature retains its proportions and all relative decal/part offsets.
     Bounding the full horizontal footprint, rather than only the object centre,
     guarantees clearance at every rotation of the complete orbital attachment.
-    The 0.825 m inner limit qualifies the authored 5.4 m/s sprint, both strafes
-    and reverse travel; the complete cosmetic remains inside a 1 m radius.
+    The qualified 1.02 m inner limit includes the native authored stride at
+    5.4 m/s in every tested heading. The complete cosmetic stays below 1.2 m.
+    Keeping the annulus width constant preserves every miniature's silhouette.
     """
     from mathutils import Matrix
     bpy.context.view_layer.update()
@@ -103,6 +111,7 @@ def build_pocket_galaxy(parent):
     fit_orbit_miniature(set(parent.children)-before,center)
     # Three small gold dashes hint at a path without drawing a permanent ring.
     for a in [.61,2.62,4.1]:
-        xx,zz=math.sin(a)*.9075,math.cos(a)*.9075
+        radius=(ORBIT_INNER+ORBIT_OUTER)/2
+        xx,zz=math.sin(a)*radius,math.cos(a)*radius
         obj=box('Pocket orbit dash',(xx,.29,zz),(.020,.006,.009),gold,parent,0)
         obj.rotation_euler.z=-a

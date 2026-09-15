@@ -4,6 +4,9 @@ import { readFile } from "node:fs/promises";
 import * as THREE from "three";
 import { AvatarLibrary } from "../src/runtime";
 import { defaultRecipe, type Catalog } from "../src/core";
+import { WieldLibrary, WieldController } from "../src/wield-runtime";
+import { emptyWieldLoadout, type WieldCatalog } from "../src/wield-core";
+import { fieldToolBehaviors } from "../src/field-tools";
 import "./helpers/node-image";
 
 const catalog: Catalog = JSON.parse(
@@ -142,6 +145,172 @@ test("authored shoulder blends stay continuous during wave and running poses", a
       }
     }
   } finally {
+    library.dispose();
+  }
+});
+
+test("pelvis and jersey waist stay connected across native strides and a held panel at every body weight", async (t) => {
+  const fetcher: typeof fetch = async (input) =>
+    new Response(
+      await readFile(
+        new URL("../public" + new URL(String(input)).pathname, import.meta.url),
+      ),
+    );
+  const equipment: WieldCatalog = JSON.parse(
+    await readFile(
+      new URL("../public/action/catalog.json", import.meta.url),
+      "utf8",
+    ),
+  );
+  const library = new AvatarLibrary(catalog, "https://assets.test/", fetcher),
+    wieldLibrary = new WieldLibrary(
+      equipment,
+      "https://assets.test/action/",
+      fetcher,
+    );
+  let samples = 0;
+  const worst = {
+    excess: -Infinity,
+    shirt: "",
+    weight: 0,
+    held: false,
+    heading: 0,
+    mesh: "",
+    edge: [0, 0],
+  };
+  try {
+    for (const shirt of catalog.assets.filter(
+      (asset) => asset.slot === "shirt",
+    ))
+      for (const weight of [-1, 0, 1]) {
+        const avatar = library.create();
+        const errors: unknown[] = [];
+        const controller = new WieldController(
+          avatar,
+          wieldLibrary,
+          fieldToolBehaviors(() => ({ phase: "idle" })),
+          { onError: (error) => errors.push(error) },
+        );
+        try {
+          const recipe = defaultRecipe(catalog);
+          recipe.parts.shirt = shirt.id;
+          recipe.body = { weight };
+          await avatar.setAppearance(recipe);
+          avatar.object.updateMatrixWorld(true);
+          const meshes: THREE.SkinnedMesh[] = [];
+          avatar.object.traverse((object) => {
+            if (!(object instanceof THREE.SkinnedMesh)) return;
+            let owner: THREE.Object3D | null = object;
+            while (owner && !owner.userData.assetId) owner = owner.parent;
+            // Include covered anatomy: a base-mesh inspector must also remain
+            // continuous. Hands/feet have separate rigid/ankle qualification.
+            if (
+              owner?.userData.assetId === shirt.id ||
+              (owner?.userData.assetId === catalog.base &&
+                ["upper-legs", "torso", "exposed"].includes(
+                  object.userData.avatarRegion,
+                ))
+            )
+              meshes.push(object);
+          });
+          assert.ok(
+            meshes.some((mesh) => mesh.userData.avatarRegion === "upper-legs"),
+          );
+          const surfaces = meshes.map((mesh) => {
+            const rest = Array.from(
+              { length: mesh.geometry.getAttribute("position").count },
+              (_, i) => mesh.getVertexPosition(i, new THREE.Vector3()),
+            );
+            const edges = new Map<
+              string,
+              { a: number; b: number; allowed: number }
+            >();
+            const indices = mesh.geometry.index;
+            for (
+              let triangle = 0;
+              triangle < (indices?.count ?? rest.length);
+              triangle += 3
+            )
+              for (let edge = 0; edge < 3; edge++) {
+                const a = indices?.getX(triangle + edge) ?? triangle + edge;
+                const b =
+                  indices?.getX(triangle + ((edge + 1) % 3)) ??
+                  triangle + ((edge + 1) % 3);
+                edges.set(`${Math.min(a, b)}:${Math.max(a, b)}`, {
+                  a,
+                  b,
+                  allowed: rest[a].distanceTo(rest[b]) * 3 + 0.02,
+                });
+              }
+            return {
+              mesh,
+              points: rest.map(() => new THREE.Vector3()),
+              edges: [...edges.values()],
+            };
+          });
+          let time = 0;
+          for (const held of [false, true]) {
+            if (held) {
+              await controller.setLoadout({
+                ...emptyWieldLoadout(equipment),
+                twoHanded: { item: "wield-rebound-panel", primary: "right" },
+              });
+              assert.equal(
+                controller.getHand("right")?.state,
+                "ready",
+                errors.map(String).join("; "),
+              );
+            }
+            for (let heading = 0; heading < 8; heading++) {
+              const angle = (heading * Math.PI) / 4;
+              const motion = {
+                velocity: {
+                  x: Math.sin(angle) * 5.4,
+                  z: Math.cos(angle) * 5.4,
+                },
+              };
+              // Includes heading transitions, then more than two native sprint
+              // cycles. Held strafing counter-rotates the chest against hip yaw.
+              for (let frame = 0; frame < 48; frame++) {
+                avatar.update((time += 1 / 24), motion);
+                if (frame % 2) continue;
+                avatar.object.updateMatrixWorld(true);
+                for (const { mesh, points, edges } of surfaces) {
+                  for (let i = 0; i < points.length; i++) {
+                    mesh.getVertexPosition(i, points[i]);
+                    assert.ok(points[i].toArray().every(Number.isFinite));
+                  }
+                  for (const { a, b, allowed } of edges) {
+                    const excess = points[a].distanceTo(points[b]) - allowed;
+                    if (excess > worst.excess)
+                      Object.assign(worst, {
+                        excess,
+                        shirt: shirt.id,
+                        weight,
+                        held,
+                        heading,
+                        mesh: mesh.name,
+                        edge: [a, b],
+                      });
+                  }
+                }
+                samples++;
+              }
+            }
+          }
+          assert.deepEqual(errors, []);
+        } finally {
+          controller.dispose();
+          avatar.dispose();
+        }
+      }
+    assert.ok(
+      worst.excess <= 0,
+      `native stride tears a connected surface: ${JSON.stringify(worst)}`,
+    );
+    t.diagnostic(JSON.stringify({ samples, worst }));
+  } finally {
+    wieldLibrary.dispose();
     library.dispose();
   }
 });

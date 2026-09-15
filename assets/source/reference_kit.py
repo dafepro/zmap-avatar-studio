@@ -57,6 +57,13 @@ def smooth(o):
 def ease(a,b,value):
     t=max(0,min(1,(value-a)/(b-a)));return t*t*(3-2*t)
 
+def thigh_weights(x,total):
+    # The welded pelvis crosses x=0: the residual thigh influence must not
+    # abruptly switch bones there when opposite legs enter a long stride.
+    # Outside this central 10 cm bridge, each thigh still follows its own leg.
+    right=ease(-.05,.05,x)
+    return {'leg_L':total*(1-right),'leg_R':total*right}
+
 def planar(o):
     """Intentional broad planes; welded normals belong only to the ink shell."""
     for poly in o.data.polygons: poly.use_smooth=False
@@ -124,7 +131,7 @@ def bind(root,record,objects,kind):
             if family=='hand': weights={'hand_'+side:1}
             elif family=='leg':
                 hip=ease(.88,1.01,y);knee=1-ease(.49,.64,y);foot=1-ease(.105,.19,y)
-                weights={'hips':hip,'leg_'+side:(1-hip)*(1-knee),'shin_'+side:(1-hip)*knee*(1-foot),'foot_'+side:(1-hip)*knee*foot}
+                weights={'hips':hip,**thigh_weights(x,(1-hip)*(1-knee)),'shin_'+side:(1-hip)*knee*(1-foot),'foot_'+side:(1-hip)*knee*foot}
             elif family=='footwear':
                 # Fabric crosses the ankle with the same rest-space field as skin.
                 # The sole, toe box, tongue and laces remain a rigid foot shell.

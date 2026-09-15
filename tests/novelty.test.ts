@@ -121,7 +121,7 @@ test("Pocket Galaxy uses bounded orbit motion, freezes for reduced motion, and l
       ),
       outer = Math.max(...effect.map((point) => Math.hypot(point.x, point.z)));
     assert.ok(
-      lowest > 0.15 && highest < 0.5 && outer < 1,
+      lowest > 0.15 && highest < 0.5 && outer < 1.2,
       "cosmetic orbit stays above the floor in its bounded ankle zone",
     );
     let maximumLegReach = 0,
@@ -129,23 +129,24 @@ test("Pocket Galaxy uses bounded orbit motion, freezes for reduced motion, and l
     for (const shoes of catalog.assets.filter(
       (asset) => asset.slot === "shoes",
     ))
-      for (const weight of [-1, 0, 1]) {
+      for (const weight of [-1, -0.5, 0, 0.5, 1]) {
         await avatar.setAppearance({
           ...recipe,
           parts: { ...recipe.parts, shoes: shoes.id },
           body: { weight },
         });
-        // Continuous full-speed cycles include both strafes and reverse travel.
+        // Continuous native full-speed cycles cover the complete direction circle,
+        // including diagonal blends between forward/backward and side clips.
         // Gesture-only "run" is a legacy preview and does not reach 5.4 m/s.
         for (const velocity of [
           { x: 0, z: 0 },
           { x: 0, z: 2.2 },
-          { x: 0, z: 5.4 },
-          { x: 5.4, z: 0 },
-          { x: -5.4, z: 0 },
-          { x: 0, z: -5.4 },
+          ...Array.from({ length: 16 }, (_, index) => ({
+            x: Math.sin((index * Math.PI) / 8) * 5.4,
+            z: Math.cos((index * Math.PI) / 8) * 5.4,
+          })),
         ])
-          for (let frame = 0; frame < 36; frame++) {
+          for (let frame = 0; frame < 48; frame++) {
             time += 1 / 24;
             avatar.update(time, { velocity, reducedMotion: false });
             for (const point of points(false))
@@ -157,7 +158,7 @@ test("Pocket Galaxy uses bounded orbit motion, freezes for reduced motion, and l
           }
       }
     assert.ok(
-      maximumLegReach + 0.015 < inner,
+      maximumLegReach + 0.025 < inner,
       `moving legs reach ${maximumLegReach.toFixed(3)} m; orbit begins at ${inner.toFixed(3)} m`,
     );
   } finally {

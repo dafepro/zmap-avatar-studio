@@ -1,0 +1,33 @@
+{
+  "provenance": "Decoded shipping GLBs, actual native locomotion FK at 24Hz; 3 shoes x 5 weights x (idle, walk, 16 full-speed headings) x 48 continuous frames. No per-frame runtime fitting added.",
+  "poses": 12960,
+  "maximumLegReach": 0.967864863405296,
+  "inner": 1.020000010728836,
+  "outer": 1.1849999725818634,
+  "lowest": 0.2240000069141388,
+  "highest": 0.3741436004638672,
+  "minimumRadialClearance": 0.052135147323540076,
+  "asset": {
+    "id": "effect-pocket-galaxy",
+    "label": "Pocket Galaxy",
+    "slot": "effect",
+    "rig": "athlete-reference-v2",
+    "description": "Playful original accessory authored from a four-view study. Single source geometry and existing fitting contracts.",
+    "attachments": [
+      {
+        "node": "orbit_effect-pocket-galaxy__root",
+        "socket": "root"
+      }
+    ],
+    "channels": [],
+    "tags": [
+      "novelty-collection"
+    ],
+    "effect": "orbit",
+    "url": "models/effect-pocket-galaxy.glb",
+    "bytes": 25272,
+    "sha256": "e81b60333cb262f39da75916b29b9b1ef88fac0f97b2b19e87f00103edc8cfe2",
+    "triangles": 364
+  },
+  "catalogBytes": 2190020
+}
