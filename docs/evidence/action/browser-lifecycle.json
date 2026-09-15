@@ -967,57 +967,57 @@
   ],
   "lifecycle": [
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     },
     {
-      "geometries": 40,
-      "textures": 10
+      "geometries": 32,
+      "textures": 14
     }
   ],
   "baseline": {
-    "geometries": 40,
-    "textures": 10
+    "geometries": 32,
+    "textures": 14
   },
   "errors": []
 }

@@ -118,6 +118,7 @@ type Held = WieldHandInstance & {
   views: Partial<Record<Hand, WieldHandInstance>>;
   physicalAnchors?: Record<Hand, THREE.Object3D>;
   objectMotion?: WieldObjectPose;
+  orientationRoot?: THREE.Object3D;
   gripTransforms: {
     node: THREE.Object3D;
     parent: THREE.Object3D | null;
@@ -389,6 +390,17 @@ export class WieldLibrary extends VerifiedAssetLibrary {
 
 /** Independent hands or one shared two-handed owner, using one avatar pose lease. */
 export class WieldController implements AvatarHandLayer {
+  get controlsCarrierPose() {
+    return (
+      this.visible &&
+      this.owners().some(
+        (instance) =>
+          !instance.closed &&
+          instance.state === "ready" &&
+          !!instance.item.twoHanded,
+      )
+    );
+  }
   private hands: Partial<Record<Hand, Held>> = {};
   private current: WieldLoadout;
   private generation = 0;
@@ -554,6 +566,7 @@ export class WieldController implements AvatarHandLayer {
     try {
       const approvedRoot = uniqueNode(object, item.node),
         nodes = new Map<string, THREE.Object3D>();
+      instance.orientationRoot = approvedRoot;
       if (item.twoHanded) {
         instance.physicalAnchors = {
           left: uniqueNode(approvedRoot, item.twoHanded.grips.left),
@@ -1126,6 +1139,27 @@ export class WieldController implements AvatarHandLayer {
     }
     instance.objectMotion = motion ? structuredClone(motion) : undefined;
   }
+  private alignWithGravity(instance: Held, view: AvatarAttachmentView) {
+    const arm = view.sockets.get(instance.hand === "left" ? "arm_L" : "arm_R")!;
+    arm.updateWorldMatrix(true, true);
+    const parent = arm.parent!.getWorldQuaternion(new THREE.Quaternion());
+    const orientation = instance.orientationRoot!.getWorldQuaternion(
+      new THREE.Quaternion(),
+    );
+    const up = new THREE.Vector3(0, 1, 0)
+      .applyQuaternion(orientation)
+      .normalize();
+    const correction = new THREE.Quaternion().setFromUnitVectors(
+      up,
+      new THREE.Vector3(0, 1, 0),
+    );
+    // Stabilize the complete authored carry chain at its shoulder. Keeping the
+    // forearm/wrist relationship intact preserves the actual anatomical seam;
+    // wrist-only compensation can open it, and item-only motion loses the grip.
+    arm.quaternion.premultiply(
+      parent.clone().invert().multiply(correction).multiply(parent),
+    );
+  }
   pose(frame: AvatarPoseFrame, view: AvatarAttachmentView) {
     this.frame = frame;
     if (frame.interrupted) this.cancel();
@@ -1164,6 +1198,8 @@ export class WieldController implements AvatarHandLayer {
           );
           node.rotation.set(angles[0], angles[1], angles[2]);
         }
+        if (instance.item.orientation === "gravity")
+          this.alignWithGravity(instance, view);
       } catch (error) {
         this.breakHand(instance, error);
       }

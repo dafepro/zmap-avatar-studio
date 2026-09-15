@@ -3,7 +3,7 @@
     "id": "ember",
     "col": 0,
     "weight": -1,
-    "meshes": 46,
+    "meshes": 38,
     "triangles": 21832,
     "sourceTriangles": 11310,
     "parts": 7
@@ -12,7 +12,7 @@
     "id": "ember",
     "col": 1,
     "weight": 0,
-    "meshes": 46,
+    "meshes": 38,
     "triangles": 21832,
     "sourceTriangles": 11310,
     "parts": 7
@@ -21,7 +21,7 @@
     "id": "ember",
     "col": 2,
     "weight": 1,
-    "meshes": 46,
+    "meshes": 38,
     "triangles": 21832,
     "sourceTriangles": 11310,
     "parts": 7
@@ -30,7 +30,7 @@
     "id": "ember",
     "col": 3,
     "weight": 1,
-    "meshes": 58,
+    "meshes": 50,
     "triangles": 24544,
     "sourceTriangles": 12666,
     "parts": 10
@@ -39,7 +39,7 @@
     "id": "tide",
     "col": 0,
     "weight": -1,
-    "meshes": 44,
+    "meshes": 36,
     "triangles": 21000,
     "sourceTriangles": 10894,
     "parts": 7
@@ -48,7 +48,7 @@
     "id": "tide",
     "col": 1,
     "weight": 0,
-    "meshes": 44,
+    "meshes": 36,
     "triangles": 21000,
     "sourceTriangles": 10894,
     "parts": 7
@@ -57,7 +57,7 @@
     "id": "tide",
     "col": 2,
     "weight": 1,
-    "meshes": 44,
+    "meshes": 36,
     "triangles": 21000,
     "sourceTriangles": 10894,
     "parts": 7
@@ -66,7 +66,7 @@
     "id": "tide",
     "col": 3,
     "weight": 1,
-    "meshes": 56,
+    "meshes": 48,
     "triangles": 24136,
     "sourceTriangles": 12462,
     "parts": 10
@@ -75,7 +75,7 @@
     "id": "volt",
     "col": 0,
     "weight": -1,
-    "meshes": 46,
+    "meshes": 38,
     "triangles": 21956,
     "sourceTriangles": 11372,
     "parts": 7
@@ -84,7 +84,7 @@
     "id": "volt",
     "col": 1,
     "weight": 0,
-    "meshes": 46,
+    "meshes": 38,
     "triangles": 21956,
     "sourceTriangles": 11372,
     "parts": 7
@@ -93,7 +93,7 @@
     "id": "volt",
     "col": 2,
     "weight": 1,
-    "meshes": 46,
+    "meshes": 38,
     "triangles": 21956,
     "sourceTriangles": 11372,
     "parts": 7
@@ -102,7 +102,7 @@
     "id": "volt",
     "col": 3,
     "weight": 1,
-    "meshes": 58,
+    "meshes": 50,
     "triangles": 24744,
     "sourceTriangles": 12766,
     "parts": 10

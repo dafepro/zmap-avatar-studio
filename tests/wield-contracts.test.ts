@@ -83,6 +83,22 @@ test("wield catalogs are strict data-only records with fixed independent budgets
     assert.throws(() => validateWieldCatalog(c));
   }
 });
+
+test("gravity orientation is opt-in and limited to a one-hand carrying frame", () => {
+  const catalog = wieldCatalog();
+  catalog.items[0].orientation = "gravity";
+  validateWieldCatalog(catalog);
+  for (const invalid of ["world", false, 1, null]) {
+    const copy = structuredClone(catalog) as any;
+    copy.items[0].orientation = invalid;
+    assert.throws(() => validateWieldCatalog(copy), /orientation/i);
+  }
+  catalog.items[0].twoHanded = {
+    grips: { left: "wand_left", right: "wand_grip" },
+    hold: { socket: "chest", position: [0, -0.2, 0.3], rotation: [0, 0, 0] },
+  };
+  assert.throws(() => validateWieldCatalog(catalog), /one-handed/);
+});
 test("two hand loadouts do not become appearance part combinations or escape budgets", () => {
   const c = wieldCatalog(),
     loadout = { ...emptyWieldLoadout(c), left: "wand", right: "wand" };

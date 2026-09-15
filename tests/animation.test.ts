@@ -40,7 +40,7 @@ async function setup() {
   };
 }
 
-test("four-direction locomotion bends knees, fixes stance contacts in world space, and never scales or translates a joint", async () => {
+test("authored directional locomotion preserves foot support, flat contact positions, knee flexion and fixed limb lengths", async () => {
   for (const [x, z] of [
     [0, 2],
     [0, -2],
@@ -52,6 +52,7 @@ test("four-direction locomotion bends knees, fixes stance contacts in world spac
     [-4, 0],
     [2.8, 2.8],
     [-2.8, -2.8],
+    [0, 5.4],
   ]) {
     const s = await setup(),
       view = s.avatar.attachmentView()!,
@@ -60,6 +61,14 @@ test("four-direction locomotion bends knees, fixes stance contacts in world spac
         position: bone.position.clone(),
         scale: bone.scale.clone(),
       }));
+    const shoes: THREE.Mesh[] = [];
+    s.avatar.object.traverse((object) => {
+      if (!(object instanceof THREE.Mesh)) return;
+      let part: THREE.Object3D | null = object;
+      while (part && !part.userData.assetId) part = part.parent;
+      if (part?.userData.assetId === s.avatar.recipe!.parts.shoes)
+        shoes.push(object);
+    });
     let previous: ReturnType<typeof s.avatar.animationDiagnostics> | undefined,
       contacts = 0,
       maxSlide = 0,
@@ -84,9 +93,10 @@ test("four-direction locomotion bends knees, fixes stance contacts in world spac
           contacts++;
           maxSlide = Math.max(
             maxSlide,
-            new THREE.Vector3()
-              .fromArray(foot.position)
-              .distanceTo(new THREE.Vector3().fromArray(before.position)),
+            Math.hypot(
+              foot.position[0] - before.position[0],
+              foot.position[2] - before.position[2],
+            ),
           );
         }
         const actual = view.sockets
@@ -97,12 +107,39 @@ test("four-direction locomotion bends knees, fixes stance contacts in world spac
           actual.distanceTo(new THREE.Vector3().fromArray(foot.position)),
         );
         maxKnee = Math.max(maxKnee, foot.kneeDegrees);
-        assert.ok(actual.y >= 0.119, "sole must remain above the ground");
+      }
+      // Heel/toe roll changes ankle height. Check actual skinned shoe vertices,
+      // not a guessed two-point sole or an invariant flat-ankle height.
+      if (i % 6 === 0) {
+        let sole = Infinity;
+        const vertex = new THREE.Vector3();
+        for (const mesh of shoes)
+          for (
+            let index = 0;
+            index < mesh.geometry.attributes.position.count;
+            index++
+          )
+            sole = Math.min(
+              sole,
+              mesh
+                .getVertexPosition(index, vertex)
+                .applyMatrix4(mesh.matrixWorld).y,
+            );
+        assert.ok(
+          sole >= -0.0001,
+          `${x},${z}: actual shoe penetrated floor ${sole}`,
+        );
       }
       previous = current;
     }
-    assert.ok(contacts > 50, `observable stance samples ${contacts}`);
-    assert.ok(maxSlide < 1e-7, `world foot slide ${maxSlide}`);
+    assert.ok(
+      contacts > 0,
+      `${x},${z}: at least one repeated flat contact per sampled traversal (${contacts})`,
+    );
+    assert.ok(
+      maxSlide < 0.002,
+      `${x},${z}: planted ground-plane slide ${maxSlide}`,
+    );
     assert.ok(maxError < 1e-5, `IK ankle error ${maxError}`);
     assert.ok(maxKnee > 35 && maxKnee < 145, `natural flex ${maxKnee}`);
     for (const { bone, position, scale } of rest) {

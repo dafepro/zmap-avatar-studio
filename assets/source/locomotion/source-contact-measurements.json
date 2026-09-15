@@ -1,0 +1,503 @@
+{
+  "source": "source-samples.json",
+  "method": "Conservative flat toe contact: both toe-base and toe-end Y between 0 and 0.025m, with their vertical difference <=0.008m. This excludes heel-only contact and toe-off; fractions are not total stance durations. Interval speed requires both bounding samples in contact. Last duplicate loop sample omitted from fractions. Speed is -dz/dt in the in-place source. Ankle travel includes foot roll; planted toe speed is the steadier pace calibration.",
+  "clips": {
+    "Walk_Loop": {
+      "duration": 1.333333,
+      "sides": {
+        "left": {
+          "flatContactFrames": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "flatContactFraction": 0.425,
+          "ankleYRange": [
+            0.103679,
+            0.345303
+          ],
+          "ankleZRange": [
+            -0.375054,
+            0.266897
+          ],
+          "toeYRange": [
+            0.015179,
+            0.187598
+          ],
+          "toeZRange": [
+            -0.370226,
+            0.439652
+          ],
+          "medianContactAnkleSpeed": 0.857559,
+          "medianContactToeSpeed": 0.979379,
+          "contactToeSpeedRange": [
+            0.159627,
+            0.979624
+          ],
+          "intervals": [
+            {
+              "startFrame": 5,
+              "endFrame": 6,
+              "ankleSpeed": 0.97939,
+              "toeSpeed": 0.97939
+            },
+            {
+              "startFrame": 6,
+              "endFrame": 7,
+              "ankleSpeed": 0.979375,
+              "toeSpeed": 0.979378
+            },
+            {
+              "startFrame": 7,
+              "endFrame": 8,
+              "ankleSpeed": 0.979402,
+              "toeSpeed": 0.979402
+            },
+            {
+              "startFrame": 8,
+              "endFrame": 9,
+              "ankleSpeed": 0.956074,
+              "toeSpeed": 0.979345
+            },
+            {
+              "startFrame": 9,
+              "endFrame": 10,
+              "ankleSpeed": 0.9133,
+              "toeSpeed": 0.979381
+            },
+            {
+              "startFrame": 10,
+              "endFrame": 11,
+              "ankleSpeed": 0.874762,
+              "toeSpeed": 0.979351
+            },
+            {
+              "startFrame": 11,
+              "endFrame": 12,
+              "ankleSpeed": 0.840355,
+              "toeSpeed": 0.979375
+            },
+            {
+              "startFrame": 12,
+              "endFrame": 13,
+              "ankleSpeed": 0.811366,
+              "toeSpeed": 0.979429
+            },
+            {
+              "startFrame": 13,
+              "endFrame": 14,
+              "ankleSpeed": 0.789841,
+              "toeSpeed": 0.979339
+            },
+            {
+              "startFrame": 14,
+              "endFrame": 15,
+              "ankleSpeed": 0.778693,
+              "toeSpeed": 0.979396
+            },
+            {
+              "startFrame": 15,
+              "endFrame": 16,
+              "ankleSpeed": 0.780211,
+              "toeSpeed": 0.979384
+            },
+            {
+              "startFrame": 16,
+              "endFrame": 17,
+              "ankleSpeed": 0.796696,
+              "toeSpeed": 0.979588
+            },
+            {
+              "startFrame": 17,
+              "endFrame": 18,
+              "ankleSpeed": 0.828559,
+              "toeSpeed": 0.979156
+            },
+            {
+              "startFrame": 18,
+              "endFrame": 19,
+              "ankleSpeed": 0.877753,
+              "toeSpeed": 0.979624
+            },
+            {
+              "startFrame": 19,
+              "endFrame": 20,
+              "ankleSpeed": 0.941839,
+              "toeSpeed": 0.979102
+            },
+            {
+              "startFrame": 20,
+              "endFrame": 21,
+              "ankleSpeed": 0.100458,
+              "toeSpeed": 0.159627
+            }
+          ]
+        },
+        "right": {
+          "flatContactFrames": [
+            0,
+            1,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "flatContactFraction": 0.425,
+          "ankleYRange": [
+            0.103699,
+            0.345304
+          ],
+          "ankleZRange": [
+            -0.364757,
+            0.266897
+          ],
+          "toeYRange": [
+            0.015531,
+            0.187598
+          ],
+          "toeZRange": [
+            -0.370029,
+            0.439652
+          ],
+          "medianContactAnkleSpeed": 0.916664,
+          "medianContactToeSpeed": 0.979388,
+          "contactToeSpeedRange": [
+            0.159657,
+            0.979474
+          ],
+          "intervals": [
+            {
+              "startFrame": 0,
+              "endFrame": 1,
+              "ankleSpeed": -0.009594,
+              "toeSpeed": 0.159657
+            },
+            {
+              "startFrame": 25,
+              "endFrame": 26,
+              "ankleSpeed": 0.929056,
+              "toeSpeed": 0.979372
+            },
+            {
+              "startFrame": 26,
+              "endFrame": 27,
+              "ankleSpeed": 0.922534,
+              "toeSpeed": 0.979393
+            },
+            {
+              "startFrame": 27,
+              "endFrame": 28,
+              "ankleSpeed": 0.91693,
+              "toeSpeed": 0.979384
+            },
+            {
+              "startFrame": 28,
+              "endFrame": 29,
+              "ankleSpeed": 0.91243,
+              "toeSpeed": 0.979393
+            },
+            {
+              "startFrame": 29,
+              "endFrame": 30,
+              "ankleSpeed": 0.909109,
+              "toeSpeed": 0.979351
+            },
+            {
+              "startFrame": 30,
+              "endFrame": 31,
+              "ankleSpeed": 0.907255,
+              "toeSpeed": 0.979393
+            },
+            {
+              "startFrame": 31,
+              "endFrame": 32,
+              "ankleSpeed": 0.906949,
+              "toeSpeed": 0.979438
+            },
+            {
+              "startFrame": 32,
+              "endFrame": 33,
+              "ankleSpeed": 0.908182,
+              "toeSpeed": 0.979351
+            },
+            {
+              "startFrame": 33,
+              "endFrame": 34,
+              "ankleSpeed": 0.911353,
+              "toeSpeed": 0.979393
+            },
+            {
+              "startFrame": 34,
+              "endFrame": 35,
+              "ankleSpeed": 0.916399,
+              "toeSpeed": 0.979408
+            },
+            {
+              "startFrame": 35,
+              "endFrame": 36,
+              "ankleSpeed": 0.923395,
+              "toeSpeed": 0.979399
+            },
+            {
+              "startFrame": 36,
+              "endFrame": 37,
+              "ankleSpeed": 0.932335,
+              "toeSpeed": 0.979318
+            },
+            {
+              "startFrame": 37,
+              "endFrame": 38,
+              "ankleSpeed": 0.943522,
+              "toeSpeed": 0.979474
+            },
+            {
+              "startFrame": 38,
+              "endFrame": 39,
+              "ankleSpeed": 0.956296,
+              "toeSpeed": 0.979243
+            },
+            {
+              "startFrame": 39,
+              "endFrame": 40,
+              "ankleSpeed": 0.971212,
+              "toeSpeed": 0.979255
+            }
+          ]
+        }
+      }
+    },
+    "Jog_Fwd_Loop": {
+      "duration": 0.933333,
+      "sides": {
+        "left": {
+          "flatContactFrames": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "flatContactFraction": 0.142857,
+          "ankleYRange": [
+            0.136981,
+            0.525264
+          ],
+          "ankleZRange": [
+            -0.693603,
+            0.474912
+          ],
+          "toeYRange": [
+            0.015135,
+            0.392818
+          ],
+          "toeZRange": [
+            -0.805368,
+            0.646633
+          ],
+          "medianContactAnkleSpeed": 5.116673,
+          "medianContactToeSpeed": 5.897694,
+          "contactToeSpeedRange": [
+            5.896425,
+            5.898888
+          ],
+          "intervals": [
+            {
+              "startFrame": 2,
+              "endFrame": 3,
+              "ankleSpeed": 5.077637,
+              "toeSpeed": 5.896425
+            },
+            {
+              "startFrame": 3,
+              "endFrame": 4,
+              "ankleSpeed": 5.116673,
+              "toeSpeed": 5.898888
+            },
+            {
+              "startFrame": 4,
+              "endFrame": 5,
+              "ankleSpeed": 5.549947,
+              "toeSpeed": 5.897694
+            }
+          ]
+        },
+        "right": {
+          "flatContactFrames": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "flatContactFraction": 0.142857,
+          "ankleYRange": [
+            0.130232,
+            0.525264
+          ],
+          "ankleZRange": [
+            -0.693603,
+            0.472384
+          ],
+          "toeYRange": [
+            0.015132,
+            0.392819
+          ],
+          "toeZRange": [
+            -0.805368,
+            0.644156
+          ],
+          "medianContactAnkleSpeed": 5.116679,
+          "medianContactToeSpeed": 5.8989,
+          "contactToeSpeedRange": [
+            5.897694,
+            5.899278
+          ],
+          "intervals": [
+            {
+              "startFrame": 16,
+              "endFrame": 17,
+              "ankleSpeed": 5.078159,
+              "toeSpeed": 5.899278
+            },
+            {
+              "startFrame": 17,
+              "endFrame": 18,
+              "ankleSpeed": 5.116679,
+              "toeSpeed": 5.8989
+            },
+            {
+              "startFrame": 18,
+              "endFrame": 19,
+              "ankleSpeed": 5.549946,
+              "toeSpeed": 5.897694
+            }
+          ]
+        }
+      }
+    },
+    "Sprint_Loop": {
+      "duration": 0.666667,
+      "sides": {
+        "left": {
+          "flatContactFrames": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "flatContactFraction": 0.2,
+          "ankleYRange": [
+            0.10999,
+            0.53026
+          ],
+          "ankleZRange": [
+            -0.635458,
+            0.462833
+          ],
+          "toeYRange": [
+            0.015158,
+            0.397814
+          ],
+          "toeZRange": [
+            -0.715049,
+            0.63314
+          ],
+          "medianContactAnkleSpeed": 8.051906,
+          "medianContactToeSpeed": 8.905047,
+          "contactToeSpeedRange": [
+            8.904024,
+            8.905386
+          ],
+          "intervals": [
+            {
+              "startFrame": 1,
+              "endFrame": 2,
+              "ankleSpeed": 8.051906,
+              "toeSpeed": 8.905047
+            },
+            {
+              "startFrame": 2,
+              "endFrame": 3,
+              "ankleSpeed": 7.866005,
+              "toeSpeed": 8.905386
+            },
+            {
+              "startFrame": 3,
+              "endFrame": 4,
+              "ankleSpeed": 8.385554,
+              "toeSpeed": 8.904024
+            }
+          ]
+        },
+        "right": {
+          "flatContactFrames": [
+            12,
+            13,
+            14
+          ],
+          "flatContactFraction": 0.15,
+          "ankleYRange": [
+            0.121305,
+            0.408959
+          ],
+          "ankleZRange": [
+            -0.635463,
+            0.462832
+          ],
+          "toeYRange": [
+            0.015154,
+            0.266272
+          ],
+          "toeZRange": [
+            -0.717933,
+            0.633139
+          ],
+          "medianContactAnkleSpeed": 8.126132,
+          "medianContactToeSpeed": 8.905055,
+          "contactToeSpeedRange": [
+            8.905011,
+            8.905098
+          ],
+          "intervals": [
+            {
+              "startFrame": 12,
+              "endFrame": 13,
+              "ankleSpeed": 7.86572,
+              "toeSpeed": 8.905098
+            },
+            {
+              "startFrame": 13,
+              "endFrame": 14,
+              "ankleSpeed": 8.386543,
+              "toeSpeed": 8.905011
+            }
+          ]
+        }
+      }
+    }
+  }
+}

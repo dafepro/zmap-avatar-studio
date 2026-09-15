@@ -77,7 +77,10 @@ test("authored shoulder blends stay continuous during wave and running poses", a
                 .applyMatrix4(mesh.matrixWorld),
           ),
         );
-        for (const gesture of ["wave", "run"] as const) {
+        // Waving does not move a calf; articulated footwear is qualified through locomotion.
+        for (const gesture of asset.slot === "shoes"
+          ? (["run"] as const)
+          : (["wave", "run"] as const)) {
           if (gesture === "wave")
             avatar.update(1, { gesture, reducedMotion: true });
           else

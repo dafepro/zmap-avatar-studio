@@ -262,6 +262,68 @@ function setup() {
   };
 }
 
+test("gravity-oriented lantern preserves its full grip frame through sprinting and world rotations", async () => {
+  const context = setup();
+  let time = 0,
+    poses = 0;
+  try {
+    for (const weight of [-1, 0, 1]) {
+      const recipe = defaultRecipe(catalog);
+      recipe.body = { weight };
+      await context.avatar.setAppearance(recipe);
+      await context.controller.setLoadout({
+        ...emptyWieldLoadout(equipment),
+        left: "wield-firefly-lantern",
+        right: "wield-firefly-lantern",
+      });
+      for (const yaw of [0, Math.PI / 2, Math.PI]) {
+        // A sloping carrier frame exposes local-up assumptions. The complete
+        // wrist + item frame must compensate, without detaching the grip.
+        context.avatar.object.rotation.set(0.1, yaw, -0.08);
+        for (const reducedMotion of [false, true])
+          for (let frame = 0; frame < 30; frame++) {
+            time += 1 / 30;
+            context.avatar.update(time, {
+              velocity: { x: 0, z: 5.4 },
+              reducedMotion,
+            });
+            for (const hand of HANDS) {
+              const held = assertGripFrame(
+                context.avatar,
+                context.controller,
+                hand,
+                `gravity/${weight}/${yaw}/${reducedMotion}/${frame}`,
+              );
+              const model = held.object.getObjectByName(held.item.node)!;
+              const up = new THREE.Vector3(0, 1, 0).transformDirection(
+                model.matrixWorld,
+              );
+              assert.ok(
+                up.distanceTo(new THREE.Vector3(0, 1, 0)) < 1e-6,
+                `${hand}: model +Y remains aligned with world gravity`,
+              );
+              const core = held
+                .anchor("core")
+                .getWorldPosition(new THREE.Vector3());
+              const grip = held
+                .anchor("grip")
+                .getWorldPosition(new THREE.Vector3());
+              assert.ok(
+                core.y < grip.y - 0.19,
+                "upright lantern hangs below its handle",
+              );
+              poses++;
+            }
+          }
+      }
+    }
+    assert.equal(poses, 1080);
+    assert.deepEqual(context.errors, []);
+  } finally {
+    context.dispose();
+  }
+});
+
 test("each exported item aligns its complete grip basis on both hands, three weights and four motions", async () => {
   const context = setup();
   let cases = 0,
@@ -335,7 +397,7 @@ test("each exported item aligns its complete grip basis on both hands, three wei
               worstSeam = Math.max(worstSeam, gap);
               assert.ok(
                 gap < 0.012,
-                `grip wrist must overlap its forearm: ${gap.toFixed(5)} m`,
+                `${item.id}/${hand}/${weight}/${gesture}/${time}: grip wrist must overlap its forearm: ${gap.toFixed(5)} m`,
               );
               poses++;
             }

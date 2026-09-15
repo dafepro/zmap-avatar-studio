@@ -71,6 +71,8 @@ Reduced motion removes bubble/confetti/ribbon movement and rotor animation; the 
 
 Author one GLB with a unique approved root containing all its meshes. Add a named `grip` transform and any behavior anchors. The manifest maps logical names to exact unique node names. `gripAnchor` is independent of the root: a carry handle can have a different frame from a wand. Each item declares an authored hold pose for both hands. No per-hand item export or negative mesh scale is used.
 
+A one-hand hanging item may declare `orientation: "gravity"`. Author its approved model root with +Y pointing upright. The controller compensates the complete carrying arm in world space while preserving the authored elbow/wrist relationship and full item-to-palm grip frame. Pelvis and chest retain the locomotion clip's motion; the item never detaches from its gripping hand. Both hands, body weights, world yaw/tilt and reduced motion use the same contract. Gravity orientation is rejected for two-handed tools, whose explicit shared hold and two-arm IK define their orientation.
+
 Register trusted code with `requiredAnchors` and `create(context)`. A behavior may implement `input`, `pose`, `update` and `dispose`. Each `create` call owns one instance. `pose` returns bounded additive local Euler offsets for arm, forearm and wrist. Use auxiliary nodes for a rotor, lid or moving decoration. The root-to-grip chain is owned by the fitting system and must remain unchanged. Geometry added by behavior belongs in `context.effects`, within the fixed effect allowance.
 
 `context.effects` is wrist-local. To leave particles or a stroke in the world while the hand moves, retain world positions and convert with `effects.worldToLocal()` on each update. The built-ins demonstrate this. Time arrives from `avatar.update` in seconds: frame delta is capped at 100 ms and discontinuous/non-finite/backward time or gaps beyond 250 ms cancel active input. Do not create unbounded timers, particles, listeners or geometry in a behavior.
@@ -81,7 +83,7 @@ If an extension violates its grip, pose, geometry or event contract, that hand r
 
 ## Authoring and fit contract
 
-The current content targets `athlete-reference-v2`, appearance revision **2.5.0**, with explicit relaxed hand regions and rigid wrist weights. It accepts saved appearance revisions 2.2.0–2.4.0. Equipment catalog `zoomap-playful-hands` is revision **1.0.0**. Unsupported imports must supply and qualify compatible anatomy; automatic arbitrary-hand reconstruction is not claimed.
+The current content targets `athlete-reference-v2`, appearance revision **2.5.0**, with explicit relaxed hand regions and rigid wrist weights. It accepts saved appearance revisions 2.2.0–2.4.0. Equipment catalog `zoomap-playful-hands` is revision **1.0.1**. Unsupported imports must supply and qualify compatible anatomy; automatic arbitrary-hand reconstruction is not claimed.
 
 All source coordinates are metres, Y-up, +Z front. Blender conversion is `(x, y, z) -> (x, -z, y)`. Two reusable gripping hands share a 20 mm handle radius and a clear 110 mm grip zone. Their wrist-local grip center is `[side * 0.024, -0.073, 0.046]`, where left is −1. Frame Euler XYZ is `[π/2, 0, -side * π/2]`. Fitting uses the full rigid matrix `wristWorld × gripFrame × inverse(authoredItemGrip)`, checking all three axes and positive determinant. Aligning only the center or handle axis is insufficient.
 

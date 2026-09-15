@@ -1,4 +1,11 @@
 import * as THREE from "three";
+import {
+  restingLocomotion,
+  movingLocomotion,
+  mixLocomotion,
+  locomotionPace,
+} from "./locomotion.js";
+import { shoeSupportHulls } from "./foot-support.js";
 import { applyExpressionProjection } from "./expression.js";
 import { applyBodyShape } from "./body-shape.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
@@ -59,6 +66,7 @@ function poseLeg(
   foot: THREE.Bone,
   targetWorld: THREE.Vector3,
   toeLift: number,
+  reference?: { pole: THREE.Vector3; rotation: THREE.Quaternion },
 ): number {
   hips.updateWorldMatrix(true, false);
   const target = hips.worldToLocal(targetWorld.clone());
@@ -76,13 +84,12 @@ function poseLeg(
   direction.normalize();
   const along = (a * a - b * b + reach * reach) / (2 * reach),
     height = Math.sqrt(Math.max(0, a * a - along * along));
-  const pole = new THREE.Vector3(thigh.position.x < 0 ? -0.12 : 0.12, 0, 1)
-    .addScaledVector(
-      direction,
-      -new THREE.Vector3(thigh.position.x < 0 ? -0.12 : 0.12, 0, 1).dot(
-        direction,
-      ),
-    )
+  const preferredPole = reference
+    ? reference.pole.clone().sub(thigh.position)
+    : new THREE.Vector3(thigh.position.x < 0 ? -0.12 : 0.12, 0, 1);
+  const pole = preferredPole
+    .clone()
+    .addScaledVector(direction, -preferredPole.dot(direction))
     .normalize();
   const elbow = direction
     .clone()
@@ -105,7 +112,8 @@ function poseLeg(
       .clone()
       .invert()
       .multiply(
-        new THREE.Quaternion().setFromEuler(new THREE.Euler(-toeLift, 0, 0)),
+        reference?.rotation ??
+          new THREE.Quaternion().setFromEuler(new THREE.Euler(-toeLift, 0, 0)),
       ),
   );
   return THREE.MathUtils.radToDeg(
@@ -197,6 +205,7 @@ export type Assembly = {
   root: THREE.Group;
   sockets: Map<string, THREE.Bone>;
   effects: { object: THREE.Object3D; kind: string }[];
+  supportHulls?: Map<"L" | "R", readonly THREE.Vector3[]>;
 };
 export class VerifiedAssetLibrary {
   protected cache = new Map<string, Promise<THREE.Group>>();
@@ -655,7 +664,16 @@ export class AvatarLibrary extends VerifiedAssetLibrary {
           this.catalog.bodyShape,
           recipe.body?.weight ?? 0,
         );
-      return { root, sockets, effects };
+      const supportHulls = shoeSupportHulls(
+        root,
+        sockets,
+        new Set(
+          assets
+            .filter((asset) => asset.slot === "shoes")
+            .map((asset) => asset.id),
+        ),
+      );
+      return { root, sockets, effects, supportHulls };
     } catch (error) {
       dispose(root);
       throw error;
@@ -706,6 +724,8 @@ export type AvatarPoseFrame = {
   reducedMotion: boolean;
 };
 export interface AvatarHandLayer {
+  /** True only while an equipped two-hand carrier owns the chest frame. */
+  readonly controlsCarrierPose?: boolean;
   validate(view: AvatarAttachmentView): void;
   attach(view: AvatarAttachmentView): void;
   detach(): void;
@@ -720,6 +740,12 @@ export class AvatarInstance {
   private generation = 0;
   private closed = false;
   private phase = 0;
+  private locomotion = {
+    clip: "Idle_Loop",
+    phase: 0,
+    playbackRate: 1,
+    transition: 0,
+  };
   private gaitVelocity = new THREE.Vector2();
   private poseValues = { crouch: 0, lean: 0, stance: 0, tuck: 0, recoil: 0 };
   private feet: Record<"left" | "right", AnimatedFoot> = {
@@ -879,7 +905,16 @@ export class AvatarInstance {
           animationScalar(motion.velocity.x, -8, 8),
           animationScalar(motion.velocity.z, -8, 8),
         )
-      : new THREE.Vector2(0, requestedSpeed * 4);
+      : new THREE.Vector2(
+          0,
+          motion.speed === undefined
+            ? motion.gesture === "walk"
+              ? 2.2
+              : motion.gesture === "run"
+                ? 5.4
+                : 0
+            : requestedSpeed * 4,
+        );
     const interrupted =
       this.lastTime !== undefined &&
       (time - this.lastTime > 0.25 || time < this.lastTime);
@@ -907,12 +942,9 @@ export class AvatarInstance {
           ? value
           : THREE.MathUtils.lerp(this.poseValues[key], value, poseBlend);
     }
-    const gaitSpeed = Math.min(1, this.gaitVelocity.length() / 4),
-      frequency =
-        (1.25 + 1.15 * gaitSpeed) *
-        (1 +
-          (0.7 * Math.abs(this.gaitVelocity.x)) /
-            Math.max(0.001, this.gaitVelocity.length()));
+    const speed = this.gaitVelocity.length(),
+      pace = locomotionPace(speed),
+      frequency = pace.frequency;
     if (
       !this.refreshingPose &&
       !motion.reducedMotion &&
@@ -922,30 +954,78 @@ export class AvatarInstance {
         (this.phase +
           dt * frequency * Math.min(1, this.gaitVelocity.length() / 0.3)) %
         1;
-    const swing = Math.sin(this.phase * Math.PI * 2) * 0.55 * gaitSpeed;
-    this.assembly.root.position.y = -(
-      this.poseValues.crouch * 0.55 +
-      (motion.reducedMotion ? 0 : 0.12 * gaitSpeed) +
-      (motion.reducedMotion ? 0 : (0.018 * Math.abs(this.gaitVelocity.x)) / 4) +
-      this.poseValues.recoil * 0.035
+    const moving = motion.reducedMotion
+      ? 0
+      : THREE.MathUtils.smoothstep(speed, 0.025, 0.55);
+    const authored = mixLocomotion(
+      restingLocomotion(),
+      movingLocomotion(speed, this.phase),
+      moving,
     );
+    this.locomotion = {
+      clip: moving < 0.5 ? "Rest" : pace.clip,
+      phase: this.phase,
+      playbackRate: moving < 0.5 ? 0 : pace.playbackRate,
+      transition:
+        Math.max(
+          Math.min(moving, 1 - moving),
+          Math.min(pace.jogging, 1 - pace.jogging),
+          Math.min(pace.sprinting, 1 - pace.sprinting),
+        ) * 2,
+    };
+    const actionWeight = Math.max(
+      this.poseValues.crouch,
+      this.poseValues.stance,
+      this.poseValues.tuck,
+      this.poseValues.recoil,
+      Math.abs(this.poseValues.lean),
+    );
+    const referenceFeet =
+      (motion.grounded ?? true) &&
+      !motion.reducedMotion &&
+      actionWeight < 0.025 &&
+      moving > 0;
+    for (const [name, q] of authored.rotations)
+      sockets.get(name)?.quaternion.copy(q);
+    this.assembly.root.position
+      .copy(authored.root)
+      .multiplyScalar(1 - actionWeight);
+    this.assembly.root.position.y -=
+      this.poseValues.crouch * 0.55 + this.poseValues.recoil * 0.035;
     const rotate = (name: string, x: number, z = 0) => {
       const n = sockets.get(name);
       if (n) n.rotation.set(x, 0, z);
     };
-    this.poseFeet(motion, dt, frequency, interrupted);
-    rotate(
-      "chest",
-      this.poseValues.lean * 0.36 - this.poseValues.recoil * 0.12,
-    );
-    const forward =
-      this.gaitVelocity.y / Math.max(0.001, this.gaitVelocity.length());
-    const lateral =
-      this.gaitVelocity.x / Math.max(0.001, this.gaitVelocity.length());
-    rotate("arm_L", -swing * 1.35 * forward, -0.14 + swing * 0.4 * lateral);
-    rotate("arm_R", swing * 1.35 * forward, 0.14 + swing * 0.4 * lateral);
-    rotate("forearm_L", -0.1 - Math.max(0, swing * forward) * 0.7);
-    rotate("forearm_R", -0.1 - Math.max(0, -swing * forward) * 0.7);
+    if (referenceFeet)
+      this.poseReferenceFeet(
+        motion,
+        pace.strideScale,
+        interrupted,
+        authored.support,
+      );
+    else {
+      sockets.get("hips")?.quaternion.identity();
+      this.assembly.root.position.set(
+        0,
+        -(this.poseValues.crouch * 0.55 + this.poseValues.recoil * 0.035),
+        0,
+      );
+      this.poseFeet(motion, dt, frequency, interrupted);
+    }
+    // Equipment/actions own their carrier frame. Ordinary locomotion keeps the
+    // authored shoulder counter-rotation; hand layers still have final ownership.
+    if (actionWeight > 0.025 || this.handLayer?.controlsCarrierPose)
+      rotate(
+        "chest",
+        this.poseValues.lean * 0.36 - this.poseValues.recoil * 0.12,
+      );
+    if (moving === 0) {
+      rotate("arm_L", 0, -0.14);
+      rotate("arm_R", 0, 0.14);
+      rotate("forearm_L", -0.1);
+      rotate("forearm_R", -0.1);
+      rotate("head", 0);
+    }
     if (motion.gesture === "wave") {
       rotate("arm_R", -2.7, 0.55);
       rotate(
@@ -953,11 +1033,7 @@ export class AvatarInstance {
         motion.reducedMotion ? -0.2 : -0.2 + Math.sin(time * 7) * 0.16,
       );
     }
-    rotate(
-      "head",
-      -this.poseValues.lean * 0.12,
-      motion.reducedMotion ? 0 : Math.sin(time * 1.5) * 0.016,
-    );
+    if (actionWeight > 0.025) rotate("head", -this.poseValues.lean * 0.12);
     for (const e of effects) {
       e.object.rotation.y = motion.reducedMotion
         ? 0
@@ -973,6 +1049,140 @@ export class AvatarInstance {
     this.handLayer?.pose(frame, view);
     this.object.updateMatrixWorld(true);
     if (!this.refreshingPose) this.handLayer?.update(frame, view);
+  }
+  /** Stride-warp the authored ankle arcs, retaining their knee plane and shoe
+   * roll. IK corrects reach and brief flat-foot contacts, rather than inventing
+   * a second gait. Every target bone keeps its authored bind length/scale. */
+  private poseReferenceFeet(
+    motion: Motion,
+    stride: number,
+    interrupted: boolean,
+    support: number,
+  ) {
+    const { sockets, root } = this.assembly!,
+      hips = sockets.get("hips");
+    if (
+      !hips ||
+      !["leg_L", "shin_L", "foot_L", "leg_R", "shin_R", "foot_R"].every((id) =>
+        sockets.has(id),
+      )
+    )
+      return;
+    this.object.updateWorldMatrix(true, true);
+    const origin = this.object.getWorldPosition(new THREE.Vector3());
+    const reset =
+      interrupted ||
+      !this.previousGrounded ||
+      !!(this.previousOrigin && origin.distanceTo(this.previousOrigin) > 0.7);
+    this.previousOrigin = origin;
+    this.previousGrounded = true;
+    const objectRotation = this.object.getWorldQuaternion(
+      new THREE.Quaternion(),
+    );
+    const speed = this.gaitVelocity.length(),
+      moving = THREE.MathUtils.smoothstep(speed, 0.025, 0.55);
+    const heading =
+      speed > 0.01 ? Math.atan2(this.gaitVelocity.x, this.gaitVelocity.y) : 0;
+    const solePoints = [
+      new THREE.Vector3(0, -0.115, -0.085),
+      new THREE.Vector3(0, -0.115, 0.24),
+    ];
+    const entries = (["L", "R"] as const).map((suffix) => {
+      const thigh = sockets.get(`leg_${suffix}`)!,
+        shin = sockets.get(`shin_${suffix}`)!,
+        ankle = sockets.get(`foot_${suffix}`)!;
+      const target = this.object.worldToLocal(
+        ankle.getWorldPosition(new THREE.Vector3()),
+      );
+      const rotation = objectRotation
+        .clone()
+        .invert()
+        .multiply(ankle.getWorldQuaternion(new THREE.Quaternion()));
+      const pole = hips.worldToLocal(
+        shin.getWorldPosition(new THREE.Vector3()),
+      );
+      const hip = this.object.worldToLocal(
+        thigh.getWorldPosition(new THREE.Vector3()),
+      );
+      // Warp fore/aft stride around each hip, not around the avatar centre.
+      const along =
+        (target.z - root.position.z) * THREE.MathUtils.lerp(1, stride, moving);
+      target.x += along * Math.sin(heading) * moving;
+      target.z =
+        root.position.z +
+        along * THREE.MathUtils.lerp(1, Math.cos(heading), moving);
+      // The foot can point toward a side step while the upper body keeps aiming.
+      rotation.premultiply(
+        new THREE.Quaternion().setFromAxisAngle(
+          new THREE.Vector3(0, 1, 0),
+          THREE.MathUtils.clamp(heading, -0.55, 0.55) * moving,
+        ),
+      );
+      const sole = Math.min(
+        ...(this.assembly!.supportHulls?.get(suffix) ?? solePoints).map(
+          (p) => p.clone().applyQuaternion(rotation).y,
+        ),
+      );
+      return { suffix, thigh, shin, ankle, target, rotation, pole, hip, sole };
+    });
+    // Match the original heel/toe support height after changing rig proportions.
+    // Running flight is measured from the source, not erased by a floor snap.
+    const raise =
+      support - Math.min(...entries.map((e) => e.target.y + e.sole));
+    root.position.y += raise;
+    for (const e of entries) {
+      e.target.y += raise;
+      e.hip.y += raise;
+    }
+    // A brisk walk needs a longer step, not a uniformly accelerated arm cycle.
+    // Lower the pelvis just enough for that stride; never stretch a limb.
+    let lower = 0;
+    for (const e of entries) {
+      const length =
+        e.shin.position.length() + e.ankle.position.length() - 0.002;
+      const planar = Math.hypot(e.target.x - e.hip.x, e.target.z - e.hip.z);
+      lower = Math.max(
+        lower,
+        e.hip.y -
+          e.target.y -
+          Math.sqrt(Math.max(0.04, length * length - planar * planar)),
+      );
+    }
+    root.position.y -= Math.min(0.24, lower);
+    this.object.updateWorldMatrix(true, true);
+    for (const e of entries) {
+      const foot = this.feet[e.suffix === "L" ? "left" : "right"];
+      const up = new THREE.Vector3(0, 1, 0).applyQuaternion(e.rotation);
+      const contact = e.target.y + e.sole < 0.028 && up.y > 0.98 && speed > 0.1;
+      const targetWorld = this.object.localToWorld(e.target.clone());
+      if (
+        !reset &&
+        contact &&
+        foot.contact &&
+        foot.initialized &&
+        motion.velocity &&
+        targetWorld.distanceTo(foot.target) < 0.12
+      ) {
+        targetWorld.x = foot.target.x;
+        targetWorld.z = foot.target.z;
+      }
+      foot.target.copy(targetWorld);
+      foot.contact = contact;
+      foot.initialized = true;
+      const hipRotation = hips.getWorldQuaternion(new THREE.Quaternion());
+      foot.knee = poseLeg(hips, e.thigh, e.shin, e.ankle, targetWorld, 0, {
+        pole: e.pole,
+        rotation: hipRotation
+          .invert()
+          .multiply(objectRotation)
+          .multiply(e.rotation),
+      });
+      // Record evaluated FK, including any physical reach limit, for consumers.
+      this.object.updateWorldMatrix(true, true);
+      e.ankle.getWorldPosition(foot.target);
+      if (foot.target.distanceTo(targetWorld) > 0.002) foot.contact = false;
+      foot.phase = (this.phase + (e.suffix === "R" ? 0.5 : 0)) % 1;
+    }
   }
   private poseFeet(
     motion: Motion,
@@ -1141,6 +1351,7 @@ export class AvatarInstance {
     return {
       velocity: this.gaitVelocity.toArray(),
       pose: { ...this.poseValues },
+      locomotion: { ...this.locomotion },
       feet: Object.fromEntries(
         Object.entries(this.feet).map(([hand, foot]) => [
           hand,

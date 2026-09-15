@@ -1,0 +1,664 @@
+{
+  "source": "quaternius-ual1-locomotion.glb",
+  "coordinates": {
+    "up": "+Y",
+    "forward": "+Z",
+    "left": "+X",
+    "quaternionOrder": "x,y,z,w"
+  },
+  "notes": "Original source bind frames, not Zoomap target frames. Root local rotation -90deg X. Retarget via source and target world rest frames.",
+  "joints": [
+    {
+      "name": "root",
+      "node": 64,
+      "parent": "Armature",
+      "localPosition": [0, 0, 0],
+      "localQuaternion": [-0.707106769, 0, 0, 0.707106769],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0, 0, 0],
+      "worldQuaternion": [-0.707106769, 0, 0, 0.707106793]
+    },
+    {
+      "name": "pelvis",
+      "node": 63,
+      "parent": "root",
+      "localPosition": [0, 0.050100029, 0.916700006],
+      "localQuaternion": [0.790468514, 0, 0, 0.612502754],
+      "localScale": [1, 0.99999994, 0.99999994],
+      "worldPosition": [0, 0.916699976, -0.050099995],
+      "worldQuaternion": [0.125840852, 0, 0, 0.992050442]
+    },
+    {
+      "name": "spine_01",
+      "node": 52,
+      "parent": "pelvis",
+      "localPosition": [0, 0.138176337, -1.2e-8],
+      "localQuaternion": [-0.064702623, 0, 0, 0.997904599],
+      "localScale": [1, 0.99999994, 1],
+      "worldPosition": [0, 1.05050002, -0.015600008],
+      "worldQuaternion": [0.061388898, 0, 0, 0.998113923]
+    },
+    {
+      "name": "spine_02",
+      "node": 51,
+      "parent": "spine_01",
+      "localPosition": [0, 0.124034852, 0],
+      "localQuaternion": [-0.077279843, 0, 0, 0.997009456],
+      "localScale": [1, 0.99999994, 1],
+      "worldPosition": [0, 1.173599993, -0.000400005],
+      "worldQuaternion": [-0.015928778, 0, 0, 0.999873129]
+    },
+    {
+      "name": "spine_03",
+      "node": 50,
+      "parent": "spine_02",
+      "localPosition": [0, 0.141271874, 6e-9],
+      "localQuaternion": [-0.000268592, 0, 0, 1],
+      "localScale": [1, 0.99999994, 1],
+      "worldPosition": [0, 1.314800166, -0.004900005],
+      "worldQuaternion": [-0.016197334, 0, 0, 0.999868815]
+    },
+    {
+      "name": "neck_01",
+      "node": 1,
+      "parent": "spine_03",
+      "localPosition": [0, 0.172890782, -2e-9],
+      "localQuaternion": [0.110985912, 0, 0, 0.993821979],
+      "localScale": [1, 0.99999994, 0.99999994],
+      "worldPosition": [0, 1.487600205, -0.010500013],
+      "worldQuaternion": [0.094874086, 0, 0, 0.995489281]
+    },
+    {
+      "name": "Head",
+      "node": 0,
+      "parent": "neck_01",
+      "localPosition": [0, 0.08258678, -1e-9],
+      "localQuaternion": [-0.078674227, 0, 0, 0.99690038],
+      "localScale": [1, 0.99999994, 0.99999994],
+      "worldPosition": [0, 1.568700225, 0.005099989],
+      "worldQuaternion": [0.016260662, 0, 0, 0.999867787]
+    },
+    {
+      "name": "clavicle_l",
+      "node": 25,
+      "parent": "spine_03",
+      "localPosition": [0.0188, 0.140553579, 0.080895036],
+      "localQuaternion": [
+        -0.604020596, -0.345103025, -0.356717676, 0.623550773
+      ],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.0188, 1.457900197, 0.071399997],
+      "worldQuaternion": [-0.614041234, -0.350835646, -0.351081138, 0.613685408]
+    },
+    {
+      "name": "upperarm_l",
+      "node": 24,
+      "parent": "clavicle_l",
+      "localPosition": [-0.030072337, 0.218581751, -0.016968455],
+      "localQuaternion": [0.180269584, 0.68385005, -0.179836407, 0.683747709],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.191899977, 1.440800152, -0.065400031],
+      "worldQuaternion": [-0.006040553, 0.006069544, -0.707081, 0.707080711]
+    },
+    {
+      "name": "lowerarm_l",
+      "node": 23,
+      "parent": "upperarm_l",
+      "localPosition": [2.2e-8, 0.274440259, -1e-9],
+      "localQuaternion": [0.017182291, -0.000020353, 3.67e-7, 0.999852419],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.466299997, 1.440800114, -0.070100002],
+      "worldQuaternion": [0.006095218, -0.006095012, -0.707080523, 0.7070805]
+    },
+    {
+      "name": "hand_l",
+      "node": 22,
+      "parent": "lowerarm_l",
+      "localPosition": [1.3e-8, 0.272640556, -2e-9],
+      "localQuaternion": [-0.008619683, -4.17e-7, 2e-9, 0.999962866],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.738900047, 1.440800092, -0.065399972],
+      "worldQuaternion": [-1.14e-7, -2.71e-7, -0.707106792, 0.70710677]
+    },
+    {
+      "name": "index_01_l",
+      "node": 5,
+      "parent": "hand_l",
+      "localPosition": [0.001999832, 0.119899921, 0.030899998],
+      "localQuaternion": [-4.9e-8, 0.707109571, -4.9e-8, 0.707103968],
+      "localScale": [0.99999994, 0.999999762, 1],
+      "worldPosition": [0.858799966, 1.438800273, -0.034499944],
+      "worldQuaternion": [0.500001855, 0.500001827, -0.499998161, 0.499998178]
+    },
+    {
+      "name": "index_02_l",
+      "node": 4,
+      "parent": "index_01_l",
+      "localPosition": [-1e-9, 0.040700018, 1.1e-8],
+      "localQuaternion": [0, -1e-8, 0, 1],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.899499976, 1.43880026, -0.034499941],
+      "worldQuaternion": [0.50000185, 0.500001822, -0.499998166, 0.499998183]
+    },
+    {
+      "name": "index_03_l",
+      "node": 3,
+      "parent": "index_02_l",
+      "localPosition": [1e-9, 0.034800053, 1.1e-8],
+      "localQuaternion": [0, 0, 0, 1],
+      "localScale": [1, 0.99999994, 1],
+      "worldPosition": [0.934300021, 1.438800248, -0.03449994],
+      "worldQuaternion": [0.50000185, 0.500001822, -0.499998166, 0.499998183]
+    },
+    {
+      "name": "index_04_leaf_l",
+      "node": 2,
+      "parent": "index_03_l",
+      "localPosition": [5e-9, 0.030100105, 1.1e-8],
+      "localQuaternion": [0, 1, 0, 0.000003652],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.964400119, 1.438800237, -0.034499942],
+      "worldQuaternion": [0.499999992, 0.500000009, 0.500000024, -0.499999996]
+    },
+    {
+      "name": "middle_01_l",
+      "node": 9,
+      "parent": "hand_l",
+      "localPosition": [-0.000400226, 0.121599905, 0.0052],
+      "localQuaternion": [-0.01670246, 0.706912279, -0.01670257, 0.706906736],
+      "localScale": [0.99999994, 0.999999881, 1],
+      "worldPosition": [0.860499955, 1.441200317, -0.060199946],
+      "worldQuaternion": [0.488051986, 0.511672686, -0.511669128, 0.488048204]
+    },
+    {
+      "name": "middle_02_l",
+      "node": 8,
+      "parent": "middle_01_l",
+      "localPosition": [0, 0.042347249, 2e-8],
+      "localQuaternion": [-1.2e-8, -1e-8, 0.00151356, 0.999998868],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.902799945, 1.441200295, -0.062199942],
+      "worldQuaternion": [0.488825863, 0.510933405, -0.51092985, 0.488822098]
+    },
+    {
+      "name": "middle_03_l",
+      "node": 7,
+      "parent": "middle_02_l",
+      "localPosition": [0, 0.033933148, 1.61e-7],
+      "localQuaternion": [8e-9, 0, -0.00112966, 0.999999344],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.936699921, 1.441200134, -0.06369994],
+      "worldQuaternion": [0.488248374, 0.511485282, -0.511481731, 0.488244605]
+    },
+    {
+      "name": "middle_04_leaf_l",
+      "node": 6,
+      "parent": "middle_03_l",
+      "localPosition": [-6e-9, 0.034437183, 2.6e-8],
+      "localQuaternion": [9e-9, 1, 0, 0.000003652],
+      "localScale": [1, 0.999999702, 1],
+      "worldPosition": [0.971099912, 1.441200107, -0.065299937],
+      "worldQuaternion": [-0.511483519, -0.488246468, -0.488246502, 0.511483504]
+    },
+    {
+      "name": "pinky_01_l",
+      "node": 13,
+      "parent": "hand_l",
+      "localPosition": [0.001599717, 0.107699916, -0.040800001],
+      "localQuaternion": [-0.023706039, 0.706712067, -0.0237062, 0.706706524],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.846599974, 1.43920035, -0.106199956],
+      "worldQuaternion": [0.482958138, 0.516483392, -0.516479891, 0.482954335]
+    },
+    {
+      "name": "pinky_02_l",
+      "node": 12,
+      "parent": "pinky_01_l",
+      "localPosition": [3e-9, 0.040290572, -1e-9],
+      "localQuaternion": [6e-9, -1e-8, -0.000834272, 0.999999642],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.886799978, 1.43920035, -0.108899958],
+      "worldQuaternion": [0.48252708, 0.516886123, -0.516882634, 0.482523285]
+    },
+    {
+      "name": "pinky_03_l",
+      "node": 11,
+      "parent": "pinky_02_l",
+      "localPosition": [-4e-9, 0.027665334, 2.25e-7],
+      "localQuaternion": [-4e-9, 0, 0.000609523, 0.999999821],
+      "localScale": [0.99999994, 0.999999881, 0.99999994],
+      "worldPosition": [0.914399992, 1.439200124, -0.11079995],
+      "worldQuaternion": [0.482842042, 0.516591918, -0.516588427, 0.482838249]
+    },
+    {
+      "name": "pinky_04_leaf_l",
+      "node": 10,
+      "parent": "pinky_03_l",
+      "localPosition": [-4e-9, 0.028164202, 1.14e-7],
+      "localQuaternion": [2.4e-8, 1, 0, 0.000003652],
+      "localScale": [0.99999994, 0.99999994, 0.99999994],
+      "worldPosition": [0.94250003, 1.439200009, -0.112699949],
+      "worldQuaternion": [-0.516590202, -0.482840123, -0.482840143, 0.516590166]
+    },
+    {
+      "name": "ring_01_l",
+      "node": 17,
+      "parent": "hand_l",
+      "localPosition": [-0.000100191, 0.1190999, -0.017100004],
+      "localQuaternion": [-0.012588736, 0.706997514, -0.01258882, 0.706991971],
+      "localScale": [0.99999994, 0.999999762, 1],
+      "worldPosition": [0.857999954, 1.44090027, -0.082499955],
+      "worldQuaternion": [0.491021097, 0.508824114, -0.508820519, 0.491017318]
+    },
+    {
+      "name": "ring_02_l",
+      "node": 16,
+      "parent": "ring_01_l",
+      "localPosition": [-1e-9, 0.039324984, -1.02e-7],
+      "localQuaternion": [-1e-9, -1e-8, 0.00001219, 1],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.897300002, 1.440900372, -0.083899947],
+      "worldQuaternion": [0.491027294, 0.508818124, -0.508814538, 0.491023526]
+    },
+    {
+      "name": "ring_03_l",
+      "node": 15,
+      "parent": "ring_02_l",
+      "localPosition": [-6e-9, 0.030919554, -1.02e-7],
+      "localQuaternion": [8e-9, 0, -0.001067063, 0.999999404],
+      "localScale": [1, 0.99999994, 1],
+      "worldPosition": [0.928199977, 1.440900473, -0.084999942],
+      "worldQuaternion": [0.490484077, 0.509341788, -0.509338206, 0.490480305]
+    },
+    {
+      "name": "ring_04_leaf_l",
+      "node": 14,
+      "parent": "ring_03_l",
+      "localPosition": [1e-9, 0.031822596, -1.16e-7],
+      "localQuaternion": [2e-9, 1, 0, 0.000003652],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.95999993, 1.440900588, -0.086199939],
+      "worldQuaternion": [-0.509339998, -0.490482164, -0.490482216, 0.509339997]
+    },
+    {
+      "name": "thumb_01_l",
+      "node": 21,
+      "parent": "hand_l",
+      "localPosition": [0.022799829, 0.027299935, 0.033599995],
+      "localQuaternion": [0.247413024, 0.945794523, 0.203441158, 0.053584054],
+      "localScale": [1, 1.000000119, 1],
+      "worldPosition": [0.766199975, 1.418000281, -0.031799954],
+      "worldQuaternion": [0.843725082, 0.49383027, 0.105964902, 0.18174455]
+    },
+    {
+      "name": "thumb_02_l",
+      "node": 20,
+      "parent": "thumb_01_l",
+      "localPosition": [6e-9, 0.043029793, 4.3e-8],
+      "localQuaternion": [-0.000135714, -0.000074107, 0.000047935, 1],
+      "localScale": [1, 0.999999881, 0.99999994],
+      "worldPosition": [0.800399944, 1.398800332, -0.014100016],
+      "worldQuaternion": [0.84373193, 0.49376197, 0.105978106, 0.18189057]
+    },
+    {
+      "name": "thumb_03_l",
+      "node": 19,
+      "parent": "thumb_02_l",
+      "localPosition": [-1.23e-7, 0.049077947, -2.5e-8],
+      "localQuaternion": [0.000247885, 0.000080919, -0.000535335, 0.999999821],
+      "localScale": [0.999999881, 0.999999881, 0.99999994],
+      "worldPosition": [0.839399796, 1.376900184, 0.006099989],
+      "worldQuaternion": [0.843503965, 0.494254551, 0.105826593, 0.181698169]
+    },
+    {
+      "name": "thumb_04_leaf_l",
+      "node": 18,
+      "parent": "thumb_03_l",
+      "localPosition": [-2.08e-7, 0.040862311, -1.9e-8],
+      "localQuaternion": [2.4e-8, 0.506177902, 2.72e-7, 0.862429082],
+      "localScale": [1.000000119, 1, 1],
+      "worldPosition": [0.871899702, 1.358700082, 0.022900008],
+      "worldQuaternion": [0.67389541, 0.518230835, 0.518231055, -0.093478967]
+    },
+    {
+      "name": "clavicle_r",
+      "node": 49,
+      "parent": "spine_03",
+      "localPosition": [-0.0188, 0.140553579, 0.080895036],
+      "localQuaternion": [-0.604020596, 0.345103025, 0.356717676, 0.623550773],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.0188, 1.457900197, 0.071399997],
+      "worldQuaternion": [-0.614041234, 0.350835646, 0.351081138, 0.613685408]
+    },
+    {
+      "name": "upperarm_r",
+      "node": 48,
+      "parent": "clavicle_r",
+      "localPosition": [0.030072337, 0.218581751, -0.016968455],
+      "localQuaternion": [0.180269584, -0.68385005, 0.179836407, 0.683747709],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.191899977, 1.440800152, -0.065400031],
+      "worldQuaternion": [-0.006040553, -0.006069544, 0.707081, 0.707080711]
+    },
+    {
+      "name": "lowerarm_r",
+      "node": 47,
+      "parent": "upperarm_r",
+      "localPosition": [-1.48e-7, 0.274440229, -8e-9],
+      "localQuaternion": [0.017182305, 0.000020353, -3.69e-7, 0.999852419],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.466299967, 1.440799988, -0.070100008],
+      "worldQuaternion": [0.006095228, 0.006095022, 0.707080521, 0.707080502]
+    },
+    {
+      "name": "hand_r",
+      "node": 46,
+      "parent": "lowerarm_r",
+      "localPosition": [-2.2e-8, 0.272640467, 2e-9],
+      "localQuaternion": [-0.008619683, 5.36e-7, -2e-9, 0.999962866],
+      "localScale": [1, 0.99999994, 0.99999994],
+      "worldPosition": [-0.738899927, 1.440799957, -0.065399968],
+      "worldQuaternion": [-1.88e-7, 3.66e-7, 0.707106792, 0.707106771]
+    },
+    {
+      "name": "index_01_r",
+      "node": 29,
+      "parent": "hand_r",
+      "localPosition": [-0.001999828, 0.119899958, 0.0309],
+      "localQuaternion": [-4.9e-8, -0.70710963, 4.9e-8, 0.707103908],
+      "localScale": [1, 0.99999994, 1],
+      "worldPosition": [-0.858799875, 1.43880015, -0.034499936],
+      "worldQuaternion": [0.500001844, -0.500001802, 0.49999817, 0.499998204]
+    },
+    {
+      "name": "index_02_r",
+      "node": 28,
+      "parent": "index_01_r",
+      "localPosition": [-5e-9, 0.040700108, -1.08e-7],
+      "localQuaternion": [0, -4e-9, 0, 1],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.89949998, 1.438800256, -0.034499938],
+      "worldQuaternion": [0.500001846, -0.500001804, 0.499998169, 0.499998202]
+    },
+    {
+      "name": "index_03_r",
+      "node": 27,
+      "parent": "index_02_r",
+      "localPosition": [-5e-9, 0.034800023, -1.08e-7],
+      "localQuaternion": [0, 0, 0, 1],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.9343, 1.438800363, -0.034499939],
+      "worldQuaternion": [0.500001846, -0.500001804, 0.499998169, 0.499998202]
+    },
+    {
+      "name": "index_04_leaf_r",
+      "node": 26,
+      "parent": "index_03_r",
+      "localPosition": [-1e-9, 0.03009996, 1.2e-8],
+      "localQuaternion": [0, -1, 0, 0.000003652],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.964399957, 1.43880035, -0.034499937],
+      "worldQuaternion": [-0.499999975, 0.500000026, 0.500000022, 0.499999959]
+    },
+    {
+      "name": "middle_01_r",
+      "node": 33,
+      "parent": "hand_r",
+      "localPosition": [0.000400233, 0.121599935, 0.005200002],
+      "localQuaternion": [-0.01670246, -0.706912339, 0.016702566, 0.706906676],
+      "localScale": [0.99999994, 0.999999881, 1],
+      "worldPosition": [-0.860499858, 1.441200191, -0.060199937],
+      "worldQuaternion": [-0.488051977, 0.511672661, -0.511669137, -0.488048231]
+    },
+    {
+      "name": "middle_02_r",
+      "node": 32,
+      "parent": "middle_01_r",
+      "localPosition": [1e-9, 0.042347282, -9.7e-8],
+      "localQuaternion": [-1.1e-8, -3e-9, -0.001513561, 0.999998868],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.902799879, 1.441200287, -0.062199932],
+      "worldQuaternion": [-0.488825862, 0.510933385, -0.510929852, -0.488822118]
+    },
+    {
+      "name": "middle_03_r",
+      "node": 31,
+      "parent": "middle_02_r",
+      "localPosition": [2e-9, 0.033933181, 4.2e-8],
+      "localQuaternion": [8e-9, 0, 0.001129659, 0.999999344],
+      "localScale": [1, 0.99999994, 1],
+      "worldPosition": [-0.936699886, 1.441200244, -0.063699928],
+      "worldQuaternion": [-0.488248373, 0.511485261, -0.511481733, -0.488244626]
+    },
+    {
+      "name": "middle_04_leaf_r",
+      "node": 30,
+      "parent": "middle_03_r",
+      "localPosition": [4e-9, 0.034437217, 2.7e-8],
+      "localQuaternion": [9e-9, -1, 0, 0.000003652],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.971099907, 1.441200217, -0.065299928],
+      "worldQuaternion": [-0.51148352, 0.488246489, 0.488246501, 0.511483483]
+    },
+    {
+      "name": "pinky_01_r",
+      "node": 37,
+      "parent": "hand_r",
+      "localPosition": [-0.001599705, 0.107699946, -0.040800001],
+      "localQuaternion": [-0.023706039, -0.706712127, 0.023706198, 0.706706464],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.84659988, 1.439200218, -0.106199946],
+      "worldQuaternion": [-0.482958129, 0.516483366, -0.516479901, -0.48295436]
+    },
+    {
+      "name": "pinky_02_r",
+      "node": 36,
+      "parent": "pinky_01_r",
+      "localPosition": [1e-9, 0.040290538, -2e-9],
+      "localQuaternion": [6e-9, -3e-9, 0.000834264, 0.999999642],
+      "localScale": [0.99999994, 0.999999821, 1],
+      "worldPosition": [-0.886799847, 1.439200219, -0.10889994],
+      "worldQuaternion": [-0.482527082, 0.5168861, -0.516882635, -0.482523307]
+    },
+    {
+      "name": "pinky_03_r",
+      "node": 35,
+      "parent": "pinky_02_r",
+      "localPosition": [4e-9, 0.027665364, -1.2e-8],
+      "localQuaternion": [-4e-9, 0, -0.000609521, 0.999999821],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.914399885, 1.439200229, -0.110799932],
+      "worldQuaternion": [-0.482842043, 0.516591896, -0.516588428, -0.48283827]
+    },
+    {
+      "name": "pinky_04_leaf_r",
+      "node": 34,
+      "parent": "pinky_03_r",
+      "localPosition": [4e-9, 0.028164171, -1.23e-7],
+      "localQuaternion": [2.6e-8, -1, 0, 0.000003652],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.942499888, 1.439200351, -0.112699928],
+      "worldQuaternion": [-0.516590204, 0.482840143, 0.482840143, 0.516590145]
+    },
+    {
+      "name": "ring_01_r",
+      "node": 41,
+      "parent": "hand_r",
+      "localPosition": [0.000100201, 0.119099937, -0.017100003],
+      "localQuaternion": [-0.012588738, -0.706997514, 0.012588818, 0.706991971],
+      "localScale": [0.99999994, 0.999999762, 1],
+      "worldPosition": [-0.857999866, 1.440900142, -0.082499944],
+      "worldQuaternion": [-0.491021043, 0.508824049, -0.50882057, -0.491017386]
+    },
+    {
+      "name": "ring_02_r",
+      "node": 40,
+      "parent": "ring_01_r",
+      "localPosition": [-3e-9, 0.039325017, -2.19e-7],
+      "localQuaternion": [1e-9, -3e-9, -0.000012191, 1],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.897299944, 1.440900359, -0.08389994],
+      "worldQuaternion": [-0.491027249, 0.508818064, -0.508814583, -0.491023587]
+    },
+    {
+      "name": "ring_03_r",
+      "node": 39,
+      "parent": "ring_02_r",
+      "localPosition": [2e-9, 0.030919585, -1.01e-7],
+      "localQuaternion": [8e-9, 0, 0.001067063, 0.999999404],
+      "localScale": [1, 0.99999994, 1],
+      "worldPosition": [-0.928199949, 1.440900459, -0.084999938],
+      "worldQuaternion": [-0.490484032, 0.509341727, -0.509338251, -0.490480367]
+    },
+    {
+      "name": "ring_04_leaf_r",
+      "node": 38,
+      "parent": "ring_03_r",
+      "localPosition": [-1e-9, 0.031822629, 4e-9],
+      "localQuaternion": [4e-9, -1, 0, 0.000003652],
+      "localScale": [1, 0.999999702, 1],
+      "worldPosition": [-0.959999934, 1.440900454, -0.086199935],
+      "worldQuaternion": [-0.509340044, 0.490482225, 0.49048217, 0.509339938]
+    },
+    {
+      "name": "thumb_01_r",
+      "node": 45,
+      "parent": "hand_r",
+      "localPosition": [-0.022799823, 0.027299969, 0.033599995],
+      "localQuaternion": [0.247413054, -0.945794463, -0.203441098, 0.053584058],
+      "localScale": [1, 1.000000119, 1],
+      "worldPosition": [-0.766199887, 1.418000159, -0.031799945],
+      "worldQuaternion": [0.843725087, -0.493830255, -0.105964829, 0.181744627]
+    },
+    {
+      "name": "thumb_02_r",
+      "node": 44,
+      "parent": "thumb_01_r",
+      "localPosition": [-7e-9, 0.04302986, -1.7e-8],
+      "localQuaternion": [-0.000135669, 0.000074016, -0.000047864, 1],
+      "localScale": [1, 0.99999994, 0.99999994],
+      "worldPosition": [-0.800399886, 1.398800197, -0.014099927],
+      "worldQuaternion": [0.843731898, -0.493762036, -0.105978076, 0.181890572]
+    },
+    {
+      "name": "thumb_03_r",
+      "node": 43,
+      "parent": "thumb_02_r",
+      "localPosition": [-5.6e-8, 0.049077883, 6e-9],
+      "localQuaternion": [0.000247851, -0.000080999, 0.000535317, 0.999999881],
+      "localScale": [0.999999881, 0.99999994, 1],
+      "worldPosition": [-0.839399792, 1.376900234, 0.006100019],
+      "worldQuaternion": [0.843503927, -0.494254612, -0.10582665, 0.181698157]
+    },
+    {
+      "name": "thumb_04_leaf_r",
+      "node": 42,
+      "parent": "thumb_03_r",
+      "localPosition": [-6.4e-8, 0.0408623, 1.5e-8],
+      "localQuaternion": [1.9e-8, -0.506177783, -2.74e-7, 0.862429142],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.871899838, 1.358700372, 0.022900003],
+      "worldQuaternion": [0.67389542, -0.518230916, -0.518231002, -0.093478931]
+    },
+    {
+      "name": "thigh_l",
+      "node": 57,
+      "parent": "pelvis",
+      "localPosition": [0.089000002, 0.027770841, 0.046023797],
+      "localQuaternion": [0.99248445, 0, 0, 0.122370623],
+      "localScale": [1, 1, 0.999999821],
+      "worldPosition": [0.089000002, 0.932099999, 0.001399995],
+      "worldQuaternion": [0.999993885, 0, 0, -0.003497253]
+    },
+    {
+      "name": "calf_l",
+      "node": 56,
+      "parent": "thigh_l",
+      "localPosition": [7e-9, 0.400309771, 0],
+      "localQuaternion": [0.036585908, -0.000131173, -0.000004802, 0.999330521],
+      "localScale": [0.99999994, 0.999999881, 0.999999881],
+      "worldPosition": [0.089000009, 0.531800046, -0.001399957],
+      "worldQuaternion": [0.999196441, 0.000005261, -0.000131156, -0.040080597]
+    },
+    {
+      "name": "foot_l",
+      "node": 55,
+      "parent": "calf_l",
+      "localPosition": [-7e-9, 0.429479897, 2e-9],
+      "localQuaternion": [-0.529071748, -0.000328093, 0.000343453, 0.848577023],
+      "localScale": [1, 1, 0.99999994],
+      "worldPosition": [0.089000002, 0.103700109, -0.035799904],
+      "worldQuaternion": [0.869100543, -0.000256172, -0.000450108, 0.494635196]
+    },
+    {
+      "name": "ball_l",
+      "node": 54,
+      "parent": "foot_l",
+      "localPosition": [4e-9, 0.173301086, -9e-9],
+      "localQuaternion": [0.000137128, -0.964306772, 0.264787108, 0.000499434],
+      "localScale": [1, 1.000000358, 0.999999821],
+      "worldPosition": [0.089000006, 0.01520013, 0.113200111],
+      "worldQuaternion": [-1.4e-8, 0.707106867, 0.707106695, -1.5e-8]
+    },
+    {
+      "name": "ball_leaf_l",
+      "node": 53,
+      "parent": "ball_l",
+      "localPosition": [7e-9, 0.078900032, 0],
+      "localQuaternion": [-1.5e-8, -2e-8, 0, 1],
+      "localScale": [1, 1, 1],
+      "worldPosition": [0.088999999, 0.015200149, 0.192100145],
+      "worldQuaternion": [0, 0.707106857, 0.707106706, 0]
+    },
+    {
+      "name": "thigh_r",
+      "node": 62,
+      "parent": "pelvis",
+      "localPosition": [-0.089000002, 0.027770841, 0.046023797],
+      "localQuaternion": [0.99248445, 0, 0, 0.122370623],
+      "localScale": [1, 1, 0.999999821],
+      "worldPosition": [-0.089000002, 0.932099999, 0.001399995],
+      "worldQuaternion": [0.999993885, 0, 0, -0.003497253]
+    },
+    {
+      "name": "calf_r",
+      "node": 61,
+      "parent": "thigh_r",
+      "localPosition": [-7e-9, 0.400309771, 0],
+      "localQuaternion": [0.036585908, -0.000131173, -0.000004802, 0.999330521],
+      "localScale": [0.99999994, 0.999999881, 0.999999881],
+      "worldPosition": [-0.089000009, 0.531800046, -0.001399957],
+      "worldQuaternion": [0.999196441, 0.000005261, -0.000131156, -0.040080597]
+    },
+    {
+      "name": "foot_r",
+      "node": 60,
+      "parent": "calf_r",
+      "localPosition": [8e-9, 0.429479837, 1e-9],
+      "localQuaternion": [-0.529071748, -0.000328093, 0.000343453, 0.848577023],
+      "localScale": [1, 1, 0.99999994],
+      "worldPosition": [-0.089000001, 0.103700168, -0.035799899],
+      "worldQuaternion": [0.869100543, -0.000256172, -0.000450108, 0.494635196]
+    },
+    {
+      "name": "ball_r",
+      "node": 59,
+      "parent": "foot_r",
+      "localPosition": [-4e-9, 0.173301086, -8e-9],
+      "localQuaternion": [0.000137128, -0.964306772, 0.264787108, 0.000499434],
+      "localScale": [1, 1.000000358, 0.999999821],
+      "worldPosition": [-0.089000005, 0.015200189, 0.113200116],
+      "worldQuaternion": [-1.4e-8, 0.707106867, 0.707106695, -1.5e-8]
+    },
+    {
+      "name": "ball_leaf_r",
+      "node": 58,
+      "parent": "ball_r",
+      "localPosition": [-8e-9, 0.078900032, 0],
+      "localQuaternion": [-1.5e-8, -2e-8, 0, 1],
+      "localScale": [1, 1, 1],
+      "worldPosition": [-0.088999997, 0.015200208, 0.192100151],
+      "worldQuaternion": [0, 0.707106857, 0.707106706, 0]
+    }
+  ]
+}

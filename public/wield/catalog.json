@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "zoomap-playful-hands",
-  "revision": "1.0.0",
+  "revision": "1.0.1",
   "rig": "athlete-reference-v2",
   "grips": {
     "left": {
@@ -199,7 +199,8 @@
             -0.1597169621
           ]
         }
-      }
+      },
+      "orientation": "gravity"
     },
     {
       "id": "wield-doodle-rocket",

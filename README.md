@@ -20,6 +20,8 @@ Use the **Build** slider for lean through heavier tissue volume at fixed height.
 
 **Try accessories** equips a mustache, glasses and cap together. One original hair mesh fits accessory-owned volumes, with no per-hat hairstyle variants. Removing equipment restores the original. New assets still need correct pivots and a declared fitting contract; see [accessory fitting](docs/accessory-fitting.md).
 
+Walking, jogging and sprinting use retargeted Quaternius CC0 animation clips, with actual shoe support, articulated socks and occupied-hand pose ownership. Pass avatar-facing `velocity: {x, z}` in metres/second to match physical movement; preview `walk` and `run` gestures use 2.2 and 5.4 m/s. In Action Yard, hold Shift or use the Sprint toggle. The dev-only [motion comparison](http://localhost:5173/locomotion-review.html) shows source and target together. See [motion and retargeting](docs/motion.md) and [third-party attribution](THIRD_PARTY_NOTICES.md).
+
 **16-view drawing** captures one equipped look and pose every 22.5° into an exportable transparent atlas. It is a fixed-pose cache, not animation. Export look saves appearance JSON; Portrait saves rendered PNG. Saved looks remain in this browser. Catalog 2.5.0 explicitly accepts saved 2.2.0, 2.3.0 and 2.4.0 recipes with their selections intact; undeclared revisions fail validation.
 
 ## Consume the runtime

@@ -22,6 +22,7 @@
     "lib",
     "public",
     "README.md",
+    "THIRD_PARTY_NOTICES.md",
     "docs/contracts.md",
     "docs/directional-projection.md",
     "docs/illustrated-rendering.md",
@@ -33,7 +34,8 @@
     "docs/novelty-workflow.md",
     "docs/wielding.md",
     "docs/field-tools.md",
-    "docs/motion.md"
+    "docs/motion.md",
+    "docs/articulated-footwear.md"
   ],
   "scripts": {
     "dev": "vite --host 0.0.0.0",

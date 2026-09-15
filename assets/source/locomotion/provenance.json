@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "creator": "Quaternius / Tom\u00e1s Laulh\u00e9",
+  "additionalAnimationCredit": "Gonzalo Furnier, credited by the creator on the pack page",
+  "license": "CC0-1.0",
+  "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "retrieved": "2026-09-15",
+  "canonicalURL": "https://quaternius.com/packs/universalanimationlibrary.html",
+  "downloadURL": "https://quaternius.itch.io/universal-animation-library",
+  "downloadSelection": "Free Standard archive; no payment or login",
+  "archiveVersion": "UAL1 Standard v3, uploaded 2026-06-16",
+  "archive": {
+    "name": "Universal Animation Library[Standard].zip",
+    "bytes": 15904933,
+    "sha256": "cc73fc4e495b82958207316596317a3f40b9fa38065bde1027937452da537724"
+  },
+  "source": {
+    "archivePath": "Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard.glb",
+    "bytes": 7618436,
+    "sha256": "69591853d817488edaa8fd9bf8fc1d821eaeaf789f8627b3cd23b41c4ed67997"
+  },
+  "rootMotionCalibrationSource": {
+    "archivePath": "Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard_RM.glb",
+    "bytes": 7620504,
+    "sha256": "be684571ed655a1b892c2c07e6e2aeca053b606c442d34004adaf1d944090d01"
+  },
+  "subset": {
+    "file": "quaternius-ual1-locomotion.glb",
+    "bytes": 1414256,
+    "sha256": "9bca71b978afd5bb8b142f7a36ff2b8c4932a3c723dbd6cade69330004ea0f75",
+    "clips": [
+      "A_TPose",
+      "Idle_Loop",
+      "Walk_Loop",
+      "Jog_Fwd_Loop",
+      "Sprint_Loop"
+    ],
+    "modifications": [
+      "Keep selected source clips, original rig, mannequin, materials and inverse binds",
+      "Remove unused animation accessors and compact unchanged buffer views",
+      "No keyframe, skeleton, axis, timing or mesh changes"
+    ],
+    "runtime": "This source review mannequin is not a shipping player model; runtime consumes the separately retargeted motion data"
+  },
+  "clipMeasurements": {
+    "Walk_Loop": {
+      "duration": 1.3333333333333333,
+      "keys": 41,
+      "sourceRootDistance": 1.3
+    },
+    "Jog_Fwd_Loop": {
+      "duration": 0.9333333333333333,
+      "keys": 29,
+      "sourceRootDistance": 5
+    },
+    "Sprint_Loop": {
+      "duration": 0.6666666666666666,
+      "keys": 21,
+      "sourceRootDistance": 5.5
+    },
+    "Idle_Loop": {
+      "duration": 2.5,
+      "keys": 76,
+      "sourceRootDistance": 0
+    }
+  },
+  "additionalInspectedSource": {
+    "canonicalURL": "https://quaternius.com/packs/universalanimationlibrary2.html",
+    "downloadURL": "https://quaternius.itch.io/universal-animation-library-2",
+    "archive": {
+      "name": "Universal Animation Library 2[Standard].zip",
+      "bytes": 18735003,
+      "sha256": "4008ea208a604773a2b2177d965f0f5d3195498b5bf838c3f5785d68e95f2a68"
+    },
+    "source": {
+      "archivePath": "Universal Animation Library 2[Standard]/Unreal-Godot/UAL2_Standard.glb",
+      "bytes": 8091444,
+      "sha256": "8cee20ab1bc55130092447e810e26df22dd2803eccc54f52137a7d54d7ab88a8"
+    },
+    "outcome": "43 clips; no ordinary eight-direction walk, strafe or backward clips in the free Standard archive; not included"
+  }
+}

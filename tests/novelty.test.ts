@@ -124,7 +124,8 @@ test("Pocket Galaxy uses bounded orbit motion, freezes for reduced motion, and l
       lowest > 0.15 && highest < 0.5 && outer < 1,
       "cosmetic orbit stays above the floor in its bounded ankle zone",
     );
-    let maximumLegReach = 0;
+    let maximumLegReach = 0,
+      time = 30;
     for (const shoes of catalog.assets.filter(
       (asset) => asset.slot === "shoes",
     ))
@@ -134,9 +135,19 @@ test("Pocket Galaxy uses bounded orbit motion, freezes for reduced motion, and l
           parts: { ...recipe.parts, shoes: shoes.id },
           body: { weight },
         });
-        for (const gesture of ["idle", "walk", "run", "wave"] as const)
-          for (const time of [0, 0.2, 0.45, 0.7, 1.05]) {
-            avatar.update(time, { gesture, reducedMotion: false });
+        // Continuous full-speed cycles include both strafes and reverse travel.
+        // Gesture-only "run" is a legacy preview and does not reach 5.4 m/s.
+        for (const velocity of [
+          { x: 0, z: 0 },
+          { x: 0, z: 2.2 },
+          { x: 0, z: 5.4 },
+          { x: 5.4, z: 0 },
+          { x: -5.4, z: 0 },
+          { x: 0, z: -5.4 },
+        ])
+          for (let frame = 0; frame < 36; frame++) {
+            time += 1 / 24;
+            avatar.update(time, { velocity, reducedMotion: false });
             for (const point of points(false))
               if (point.y >= lowest - 0.015 && point.y <= highest + 0.015)
                 maximumLegReach = Math.max(

@@ -1,0 +1,15 @@
+# Articulated footwear
+
+The authored sprint exposed a source-model flaw: crew socks were children of the ankle socket, so heel roll swung the whole sock away from the calf. The trailing bare calf then looked like a detached foot. This was a footwear rigging issue, independent of the selected animation.
+
+All three reference shoes now use the existing shared-skin contract. Outsoles, toe boxes, overlays, tongues and laces receive rigid foot weights. Crew socks, fine ribs and the high shoe's ankle collar blend between foot and shin using the same rest-space transition as the lower-body anatomy, at world Y 0.105–0.19 m. Their upper cuffs follow the calf. Body-weight shaping remains the common tissue field. There are no per-gait or per-weight footwear variants.
+
+The geometry and its reference silhouette are unchanged. The three exports retain 1,360 / 1,368 / 1,712 triangles and four material primitives apiece. Their sizes are 104,512 / 105,272 / 143,840 bytes: 113,020 additional bytes across the complete three-shoe collection. The full catalog gate increases from 2.1 to 2.2 MB; the appearance limits of 14,000 source triangles and 1.5 MB are unchanged. Joint indices and exactly representable rigid weights already use UINT8. Splitting fabric into additional material primitives saved less than 10 KB while adding draw calls, so the existing four-primitive layout is retained. No lossy geometry or skin-weight quantization was added.
+
+## Rebuild and inspect
+
+`assets/source/reference_kit.py` owns the geometry and weighting fix. The narrow `assets/source/rebuild_footwear.py` entry point loads just the shared Blender functions and regenerates these three assets, their catalog records, and `assets/source/articulated-footwear.blend`. Run it through interactive Blender MCP with `__file__` set to its absolute path. It uses a dedicated `Zoomap · articulated footwear` scene and preserves all unrelated Blender work.
+
+`tests/footwear.test.ts` evaluates actual loaded GLB vertices at five ankle angles, three body weights and all three styles. Upper-cuff vertices must remain on their shin's complete transform while outsole vertices remain on their foot's complete transform; lower fabric must contain the shared ankle blend. The test also rejects influences from the opposite leg or unrelated upper-body bones. The broader skin-deformation test exercises footwear through running; waving alone should not deform a calf.
+
+For visual qualification, `/locomotion-review.html` on the root development server compares the actual modular avatar with the original Quaternius mannequin. The front/side filmstrips in `../../docs/evidence/locomotion/` cover four paces and all three body weights. `scripts/capture-locomotion-video.mjs` in the root repository records actual browser-frame playback of turns, gait transitions, stopping, directional adaptations and two-hand equipment. The source model is displayed at matched moving-clip phase and reflected in X to match the target family's handedness; neutral target rest is compared explicitly with static source idle.

@@ -10,7 +10,7 @@ WIELD_ITEMS={'bubble':('wield-bubble-comet','Bubble Comet','bubble-comet'),
 wield_roots={};wield_previews={};wield_cameras={}
 previous_exports=(OUT,assets,roots)
 OUT=ROOT/'public/wield/models';OUT.mkdir(parents=True,exist_ok=True);assets=[];roots=[]
-wield_catalog={'version':1,'id':'zoomap-playful-hands','revision':'1.0.0','rig':'athlete-reference-v2','grips':{},'items':[]}
+wield_catalog={'version':1,'id':'zoomap-playful-hands','revision':'1.0.1','rig':'athlete-reference-v2','grips':{},'items':[]}
 def wield_content(record):
     return {**{key:record[key] for key in ('id','label','url','bytes','sha256','triangles')},'node':record['attachments'][0]['node']}
 try:
@@ -39,7 +39,8 @@ try:
                 poses[hand]={'arm':[-.06,0,sign*.16],'forearm':[-.22,0,0],
                              'wrist':[.2792354400,-sign*.0095535033,-sign*.1597169621]}
         wield_catalog['items'].append({**wield_content(record),'behavior':behavior,
-          'gripAnchor':anchors['grip'].name,'anchors':{name:obj.name for name,obj in anchors.items() if name!='grip'},'pose':poses})
+          'gripAnchor':anchors['grip'].name,'anchors':{name:obj.name for name,obj in anchors.items() if name!='grip'},'pose':poses,
+          **({'orientation':'gravity'} if key=='lantern' else {})})
     (ROOT/'public/wield/catalog.json').write_text(json.dumps(wield_catalog,indent=2)+'\n')
 finally:
     OUT,assets,roots=previous_exports

@@ -28,6 +28,8 @@ export type WieldItem = WieldAsset & {
   gripAnchor: string;
   anchors: Record<string, string>;
   pose: Record<Hand, HandPose>;
+  /** A one-hand hanging item keeps its authored +Y upright in world gravity. */
+  orientation?: "gravity";
   /** One shared model with physical grip frames; legacy pose is unused in this mode. */
   twoHanded?: TwoHandedHold;
 };
@@ -149,12 +151,15 @@ export function validateWieldCatalog(
     keys(
       item,
       [...common, "behavior", "gripAnchor", "anchors", "pose"],
-      ["twoHanded"],
+      ["twoHanded", "orientation"],
     );
     validateAsset(
       item,
       item.twoHanded ? WIELD_LIMITS.twoHandItem : WIELD_LIMITS.item,
     );
+    if (Object.hasOwn(item, "orientation"))
+      require(item.orientation === "gravity" &&
+        !item.twoHanded, "Gravity orientation requires a one-handed item");
     require(validId(item.behavior) &&
       validId(item.gripAnchor), "Invalid equipment behavior or grip anchor");
     require(record(item.anchors) &&

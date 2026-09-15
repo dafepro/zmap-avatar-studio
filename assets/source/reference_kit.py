@@ -125,6 +125,11 @@ def bind(root,record,objects,kind):
             elif family=='leg':
                 hip=ease(.88,1.01,y);knee=1-ease(.49,.64,y);foot=1-ease(.105,.19,y)
                 weights={'hips':hip,'leg_'+side:(1-hip)*(1-knee),'shin_'+side:(1-hip)*knee*(1-foot),'foot_'+side:(1-hip)*knee*foot}
+            elif family=='footwear':
+                # Fabric crosses the ankle with the same rest-space field as skin.
+                # The sole, toe box, tongue and laces remain a rigid foot shell.
+                shin=ease(.105,.19,y) if obj.get('ankle_fabric') else 0
+                weights={'foot_'+side:1-shin,'shin_'+side:shin}
             elif family=='bottom':
                 hip=ease(.895,1.055,y);weights={'hips':hip,'leg_'+side:1-hip}
             else:
@@ -495,8 +500,9 @@ def make_bottom(id,label,long=False):
     bind(r,d,objects,'bottom');export(r,d)
 
 def make_shoes(id,label,style):
-    r,d=asset(id,label,'shoes','Reference sneakers: layered black and white panels, crossed black laces, sculpted outsole, tongue and heel loop, plain ribbed crew socks.')
+    r,d=asset(id,label,'shoes','Reference sneakers: layered black and white panels, crossed black laces, sculpted outsole, tongue and heel loop, plain ribbed crew socks. Articulated calf-following sock; rigid foot shell.')
     d['covers']=['feet']
+    footwear=[]
     for side in ['L','R']:
         p=mount(r,d,'foot_'+side)
         # Socket-local shoe; floor is y=-.12. Outline is shaped in top view.
@@ -553,6 +559,18 @@ def make_shoes(id,label,style):
         for obj in p.children:
             if obj.type=='MESH' and not obj.name.startswith(('Plain crew sock','Fine sock rib')):
                 for v in obj.data.vertices:v.co.x*=1.40;v.co.y*=1.17
+        # One root-space skin per footwear component, with independent left/right
+        # bone weights. Flexible fabric follows the calf during ankle articulation.
+        for obj in list(p.children):
+            if obj.type!='MESH':continue
+            obj['family']='footwear'
+            obj['ankle_fabric']=obj.name.startswith(('Plain crew sock','Fine sock rib','High ankle collar','High collar binding'))
+            transform=obj.matrix_local.copy()
+            for vertex in obj.data.vertices:vertex.co=transform @ vertex.co + Vector(co(positions['foot_'+side]))
+            obj.parent=None;obj.matrix_world=Matrix.Identity(4);footwear.append(obj)
+        bpy.data.objects.remove(p,do_unlink=True)
+    d['attachments']=[]
+    bind(r,d,footwear,'footwear')
     export(r,d)
 
 make_body()

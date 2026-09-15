@@ -112,7 +112,7 @@
           "nonFinite": 0
         }
       ],
-      "meshes": 69,
+      "meshes": 61,
       "triangles": 22680,
       "sourceTriangles": 11916,
       "parts": 10
@@ -211,7 +211,7 @@
           "nonFinite": 0
         }
       ],
-      "meshes": 69,
+      "meshes": 61,
       "triangles": 22672,
       "sourceTriangles": 11912,
       "parts": 10
@@ -310,7 +310,7 @@
           "nonFinite": 0
         }
       ],
-      "meshes": 71,
+      "meshes": 63,
       "triangles": 23212,
       "sourceTriangles": 12182,
       "parts": 10
@@ -409,7 +409,7 @@
           "nonFinite": 0
         }
       ],
-      "meshes": 69,
+      "meshes": 61,
       "triangles": 24652,
       "sourceTriangles": 12902,
       "parts": 10
@@ -508,7 +508,7 @@
           "nonFinite": 0
         }
       ],
-      "meshes": 69,
+      "meshes": 61,
       "triangles": 24284,
       "sourceTriangles": 12718,
       "parts": 10
@@ -607,7 +607,7 @@
           "nonFinite": 0
         }
       ],
-      "meshes": 69,
+      "meshes": 61,
       "triangles": 24884,
       "sourceTriangles": 13018,
       "parts": 10
@@ -706,7 +706,7 @@
           "nonFinite": 0
         }
       ],
-      "meshes": 71,
+      "meshes": 63,
       "triangles": 24746,
       "sourceTriangles": 12949,
       "parts": 10
@@ -805,7 +805,7 @@
           "nonFinite": 0
         }
       ],
-      "meshes": 69,
+      "meshes": 61,
       "triangles": 24928,
       "sourceTriangles": 13040,
       "parts": 10
@@ -904,7 +904,7 @@
           "nonFinite": 0
         }
       ],
-      "meshes": 69,
+      "meshes": 61,
       "triangles": 25056,
       "sourceTriangles": 13104,
       "parts": 10
@@ -941,20 +941,20 @@
         }
       },
       "fullBounds": {
-        "extent": 0.8907496189247762,
+        "extent": 0.8909101968431791,
         "vertices": 19416,
         "depthClipped": 0,
         "nonFinite": 0
       },
       "effectBounds": {
-        "extent": 0.8871489333862073,
+        "extent": 0.8876370695432857,
         "vertices": 556,
         "depthClipped": 0,
         "nonFinite": 0
       },
-      "paintedPixels": 41781,
-      "detailPixels": 15982,
-      "meshes": 71,
+      "paintedPixels": 35524,
+      "detailPixels": 14080,
+      "meshes": 63,
       "triangles": 24786,
       "sourceTriangles": 12969,
       "parts": 10
@@ -989,20 +989,20 @@
         }
       },
       "fullBounds": {
-        "extent": 0.8908025667978235,
+        "extent": 0.8909497217051403,
         "vertices": 19649,
         "depthClipped": 0,
         "nonFinite": 0
       },
       "effectBounds": {
-        "extent": 0.8873296725398935,
+        "extent": 0.887668050161523,
         "vertices": 556,
         "depthClipped": 0,
         "nonFinite": 0
       },
-      "paintedPixels": 41433,
-      "detailPixels": 17343,
-      "meshes": 67,
+      "paintedPixels": 35574,
+      "detailPixels": 15224,
+      "meshes": 59,
       "triangles": 24928,
       "sourceTriangles": 13040,
       "parts": 10
@@ -1037,20 +1037,20 @@
         }
       },
       "fullBounds": {
-        "extent": 0.8908007166084504,
+        "extent": 0.8909454515982728,
         "vertices": 19849,
         "depthClipped": 0,
         "nonFinite": 0
       },
       "effectBounds": {
-        "extent": 0.8877552094416168,
+        "extent": 0.888116759835723,
         "vertices": 556,
         "depthClipped": 0,
         "nonFinite": 0
       },
-      "paintedPixels": 44303,
-      "detailPixels": 17189,
-      "meshes": 69,
+      "paintedPixels": 37909,
+      "detailPixels": 15127,
+      "meshes": 61,
       "triangles": 25064,
       "sourceTriangles": 13108,
       "parts": 10

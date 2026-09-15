@@ -30,8 +30,8 @@
         "weight": 0
       }
     },
-    "assemblyMs": 20.700000047683716,
-    "meshes": 46,
+    "assemblyMs": 23.399999976158142,
+    "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
     "parts": 7
@@ -67,8 +67,8 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.899999976158142,
-    "meshes": 46,
+    "assemblyMs": 4.699999928474426,
+    "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
     "parts": 7
@@ -104,8 +104,8 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.700000047683716,
-    "meshes": 46,
+    "assemblyMs": 4.399999976158142,
+    "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
     "parts": 7
@@ -141,8 +141,8 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.100000023841858,
-    "meshes": 46,
+    "assemblyMs": 5,
+    "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
     "parts": 7
@@ -178,8 +178,8 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2,
-    "meshes": 46,
+    "assemblyMs": 5.099999904632568,
+    "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
     "parts": 7
@@ -215,8 +215,8 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.0999999046325684,
-    "meshes": 46,
+    "assemblyMs": 4,
+    "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
     "parts": 7
@@ -252,8 +252,8 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.100000023841858,
-    "meshes": 46,
+    "assemblyMs": 3.8000000715255737,
+    "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
     "parts": 7
@@ -289,8 +289,8 @@
         "weight": 0
       }
     },
-    "assemblyMs": 2.200000047683716,
-    "meshes": 46,
+    "assemblyMs": 4.299999952316284,
+    "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
     "parts": 7
@@ -326,8 +326,8 @@
         "weight": -1
       }
     },
-    "assemblyMs": 17.800000071525574,
-    "meshes": 46,
+    "assemblyMs": 21.5,
+    "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
     "parts": 7
@@ -363,8 +363,8 @@
         "weight": 1
       }
     },
-    "assemblyMs": 25.700000047683716,
-    "meshes": 46,
+    "assemblyMs": 28.399999976158142,
+    "meshes": 38,
     "triangles": 19700,
     "sourceTriangles": 10244,
     "parts": 7
@@ -400,8 +400,8 @@
         "weight": 0
       }
     },
-    "assemblyMs": 24.399999976158142,
-    "meshes": 58,
+    "assemblyMs": 26.100000023841858,
+    "meshes": 50,
     "triangles": 22532,
     "sourceTriangles": 11660,
     "parts": 10
@@ -437,8 +437,8 @@
         "weight": 1
       }
     },
-    "assemblyMs": 23.899999976158142,
-    "meshes": 58,
+    "assemblyMs": 26.09999990463257,
+    "meshes": 50,
     "triangles": 22532,
     "sourceTriangles": 11660,
     "parts": 10
