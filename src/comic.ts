@@ -175,7 +175,8 @@ export class ComicStyle {
     geometry.computeVertexNormals();
     const material = new THREE.ShaderMaterial({
       side: THREE.BackSide,
-      depthWrite: false,
+      // The early ink pass must occlude later background geometry.
+      depthWrite: true,
       toneMapped: false,
       uniforms: {
         resolution: { value: this.resolution },
