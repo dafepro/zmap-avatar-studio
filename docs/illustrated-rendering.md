@@ -31,3 +31,8 @@ Unit tests cover source-map and palette retention, restoration, replacement disp
 Shader changes alone cannot turn cylindrical shoulders or tube fingers into anatomy, or supply missing illustrated expression. Connected meshes, natural silhouettes and authored face/clothing detail are separate acceptance requirements. The shader is intended to support those assets, not substitute for them.
 
 This view is not a general physically based renderer: it deliberately ignores scene lighting and cast shadows on the character, does not add cloth folds or anatomical details, and does not synthesize new expressions. Pigment is a restrained color variation, not a claim of hand-painted texture. The atlas capture freezes the selected pose; animation requires additional captured poses or the live mesh. All likeness claims still require visual review of the assembled character from its intended camera.
+
+The early silhouette pass writes depth. Otherwise a later opaque background
+paints over the ink even when it is behind the character. Depth testing still
+hides ink behind foreground props. The WebGL occlusion regression renders both
+orders and verifies that moving geometry leaves no previous-pose pixels.
