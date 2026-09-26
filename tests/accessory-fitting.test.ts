@@ -163,7 +163,7 @@ test("mustache follows both heads and every expression; glasses clear actual hea
                 probes++;
                 assert.ok(
                   p.z - depth > 0.008 && p.z - depth < 0.085,
-                  `${head}/${eyewear} frame must clear skin without floating in front: ${p.z - depth}`,
+                  `${head}/${eyewear} frame must clear skin without floating in front: ${p.z - depth} at ${p.toArray()}`,
                 );
                 if (Math.abs(p.x) < 0.02)
                   assert.ok(

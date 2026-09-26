@@ -1,0 +1,26 @@
+[
+  {
+    "id": "frog",
+    "prompt": "Use case: stylized-concept. Create a precise low-poly game accessory modeling turnaround called FROG DAYS. The attached image is an actual render of our avatar and is the strict geometry/proportions and cel-ink style reference. Design only a playful leaf-green bucket hat with a broad downward-flaring brim, cream narrow edge, dark forest-green crown band, two small raised rounded frog eye bumps on the front of the crown, cream eye disks with black pupils and tiny white glints; a subtle curved stitched smile at front. No hanging legs or dangling parts. Keep a practical open wearing aperture below the crown. Show equal-scale orthographic front, right-side, back, and top views of the SAME hat on a neutral grey version of this actual avatar head, plus one full-body avatar wearing it with the existing sports outfit. Maintain existing angular head/body, hair can peek below the brim, no body redesign. Crisp large facets, readable silhouettes, soft cel shading, flat restrained green/cream palette. Warm off-white background. Modelable simple connected shapes, no photorealism, fur, complex texture, logos, text on the hat, or extra objects. Sheet labels FROG DAYS, FRONT, SIDE, BACK, TOP only.",
+    "generatedPath": "C:/Users/dafe/.codex/generated_images/01a09411-3724-7ea1-b770-7f8dafb62688/exec-004a9493-60fc-49a8-a2d1-2525fc70bddb.png",
+    "savedFile": "frog.png",
+    "reference": "docs/evidence/court-collection/turnaround.png",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "bolt",
+    "prompt": "Use case: stylized-concept. Original wearable game asset called BOLT MODE. Use the attached real Avatar Studio render as strict proportions, face size, angular cel-shaded low-poly geometry and fine ink-outline style reference. Design playful electric-yellow sunglasses: two compact open rectangular eye rims, each outer corner becomes one bold short lightning-bolt zigzag extending toward the temple. Keep both eyes clearly visible through empty openings, NO lens panes. A slim golden straight bridge and cobalt blue curved temples with yellow tips. The lightning shapes are compact sculptural solid extrusions, not lightning VFX, and point outward/downward along the cheek without covering the nose or eyes. Orthographic FRONT, RIGHT SIDE, BACK, TOP of the same accessory on the actual avatar's neutral gray head with hair omitted for fit readability, plus one larger three-quarter accessory detail. Clear matching construction across views. Plain warm off-white background. Crisp facets, modelable connected frames, simple colors. No other props, no logos, no photorealism, no text on the glasses. Sheet labels BOLT MODE, FRONT, SIDE, BACK, TOP only.",
+    "generatedPath": "C:/Users/dafe/.codex/generated_images/01a09411-3724-7ea1-b770-7f8dafb62688/exec-db3a4b4c-113e-4d80-8e24-621e25714916.png",
+    "savedFile": "bolt.png",
+    "reference": "docs/evidence/court-collection/turnaround.png",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "melon",
+    "prompt": "Use case: stylized-concept. Create a game clothing modeling reference called MELON CLUB. The supplied screenshot contains the actual Avatar Studio model and is the strict body proportions, angular head, athletic limbs, existing hair/shoes and cel-shaded low-poly style reference. Design a playful WATERMELON soccer jersey: coral watermelon-red short-sleeve body with 5 small dark teardrop seeds on the front and 4 on the back, leaf-green cuffs and V-neck binding, a pale mint narrow stripe immediately above a deep green lower hem like watermelon rind. Sleeves are mostly coral. Keep the existing charcoal training shorts and black/white shoes. No novelty hat or glasses for this sheet. Show full-body equally-scaled FRONT, RIGHT SIDE and BACK neutral A-pose views of our actual avatar, plus close front and back jersey details. All views show the identical feasible garment; clearly readable flat colors and a few broad facets, minimal tiny detail, thin ink contours. Warm off-white background, no environment, logos, letters or numbers on the shirt, no photoreal fabric texture. Labels MELON CLUB, FRONT, SIDE, BACK only.",
+    "generatedPath": "C:/Users/dafe/.codex/generated_images/01a09411-3724-7ea1-b770-7f8dafb62688/exec-032cac76-264a-4430-90da-610af341894c.png",
+    "savedFile": "melon.png",
+    "reference": "docs/evidence/court-collection/turnaround.png",
+    "tool": "built-in image_gen"
+  }
+]

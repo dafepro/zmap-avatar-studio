@@ -6,6 +6,10 @@ The [Court collection](docs/references/court-collection/README.md) adds two
 reference-modeled outfits, an open visor and fitted sports glasses. Studio has
 Courtside and Matchday presets; all six pieces remain individually selectable.
 
+[Playtime](docs/playtime-workflow.md) adds Frog Days, Bolt Mode and Melon Club:
+a frog bucket hat, lightning glasses and watermelon jersey. Try them separately
+or use **Go playtime** to combine all three.
+
 ```sh
 cd avatar-studio
 npm ci
@@ -16,7 +20,7 @@ npm run test:e2e             # Chrome; ZMAP_BROWSER_CHANNEL=chromium in CI
 npm run test:package
 ```
 
-The current reference kit is catalog **2.5.0**, rig **athlete-reference-v2**. It rebuilds the supplied body, swept hair and sportswear sheets. [Actual browser components](docs/evidence/reference-v2/browser-components.png), [weight comparison](docs/evidence/reference-v2/browser-weight-study.png) and the [documented Blender workflow](docs/reference-workflow.md) show the result and its limits.
+The current reference kit is catalog **2.7.0**, rig **athlete-reference-v2**. It rebuilds the supplied body, swept hair and sportswear sheets. [Actual browser components](docs/evidence/reference-v2/browser-components.png), [weight comparison](docs/evidence/reference-v2/browser-weight-study.png) and the [documented Blender workflow](docs/reference-workflow.md) show the result and its limits.
 
 **[Field Tools](http://localhost:5180/action.html)** adds Tether Winch, Rebound Panel and Wake Driver: one shared object held by two fitted hands. Inspect body builds, primary-hand ownership, views and mechanisms in the workbench; try their real shared forces in [Action Yard](http://localhost:5173/action.html). The [two-hand contract and Blender workflow](docs/field-tools.md) describe the independent optional catalog and integration.
 
@@ -28,12 +32,12 @@ Walking, sprinting, backward steps and strafing use retargeted Quaternius walkin
 
 Use `avatar.playEmote("wave")` for a bounded wave, cheer, dance, yes or no performance, and `cancelEmote()` to end it. Dance plays three authored cycles. A registered equipment controller clears and restores the hands around the emote; `Motion.emote: {id, elapsed}` supports an explicit playback time in seconds. `hands.setDrawn(false)` stows selected equipment, and `setDrawn(true)` draws it again without reloading assets or changing the selection. One-hand transitions take 0.8 seconds and two-hand transitions take 1 second, using an explicitly documented pickup adaptation. See [emote timing](docs/motion.md#reusable-emotes) and [draw/stow controls](docs/wielding.md#draw-and-stow-without-changing-the-selection).
 
-**16-view drawing** captures one equipped look and pose every 22.5° into an exportable transparent atlas. It is a fixed-pose cache, not animation. Export look saves appearance JSON; Portrait saves rendered PNG. Saved looks remain in this browser. Catalog 2.5.0 explicitly accepts saved 2.2.0, 2.3.0 and 2.4.0 recipes with their selections intact; undeclared revisions fail validation.
+**16-view drawing** captures one equipped look and pose every 22.5° into an exportable transparent atlas. It is a fixed-pose cache, not animation. Export look saves appearance JSON; Portrait saves rendered PNG. Saved looks remain in this browser. Catalog 2.7.0 explicitly accepts saved 2.2.0, 2.3.0, 2.4.0, 2.5.0 and 2.6.0 recipes with their selections intact; undeclared revisions fail validation.
 
 ## Install the released runtime
 
 ```sh
-npm install --save-exact https://github.com/dafepro/zmap-avatar-studio/releases/download/v0.1.1/zmap-avatar-studio-0.1.1.tgz
+npm install --save-exact https://github.com/dafepro/zmap-avatar-studio/releases/download/v0.1.4/zmap-avatar-studio-0.1.4.tgz
 ```
 
 The package remains private to prevent accidental npm-registry publication. Built GitHub Release tarballs contain runtime/declarations and approved assets; editable Blender source and studio-only concept/reference images stay in this repository. Commit your application's lockfile.

@@ -1,6 +1,6 @@
 {
   "name": "@zmap/avatar-studio",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "type": "module",
   "description": "Independent modular avatar runtime, Blender kit and design studio",
@@ -36,6 +36,7 @@
     "docs/fit-quality-review.md",
     "docs/hair-03-workflow.md",
     "docs/novelty-workflow.md",
+    "docs/playtime-workflow.md",
     "docs/wielding.md",
     "docs/field-tools.md",
     "docs/motion.md",

@@ -724,6 +724,17 @@ async function start() {
           effect: "effect-pocket-galaxy",
         },
       ],
+      ["Frog Days · Playtime", { headwear: "hat-frog-days" }],
+      ["Bolt Mode · Playtime", { eyewear: "acc-bolt-mode" }],
+      ["Melon Club · Playtime", { shirt: "shirt-melon-club" }],
+      [
+        "Go playtime",
+        {
+          headwear: "hat-frog-days",
+          eyewear: "acc-bolt-mode",
+          shirt: "shirt-melon-club",
+        },
+      ],
     ] as const) {
       const button = document.createElement("button");
       button.className = "save-look";

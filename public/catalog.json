@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "zoomap-athletics",
-  "revision": "2.6.0",
-  "compatibleRecipeRevisions": ["2.2.0", "2.3.0", "2.4.0", "2.5.0"],
+  "revision": "2.7.0",
+  "compatibleRecipeRevisions": ["2.2.0", "2.3.0", "2.4.0", "2.5.0", "2.6.0"],
   "rig": {
     "id": "athlete-reference-v2",
     "height": 2.04,
@@ -1528,6 +1528,109 @@
       "bytes": 28920,
       "sha256": "164a43f218025c638c29648c10c33020de37434e41cba03972771b1680087ddc",
       "triangles": 482
+    },
+    {
+      "id": "hat-frog-days",
+      "label": "Frog Days bucket hat",
+      "slot": "headwear",
+      "rig": "athlete-reference-v2",
+      "description": "Leaf-green bucket hat with raised frog eyes, cream brim edge, forest band and stitched smile.",
+      "attachments": [
+        {
+          "node": "ref2_hat-frog-days__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [],
+      "tags": ["playtime-collection"],
+      "hairFit": [
+        {
+          "targetSlot": "hair",
+          "mode": "contain",
+          "center": [0, 0.1125, -0.0096],
+          "radii": [0.2097144, 0.1908, 0.2024],
+          "transition": [-0.054, 0.0675]
+        }
+      ],
+      "url": "models/hat-frog-days.glb",
+      "bytes": 31944,
+      "sha256": "a1aabec86638944efe54de77e3b92d11334e6ca2b23896a3e5177586e40130ee",
+      "triangles": 380
+    },
+    {
+      "id": "acc-bolt-mode",
+      "label": "Bolt Mode frames",
+      "slot": "eyewear",
+      "rig": "athlete-reference-v2",
+      "description": "Open electric-yellow frames with compact lightning corners and cobalt-blue wrapped temples.",
+      "attachments": [
+        {
+          "node": "ref2_acc-bolt-mode__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [],
+      "tags": ["playtime-collection"],
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v2",
+        "frame": [0, -0.041, 0.326, 0.318],
+        "mode": "clearance",
+        "offset": 0.016,
+        "maxDistance": 0.085,
+        "projection": "wrap",
+        "sideOffset": 0.003
+      },
+      "hairFit": [
+        {
+          "targetSlot": "hair",
+          "mode": "occlude"
+        }
+      ],
+      "url": "models/acc-bolt-mode.glb",
+      "bytes": 16168,
+      "sha256": "01652ecd7efbc74a7bef1d4f97b1c968189b30c38113d4b4892a09dc1a55c528",
+      "triangles": 252
+    },
+    {
+      "id": "shirt-melon-club",
+      "label": "Melon Club jersey",
+      "slot": "shirt",
+      "rig": "athlete-reference-v2",
+      "description": "Coral watermelon jersey with five front seeds, four back seeds, green bindings and a pale rind stripe.",
+      "attachments": [
+        {
+          "node": "ref2_shirt-melon-club__root",
+          "socket": "root"
+        }
+      ],
+      "channels": [],
+      "tags": ["playtime-collection"],
+      "covers": ["torso"],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
+      "url": "models/shirt-melon-club.glb",
+      "bytes": 39760,
+      "sha256": "9f9493153b582da79209d56d2b4b16045e7b62e765e8193c79f64d6df2d9badf",
+      "triangles": 347
     }
   ],
   "budgets": {

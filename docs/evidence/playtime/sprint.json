@@ -1,0 +1,137 @@
+[
+  {
+    "id": "FROG DAYS",
+    "col": 0,
+    "weight": 0,
+    "meshes": 52,
+    "triangles": 21042,
+    "sourceTriangles": 10915,
+    "parts": 8
+  },
+  {
+    "id": "FROG DAYS",
+    "col": 1,
+    "weight": 0,
+    "meshes": 52,
+    "triangles": 21042,
+    "sourceTriangles": 10915,
+    "parts": 8
+  },
+  {
+    "id": "FROG DAYS",
+    "col": 2,
+    "weight": 0,
+    "meshes": 52,
+    "triangles": 21042,
+    "sourceTriangles": 10915,
+    "parts": 8
+  },
+  {
+    "id": "FROG DAYS",
+    "col": 3,
+    "weight": -1,
+    "meshes": 52,
+    "triangles": 23290,
+    "sourceTriangles": 12039,
+    "parts": 8
+  },
+  {
+    "id": "FROG DAYS",
+    "col": 4,
+    "weight": 1,
+    "meshes": 54,
+    "triangles": 21574,
+    "sourceTriangles": 11181,
+    "parts": 8
+  },
+  {
+    "id": "BOLT MODE",
+    "col": 0,
+    "weight": 0,
+    "meshes": 48,
+    "triangles": 20298,
+    "sourceTriangles": 10543,
+    "parts": 8
+  },
+  {
+    "id": "BOLT MODE",
+    "col": 1,
+    "weight": 0,
+    "meshes": 48,
+    "triangles": 20298,
+    "sourceTriangles": 10543,
+    "parts": 8
+  },
+  {
+    "id": "BOLT MODE",
+    "col": 2,
+    "weight": 0,
+    "meshes": 48,
+    "triangles": 20298,
+    "sourceTriangles": 10543,
+    "parts": 8
+  },
+  {
+    "id": "BOLT MODE",
+    "col": 3,
+    "weight": -1,
+    "meshes": 48,
+    "triangles": 22334,
+    "sourceTriangles": 11561,
+    "parts": 8
+  },
+  {
+    "id": "BOLT MODE",
+    "col": 4,
+    "weight": 1,
+    "meshes": 50,
+    "triangles": 20794,
+    "sourceTriangles": 10791,
+    "parts": 8
+  },
+  {
+    "id": "GO PLAYTIME",
+    "col": 0,
+    "weight": 0,
+    "meshes": 60,
+    "triangles": 21644,
+    "sourceTriangles": 11216,
+    "parts": 9
+  },
+  {
+    "id": "GO PLAYTIME",
+    "col": 1,
+    "weight": 0,
+    "meshes": 60,
+    "triangles": 21644,
+    "sourceTriangles": 11216,
+    "parts": 9
+  },
+  {
+    "id": "GO PLAYTIME",
+    "col": 2,
+    "weight": 0,
+    "meshes": 60,
+    "triangles": 21644,
+    "sourceTriangles": 11216,
+    "parts": 9
+  },
+  {
+    "id": "GO PLAYTIME",
+    "col": 3,
+    "weight": -1,
+    "meshes": 60,
+    "triangles": 23892,
+    "sourceTriangles": 12340,
+    "parts": 9
+  },
+  {
+    "id": "GO PLAYTIME",
+    "col": 4,
+    "weight": 1,
+    "meshes": 62,
+    "triangles": 22176,
+    "sourceTriangles": 11482,
+    "parts": 9
+  }
+]
