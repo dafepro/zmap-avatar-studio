@@ -1,0 +1,92 @@
+[
+  {
+    "id": "courtside",
+    "col": 0,
+    "weight": 0,
+    "meshes": 46,
+    "triangles": 20470,
+    "sourceTriangles": 10629,
+    "parts": 8
+  },
+  {
+    "id": "courtside",
+    "col": 1,
+    "weight": 0,
+    "meshes": 46,
+    "triangles": 20470,
+    "sourceTriangles": 10629,
+    "parts": 8
+  },
+  {
+    "id": "courtside",
+    "col": 2,
+    "weight": 0,
+    "meshes": 46,
+    "triangles": 20470,
+    "sourceTriangles": 10629,
+    "parts": 8
+  },
+  {
+    "id": "courtside",
+    "col": 3,
+    "weight": -1,
+    "meshes": 46,
+    "triangles": 20470,
+    "sourceTriangles": 10629,
+    "parts": 8
+  },
+  {
+    "id": "courtside",
+    "col": 4,
+    "weight": 1,
+    "meshes": 46,
+    "triangles": 20470,
+    "sourceTriangles": 10629,
+    "parts": 8
+  },
+  {
+    "id": "matchday",
+    "col": 0,
+    "weight": 0,
+    "meshes": 51,
+    "triangles": 20926,
+    "sourceTriangles": 10871,
+    "parts": 8
+  },
+  {
+    "id": "matchday",
+    "col": 1,
+    "weight": 0,
+    "meshes": 51,
+    "triangles": 20926,
+    "sourceTriangles": 10871,
+    "parts": 8
+  },
+  {
+    "id": "matchday",
+    "col": 2,
+    "weight": 0,
+    "meshes": 51,
+    "triangles": 20926,
+    "sourceTriangles": 10871,
+    "parts": 8
+  },
+  {
+    "id": "matchday",
+    "col": 3,
+    "weight": -1,
+    "meshes": 51,
+    "triangles": 20926,
+    "sourceTriangles": 10871,
+    "parts": 8
+  },
+  {
+    "id": "matchday",
+    "col": 4,
+    "weight": 1,
+    "meshes": 51,
+    "triangles": 20926,
+    "sourceTriangles": 10871,
+    "parts": 8
+  }
+]

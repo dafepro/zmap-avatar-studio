@@ -16,6 +16,29 @@ const root = process.cwd();
 const dir = mkdtempSync(join(tmpdir(), "zmap-avatar-consumer-"));
 const run = (bin, args, cwd = dir) => {
   try {
+    // npm's Windows .cmd shim cannot be spawned directly by execFileSync.
+    if (
+      bin === "npm" &&
+      process.platform === "win32" &&
+      process.env.npm_execpath
+    ) {
+      args = [process.env.npm_execpath, ...args];
+      bin = process.execPath;
+    }
+    if (
+      process.platform === "win32" &&
+      bin === join(root, "node_modules", ".bin", "tsc")
+    ) {
+      args = [join(root, "node_modules", "typescript", "bin", "tsc"), ...args];
+      bin = process.execPath;
+    }
+    if (
+      process.platform === "win32" &&
+      bin === join(root, "node_modules", ".bin", "vite")
+    ) {
+      args = [join(root, "node_modules", "vite", "bin", "vite.js"), ...args];
+      bin = process.execPath;
+    }
     return execFileSync(bin, args, {
       cwd,
       stdio: "pipe",

@@ -42,8 +42,8 @@ test("all catalog assets match their hashes, budgets and self-contained attachme
     total += bytes.length;
   }
   assert.ok(
-    total < 2200000,
-    `${catalog.assets.length}-part illustrated kit including articulated footwear stays under 2.2 MB; appearance budgets are checked separately`,
+    total < 2500000,
+    `${catalog.assets.length}-part illustrated kit including the court collection stays under 2.5 MB; appearance budgets are checked separately`,
   );
 });
 test("every supported combination fits the common rig and resource budgets", () => {

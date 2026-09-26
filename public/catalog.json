@@ -1,12 +1,8 @@
 {
   "version": 1,
   "id": "zoomap-athletics",
-  "revision": "2.5.0",
-  "compatibleRecipeRevisions": [
-    "2.2.0",
-    "2.3.0",
-    "2.4.0"
-  ],
+  "revision": "2.6.0",
+  "compatibleRecipeRevisions": ["2.2.0", "2.3.0", "2.4.0", "2.5.0"],
   "rig": {
     "id": "athlete-reference-v2",
     "height": 2.04,
@@ -14,146 +10,82 @@
       {
         "id": "root",
         "parent": null,
-        "position": [
-          0,
-          0,
-          0
-        ]
+        "position": [0, 0, 0]
       },
       {
         "id": "hips",
         "parent": "root",
-        "position": [
-          0,
-          0.99,
-          0
-        ]
+        "position": [0, 0.99, 0]
       },
       {
         "id": "chest",
         "parent": "hips",
-        "position": [
-          0,
-          0.31,
-          0
-        ]
+        "position": [0, 0.31, 0]
       },
       {
         "id": "head",
         "parent": "chest",
-        "position": [
-          0,
-          0.51,
-          0
-        ]
+        "position": [0, 0.51, 0]
       },
       {
         "id": "arm_L",
         "parent": "chest",
-        "position": [
-          -0.204,
-          0.155,
-          0
-        ]
+        "position": [-0.204, 0.155, 0]
       },
       {
         "id": "forearm_L",
         "parent": "arm_L",
-        "position": [
-          -0.065,
-          -0.27,
-          0
-        ]
+        "position": [-0.065, -0.27, 0]
       },
       {
         "id": "hand_L",
         "parent": "forearm_L",
-        "position": [
-          -0.064,
-          -0.217,
-          0.007
-        ]
+        "position": [-0.064, -0.217, 0.007]
       },
       {
         "id": "leg_L",
         "parent": "hips",
-        "position": [
-          -0.11,
-          0,
-          0
-        ]
+        "position": [-0.11, 0, 0]
       },
       {
         "id": "shin_L",
         "parent": "leg_L",
-        "position": [
-          -0.06,
-          -0.43,
-          0.013
-        ]
+        "position": [-0.06, -0.43, 0.013]
       },
       {
         "id": "foot_L",
         "parent": "shin_L",
-        "position": [
-          -0.055,
-          -0.44,
-          -0.003
-        ]
+        "position": [-0.055, -0.44, -0.003]
       },
       {
         "id": "arm_R",
         "parent": "chest",
-        "position": [
-          0.204,
-          0.155,
-          0
-        ]
+        "position": [0.204, 0.155, 0]
       },
       {
         "id": "forearm_R",
         "parent": "arm_R",
-        "position": [
-          0.065,
-          -0.27,
-          0
-        ]
+        "position": [0.065, -0.27, 0]
       },
       {
         "id": "hand_R",
         "parent": "forearm_R",
-        "position": [
-          0.064,
-          -0.217,
-          0.007
-        ]
+        "position": [0.064, -0.217, 0.007]
       },
       {
         "id": "leg_R",
         "parent": "hips",
-        "position": [
-          0.11,
-          0,
-          0
-        ]
+        "position": [0.11, 0, 0]
       },
       {
         "id": "shin_R",
         "parent": "leg_R",
-        "position": [
-          0.06,
-          -0.43,
-          0.013
-        ]
+        "position": [0.06, -0.43, 0.013]
       },
       {
         "id": "foot_R",
         "parent": "shin_R",
-        "position": [
-          0.055,
-          -0.44,
-          -0.003
-        ]
+        "position": [0.055, -0.44, -0.003]
       }
     ]
   },
@@ -237,9 +169,7 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "skin"
-      ],
+      "channels": ["skin"],
       "tags": [],
       "skin": {
         "bones": [
@@ -278,18 +208,11 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "skin"
-      ],
+      "channels": ["skin"],
       "tags": [],
       "surface": {
         "id": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.326,
-          0.318
-        ]
+        "frame": [0, -0.041, 0.326, 0.318]
       },
       "url": "models/head-scout.glb",
       "bytes": 23072,
@@ -308,18 +231,11 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "skin"
-      ],
+      "channels": ["skin"],
       "tags": [],
       "surface": {
         "id": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.34719,
-          0.318
-        ]
+        "frame": [0, -0.041, 0.34719, 0.318]
       },
       "url": "models/head-spark.glb",
       "bytes": 23072,
@@ -347,12 +263,7 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.326,
-          0.318
-        ],
+        "frame": [0, -0.041, 0.326, 0.318],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -384,12 +295,7 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.326,
-          0.318
-        ],
+        "frame": [0, -0.041, 0.326, 0.318],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -421,12 +327,7 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.326,
-          0.318
-        ],
+        "frame": [0, -0.041, 0.326, 0.318],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -449,9 +350,7 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair"
-      ],
+      "channels": ["hair"],
       "tags": [],
       "url": "models/hair-sweep.glb",
       "bytes": 30220,
@@ -470,9 +369,7 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair"
-      ],
+      "channels": ["hair"],
       "tags": [],
       "url": "models/hair-curls.glb",
       "bytes": 30220,
@@ -491,10 +388,7 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "secondary",
-        "hair"
-      ],
+      "channels": ["secondary", "hair"],
       "tags": [],
       "url": "models/hair-pony.glb",
       "bytes": 52176,
@@ -513,14 +407,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "primary",
-        "secondary"
-      ],
+      "channels": ["primary", "secondary"],
       "tags": [],
-      "covers": [
-        "torso"
-      ],
+      "covers": ["torso"],
       "texture": {
         "maxDimension": 256,
         "maxCount": 1
@@ -562,14 +451,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "primary",
-        "secondary"
-      ],
+      "channels": ["primary", "secondary"],
       "tags": [],
-      "covers": [
-        "torso"
-      ],
+      "covers": ["torso"],
       "texture": {
         "maxDimension": 256,
         "maxCount": 1
@@ -611,14 +495,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "primary",
-        "secondary"
-      ],
+      "channels": ["primary", "secondary"],
       "tags": [],
-      "covers": [
-        "torso"
-      ],
+      "covers": ["torso"],
       "texture": {
         "maxDimension": 256,
         "maxCount": 1
@@ -660,14 +539,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "secondary",
-        "trim"
-      ],
+      "channels": ["secondary", "trim"],
       "tags": [],
-      "covers": [
-        "upper-legs"
-      ],
+      "covers": ["upper-legs"],
       "skin": {
         "bones": [
           "root",
@@ -705,14 +579,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "secondary",
-        "trim"
-      ],
+      "channels": ["secondary", "trim"],
       "tags": [],
-      "covers": [
-        "upper-legs"
-      ],
+      "covers": ["upper-legs"],
       "skin": {
         "bones": [
           "root",
@@ -750,14 +619,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "secondary",
-        "trim"
-      ],
+      "channels": ["secondary", "trim"],
       "tags": [],
-      "covers": [
-        "feet"
-      ],
+      "covers": ["feet"],
       "skin": {
         "bones": [
           "root",
@@ -795,14 +659,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "secondary",
-        "trim"
-      ],
+      "channels": ["secondary", "trim"],
       "tags": [],
-      "covers": [
-        "feet"
-      ],
+      "covers": ["feet"],
       "skin": {
         "bones": [
           "root",
@@ -840,14 +699,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "secondary",
-        "trim"
-      ],
+      "channels": ["secondary", "trim"],
       "tags": [],
-      "covers": [
-        "feet"
-      ],
+      "covers": ["feet"],
       "skin": {
         "bones": [
           "root",
@@ -885,9 +739,7 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair"
-      ],
+      "channels": ["hair"],
       "tags": [],
       "url": "models/hair-ember.glb",
       "bytes": 92364,
@@ -906,9 +758,7 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair"
-      ],
+      "channels": ["hair"],
       "tags": [],
       "url": "models/hair-tide.glb",
       "bytes": 38516,
@@ -927,9 +777,7 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair"
-      ],
+      "channels": ["hair"],
       "tags": [],
       "url": "models/hair-volt.glb",
       "bytes": 44940,
@@ -948,15 +796,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "primary",
-        "secondary",
-        "trim"
-      ],
+      "channels": ["primary", "secondary", "trim"],
       "tags": [],
-      "covers": [
-        "torso"
-      ],
+      "covers": ["torso"],
       "skin": {
         "bones": [
           "root",
@@ -994,15 +836,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "primary",
-        "secondary",
-        "trim"
-      ],
+      "channels": ["primary", "secondary", "trim"],
       "tags": [],
-      "covers": [
-        "torso"
-      ],
+      "covers": ["torso"],
       "skin": {
         "bones": [
           "root",
@@ -1040,15 +876,9 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "primary",
-        "secondary",
-        "trim"
-      ],
+      "channels": ["primary", "secondary", "trim"],
       "tags": [],
-      "covers": [
-        "torso"
-      ],
+      "covers": ["torso"],
       "skin": {
         "bones": [
           "root",
@@ -1095,12 +925,7 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.326,
-          0.318
-        ],
+        "frame": [0, -0.041, 0.326, 0.318],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -1132,12 +957,7 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.326,
-          0.318
-        ],
+        "frame": [0, -0.041, 0.326, 0.318],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -1169,12 +989,7 @@
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.326,
-          0.318
-        ],
+        "frame": [0, -0.041, 0.326, 0.318],
         "mode": "surface",
         "offset": 0.0015,
         "maxDistance": 0.085,
@@ -1197,12 +1012,8 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair"
-      ],
-      "tags": [
-        "hair-study-03"
-      ],
+      "channels": ["hair"],
+      "tags": ["hair-study-03"],
       "url": "models/hair-nova.glb",
       "bytes": 60948,
       "sha256": "cc03474e8bbc692d8aaaae5286500804d78f2642760cd27d228781f2146f24d8",
@@ -1220,12 +1031,8 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair"
-      ],
-      "tags": [
-        "hair-study-03"
-      ],
+      "channels": ["hair"],
+      "tags": ["hair-study-03"],
       "url": "models/hair-halo.glb",
       "bytes": 59440,
       "sha256": "2f76f056a93e378c0b88bb1f057c0852f33f2672968f296bd42597be2c85de11",
@@ -1243,12 +1050,8 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair"
-      ],
-      "tags": [
-        "hair-study-03"
-      ],
+      "channels": ["hair"],
+      "tags": ["hair-study-03"],
       "url": "models/hair-reed.glb",
       "bytes": 46004,
       "sha256": "c60a5dec84717e4f00e00deb3da51718c798e42380db439661fd7e58346ac325",
@@ -1266,19 +1069,12 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "hair"
-      ],
+      "channels": ["hair"],
       "tags": [],
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.326,
-          0.318
-        ],
+        "frame": [0, -0.041, 0.326, 0.318],
         "mode": "surface",
         "offset": 0.0055,
         "maxDistance": 0.085
@@ -1300,30 +1096,15 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "primary",
-        "secondary",
-        "trim"
-      ],
+      "channels": ["primary", "secondary", "trim"],
       "tags": [],
       "hairFit": [
         {
           "targetSlot": "hair",
           "mode": "contain",
-          "center": [
-            0.0,
-            0.1125,
-            -0.009600000000000001
-          ],
-          "radii": [
-            0.20971440000000002,
-            0.1908,
-            0.20240000000000002
-          ],
-          "transition": [
-            -0.054,
-            0.0675
-          ]
+          "center": [0.0, 0.1125, -0.009600000000000001],
+          "radii": [0.20971440000000002, 0.1908, 0.20240000000000002],
+          "transition": [-0.054, 0.0675]
         }
       ],
       "url": "models/hat-club-cap.glb",
@@ -1343,19 +1124,12 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "secondary"
-      ],
+      "channels": ["secondary"],
       "tags": [],
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.326,
-          0.318
-        ],
+        "frame": [0, -0.041, 0.326, 0.318],
         "mode": "clearance",
         "offset": 0.016,
         "maxDistance": 0.085,
@@ -1385,13 +1159,9 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "accent"
-      ],
+      "channels": ["accent"],
       "tags": [],
-      "excludesTags": [
-        "tall-headwear"
-      ],
+      "excludesTags": ["tall-headwear"],
       "url": "models/acc-band.glb",
       "bytes": 5264,
       "sha256": "db8e1fac17b4a4f2b5d970615a87a30f13d065ea359dd8b0d00dd0acd02d2271",
@@ -1409,10 +1179,7 @@
           "socket": "head"
         }
       ],
-      "channels": [
-        "secondary",
-        "accent"
-      ],
+      "channels": ["secondary", "accent"],
       "tags": [],
       "url": "models/acc-headphones.glb",
       "bytes": 18540,
@@ -1431,9 +1198,7 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "accent"
-      ],
+      "channels": ["accent"],
       "tags": [],
       "effect": "orbit",
       "url": "models/effect-orbit.glb",
@@ -1453,9 +1218,7 @@
           "socket": "root"
         }
       ],
-      "channels": [
-        "accent"
-      ],
+      "channels": ["accent"],
       "tags": [],
       "effect": "spark",
       "url": "models/effect-spark.glb",
@@ -1476,27 +1239,14 @@
         }
       ],
       "channels": [],
-      "tags": [
-        "novelty-collection"
-      ],
+      "tags": ["novelty-collection"],
       "hairFit": [
         {
           "targetSlot": "hair",
           "mode": "contain",
-          "center": [
-            0,
-            0.1125,
-            -0.0096
-          ],
-          "radii": [
-            0.2097144,
-            0.1908,
-            0.2024
-          ],
-          "transition": [
-            -0.054,
-            0.0675
-          ]
+          "center": [0, 0.1125, -0.0096],
+          "radii": [0.2097144, 0.1908, 0.2024],
+          "transition": [-0.054, 0.0675]
         }
       ],
       "url": "models/hat-quack-captain.glb",
@@ -1517,18 +1267,11 @@
         }
       ],
       "channels": [],
-      "tags": [
-        "novelty-collection"
-      ],
+      "tags": ["novelty-collection"],
       "fit": {
         "targetSlot": "head",
         "surface": "face-v2",
-        "frame": [
-          0,
-          -0.041,
-          0.326,
-          0.318
-        ],
+        "frame": [0, -0.041, 0.326, 0.318],
         "mode": "clearance",
         "offset": 0.016,
         "maxDistance": 0.085,
@@ -1559,14 +1302,232 @@
         }
       ],
       "channels": [],
-      "tags": [
-        "novelty-collection"
-      ],
+      "tags": ["novelty-collection"],
       "effect": "orbit",
       "url": "models/effect-pocket-galaxy.glb",
       "bytes": 25272,
       "sha256": "e81b60333cb262f39da75916b29b9b1ef88fac0f97b2b19e87f00103edc8cfe2",
       "triangles": 364
+    },
+    {
+      "id": "shirt-courtside",
+      "label": "Courtside zip top",
+      "slot": "shirt",
+      "rig": "athlete-reference-v2",
+      "description": "Reference-authored connected jersey with bound sleeves and a standing zip collar.",
+      "attachments": [
+        {
+          "node": "ref2_shirt-courtside__root",
+          "socket": "root"
+        }
+      ],
+      "channels": ["primary"],
+      "tags": [],
+      "covers": ["torso"],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
+      "url": "models/shirt-courtside.glb",
+      "bytes": 42548,
+      "sha256": "e2ec78fb63283f34c235197515bb59a6babd9774a5a9cd3b3fa80f2edc4d3242",
+      "triangles": 324
+    },
+    {
+      "id": "bottom-courtside",
+      "label": "Courtside long shorts",
+      "slot": "bottom",
+      "rig": "athlete-reference-v2",
+      "description": "Loose athletic shorts with a shaped crotch, elastic waist and full white side stripes.",
+      "attachments": [
+        {
+          "node": "ref2_bottom-courtside__root",
+          "socket": "root"
+        }
+      ],
+      "channels": ["trim"],
+      "tags": [],
+      "covers": ["upper-legs"],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
+      "url": "models/bottom-courtside.glb",
+      "bytes": 26468,
+      "sha256": "5151a7089fc34524a6270a99da1ef6ec4f0a68531e4d62859eb530ca3464f751",
+      "triangles": 230
+    },
+    {
+      "id": "shirt-matchday",
+      "label": "Matchday sash jersey",
+      "slot": "shirt",
+      "rig": "athlete-reference-v2",
+      "description": "Reference-authored V-neck jersey with a continuous gold sash cut into the cloth topology.",
+      "attachments": [
+        {
+          "node": "ref2_shirt-matchday__root",
+          "socket": "root"
+        }
+      ],
+      "channels": ["primary"],
+      "tags": [],
+      "covers": ["torso"],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
+      "url": "models/shirt-matchday.glb",
+      "bytes": 43792,
+      "sha256": "3217500b0df8129dcac2b2a8c7349bdf79eba5530ebf74ac91e4ca0a7d8c7fff",
+      "triangles": 396
+    },
+    {
+      "id": "bottom-matchday",
+      "label": "Matchday vent shorts",
+      "slot": "bottom",
+      "rig": "athlete-reference-v2",
+      "description": "Loose athletic shorts with a shaped crotch, elastic waist and full white side stripes.",
+      "attachments": [
+        {
+          "node": "ref2_bottom-matchday__root",
+          "socket": "root"
+        }
+      ],
+      "channels": ["trim"],
+      "tags": [],
+      "covers": ["upper-legs"],
+      "skin": {
+        "bones": [
+          "root",
+          "hips",
+          "chest",
+          "head",
+          "arm_L",
+          "forearm_L",
+          "hand_L",
+          "leg_L",
+          "shin_L",
+          "foot_L",
+          "arm_R",
+          "forearm_R",
+          "hand_R",
+          "leg_R",
+          "shin_R",
+          "foot_R"
+        ]
+      },
+      "url": "models/bottom-matchday.glb",
+      "bytes": 26976,
+      "sha256": "dd72e1198c77626fb13a76cc52a94daaf0c73efe5c11e035a47311ea887c10d6",
+      "triangles": 230
+    },
+    {
+      "id": "hat-courtside-visor",
+      "label": "Courtside open visor",
+      "slot": "headwear",
+      "rig": "athlete-reference-v2",
+      "description": "Open crown sports visor with a curved bill and cream edge; one source shared by all hair.",
+      "attachments": [
+        {
+          "node": "ref2_hat-courtside-visor__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [],
+      "tags": [],
+      "hairFit": [
+        {
+          "targetSlot": "hair",
+          "mode": "occlude"
+        }
+      ],
+      "url": "models/hat-courtside-visor.glb",
+      "bytes": 18932,
+      "sha256": "b4a044e07c3ded4e17ed308972ff5cc38188a834cbfce4a2f6cd8389d074c3d3",
+      "triangles": 312
+    },
+    {
+      "id": "acc-matchday-sport",
+      "label": "Matchday sports glasses",
+      "slot": "eyewear",
+      "rig": "athlete-reference-v2",
+      "description": "Slim rounded rectangular charcoal rims, amber lenses and gold temples fitted to the actual face.",
+      "attachments": [
+        {
+          "node": "ref2_acc-matchday-sport__head",
+          "socket": "head"
+        }
+      ],
+      "channels": [],
+      "tags": [],
+      "fit": {
+        "targetSlot": "head",
+        "surface": "face-v2",
+        "frame": [0, -0.041, 0.326, 0.318],
+        "mode": "clearance",
+        "offset": 0.016,
+        "maxDistance": 0.085,
+        "projection": "wrap",
+        "sideOffset": 0.003
+      },
+      "hairFit": [
+        {
+          "targetSlot": "hair",
+          "mode": "occlude"
+        }
+      ],
+      "url": "models/acc-matchday-sport.glb",
+      "bytes": 28920,
+      "sha256": "164a43f218025c638c29648c10c33020de37434e41cba03972771b1680087ddc",
+      "triangles": 482
     }
   ],
   "budgets": {
@@ -1574,55 +1535,17 @@
     "maxBytes": 1500000,
     "maxParts": 12
   },
-  "bodyRegions": [
-    "torso",
-    "upper-legs",
-    "feet",
-    "hand-left",
-    "hand-right"
-  ],
+  "bodyRegions": ["torso", "upper-legs", "feet", "hand-left", "hand-right"],
   "bodyShape": {
     "weightProfile": [
-      [
-        0,
-        0,
-        0
-      ],
-      [
-        0.8,
-        0,
-        0
-      ],
-      [
-        0.99,
-        0.18,
-        0.24
-      ],
-      [
-        1.13,
-        0.34,
-        0.46
-      ],
-      [
-        1.3,
-        0.24,
-        0.32
-      ],
-      [
-        1.48,
-        0.06,
-        0.06
-      ],
-      [
-        1.61,
-        0,
-        0
-      ],
-      [
-        2.04,
-        0,
-        0
-      ]
+      [0, 0, 0],
+      [0.8, 0, 0],
+      [0.99, 0.18, 0.24],
+      [1.13, 0.34, 0.46],
+      [1.3, 0.24, 0.32],
+      [1.48, 0.06, 0.06],
+      [1.61, 0, 0],
+      [2.04, 0, 0]
     ],
     "leanFactor": 0.55,
     "neck": {
@@ -1635,131 +1558,55 @@
     },
     "limbs": [
       {
-        "joints": [
-          "arm_L",
-          "forearm_L",
-          "hand_L"
-        ],
+        "joints": ["arm_L", "forearm_L", "hand_L"],
         "radius": 0.095,
         "falloff": 0.055,
         "endMargin": 0.15,
         "profile": [
-          [
-            0,
-            0.22
-          ],
-          [
-            0.4,
-            0.34
-          ],
-          [
-            0.58,
-            0.24
-          ],
-          [
-            0.78,
-            0.3
-          ],
-          [
-            1,
-            0
-          ]
+          [0, 0.22],
+          [0.4, 0.34],
+          [0.58, 0.24],
+          [0.78, 0.3],
+          [1, 0]
         ]
       },
       {
-        "joints": [
-          "arm_R",
-          "forearm_R",
-          "hand_R"
-        ],
+        "joints": ["arm_R", "forearm_R", "hand_R"],
         "radius": 0.095,
         "falloff": 0.055,
         "endMargin": 0.15,
         "profile": [
-          [
-            0,
-            0.22
-          ],
-          [
-            0.4,
-            0.34
-          ],
-          [
-            0.58,
-            0.24
-          ],
-          [
-            0.78,
-            0.3
-          ],
-          [
-            1,
-            0
-          ]
+          [0, 0.22],
+          [0.4, 0.34],
+          [0.58, 0.24],
+          [0.78, 0.3],
+          [1, 0]
         ]
       },
       {
-        "joints": [
-          "leg_L",
-          "shin_L",
-          "foot_L"
-        ],
+        "joints": ["leg_L", "shin_L", "foot_L"],
         "radius": 0.11,
         "falloff": 0.045,
         "endMargin": 0.2,
         "profile": [
-          [
-            0,
-            0.28
-          ],
-          [
-            0.3,
-            0.38
-          ],
-          [
-            0.53,
-            0.18
-          ],
-          [
-            0.7,
-            0.38
-          ],
-          [
-            1,
-            0
-          ]
+          [0, 0.28],
+          [0.3, 0.38],
+          [0.53, 0.18],
+          [0.7, 0.38],
+          [1, 0]
         ]
       },
       {
-        "joints": [
-          "leg_R",
-          "shin_R",
-          "foot_R"
-        ],
+        "joints": ["leg_R", "shin_R", "foot_R"],
         "radius": 0.11,
         "falloff": 0.045,
         "endMargin": 0.2,
         "profile": [
-          [
-            0,
-            0.28
-          ],
-          [
-            0.3,
-            0.38
-          ],
-          [
-            0.53,
-            0.18
-          ],
-          [
-            0.7,
-            0.38
-          ],
-          [
-            1,
-            0
-          ]
+          [0, 0.28],
+          [0.3, 0.38],
+          [0.53, 0.18],
+          [0.7, 0.38],
+          [1, 0]
         ]
       }
     ]

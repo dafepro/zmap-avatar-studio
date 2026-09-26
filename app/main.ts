@@ -653,6 +653,28 @@ async function start() {
         },
       ];
     }
+    for (const [id, name, primary, secondary] of [
+      ["courtside", "Courtside", "#337f7d", "#283539"],
+      ["matchday", "Matchday", "#782e43", "#283539"],
+    ]) {
+      const button = document.createElement("button");
+      button.className = "save-look";
+      button.textContent = `${name} · Court collection`;
+      button.onclick = () => {
+        const next = defaultRecipe(catalog);
+        Object.assign(next.parts, {
+          hair: "hair-sweep",
+          shirt: `shirt-${id}`,
+          bottom: `bottom-${id}`,
+          ...(id === "courtside"
+            ? { headwear: "hat-courtside-visor" }
+            : { eyewear: "acc-matchday-sport" }),
+        });
+        Object.assign(next.colors, { primary, secondary });
+        void apply(next);
+      };
+      $("collection-presets").append(button);
+    }
     for (const [name, primary, skin, hair] of [
       ["Ember", "#cf641e", "#9e6542", "#514030"],
       ["Tide", "#28847f", "#bc8565", "#182b35"],

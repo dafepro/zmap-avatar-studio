@@ -31,6 +31,10 @@ const accessoryStates = () =>
       .filter((eyewear) => headwear !== null || eyewear !== null)
       .map((eyewear) => ({ headwear, eyewear })),
   );
+const containsHair = (id: string | null) =>
+  catalog.assets
+    .find((asset) => asset.id === id)
+    ?.hairFit?.some((fit) => fit.mode === "contain") ?? false;
 function meshes(root: THREE.Object3D, id: string) {
   const result: THREE.Mesh[] = [];
   root.traverse((o) => {
@@ -216,14 +220,16 @@ test("caps contain hair while glasses preserve it, including removal and indepen
               },
             });
             avatar.object.updateMatrixWorld(true);
-            if (headwear === null) assert.deepEqual(snapshot(), original);
+            if (!containsHair(headwear)) assert.deepEqual(snapshot(), original);
             else assert.notDeepEqual(snapshot(), original);
             assert.deepEqual(
               geometrySnapshot(meshes(untouched.object, hair)),
               original,
             );
             const hairMeshes = meshes(avatar.object, hair),
-              cap = headwear ? meshes(avatar.object, headwear) : [];
+              cap = containsHair(headwear)
+                ? meshes(avatar.object, headwear!)
+                : [];
             assert.equal(
               intersections(hairMeshes, cap) + intersections(cap, hairMeshes),
               0,
@@ -285,7 +291,9 @@ test("cap containment and glasses occlusion accept unseen wide and tall hair", a
           await avatar.setAppearance(recipe);
           avatar.object.updateMatrixWorld(true);
           const hair = meshes(avatar.object, asset.id),
-            cap = headwear ? meshes(avatar.object, headwear) : [];
+            cap = containsHair(headwear)
+              ? meshes(avatar.object, headwear!)
+              : [];
           assert.equal(
             intersections(hair, cap) + intersections(cap, hair),
             0,

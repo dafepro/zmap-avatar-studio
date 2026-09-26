@@ -2,6 +2,10 @@
 
 An independent Three.js avatar runtime, editable Blender component kit and browser customization studio. It runs without ZMap, an account service or a database. ZMap's hub is a second consumer of the same package.
 
+The [Court collection](docs/references/court-collection/README.md) adds two
+reference-modeled outfits, an open visor and fitted sports glasses. Studio has
+Courtside and Matchday presets; all six pieces remain individually selectable.
+
 ```sh
 cd avatar-studio
 npm ci
