@@ -1,0 +1,14 @@
+{
+  "sampleFrames": [
+    1,
+    18,
+    44,
+    62,
+    81,
+    106,
+    145
+  ],
+  "maxPositionErrorMetres": 1.9326179910794454e-06,
+  "maxRotationErrorRadians": 0,
+  "source": "Editable Blender action compared against the baked target-rig matrices"
+}

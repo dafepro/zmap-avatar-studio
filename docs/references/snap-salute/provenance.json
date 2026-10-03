@@ -1,0 +1,11 @@
+{
+  "asset": "snap-salute",
+  "kind": "aspirational concept drawing, not implementation evidence",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "reference": "docs/references/body.png",
+  "referenceRole": "Existing user-provided proportional/style guide",
+  "prompt": "Use case: stylized-concept. Asset type: original key-pose concept drawing for a reusable 2.4-second game-avatar emote named Snap Salute. Use the supplied angular human model reference only for head/body proportions and graphic face style, not as an edit target. Create a polished ink-and-flat-color animation planning sheet on ivory paper, horizontal sequence of five full-body drawings: relaxed ready stance; right forearm rising diagonally across upper chest; right relaxed hand pauses just outside right temple in playful salute with confident head tilt; small outward hand flick and upbeat nod; clean return to initial stance. Preserve feet planted and human limb lengths. Angular cel shading, bold graphic eyes, faceted human jaw, large swept hair, geometric street-sport short jacket and chunky sneakers. Hand is a relaxed unified pose; do not imply independently animated fingers. Motion communicates casual confident friendly acknowledgement, not a military salute. One small side-view inset clarifies temple clearance. Visual inspiration: energetic stylized game character concepts with crisp black silhouettes. Drawings must be clearly aspirational concept art, not 3D-render screenshots. No UI, no photorealism, no bubbly chibi proportions, no weapons, no watermark. Heading text exactly 'SNAP SALUTE'. Phase labels exactly 'READY', 'LIFT', 'HOLD', 'FLICK', 'RESET'.",
+  "output": "concept.png",
+  "implementation": "Original wrist/pole targets and quaternion animation on athlete-reference-v2. Existing hand geometry, no finger animation."
+}

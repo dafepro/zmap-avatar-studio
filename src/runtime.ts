@@ -1093,6 +1093,7 @@ export class AvatarInstance {
     )
       this.cancelEmote();
     const performance = motion.emote ?? this.emote;
+    const wasPerforming = !!this.emoteReport?.weight;
     this.emoteReport = undefined;
     if (performance) {
       const descriptor = emoteDescriptors.find((e) => e.id === performance.id)!;
@@ -1173,7 +1174,11 @@ export class AvatarInstance {
         -(this.poseValues.crouch * 0.55 + this.poseValues.recoil * 0.035),
         0,
       );
-      this.poseFeet(motion, dt, frequency, interrupted);
+      // A finished full-body clip hands its authored neutral contacts back to
+      // idle IK. Reset that handoff target instead of lerping the previous
+      // shoe-support height: even a 1 mm lag can trigger the reach clamp and
+      // create a visible sideways corrective foot step.
+      this.poseFeet(motion, dt, frequency, interrupted || wasPerforming);
     }
     // Equipment/actions own their carrier frame. Ordinary locomotion keeps the
     // authored shoulder counter-rotation; hand layers still have final ownership.
