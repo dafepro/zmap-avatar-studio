@@ -1,0 +1,58 @@
+{
+  "format": "moonwake-chromium-evidence",
+  "version": 1,
+  "captureHead": "c3f39ed7028a3a624426591b0b5f6bebb1a42737",
+  "captureTree": "1b8e5e52b325ba3b5be7c9f4c8293834aa23f5ec",
+  "workflowRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37104453706",
+  "artifactId": 11267620794,
+  "artifactSha256": "380f87c17980a250e6d953c57bc3537115ff4459b6ae001f2490f9d9463343df",
+  "reviewedAtUTC": "2026-10-03T06:55:35Z",
+  "renderer": "Actual GitHub Actions Chromium, shipping AvatarLibrary GLBs and ComicStyle",
+  "views": 30,
+  "coverage": "Both heads; builds -1, 0, +1; front, side, back, run, wave; all five individual selections; complete look import",
+  "files": [
+    {
+      "path": "docs/evidence/moonwake/browser-poses.webp",
+      "sha256": "37ca96f860a24a76fd546f5c31dbcb6624bafbd3f6123221adfcf4688c936916",
+      "bytes": 451688
+    },
+    {
+      "path": "docs/evidence/moonwake/browser-poses.json",
+      "sha256": "9f528daaf7c59028e71acbd99164bf50b9609f0498731b58afd4665c8742a37f",
+      "bytes": 6007
+    },
+    {
+      "path": "docs/evidence/moonwake/browser-studio.png",
+      "sha256": "ddb131ae1228bca1da9ed042d91dec372ece7bfc3ffbe61406174a18f45ef130",
+      "bytes": 192447
+    }
+  ],
+  "observations": [
+    "Clean topology-supported lavender tunic panels in all sampled poses",
+    "Balloon cuffs and flexible boot collars cover lower legs in sampled run/wave views",
+    "Lantern rib housing and padded mounting remain readable from side and back",
+    "Open crescent band uses natural ponytail occlusion"
+  ],
+  "qualificationScope": "Sampled visual and geometry checks, not exhaustive collision or device performance proof. Final-head workflow verification is recorded on the draft PR.",
+  "originalContactSheet": {
+    "path": "docs/evidence/moonwake/browser-poses.png",
+    "sha256": "1e4c062a648336a6a9f8cad9e462ca5b8dc4ebc08cd46952fc1ca1c220248b4a",
+    "bytes": 1400826,
+    "retention": "Unmodified PNG retained in the source GitHub Actions artifact and local authoring archive"
+  },
+  "contactSheetDerivative": {
+    "format": "WebP",
+    "dimensions": [1550, 2516],
+    "quality": 95,
+    "method": 6,
+    "exact": true,
+    "pillowVersion": "12.3.0",
+    "libwebpVersion": "1.6.0",
+    "colorMode": "RGB",
+    "resize": false,
+    "contentEdits": false,
+    "reviewedAtUTC": "2026-10-03T07:07:29Z",
+    "reason": "Compact repository transport; original full-resolution PNG remains hash-pinned",
+    "reproduction": "Image.open(original_png).convert('RGB').save(output_webp, format='WEBP', quality=95, method=6, exact=True)"
+  }
+}
