@@ -35,6 +35,10 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:atelier
+      - name: Verify legacy multi-swap and expression regressions
+        run: npx playwright test --grep 'one-hand workbench stows|all eleven categories swap|comic rendering survives'
+        env:
+          ZMAP_BROWSER_CHANNEL: chromium
       - uses: actions/upload-artifact@v4
         if: always()
         with:

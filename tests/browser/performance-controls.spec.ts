@@ -4,6 +4,7 @@ import { mkdir } from "node:fs/promises";
 test("one-hand workbench stows either selected item independently and restores both after an expression", async ({
   page,
 }) => {
+  test.setTimeout(90000);
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/wield.html");
@@ -48,6 +49,13 @@ test("one-hand workbench stows either selected item independently and restores b
     path: "docs/evidence/performances/one-hand-cheer.png",
     fullPage: true,
   });
+  // A full-page software-GPU capture can outlast the bounded cheer. First
+  // verify natural completion, then start a fresh longer expression to test
+  // the Stop control without racing a screenshot against clip duration.
+  await expect(page.locator("#use-left")).toBeEnabled({ timeout: 10000 });
+  await expect(page.locator("#use-right")).toBeEnabled();
+  await page.locator('[data-performance-emote="dance"]').click();
+  await expect(page.locator("[data-performance-stop]")).toBeEnabled();
   await page.locator("[data-performance-stop]").click();
   await expect(page.locator("#use-left")).toBeEnabled();
   await expect(page.locator("#use-right")).toBeEnabled();

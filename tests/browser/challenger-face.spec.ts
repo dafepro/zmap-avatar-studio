@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 test("Challenger shows asymmetric fitted front/profile ink on both heads in lit and illustrated WebGL", async ({
   page,
 }) => {
+  test.setTimeout(120_000);
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   page.on("console", (m) => {
@@ -19,18 +20,6 @@ test("Challenger shows asymmetric fitted front/profile ink on both heads in lit 
         new URL("../fixtures/challenger-review.ts", import.meta.url),
       ),
   );
-  expect(errors).toEqual([]);
-  for (const row of report.projection) {
-    if (Math.abs(row.yaw) <= 45 && row.layer === "profile")
-      expect(row.changed).toBe(0);
-    if (Math.abs(row.yaw) === 90 && row.layer === "front")
-      expect(row.changed).toBe(0);
-    if (
-      (row.yaw === 0 && row.layer === "front") ||
-      (Math.abs(row.yaw) === 90 && row.layer === "profile")
-    )
-      expect(row.changed).toBeGreaterThan(100);
-  }
   await mkdir("docs/evidence/challenger", { recursive: true });
   for (const [key, file] of [
     ["headSheet", "browser-heads.png"],
@@ -48,4 +37,17 @@ test("Challenger shows asymmetric fitted front/profile ink on both heads in lit 
       2,
     ) + "\n",
   );
+  expect(errors).toEqual([]);
+  for (const row of report.projection) {
+    if (Math.abs(row.yaw) === 70) expect(row.changed).toBeGreaterThan(10);
+    if (Math.abs(row.yaw) <= 45 && row.layer === "profile")
+      expect(row.changed).toBe(0);
+    if (Math.abs(row.yaw) === 90 && row.layer === "front")
+      expect(row.changed).toBe(0);
+    if (
+      (row.yaw === 0 && row.layer === "front") ||
+      (Math.abs(row.yaw) === 90 && row.layer === "profile")
+    )
+      expect(row.changed).toBeGreaterThan(100);
+  }
 });

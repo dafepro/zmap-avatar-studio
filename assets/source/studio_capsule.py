@@ -174,7 +174,7 @@ def make_vest():
 
 
 def make_pack():
-    r,d=asset('acc-pulse-pack','Pulse sling pack','accessory','Independent compact angular runner pack with wraparound shoulder straps, a raised chevron and a side signal tab. Uses the shared chest/hips skin and body-volume field.')
+    r,d=asset('acc-pulse-pack','Pulse sling pack','accessory','Independent compact angular runner pack with wraparound shoulder straps, a raised chevron and a side signal tab. Uses the shared chest/hips skin and body-volume field.');d['tags']=['back-mounted']
     objects=[]
     # Bevelled hard-fabric pod: front face sits 24 mm behind the broadest back
     # shell. The pack avoids arms and hips, and never covers a body region.
