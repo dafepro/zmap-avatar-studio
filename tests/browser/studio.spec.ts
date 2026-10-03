@@ -7,6 +7,9 @@ async function ready(page: Page) {
 test("all eleven categories swap real assets; pose, colors, undo and named look survive reload", async ({
   page,
 }) => {
+  // Eleven asynchronous asset/thumbnail assemblies plus persistence on a software GPU.
+  // Keep the same per-action assertions; only this end-to-end scenario gets a larger budget.
+  test.setTimeout(120000);
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await ready(page);
@@ -179,6 +182,8 @@ test("40 full appearance replacements keep live GPU resources bounded", async ({
 test("comic rendering survives swaps and mode changes without changing the recipe", async ({
   page,
 }) => {
+  // Twelve complete shader/geometry swaps are intentionally more expensive than a small UI test.
+  test.setTimeout(120000);
   const errors: string[] = [];
   page.on("console", (m) => {
     if (m.type() === "error") errors.push(m.text());

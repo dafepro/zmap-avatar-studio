@@ -11,16 +11,9 @@
         "socket": "root"
       }
     ],
-    "channels": [
-      "primary",
-      "secondary",
-      "trim",
-      "accent"
-    ],
+    "channels": ["primary", "secondary", "trim", "accent"],
     "tags": [],
-    "covers": [
-      "torso"
-    ],
+    "covers": ["torso"],
     "skin": {
       "bones": [
         "root",
@@ -58,16 +51,9 @@
         "socket": "root"
       }
     ],
-    "channels": [
-      "primary",
-      "secondary",
-      "trim",
-      "accent"
-    ],
+    "channels": ["primary", "secondary", "trim", "accent"],
     "tags": [],
-    "covers": [
-      "torso"
-    ],
+    "covers": ["torso"],
     "skin": {
       "bones": [
         "root",
@@ -105,13 +91,8 @@
         "socket": "root"
       }
     ],
-    "channels": [
-      "primary",
-      "secondary",
-      "trim",
-      "accent"
-    ],
-    "tags": [],
+    "channels": ["primary", "secondary", "trim", "accent"],
+    "tags": ["back-mounted"],
     "skin": {
       "bones": [
         "root",
