@@ -10,7 +10,7 @@
   "blenderRenderer": "../../../assets/source/render_sunline.py",
   "runtimeReviewScene": "../../../assets/source/sunline-review.blend",
   "blenderReview": "Actual AvatarLibrary-loaded, body-fitted and posed vertices. Images without browser- prefixes are Blender renders, not browser screenshots. Final neutral, broad wave and broad run geometry was opened together and inspected interactively in cloud Blender after a fresh supported launch. Earlier disposable review process closure did not affect saved source.",
-  "browserReview": "Final geometry WebGL evidence downloaded from GitHub Actions artifact11263232667, run37093172516 at de836969829c7e4b3e66406b143a0a8d294d5967. Inspected actual SHIFT studio screenshot and24-panel ComicStyle sheet, including deep-knee run, both heads, three builds and12-slot appearance. All views intact; no shader errors.",
+  "browserReview": "Stored browser PNGs are reviewed pre-waist-correction captures from de836969. Model-matched refreshed evidence is pending the next focused CI run; do not treat the stored capture as the final waist proof.",
   "localChecks": {
     "unitTests": "170 passed",
     "focusedTests": "6 passed",
@@ -61,7 +61,7 @@
     "bottom-sunline-cargo": {
       "triangles": 474,
       "bytes": 52292,
-      "sha256": "c32c16601042bcd775091e6e804a63142caeb2d53f73d150b6c88cc5e907b620"
+      "sha256": "3165aa1118e5085b6e5e6c884bdb3e177a0e85a4b04851b19a8b63c3e8b96890"
     },
     "hat-sunline-visor": {
       "triangles": 268,
@@ -78,5 +78,16 @@
       "bytes": 60664,
       "sha256": "317edbd1cef4fd1abd03dbeb8ff1e18156e8983b0d5f0cdd1e2ee8d92a4e1e52"
     }
+  },
+  "waistCorrection": {
+    "description": "Restored legacy waist/upper-seat envelope after visible Kiln-top mix penetration. Own complete underlayer remains continuous.",
+    "mixedFrames": 36,
+    "mixedBuilds": [
+      -1,
+      0,
+      1
+    ],
+    "mixedWaistIntersections": 0,
+    "report": "mixed-kiln-waist.json"
   }
 }

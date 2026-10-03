@@ -3,7 +3,7 @@
     "weight": -1,
     "motion": "idle",
     "elapsed": 0,
-    "bodyCrossings": 176,
+    "bodyCrossings": 206,
     "crossingPoints": [
       [
         -0.13977264515271318,
@@ -57,7 +57,7 @@
     "weight": -1,
     "motion": "wave",
     "elapsed": 1,
-    "bodyCrossings": 194,
+    "bodyCrossings": 246,
     "crossingPoints": [
       [
         -0.09408754468833828,
@@ -111,7 +111,7 @@
     "weight": -1,
     "motion": "run",
     "elapsed": 0.125,
-    "bodyCrossings": 192,
+    "bodyCrossings": 250,
     "crossingPoints": [
       [
         -0.1311478594849369,
@@ -165,7 +165,7 @@
     "weight": -1,
     "motion": "run",
     "elapsed": 0.25,
-    "bodyCrossings": 204,
+    "bodyCrossings": 318,
     "crossingPoints": [
       [
         -0.11984073583664365,
@@ -219,7 +219,7 @@
     "weight": -1,
     "motion": "run",
     "elapsed": 0.375,
-    "bodyCrossings": 200,
+    "bodyCrossings": 278,
     "crossingPoints": [
       [
         -0.11318372298653076,
@@ -273,7 +273,7 @@
     "weight": -1,
     "motion": "run",
     "elapsed": 0.5,
-    "bodyCrossings": 264,
+    "bodyCrossings": 330,
     "crossingPoints": [
       [
         -0.10617818676534586,
@@ -327,7 +327,7 @@
     "weight": -1,
     "motion": "run",
     "elapsed": 0.625,
-    "bodyCrossings": 354,
+    "bodyCrossings": 420,
     "crossingPoints": [
       [
         -0.10259261569703232,
@@ -381,7 +381,7 @@
     "weight": -1,
     "motion": "run",
     "elapsed": 0.75,
-    "bodyCrossings": 300,
+    "bodyCrossings": 411,
     "crossingPoints": [
       [
         -0.10280909344012024,
@@ -435,7 +435,7 @@
     "weight": -1,
     "motion": "run",
     "elapsed": 0.875,
-    "bodyCrossings": 194,
+    "bodyCrossings": 294,
     "crossingPoints": [
       [
         -0.10512730689976407,
@@ -489,7 +489,7 @@
     "weight": -1,
     "motion": "run",
     "elapsed": 1,
-    "bodyCrossings": 196,
+    "bodyCrossings": 270,
     "crossingPoints": [
       [
         -0.10959696807821885,
@@ -543,7 +543,7 @@
     "weight": 0,
     "motion": "idle",
     "elapsed": 0,
-    "bodyCrossings": 192,
+    "bodyCrossings": 224,
     "crossingPoints": [
       [
         -0.13912564854294865,
@@ -597,7 +597,7 @@
     "weight": 0,
     "motion": "wave",
     "elapsed": 1,
-    "bodyCrossings": 200,
+    "bodyCrossings": 238,
     "crossingPoints": [
       [
         -0.09325284203349034,
@@ -651,7 +651,7 @@
     "weight": 0,
     "motion": "run",
     "elapsed": 0.125,
-    "bodyCrossings": 240,
+    "bodyCrossings": 302,
     "crossingPoints": [
       [
         -0.13050866720109766,
@@ -705,7 +705,7 @@
     "weight": 0,
     "motion": "run",
     "elapsed": 0.25,
-    "bodyCrossings": 236,
+    "bodyCrossings": 314,
     "crossingPoints": [
       [
         -0.11903879302347563,
@@ -759,7 +759,7 @@
     "weight": 0,
     "motion": "run",
     "elapsed": 0.375,
-    "bodyCrossings": 222,
+    "bodyCrossings": 268,
     "crossingPoints": [
       [
         -0.11238727804536985,
@@ -813,7 +813,7 @@
     "weight": 0,
     "motion": "run",
     "elapsed": 0.5,
-    "bodyCrossings": 294,
+    "bodyCrossings": 348,
     "crossingPoints": [
       [
         -0.10537270638325533,
@@ -867,7 +867,7 @@
     "weight": 0,
     "motion": "run",
     "elapsed": 0.625,
-    "bodyCrossings": 374,
+    "bodyCrossings": 470,
     "crossingPoints": [
       [
         -0.1018185324839077,
@@ -921,7 +921,7 @@
     "weight": 0,
     "motion": "run",
     "elapsed": 0.75,
-    "bodyCrossings": 319,
+    "bodyCrossings": 426,
     "crossingPoints": [
       [
         -0.10210885608991706,
@@ -975,7 +975,7 @@
     "weight": 0,
     "motion": "run",
     "elapsed": 0.875,
-    "bodyCrossings": 210,
+    "bodyCrossings": 296,
     "crossingPoints": [
       [
         -0.10452415950431672,
@@ -1029,7 +1029,7 @@
     "weight": 0,
     "motion": "run",
     "elapsed": 1,
-    "bodyCrossings": 190,
+    "bodyCrossings": 268,
     "crossingPoints": [
       [
         -0.10899560446491507,
@@ -1083,7 +1083,7 @@
     "weight": 1,
     "motion": "idle",
     "elapsed": 0,
-    "bodyCrossings": 248,
+    "bodyCrossings": 250,
     "crossingPoints": [
       [
         -0.13767219443912818,
@@ -1137,7 +1137,7 @@
     "weight": 1,
     "motion": "wave",
     "elapsed": 1,
-    "bodyCrossings": 360,
+    "bodyCrossings": 394,
     "crossingPoints": [
       [
         -0.0913895056873558,
@@ -1191,7 +1191,7 @@
     "weight": 1,
     "motion": "run",
     "elapsed": 0.125,
-    "bodyCrossings": 390,
+    "bodyCrossings": 386,
     "crossingPoints": [
       [
         -0.12900610992221662,
@@ -1245,7 +1245,7 @@
     "weight": 1,
     "motion": "run",
     "elapsed": 0.25,
-    "bodyCrossings": 329,
+    "bodyCrossings": 380,
     "crossingPoints": [
       [
         -0.11724702866019845,
@@ -1299,7 +1299,7 @@
     "weight": 1,
     "motion": "run",
     "elapsed": 0.375,
-    "bodyCrossings": 314,
+    "bodyCrossings": 352,
     "crossingPoints": [
       [
         -0.11060903772959278,
@@ -1353,7 +1353,7 @@
     "weight": 1,
     "motion": "run",
     "elapsed": 0.5,
-    "bodyCrossings": 392,
+    "bodyCrossings": 406,
     "crossingPoints": [
       [
         -0.10357927185285258,
@@ -1407,7 +1407,7 @@
     "weight": 1,
     "motion": "run",
     "elapsed": 0.625,
-    "bodyCrossings": 477,
+    "bodyCrossings": 565,
     "crossingPoints": [
       [
         -0.10008472981560541,
@@ -1461,7 +1461,7 @@
     "weight": 1,
     "motion": "run",
     "elapsed": 0.75,
-    "bodyCrossings": 471,
+    "bodyCrossings": 545,
     "crossingPoints": [
       [
         -0.10051262518585699,
@@ -1515,7 +1515,7 @@
     "weight": 1,
     "motion": "run",
     "elapsed": 0.875,
-    "bodyCrossings": 326,
+    "bodyCrossings": 364,
     "crossingPoints": [
       [
         -0.10310354937595717,
@@ -1569,7 +1569,7 @@
     "weight": 1,
     "motion": "run",
     "elapsed": 1,
-    "bodyCrossings": 334,
+    "bodyCrossings": 386,
     "crossingPoints": [
       [
         -0.10757509888907103,

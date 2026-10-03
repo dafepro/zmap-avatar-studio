@@ -166,8 +166,8 @@ def make_pants():
     # A welded pelvis with two independently articulated eight-sided openings.
     for front in [1,-1]:
         base=len(vertices)
-        for x,z in [(-.190,0),(-.165,.073),(-.111,.111),(-.056,.125),(0,.127),(.056,.125),(.111,.111),(.165,.073),(.190,0)]:vertices.append((x,1.055,z*front))
-        for x,z in [(-.204,0),(-.181,.088),(-.12,.135),(-.060,.113),(0,.073),(.060,.113),(.12,.135),(.181,.088),(.204,0)]:vertices.append((x,.926 if x==0 else .951,z*front))
+        for x,z in [(-.174,0),(-.146,.067),(-.104,.096),(-.052,.107),(0,.107),(.052,.107),(.104,.096),(.146,.067),(.174,0)]:vertices.append((x,1.047,z*front))
+        for x,z in [(-.187,0),(-.156,.085),(-.106,.123),(-.056,.105),(0,.074),(.056,.105),(.106,.123),(.156,.085),(.187,0)]:vertices.append((x,.916 if x==0 else .948,z*front))
         for x,z in [(-.235,0),(-.206,.088),(-.146,.112),(-.082,.084),(-.044,0),(.044,0),(.082,.084),(.146,.112),(.206,.088),(.235,0)]:vertices.append((x,.791,z*front))
         for j in range(8):faces.append(tuple(base+i for i in (j,j+1,j+10,j+9)))
         for j in range(4):faces.append(tuple(base+i for i in (9+j,10+j,19+j,18+j)))
@@ -189,7 +189,7 @@ def make_pants():
     for face in pants.data.polygons:
         centre=face.center
         if .49<centre.z<.61 and abs(centre.x)>.19 and centre.y<0:face.material_index=2
-    objects.append(section('Flat tailored waistband',[(1.029,0,0,.194,.131),(1.071,0,0,.191,.128)],secondary,n=16,cap=False))
+    objects.append(section('Flat tailored waistband',[(1.029,0,0,.174,.108),(1.058,0,0,.169,.104)],secondary,n=16,cap=False))
     for sign in [-1,1]:
         objects.append(section('Cream ankle cuff '+str(sign),[(.286,sign*.215,-.004,.059,.060),(.318,sign*.211,-.005,.068,.068)],trim,n=8,cap=False))
         # Thigh pockets are broad closed sculpted wedges with a real folded lip.
@@ -198,7 +198,7 @@ def make_pants():
         objects.append(prism('Folded cream envelope pocket '+str(sign),[(x-.073,.921,.153),(x+.073,.928,.153),(x+.043,.874,.174),(x-.058,.859,.174)],trim,.012))
         objects.append(prism('Citron pocket release '+str(sign),[(x-.010,.884,.181),(x+.010,.886,.181),(x+.008,.825,.159),(x-.012,.822,.159)],accent,.006))
         objects.append(prism('Angular ivory shin flash '+str(sign),[(sign*.178,.509,.098),(sign*.231,.453,.097),(sign*.241,.351,.080),(sign*.198,.401,.098)],trim,.006))
-        objects.append(prism('Coral hip cut '+str(sign),[(sign*.150,1.035,.089),(sign*.184,1.011,.079),(sign*.199,.960,.074),(sign*.177,.975,.103)],primary,.006))
+        objects.append(prism('Coral hip cut '+str(sign),[(sign*.130,1.035,.076),(sign*.160,1.011,.067),(sign*.173,.960,.063),(sign*.154,.975,.088)],primary,.006))
     return finish_part(root,record,objects,'leg')
 
 

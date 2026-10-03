@@ -232,6 +232,18 @@ test("long sleeves, full trousers, socks and rigid trainers retain anatomical we
           }
           assert.ok(Math.abs(total - 1) < 0.002);
           if (id === "bottom-sunline-cargo") {
+            // Shared legacy waist/seat envelope fits independently under tops.
+            if (point.y >= 1.029 - 1e-5) {
+              assert.ok(
+                Math.abs(point.x) <= 0.17401 && Math.abs(point.z) <= 0.10801,
+                "waist exceeds the common top interface",
+              );
+            } else if (point.y >= 0.94799) {
+              assert.ok(
+                Math.abs(point.x) <= 0.18701 && Math.abs(point.z) <= 0.12301,
+                "upper seat exceeds the common top interface",
+              );
+            }
             assert.ok(
               point.y >= 0.28 - 1e-5,
               "pants never enter rigid-shoe envelope",
