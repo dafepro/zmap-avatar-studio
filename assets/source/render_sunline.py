@@ -99,7 +99,9 @@ for name,offset in [('neutral',-1.05),('broad-wave',0),('broad-run',1.05)]:
     objects,_=assembly(name)
     for obj in objects:
         obj.location.x+=offset
-        if 'projection'in obj:obj.hide_render=obj['projection']=='profile'
+        if 'projection'in obj:
+            obj.hide_render=obj['projection']=='profile'
+            obj.hide_set(obj['projection']=='profile')
 camera.location=co((0,1.3,6));aim(camera,(0,1.08,0));data.ortho_scale=4.2
 scene.render.resolution_x=1500;scene.render.resolution_y=850
 bpy.ops.file.pack_all()

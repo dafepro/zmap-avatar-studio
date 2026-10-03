@@ -9,8 +9,8 @@
   "runtimeGeometryExport": "../../../scripts/export-sunline-evidence.ts",
   "blenderRenderer": "../../../assets/source/render_sunline.py",
   "runtimeReviewScene": "../../../assets/source/sunline-review.blend",
-  "blenderReview": "Actual AvatarLibrary-loaded, body-fitted and posed vertices. Images without browser- prefixes are Blender renders, not browser screenshots. Neutral geometry was opened and inspected in interactive cloud Blender; the disposable review process closed during material preview. A compressed three-pose review scene is preserved.",
-  "browserReview": "Initial focused shipping WebGL workflow37092612064 at e8c3088d8958b72fe9f3ab983d455783d5f06f5c passed. Downloaded artifact11263696198 and inspected both screenshots. Final updated asset/24-panel evidence will be captured on subsequent CI.",
+  "blenderReview": "Actual AvatarLibrary-loaded, body-fitted and posed vertices. Images without browser- prefixes are Blender renders, not browser screenshots. Final neutral, broad wave and broad run geometry was opened together and inspected interactively in cloud Blender after a fresh supported launch. Earlier disposable review process closure did not affect saved source.",
+  "browserReview": "Final geometry WebGL evidence downloaded from GitHub Actions artifact11263232667, run37093172516 at de836969829c7e4b3e66406b143a0a8d294d5967. Inspected actual SHIFT studio screenshot and24-panel ComicStyle sheet, including deep-knee run, both heads, three builds and12-slot appearance. All views intact; no shader errors.",
   "localChecks": {
     "unitTests": "170 passed",
     "focusedTests": "6 passed",
@@ -21,7 +21,7 @@
     "packageSmoke": "Blocked locally before browser launch by missing /home/agent/.npm cache; full package smoke is required in Verify CI"
   },
   "sourceTriangles": 2658,
-  "sourceBytes": 270420,
+  "sourceBytes": 270424,
   "maximumFullSlotFittedTriangles": 13153,
   "unchangedBudgets": {
     "triangles": 14000,
@@ -39,5 +39,44 @@
     "verifyRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37092612061",
     "packageSmoke": "passed",
     "fullVerify": "still running when geometry correction prepared"
+  },
+  "browserEvidence": {
+    "head": "de836969829c7e4b3e66406b143a0a8d294d5967",
+    "run": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37093172516",
+    "artifactId": 11263232667,
+    "artifactSHA256": "e2aa507c742e61893a474d750ad7cccce85ff2bd602fe856b1f4b168f42e04f4",
+    "result": "success",
+    "panels": 24,
+    "images": {
+      "browser-studio.png": "77d3be75c62f060d9d9a7b4fd503f9b252aa3b29281c3c3d90fb703a5e56bb82",
+      "browser-collection.png": "4850ebd6bdc51a13a9068a8557bb16a09f50a40f7c82c44a849fb9252af2353e"
+    }
+  },
+  "finalGeometry": {
+    "acc-sunline-envelope": {
+      "triangles": 548,
+      "bytes": 68076,
+      "sha256": "f2b7453e9d3de3a53664971d64d71e95021821c52359b23096bdaff5166ada50"
+    },
+    "bottom-sunline-cargo": {
+      "triangles": 474,
+      "bytes": 52292,
+      "sha256": "c32c16601042bcd775091e6e804a63142caeb2d53f73d150b6c88cc5e907b620"
+    },
+    "hat-sunline-visor": {
+      "triangles": 268,
+      "bytes": 20808,
+      "sha256": "18814e3c6ad435bad7649969215726778c275c200c25e4573c880cbd6fe03ef2"
+    },
+    "shirt-sunline-courier": {
+      "triangles": 656,
+      "bytes": 68584,
+      "sha256": "b02e67f0e38389abcd49f0c6e67966c3c08d30c49aa04620d6bcdfe247a6b03e"
+    },
+    "shoes-sunline-track": {
+      "triangles": 712,
+      "bytes": 60664,
+      "sha256": "317edbd1cef4fd1abd03dbeb8ff1e18156e8983b0d5f0cdd1e2ee8d92a4e1e52"
+    }
   }
 }
