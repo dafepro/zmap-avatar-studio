@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-03",
+  "assetCommit": "0a58ac40d6a1b3de57fd0492cb4f58cf23a68abe",
+  "workflowRun": 37087055637,
+  "workflowURL": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37087055637",
+  "workflow": "Crane hair asset evidence",
+  "conclusion": "success",
+  "artifactId": 11260832021,
+  "artifactName": "crane-hair-actual-browser-evidence",
+  "artifactSha256": "43e0e9e5aa30ad74f9a5400a2233a9b376ad59efc62f58b2f065abafac6c3a4f",
+  "browser": "CI Chromium / actual AvatarLibrary and ComicStyle renderer",
+  "visualReview": "Inspected studio selection, 8-angle bare hair, glasses occlusion, and cap containment screenshots. Source meshes, exported GLB and runtime geometry are distinct from the generated concept. No page or shader errors.",
+  "filesSha256": {
+    "browser-cap-glasses.json": "9ce5e8e832b007cf356d78ed60b6256de4f3b659b3fba447905ce75c70827644",
+    "browser-orbit.png": "00ca2c0ca9cc2f0118646cd9133e465eacd24365350f77d49d506335f8c0da50",
+    "browser-glasses.json": "fabb6cf300aabd25c73b987524cd45a1a384c454f185a753f6ca57e963b5cc95",
+    "browser-cap-glasses.png": "534ac522bbf83de5fe5ea08c01909c021733da8823960f1ee6e0aa0a51272cfc",
+    "browser-glasses.png": "6dc0f801f87ca1a36a739ae8fa3673b13a5b095c2263aefbb9783d0179732e91",
+    "browser-orbit.json": "b0e714176d4f9abdcab26121df1a96a06c62f6f748298e5df76ed6df01d83483",
+    "browser-studio.png": "7d5325ed78ba51f741aad4db1c8e5a7145345a732b3523f92442798eaaa1c7bc"
+  }
+}

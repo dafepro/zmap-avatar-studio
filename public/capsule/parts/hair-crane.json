@@ -1,0 +1,19 @@
+{
+  "id": "hair-crane",
+  "label": "Crane undercut braid",
+  "slot": "hair",
+  "rig": "athlete-reference-v2",
+  "description": "Original compact asymmetric chisel sweep over a close undercut, with a short three-link folded nape braid. Shared scalp foundation and accessory-owned fitting; one source mesh.",
+  "attachments": [
+    {
+      "node": "ref2_hair-crane__head",
+      "socket": "head"
+    }
+  ],
+  "channels": ["hair"],
+  "tags": ["studio-capsule", "original-crane"],
+  "url": "models/hair-crane.glb",
+  "bytes": 43588,
+  "sha256": "5940e7b4bf9ab8d0587313635ea68c58a142315d7e68f3c7b8f34373274d2fce",
+  "triangles": 1684
+}

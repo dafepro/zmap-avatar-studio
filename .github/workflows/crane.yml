@@ -1,0 +1,39 @@
+name: Crane hair asset evidence
+on:
+  push:
+    branches: ["codex/asset-crane-hair"]
+  pull_request:
+    paths:
+      - "public/capsule/parts/hair-crane.json"
+      - "public/capsule/models/hair-crane.glb"
+      - "tests/crane-hair.test.ts"
+      - "tests/browser/crane-hair.spec.ts"
+      - "tests/fixtures/crane-review.ts"
+      - "playwright.crane.config.ts"
+      - ".github/workflows/crane.yml"
+permissions:
+  contents: read
+jobs:
+  crane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/build-capsule-catalog.mjs
+      - run: node --import tsx --test tests/crane-hair.test.ts
+      - run: npm run typecheck
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --config playwright.crane.config.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: crane-hair-actual-browser-evidence
+          path: |
+            docs/evidence/crane/browser-*
+            test-results/
+          retention-days: 30
