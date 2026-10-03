@@ -1,0 +1,42 @@
+{
+  "method": "Controlled diagnostic reconstruction of the former uniform-Z cheek lattice and current head-aligned lattice with identical final artwork and runtime fitting. This is not a browser image.",
+  "before": {
+    "sha256": "0aac2a74d9d500fab9c7f104e24ec886506b528e9b3a86cf4281ae4bc9a12b8a",
+    "triangles": 788,
+    "bytes": 74316,
+    "fit": {
+      "targetSlot": "head",
+      "surface": "face-v2",
+      "frame": [
+        0,
+        -0.041,
+        0.326,
+        0.318
+      ],
+      "mode": "surface",
+      "offset": 0.0015,
+      "maxDistance": 0.085,
+      "projection": "radial"
+    }
+  },
+  "after": {
+    "sha256": "4fb6caa6a0f70e5cc5f98a4d8073c30615b7ad180a3a8c521ad3484cfda8ea83",
+    "triangles": 608,
+    "bytes": 70040,
+    "fit": {
+      "targetSlot": "head",
+      "surface": "face-v2",
+      "frame": [
+        0,
+        -0.041,
+        0.326,
+        0.318
+      ],
+      "mode": "surface",
+      "offset": 0.0015,
+      "maxDistance": 0.085,
+      "projection": "radial"
+    }
+  },
+  "textureSha256": "af05364c6636239332a7d3bf4c9f69b45d2164fcf0f432930e2175f569b9ebd8"
+}

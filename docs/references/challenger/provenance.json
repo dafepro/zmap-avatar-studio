@@ -1,0 +1,25 @@
+{
+  "asset": "face-challenger",
+  "created": "2026-10-03",
+  "concept": {
+    "method": "OpenAI built-in image_gen tool, default model/settings",
+    "prompt": "prompt.txt",
+    "output": "concept.png",
+    "generationId": "exec-c396492a-a0ca-4968-8069-978ed9ebc836",
+    "inputImages": [],
+    "role": "Original expression design reference only; not geometry or runtime texture"
+  },
+  "runtimeArtwork": {
+    "method": "Original hand-authored SVG paths, rasterized by Inkscape 1.4 to transparent 1024x1024 RGBA PNG",
+    "source": "../../../assets/textures/face-challenger.svg",
+    "texture": "../../../assets/textures/face-challenger.png",
+    "content": "Front expression and two independently authored asymmetric profile cells",
+    "palette": ["#1c2225", "#252b2c", "#f5f3e9", "#383c39", "#63645a", "#171d21", "#fffaf0", "#aaa99e", "#765e50"]
+  },
+  "geometry": {
+    "source": "../../../assets/source/face_challenger.py",
+    "method": "Established face-v2 smooth radial paint surface, with original front and left/right profile UV layout",
+    "tool": "Blender 4.3.2 Python in the cloud VM",
+    "scope": "One independent expression. No new head, rig, skin tone, palette channel, runtime effect or legacy catalog edit"
+  }
+}

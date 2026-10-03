@@ -1,0 +1,221 @@
+{
+  "source": "Actual AvatarLibrary GLB load, surface fitting, and posed world-space vertex samples; review mesh data is not a replacement asset",
+  "samples": [
+    {
+      "name": "runtime-head-scout-idle",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.5.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-scout",
+          "face": "face-challenger",
+          "hair": null,
+          "facialHair": null,
+          "eyewear": null,
+          "headwear": null,
+          "shirt": "shirt-volt",
+          "bottom": "bottom-court",
+          "shoes": "shoes-high",
+          "accessory": null,
+          "effect": null
+        },
+        "colors": {
+          "skin": "#bf8357",
+          "primary": "#cf5739",
+          "secondary": "#282c3a",
+          "trim": "#fff1d1",
+          "hair": "#363130",
+          "accent": "#f2c44c"
+        }
+      },
+      "diagnostics": {
+        "meshes": 19,
+        "triangles": 9670,
+        "sourceTriangles": 9670,
+        "parts": 6
+      }
+    },
+    {
+      "name": "runtime-head-scout-run",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.5.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-scout",
+          "face": "face-challenger",
+          "hair": "hair-ember",
+          "facialHair": null,
+          "eyewear": null,
+          "headwear": null,
+          "shirt": "shirt-volt",
+          "bottom": "bottom-court",
+          "shoes": "shoes-high",
+          "accessory": null,
+          "effect": null
+        },
+        "colors": {
+          "skin": "#bf8357",
+          "primary": "#cf5739",
+          "secondary": "#282c3a",
+          "trim": "#fff1d1",
+          "hair": "#363130",
+          "accent": "#f2c44c"
+        }
+      },
+      "diagnostics": {
+        "meshes": 20,
+        "triangles": 11466,
+        "sourceTriangles": 11466,
+        "parts": 7
+      }
+    },
+    {
+      "name": "runtime-head-scout-wave",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.5.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-scout",
+          "face": "face-challenger",
+          "hair": "hair-ember",
+          "facialHair": null,
+          "eyewear": null,
+          "headwear": null,
+          "shirt": "shirt-volt",
+          "bottom": "bottom-court",
+          "shoes": "shoes-high",
+          "accessory": null,
+          "effect": null
+        },
+        "colors": {
+          "skin": "#bf8357",
+          "primary": "#cf5739",
+          "secondary": "#282c3a",
+          "trim": "#fff1d1",
+          "hair": "#363130",
+          "accent": "#f2c44c"
+        }
+      },
+      "diagnostics": {
+        "meshes": 20,
+        "triangles": 11466,
+        "sourceTriangles": 11466,
+        "parts": 7
+      }
+    },
+    {
+      "name": "runtime-head-spark-idle",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.5.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-spark",
+          "face": "face-challenger",
+          "hair": null,
+          "facialHair": null,
+          "eyewear": null,
+          "headwear": null,
+          "shirt": "shirt-volt",
+          "bottom": "bottom-court",
+          "shoes": "shoes-high",
+          "accessory": null,
+          "effect": null
+        },
+        "colors": {
+          "skin": "#d7a77f",
+          "primary": "#cf5739",
+          "secondary": "#282c3a",
+          "trim": "#fff1d1",
+          "hair": "#363130",
+          "accent": "#f2c44c"
+        }
+      },
+      "diagnostics": {
+        "meshes": 19,
+        "triangles": 9670,
+        "sourceTriangles": 9670,
+        "parts": 6
+      }
+    },
+    {
+      "name": "runtime-head-spark-run",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.5.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-spark",
+          "face": "face-challenger",
+          "hair": "hair-ember",
+          "facialHair": null,
+          "eyewear": null,
+          "headwear": null,
+          "shirt": "shirt-volt",
+          "bottom": "bottom-court",
+          "shoes": "shoes-high",
+          "accessory": null,
+          "effect": null
+        },
+        "colors": {
+          "skin": "#d7a77f",
+          "primary": "#cf5739",
+          "secondary": "#282c3a",
+          "trim": "#fff1d1",
+          "hair": "#363130",
+          "accent": "#f2c44c"
+        }
+      },
+      "diagnostics": {
+        "meshes": 20,
+        "triangles": 11466,
+        "sourceTriangles": 11466,
+        "parts": 7
+      }
+    },
+    {
+      "name": "runtime-head-spark-wave",
+      "recipe": {
+        "version": 1,
+        "catalog": "zoomap-athletics",
+        "revision": "2.5.0",
+        "rig": "athlete-reference-v2",
+        "parts": {
+          "head": "head-spark",
+          "face": "face-challenger",
+          "hair": "hair-ember",
+          "facialHair": null,
+          "eyewear": null,
+          "headwear": null,
+          "shirt": "shirt-volt",
+          "bottom": "bottom-court",
+          "shoes": "shoes-high",
+          "accessory": null,
+          "effect": null
+        },
+        "colors": {
+          "skin": "#d7a77f",
+          "primary": "#cf5739",
+          "secondary": "#282c3a",
+          "trim": "#fff1d1",
+          "hair": "#363130",
+          "accent": "#f2c44c"
+        }
+      },
+      "diagnostics": {
+        "meshes": 20,
+        "triangles": 11466,
+        "sourceTriangles": 11466,
+        "parts": 7
+      }
+    }
+  ]
+}
