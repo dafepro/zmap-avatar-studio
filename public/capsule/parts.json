@@ -1,0 +1,121 @@
+[
+  {
+    "id": "shirt-circuit",
+    "label": "Switchback jacket",
+    "slot": "shirt",
+    "rig": "athlete-reference-v2",
+    "description": "Original asymmetric cropped street-sport jacket: long articulated sleeves, angled storm tape, stand collar, deep pocket and panelled back.",
+    "attachments": [
+      {
+        "node": "ref2_shirt-circuit__root",
+        "socket": "root"
+      }
+    ],
+    "channels": ["primary", "secondary", "trim", "accent"],
+    "tags": [],
+    "covers": ["torso"],
+    "skin": {
+      "bones": [
+        "root",
+        "hips",
+        "chest",
+        "head",
+        "arm_L",
+        "forearm_L",
+        "hand_L",
+        "leg_L",
+        "shin_L",
+        "foot_L",
+        "arm_R",
+        "forearm_R",
+        "hand_R",
+        "leg_R",
+        "shin_R",
+        "foot_R"
+      ]
+    },
+    "url": "models/shirt-circuit.glb",
+    "bytes": 49968,
+    "sha256": "12b73e2c1836c18a1ffec3a71d9fb725985eae9c3de879f7de50dd46034badcc",
+    "triangles": 456
+  },
+  {
+    "id": "shirt-relay",
+    "label": "Courier varsity vest",
+    "slot": "shirt",
+    "rig": "athlete-reference-v2",
+    "description": "Original boxy sleeveless varsity utility vest over a dark short-sleeve tee: split lapels, contrast shoulder yoke, twin folded pockets and raised back chevrons.",
+    "attachments": [
+      {
+        "node": "ref2_shirt-relay__root",
+        "socket": "root"
+      }
+    ],
+    "channels": ["primary", "secondary", "trim", "accent"],
+    "tags": [],
+    "covers": ["torso"],
+    "skin": {
+      "bones": [
+        "root",
+        "hips",
+        "chest",
+        "head",
+        "arm_L",
+        "forearm_L",
+        "hand_L",
+        "leg_L",
+        "shin_L",
+        "foot_L",
+        "arm_R",
+        "forearm_R",
+        "hand_R",
+        "leg_R",
+        "shin_R",
+        "foot_R"
+      ]
+    },
+    "url": "models/shirt-relay.glb",
+    "bytes": 61952,
+    "sha256": "f864d0818f1255480ffde638128e2a959638147a0cddfe31b3eb8a8522564218",
+    "triangles": 590
+  },
+  {
+    "id": "acc-pulse-pack",
+    "label": "Pulse sling pack",
+    "slot": "accessory",
+    "rig": "athlete-reference-v2",
+    "description": "Independent compact angular runner pack with wraparound shoulder straps, a raised chevron and a side signal tab. Uses the shared chest/hips skin and body-volume field.",
+    "attachments": [
+      {
+        "node": "ref2_acc-pulse-pack__root",
+        "socket": "root"
+      }
+    ],
+    "channels": ["primary", "secondary", "trim", "accent"],
+    "tags": ["back-mounted"],
+    "skin": {
+      "bones": [
+        "root",
+        "hips",
+        "chest",
+        "head",
+        "arm_L",
+        "forearm_L",
+        "hand_L",
+        "leg_L",
+        "shin_L",
+        "foot_L",
+        "arm_R",
+        "forearm_R",
+        "hand_R",
+        "leg_R",
+        "shin_R",
+        "foot_R"
+      ]
+    },
+    "url": "models/acc-pulse-pack.glb",
+    "bytes": 28124,
+    "sha256": "5e5672e3f0c9669701596e4d31ca2c72d599cc98705ff6369d8369edd69ab696",
+    "triangles": 192
+  }
+]

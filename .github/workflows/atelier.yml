@@ -1,0 +1,56 @@
+name: SHIFT studio browser evidence
+on:
+  push:
+    branches: ["prototype/shift-character-lab", "asset/**", "codex/asset-**"]
+  pull_request:
+    paths:
+      - "app/atelier*"
+      - "public/capsule/**"
+      - "public/fonts/**"
+      - "assets/source/studio_capsule.py"
+      - "tests/atelier-state.test.ts"
+      - "tests/browser/atelier.spec.ts"
+      - "playwright.atelier.config.ts"
+      - "scripts/build-capsule-catalog.mjs"
+      - "scripts/capsule-descriptors.*"
+      - "tests/capsule-descriptors.test.ts"
+      - ".github/workflows/atelier.yml"
+permissions:
+  contents: read
+# PR and push events for the same branch share a group. A newer head
+# supersedes only its own workflow/branch; all test assertions still run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  atelier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/build-capsule-catalog.mjs
+      - run: npm run typecheck
+      - run: node --import tsx --test tests/atelier-state.test.ts tests/capsule-descriptors.test.ts
+      - run: node --import tsx public/capsule/validate-capsule.ts
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:atelier
+      - name: Verify legacy multi-swap and expression regressions
+        run: npx playwright test --grep 'one-hand workbench stows|all eleven categories swap|comic rendering survives'
+        env:
+          ZMAP_BROWSER_CHANNEL: chromium
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shift-atelier-browser-evidence
+          path: |
+            docs/evidence/atelier/
+            test-results/
+            public/capsule/validation.json
+          retention-days: 14

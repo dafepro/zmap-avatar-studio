@@ -9,6 +9,7 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
+        atelier: fileURLToPath(new URL("./app/atelier.html", import.meta.url)),
         studio: fileURLToPath(new URL("./app/index.html", import.meta.url)),
         playground: fileURLToPath(new URL("./app/wield.html", import.meta.url)),
         fieldTools: fileURLToPath(

@@ -1,0 +1,29 @@
+{
+  "sourceCommit": "f6521f1a1402788063ce2a727744e56f8f2aa9a0",
+  "workflowRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37086264742",
+  "artifactId": 11260498314,
+  "browser": "Playwright Chromium 153.0.8010.12",
+  "browserTests": {
+    "passed": 9,
+    "failed": 0
+  },
+  "screenshots": [
+    {
+      "file": "01-circuit-desktop.png",
+      "sha256": "6531665dea68717956098a430c312e7e62fc41a96b744e6950a186c71f86fe2f"
+    },
+    {
+      "file": "02-relay-dual-gear.png",
+      "sha256": "fa2f08edb42af06ef1afd4c67394fdadddd18d0f5bc354de3db97a6294d91ee2"
+    },
+    {
+      "file": "03-pulse-pack-back.png",
+      "sha256": "0bbf93a0c1cfb87a397c9126bf1a7d76a5323ae2a92488d8ded709cb745c2ab7"
+    },
+    {
+      "file": "04-mobile-studio.png",
+      "sha256": "8c7bb887ab58f5194957d98741538ae40efd8e92a71b75409ca522542ef50463"
+    }
+  ],
+  "note": "Actual browser screenshots captured by the test suite. The pack card still used head framing in this run; the follow-up back-mounted thumbnail fix is rechecked in CI."
+}

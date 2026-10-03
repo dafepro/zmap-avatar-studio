@@ -51,7 +51,13 @@
     "prepack": "tsc -p tsconfig.lib.json",
     "build:lib": "tsc -p tsconfig.lib.json",
     "test:package": "node scripts/package-smoke.mjs",
-    "format:check": "prettier --check src app tests scripts *.ts *.json README.md docs/*.md"
+    "format:check": "prettier --check src app tests scripts *.ts *.json README.md docs/*.md",
+    "dev:atelier": "vite --host 127.0.0.1 --open /atelier.html",
+    "test:atelier": "playwright test --config playwright.atelier.config.ts",
+    "predev": "node scripts/build-capsule-catalog.mjs",
+    "predev:atelier": "node scripts/build-capsule-catalog.mjs",
+    "prebuild": "node scripts/build-capsule-catalog.mjs",
+    "pretest": "node scripts/build-capsule-catalog.mjs"
   },
   "peerDependencies": {
     "three": "^0.180.0"

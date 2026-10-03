@@ -1,0 +1,557 @@
+{
+  "rig": "athlete-reference-v2",
+  "weights": [
+    -1,
+    0,
+    1
+  ],
+  "poses": [
+    "rest",
+    "wave",
+    "run"
+  ],
+  "parts": [
+    {
+      "id": "shirt-circuit",
+      "triangles": 456,
+      "bytes": 49968,
+      "sha256": "12b73e2c1836c18a1ffec3a71d9fb725985eae9c3de879f7de50dd46034badcc"
+    },
+    {
+      "id": "shirt-relay",
+      "triangles": 590,
+      "bytes": 61952,
+      "sha256": "f864d0818f1255480ffde638128e2a959638147a0cddfe31b3eb8a8522564218"
+    },
+    {
+      "id": "acc-pulse-pack",
+      "triangles": 192,
+      "bytes": 28124,
+      "sha256": "5e5672e3f0c9669701596e4d31ca2c72d599cc98705ff6369d8369edd69ab696"
+    }
+  ],
+  "samples": [
+    {
+      "shirt": "shirt-circuit",
+      "accessory": null,
+      "weight": -1,
+      "meshCount": 4,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.030464727878570557,
+          "sleeveClearance": {
+            "checked": 199,
+            "outside": 0,
+            "minClearanceM": 0.00587921106599576,
+            "worst": {
+              "posed": [
+                0.266012556929559,
+                1.371852970277366,
+                0.014920515974339469
+              ],
+              "rest": [
+                0.20583807616175226,
+                1.301975714214479,
+                0.0030082971788942814
+              ]
+            }
+          }
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.030464727878570567,
+          "sleeveClearance": {
+            "checked": 199,
+            "outside": 0,
+            "minClearanceM": 0.0022552571061447146,
+            "worst": {
+              "posed": [
+                -0.453430406501807,
+                1.2486973728825266,
+                0.13144389187988384
+              ],
+              "rest": [
+                -0.3614571342996365,
+                1.1801176948539074,
+                0.0051638816578064165
+              ]
+            }
+          }
+        }
+      ],
+      "sleeveClearance": {
+        "checked": 199,
+        "outside": 0,
+        "minClearanceM": 0.011351297052681453,
+        "worst": {
+          "posed": [
+            -0.36268347033034065,
+            1.027767042311152,
+            0.03821451236172525
+          ],
+          "rest": [
+            -0.36268347033034065,
+            1.027767042311152,
+            0.03821451236172525
+          ]
+        }
+      }
+    },
+    {
+      "shirt": "shirt-circuit",
+      "accessory": "acc-pulse-pack",
+      "weight": -1,
+      "meshCount": 8,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.02,
+          "sleeveClearance": {
+            "checked": 199,
+            "outside": 0,
+            "minClearanceM": 0.00587921106599576,
+            "worst": {
+              "posed": [
+                0.266012556929559,
+                1.371852970277366,
+                0.014920515974339469
+              ],
+              "rest": [
+                0.20583807616175226,
+                1.301975714214479,
+                0.0030082971788942814
+              ]
+            }
+          }
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.02,
+          "sleeveClearance": {
+            "checked": 199,
+            "outside": 0,
+            "minClearanceM": 0.0022552571061447146,
+            "worst": {
+              "posed": [
+                -0.453430406501807,
+                1.2486973728825266,
+                0.13144389187988384
+              ],
+              "rest": [
+                -0.3614571342996365,
+                1.1801176948539074,
+                0.0051638816578064165
+              ]
+            }
+          }
+        }
+      ],
+      "sleeveClearance": {
+        "checked": 199,
+        "outside": 0,
+        "minClearanceM": 0.011351297052681453,
+        "worst": {
+          "posed": [
+            -0.36268347033034065,
+            1.027767042311152,
+            0.03821451236172525
+          ],
+          "rest": [
+            -0.36268347033034065,
+            1.027767042311152,
+            0.03821451236172525
+          ]
+        }
+      }
+    },
+    {
+      "shirt": "shirt-circuit",
+      "accessory": null,
+      "weight": 0,
+      "meshCount": 4,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.031999994516372685,
+          "sleeveClearance": {
+            "checked": 199,
+            "outside": 0,
+            "minClearanceM": 0.005325716911475542,
+            "worst": {
+              "posed": [
+                0.2614231329480816,
+                1.3699103197021505,
+                0.019248726970684724
+              ],
+              "rest": [
+                0.1970758495621902,
+                1.2992850124947215,
+                0.0036471302155405283
+              ]
+            }
+          }
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.031999994516372615,
+          "sleeveClearance": {
+            "checked": 199,
+            "outside": 0,
+            "minClearanceM": 0.005785765698733569,
+            "worst": {
+              "posed": [
+                -0.45752897702552187,
+                1.253826668875384,
+                0.13350428557727617
+              ],
+              "rest": [
+                -0.3677149277127467,
+                1.1829929366800367,
+                0.005323855716268264
+              ]
+            }
+          }
+        }
+      ],
+      "sleeveClearance": {
+        "checked": 199,
+        "outside": 0,
+        "minClearanceM": 0.012257949465995566,
+        "worst": {
+          "posed": [
+            -0.3615202097223469,
+            1.0273750662360284,
+            0.039214176176126145
+          ],
+          "rest": [
+            -0.3615202097223469,
+            1.0273750662360284,
+            0.039214176176126145
+          ]
+        }
+      }
+    },
+    {
+      "shirt": "shirt-circuit",
+      "accessory": "acc-pulse-pack",
+      "weight": 0,
+      "meshCount": 8,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.02,
+          "sleeveClearance": {
+            "checked": 199,
+            "outside": 0,
+            "minClearanceM": 0.005325716911475542,
+            "worst": {
+              "posed": [
+                0.2614231329480816,
+                1.3699103197021505,
+                0.019248726970684724
+              ],
+              "rest": [
+                0.1970758495621902,
+                1.2992850124947215,
+                0.0036471302155405283
+              ]
+            }
+          }
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.02,
+          "sleeveClearance": {
+            "checked": 199,
+            "outside": 0,
+            "minClearanceM": 0.005785765698733569,
+            "worst": {
+              "posed": [
+                -0.45752897702552187,
+                1.253826668875384,
+                0.13350428557727617
+              ],
+              "rest": [
+                -0.3677149277127467,
+                1.1829929366800367,
+                0.005323855716268264
+              ]
+            }
+          }
+        }
+      ],
+      "sleeveClearance": {
+        "checked": 199,
+        "outside": 0,
+        "minClearanceM": 0.012257949465995566,
+        "worst": {
+          "posed": [
+            -0.3615202097223469,
+            1.0273750662360284,
+            0.039214176176126145
+          ],
+          "rest": [
+            -0.3615202097223469,
+            1.0273750662360284,
+            0.039214176176126145
+          ]
+        }
+      }
+    },
+    {
+      "shirt": "shirt-circuit",
+      "accessory": null,
+      "weight": 1,
+      "meshCount": 4,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.03010362566054465,
+          "sleeveClearance": {
+            "checked": 196,
+            "outside": 0,
+            "minClearanceM": 0.009072448041252956,
+            "worst": {
+              "posed": [
+                0.28970970984883965,
+                1.383611303135415,
+                0.028597403701777227
+              ],
+              "rest": [
+                0.19235612875879882,
+                1.2839049107346885,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.0301036256605447,
+          "sleeveClearance": {
+            "checked": 196,
+            "outside": 0,
+            "minClearanceM": 0.012459173996753004,
+            "worst": {
+              "posed": [
+                -0.4649809190207137,
+                1.263152794886276,
+                0.13725036492160272
+              ],
+              "rest": [
+                -0.37909273396321813,
+                1.1882208235128364,
+                0.005614703831927792
+              ]
+            }
+          }
+        }
+      ],
+      "sleeveClearance": {
+        "checked": 196,
+        "outside": 0,
+        "minClearanceM": 0.013292693148082901,
+        "worst": {
+          "posed": [
+            -0.33353935846901706,
+            1.0461909769876092,
+            0.010349819976585309
+          ],
+          "rest": [
+            -0.33353935846901706,
+            1.0461909769876092,
+            0.010349819976585309
+          ]
+        }
+      }
+    },
+    {
+      "shirt": "shirt-circuit",
+      "accessory": "acc-pulse-pack",
+      "weight": 1,
+      "meshCount": 8,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.02,
+          "sleeveClearance": {
+            "checked": 196,
+            "outside": 0,
+            "minClearanceM": 0.009072448041252956,
+            "worst": {
+              "posed": [
+                0.28970970984883965,
+                1.383611303135415,
+                0.028597403701777227
+              ],
+              "rest": [
+                0.19235612875879882,
+                1.2839049107346885,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.02,
+          "sleeveClearance": {
+            "checked": 196,
+            "outside": 0,
+            "minClearanceM": 0.012459173996753004,
+            "worst": {
+              "posed": [
+                -0.4649809190207137,
+                1.263152794886276,
+                0.13725036492160272
+              ],
+              "rest": [
+                -0.37909273396321813,
+                1.1882208235128364,
+                0.005614703831927792
+              ]
+            }
+          }
+        }
+      ],
+      "sleeveClearance": {
+        "checked": 196,
+        "outside": 0,
+        "minClearanceM": 0.013292693148082901,
+        "worst": {
+          "posed": [
+            -0.33353935846901706,
+            1.0461909769876092,
+            0.010349819976585309
+          ],
+          "rest": [
+            -0.33353935846901706,
+            1.0461909769876092,
+            0.010349819976585309
+          ]
+        }
+      }
+    },
+    {
+      "shirt": "shirt-relay",
+      "accessory": null,
+      "weight": -1,
+      "meshCount": 4,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.029845569729804993
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.02984556972980501
+        }
+      ]
+    },
+    {
+      "shirt": "shirt-relay",
+      "accessory": "acc-pulse-pack",
+      "weight": -1,
+      "meshCount": 8,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.02
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.02
+        }
+      ]
+    },
+    {
+      "shirt": "shirt-relay",
+      "accessory": null,
+      "weight": 0,
+      "meshCount": 4,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.031999994516372685
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.031999994516372615
+        }
+      ]
+    },
+    {
+      "shirt": "shirt-relay",
+      "accessory": "acc-pulse-pack",
+      "weight": 0,
+      "meshCount": 8,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.02
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.02
+        }
+      ]
+    },
+    {
+      "shirt": "shirt-relay",
+      "accessory": null,
+      "weight": 1,
+      "meshCount": 4,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.027203236546631253
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.027203236546631294
+        }
+      ]
+    },
+    {
+      "shirt": "shirt-relay",
+      "accessory": "acc-pulse-pack",
+      "weight": 1,
+      "meshCount": 8,
+      "poses": [
+        {
+          "gesture": "wave",
+          "edgeContinuityExcessM": -0.02
+        },
+        {
+          "gesture": "run",
+          "edgeContinuityExcessM": -0.02
+        }
+      ]
+    }
+  ],
+  "sourceBudget": {
+    "maxTriangles": 14000,
+    "maxBytes": 1500000,
+    "maxParts": 12
+  },
+  "maximumEquipment": [
+    {
+      "shirt": "shirt-circuit",
+      "status": "accepted",
+      "meshes": 32,
+      "triangles": 13856,
+      "sourceTriangles": 13856,
+      "parts": 12
+    },
+    {
+      "shirt": "shirt-relay",
+      "status": "accepted",
+      "meshes": 32,
+      "triangles": 13990,
+      "sourceTriangles": 13990,
+      "parts": 12
+    }
+  ],
+  "status": "passed"
+}
