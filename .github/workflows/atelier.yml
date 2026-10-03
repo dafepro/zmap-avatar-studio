@@ -17,6 +17,12 @@ on:
       - ".github/workflows/atelier.yml"
 permissions:
   contents: read
+# PR and push events for the same branch share a group. A newer head
+# supersedes only its own workflow/branch; all test assertions still run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   atelier:
     runs-on: ubuntu-latest

@@ -15,6 +15,9 @@ on:
       - "assets/source/performances/snap-salute/**"
       - "playwright.snap-salute.config.ts"
       - ".github/workflows/snap-salute.yml"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:

@@ -19,9 +19,13 @@ The five images above are **Blender review renders of evaluated AvatarLibrary
 vertices** loaded from the exact exported GLBs and posed through the real
 runtime. Their review shading is deliberately separated from the shipping
 ComicStyle WebGL renderer. They are neither concept-art stand-ins nor claims of
-browser capture. CI runs `tests/browser/snap-salute.spec.ts` to capture the actual
-shipping-renderer sequence and in-app studio control; only downloaded and
-inspected CI files will be called browser evidence.
+browser capture. The [actual Chromium sequence](evidence/snap-salute/browser-actual-sequence.png)
+and [in-app studio screenshot](evidence/snap-salute/browser-studio.png) were
+captured by the passing focused CI run on `d209c443`, downloaded with the exact
+artifact digest verified, and pixel-inspected. The separate
+[browser provenance](evidence/snap-salute/browser-verification.json) records the
+run, source head and file hashes. Both browser tests pass, including the new
+control after running and mobile control containment.
 
 ## Assets and authorship
 
