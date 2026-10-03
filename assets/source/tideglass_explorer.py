@@ -36,7 +36,7 @@ def shield(name,points,center,material,depth=.008):
 
 
 def mounted_shield(name, outline, center, material, cloth_sample, role, direction=1):
-    # The visible shell is proud by 14–28mm, while its return walls terminate
+    # The visible shell is proud by 27–47mm, while its return walls terminate
     # on the actual cloth. Backing is intentionally allowed to overlap cloth
     # by 1mm so a sewn/bolted mounting edge cannot look like a floating card.
     points=[(x,y,cloth_sample(x,y,0)+direction*.027)for x,y in outline]

@@ -42,7 +42,7 @@
   "sources": [
     {
       "path": "assets/source/tideglass_explorer.py",
-      "sha256": "3db678829fff75c976f29ccd6f992857e70c61e94424abe713a1c0b4eb958ef5"
+      "sha256": "f722118dab173af95fbc214c34476126fdcbf2214ce028b58b6db0d04f2dd793"
     },
     {
       "path": "assets/source/tideglass-explorer.blend",
@@ -81,9 +81,10 @@
       "broad-back"
     ],
     "guiInspection": {
-      "timeUTC": "2026-10-03T02:53:00Z",
-      "window": "Separate tideglass-review.blend instance; original unsaved windows untouched",
-      "scope": "Interactive loaded neutral geometry and source materials; later attachment refinements rerendered and independently retested"
+      "timeUTC": "2026-10-03T03:21:55Z",
+      "window": "Separate tideglass-review.blend instance; exact current fitted neutral scene opened and inspected",
+      "scope": "Current neutral geometry and source materials inspected interactively. Saved run/wave posed scenes independently rendered and inspected as actual loaded geometry.",
+      "limitation": "While selecting saved broad-run scene, all Blender windows disappeared and tools reported X11 BadWindow. Cause unverified; no Quit/close action was issued in this inspection pass. Existing source files remain intact."
     }
   }
 }

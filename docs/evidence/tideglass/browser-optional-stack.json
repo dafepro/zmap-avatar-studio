@@ -1,0 +1,1262 @@
+[
+  {
+    "head": "head-scout",
+    "weight": -1,
+    "label": "front",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": -1,
+    "label": "side",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": -1,
+    "label": "back",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": -1,
+    "label": "run",
+    "pose": "run",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": -1,
+    "label": "wave",
+    "pose": "wave",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": 0,
+    "label": "front",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": 0,
+    "label": "side",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": 0,
+    "label": "back",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": 0,
+    "label": "run",
+    "pose": "run",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": 0,
+    "label": "wave",
+    "pose": "wave",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": 1,
+    "label": "front",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": 1,
+    "label": "side",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": 1,
+    "label": "back",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": 1,
+    "label": "run",
+    "pose": "run",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-scout",
+    "weight": 1,
+    "label": "wave",
+    "pose": "wave",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": -1,
+    "label": "front",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": -1,
+    "label": "side",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": -1,
+    "label": "back",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": -1,
+    "label": "run",
+    "pose": "run",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": -1,
+    "label": "wave",
+    "pose": "wave",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": 0,
+    "label": "front",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": 0,
+    "label": "side",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": 0,
+    "label": "back",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": 0,
+    "label": "run",
+    "pose": "run",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": 0,
+    "label": "wave",
+    "pose": "wave",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": 1,
+    "label": "front",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": 1,
+    "label": "side",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": 1,
+    "label": "back",
+    "pose": "idle",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": 1,
+    "label": "run",
+    "pose": "run",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  },
+  {
+    "head": "head-spark",
+    "weight": 1,
+    "label": "wave",
+    "pose": "wave",
+    "optional": true,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-volt",
+        "facialHair": "facial-mustache",
+        "eyewear": "acc-glasses",
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": "effect-orbit"
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "meshes": 89,
+    "triangles": 24494,
+    "sourceTriangles": 12837,
+    "parts": 12
+  }
+]
