@@ -4,17 +4,22 @@ import {
   ComicStyle,
   defaultRecipe,
   type Catalog,
-  type Asset,
 } from "../../src";
 
 /** Actual browser/WebGL pixel evidence. No artwork or generated concept is composited here. */
 export async function renderChallengerReview() {
-  const catalog: Catalog = await fetch("/catalog.json").then((r) => r.json());
-  const descriptor: Asset = await fetch(
-    "/capsule/parts/face-challenger.json",
-  ).then((r) => r.json());
-  catalog.assets.push({ ...descriptor, url: "capsule/" + descriptor.url });
-  const library = new AvatarLibrary(catalog, new URL("/", location.href).href);
+  const catalog: Catalog = await fetch("/capsule/catalog.json").then((r) =>
+    r.json(),
+  );
+  const descriptor = catalog.assets.find(
+    (asset) => asset.id === "face-challenger",
+  );
+  if (!descriptor)
+    throw new Error("Challenger is missing from the generated capsule catalog");
+  const library = new AvatarLibrary(
+    catalog,
+    new URL("/capsule/", location.href).href,
+  );
   const renderer = new THREE.WebGLRenderer({
     alpha: true,
     antialias: true,
