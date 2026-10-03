@@ -1,0 +1,373 @@
+[
+  {
+    "label": "READY",
+    "elapsed": 0,
+    "weight": 0,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959",
+        "hair": "#486469",
+        "skin": "#cb9472"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "geometry": {
+      "meshes": 40,
+      "triangles": 22532,
+      "sourceTriangles": 11660,
+      "parts": 7
+    },
+    "emote": {
+      "id": "snap-salute",
+      "elapsed": 0,
+      "weight": 0,
+      "waiting": false
+    }
+  },
+  {
+    "label": "LIFT",
+    "elapsed": 0.28,
+    "weight": 0,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959",
+        "hair": "#486469",
+        "skin": "#cb9472"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "geometry": {
+      "meshes": 40,
+      "triangles": 22532,
+      "sourceTriangles": 11660,
+      "parts": 7
+    },
+    "emote": {
+      "id": "snap-salute",
+      "elapsed": 0.28,
+      "weight": 1,
+      "waiting": false
+    }
+  },
+  {
+    "label": "SALUTE",
+    "elapsed": 0.72,
+    "weight": 0,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959",
+        "hair": "#486469",
+        "skin": "#cb9472"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "geometry": {
+      "meshes": 40,
+      "triangles": 22532,
+      "sourceTriangles": 11660,
+      "parts": 7
+    },
+    "emote": {
+      "id": "snap-salute",
+      "elapsed": 0.72,
+      "weight": 1,
+      "waiting": false
+    }
+  },
+  {
+    "label": "NOD",
+    "elapsed": 1.02,
+    "weight": 0,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959",
+        "hair": "#486469",
+        "skin": "#cb9472"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "geometry": {
+      "meshes": 40,
+      "triangles": 22532,
+      "sourceTriangles": 11660,
+      "parts": 7
+    },
+    "emote": {
+      "id": "snap-salute",
+      "elapsed": 1.02,
+      "weight": 1,
+      "waiting": false
+    }
+  },
+  {
+    "label": "FLICK",
+    "elapsed": 1.34,
+    "weight": 0,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959",
+        "hair": "#486469",
+        "skin": "#cb9472"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "geometry": {
+      "meshes": 40,
+      "triangles": 22532,
+      "sourceTriangles": 11660,
+      "parts": 7
+    },
+    "emote": {
+      "id": "snap-salute",
+      "elapsed": 1.34,
+      "weight": 1,
+      "waiting": false
+    }
+  },
+  {
+    "label": "RESET",
+    "elapsed": 2.4,
+    "weight": 0,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959",
+        "hair": "#486469",
+        "skin": "#cb9472"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "geometry": {
+      "meshes": 40,
+      "triangles": 22532,
+      "sourceTriangles": 11660,
+      "parts": 7
+    },
+    "emote": null
+  },
+  {
+    "label": "LEAN / JACKET",
+    "elapsed": 0.72,
+    "weight": -1,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-circuit",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959",
+        "hair": "#486469",
+        "skin": "#cb9472"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "geometry": {
+      "meshes": 40,
+      "triangles": 22264,
+      "sourceTriangles": 11526,
+      "parts": 7
+    },
+    "emote": {
+      "id": "snap-salute",
+      "elapsed": 0.72,
+      "weight": 1,
+      "waiting": false
+    }
+  },
+  {
+    "label": "FULL / JACKET",
+    "elapsed": 0.72,
+    "weight": 1,
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-circuit",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959",
+        "hair": "#486469",
+        "skin": "#cb9472"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "geometry": {
+      "meshes": 40,
+      "triangles": 22264,
+      "sourceTriangles": 11526,
+      "parts": 7
+    },
+    "emote": {
+      "id": "snap-salute",
+      "elapsed": 0.72,
+      "weight": 1,
+      "waiting": false
+    }
+  }
+]

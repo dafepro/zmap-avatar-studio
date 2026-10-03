@@ -1,7 +1,8 @@
 import * as THREE from "three";
 import { performanceData } from "./performance-data.js";
+import { snapSaluteData } from "./snap-salute-data.js";
 import type { ReferencePose } from "./locomotion.js";
-export type EmoteId = "wave" | "cheer" | "dance" | "yes" | "no";
+export type EmoteId = "wave" | "cheer" | "dance" | "yes" | "no" | "snap-salute";
 export type EquipmentClip = "equipOne" | "stowOne" | "equipTwo" | "stowTwo";
 export type PerformanceClip = EmoteId | EquipmentClip;
 type Frame = {
@@ -16,7 +17,10 @@ type Clip = {
   markers: { name: string; time: number }[];
   frames: Frame[];
 };
-const data = performanceData as {
+const data = {
+  bones: performanceData.bones,
+  clips: { ...performanceData.clips, "snap-salute": snapSaluteData.clip },
+} as {
   bones: string[];
   clips: Record<PerformanceClip, Clip>;
 };
@@ -28,6 +32,7 @@ export const emoteDescriptors = Object.freeze(
       ["dance", "Dance"],
       ["yes", "Yes"],
       ["no", "No"],
+      ["snap-salute", "Snap salute"],
     ] as const
   ).map(([id, label]) =>
     Object.freeze({

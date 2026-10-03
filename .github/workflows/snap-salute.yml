@@ -1,0 +1,49 @@
+name: Snap Salute browser evidence
+on:
+  push:
+    branches: ["codex/asset-snap-salute-emote"]
+  pull_request:
+    paths:
+      - "src/snap-salute-data.ts"
+      - "src/performances.ts"
+      - "src/runtime.ts"
+      - "app/atelier*"
+      - "tests/snap-salute.test.ts"
+      - "tests/browser/snap-salute.spec.ts"
+      - "tests/fixtures/snap-salute-review.ts"
+      - "scripts/build-snap-salute.mjs"
+      - "assets/source/performances/snap-salute/**"
+      - "playwright.snap-salute.config.ts"
+      - ".github/workflows/snap-salute.yml"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  snap-salute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/build-capsule-catalog.mjs
+      - run: node scripts/build-snap-salute.mjs && git diff --exit-code src/snap-salute-data.ts assets/source/performances/snap-salute/baked-clip.json
+      - run: npm run typecheck
+      - run: node --import tsx --test tests/snap-salute.test.ts
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --config playwright.snap-salute.config.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: snap-salute-browser-evidence
+          path: |
+            docs/evidence/snap-salute/browser-*.png
+            docs/evidence/snap-salute/browser-report.json
+            test-results/
+          retention-days: 14

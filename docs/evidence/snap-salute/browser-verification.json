@@ -1,0 +1,34 @@
+{
+  "workflowRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37088395412",
+  "artifactId": 11260924317,
+  "artifactSha256": "e55e406bcd1d948f6f8666e5ffa2dfaa901aa06649b2f16d79e1767266b9eaf9",
+  "testedHead": "d209c443dd7e9ad0dfe8ff1dee714c6f69178fe4",
+  "browser": "Chromium on GitHub Actions Ubuntu; shipping AvatarLibrary and ComicStyle",
+  "testsPassed": 2,
+  "capturedCases": 8,
+  "inspectedPixels": true,
+  "inspection": [
+    "All six chronological poses are visible and distinct",
+    "Both lean and full long-jacket poses render with intact sleeves",
+    "Salute control is visible in the actual SHIFT studio",
+    "Mobile390x844 viewport and control containment asserted",
+    "No page errors in sequence and base-studio control test"
+  ],
+  "files": [
+    {
+      "file": "browser-actual-sequence.png",
+      "bytes": 381708,
+      "sha256": "034d382eb54c7b2070ba54c0a3914d41f6808b112f914b249e9b7a363d902940"
+    },
+    {
+      "file": "browser-studio.png",
+      "bytes": 209283,
+      "sha256": "d2cb9933af42099245daec3460a674dfcf3968f18d1d52615152a66a05e72db5"
+    },
+    {
+      "file": "browser-report.json",
+      "bytes": 8129,
+      "sha256": "5dbb7c2671b7f6c003f38bcb4f2cd431addba74b81d244875374ca3f11e4cfa9"
+    }
+  ]
+}

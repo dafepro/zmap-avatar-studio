@@ -1,0 +1,353 @@
+[
+  {
+    "name": "ready",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cb9472",
+        "hair": "#486469",
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "diagnostics": {
+      "meshes": 21,
+      "triangles": 11660,
+      "sourceTriangles": 11660,
+      "parts": 7
+    }
+  },
+  {
+    "name": "lift",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cb9472",
+        "hair": "#486469",
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "diagnostics": {
+      "meshes": 21,
+      "triangles": 11660,
+      "sourceTriangles": 11660,
+      "parts": 7
+    }
+  },
+  {
+    "name": "salute",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cb9472",
+        "hair": "#486469",
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "diagnostics": {
+      "meshes": 21,
+      "triangles": 11660,
+      "sourceTriangles": 11660,
+      "parts": 7
+    }
+  },
+  {
+    "name": "nod",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cb9472",
+        "hair": "#486469",
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "diagnostics": {
+      "meshes": 21,
+      "triangles": 11660,
+      "sourceTriangles": 11660,
+      "parts": 7
+    }
+  },
+  {
+    "name": "flick",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cb9472",
+        "hair": "#486469",
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "diagnostics": {
+      "meshes": 21,
+      "triangles": 11660,
+      "sourceTriangles": 11660,
+      "parts": 7
+    }
+  },
+  {
+    "name": "reset",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cb9472",
+        "hair": "#486469",
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "diagnostics": {
+      "meshes": 21,
+      "triangles": 11660,
+      "sourceTriangles": 11660,
+      "parts": 7
+    }
+  },
+  {
+    "name": "lean",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-circuit",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cb9472",
+        "hair": "#486469",
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "diagnostics": {
+      "meshes": 21,
+      "triangles": 11526,
+      "sourceTriangles": 11526,
+      "parts": 7
+    }
+  },
+  {
+    "name": "broad",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-circuit",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cb9472",
+        "hair": "#486469",
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "diagnostics": {
+      "meshes": 21,
+      "triangles": 11526,
+      "sourceTriangles": 11526,
+      "parts": 7
+    }
+  },
+  {
+    "name": "salute",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-volt",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": null,
+        "shirt": "shirt-relay",
+        "bottom": "bottom-court",
+        "shoes": "shoes-court",
+        "accessory": null,
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cb9472",
+        "hair": "#486469",
+        "primary": "#dc6849",
+        "secondary": "#273646",
+        "trim": "#f1dfb8",
+        "accent": "#cad959"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "diagnostics": {
+      "meshes": 21,
+      "triangles": 11660,
+      "sourceTriangles": 11660,
+      "parts": 7
+    }
+  }
+]
