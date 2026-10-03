@@ -1,0 +1,136 @@
+{
+  "asset": {
+    "id": "shoes-stride",
+    "label": "Stride split-sole",
+    "slot": "shoes",
+    "rig": "athlete-reference-v2",
+    "description": "Original angular street-sport sneaker: separated heel/forefoot blocks, narrow bridge, broad offset strap, open geometric heel cage, clipped toe and shin-bound crew sock.",
+    "attachments": [
+      {
+        "node": "ref2_shoes-stride__root",
+        "socket": "root"
+      }
+    ],
+    "channels": [
+      "primary",
+      "secondary",
+      "trim",
+      "accent"
+    ],
+    "tags": [],
+    "covers": [
+      "feet"
+    ],
+    "skin": {
+      "bones": [
+        "root",
+        "hips",
+        "chest",
+        "head",
+        "arm_L",
+        "forearm_L",
+        "hand_L",
+        "leg_L",
+        "shin_L",
+        "foot_L",
+        "arm_R",
+        "forearm_R",
+        "hand_R",
+        "leg_R",
+        "shin_R",
+        "foot_R"
+      ]
+    },
+    "url": "models/shoes-stride.glb",
+    "bytes": 136924,
+    "sha256": "b087a54980a4db92dc193e4d01f35089df49d4678e89de279a2b847475266102",
+    "triangles": 1648
+  },
+  "samples": [
+    {
+      "weight": -1,
+      "cuffVertices": 492,
+      "podVertices": 636,
+      "blendedVertices": 96,
+      "maxOwnerSlipMeters": 1.1102230246251565e-16,
+      "ankleAngles": [
+        -0.8,
+        -0.35,
+        0,
+        0.6,
+        1
+      ]
+    },
+    {
+      "weight": 0,
+      "cuffVertices": 492,
+      "podVertices": 636,
+      "blendedVertices": 96,
+      "maxOwnerSlipMeters": 1.1102230246251565e-16,
+      "ankleAngles": [
+        -0.8,
+        -0.35,
+        0,
+        0.6,
+        1
+      ]
+    },
+    {
+      "weight": 1,
+      "cuffVertices": 492,
+      "podVertices": 636,
+      "blendedVertices": 96,
+      "maxOwnerSlipMeters": 1.1443916996305594e-16,
+      "ankleAngles": [
+        -0.8,
+        -0.35,
+        0,
+        0.6,
+        1
+      ]
+    },
+    {
+      "weight": -1,
+      "runFrames": 121,
+      "calfSamples": 80,
+      "minimumCalfClearanceMeters": 0.0017928720797530384,
+      "maxMovementMeters": 1.1628576244962894,
+      "worstEdgeExcessMeters": -0.022000004053115727,
+      "appearance": {
+        "meshes": 20,
+        "triangles": 11656,
+        "sourceTriangles": 11656,
+        "parts": 7
+      }
+    },
+    {
+      "weight": 0,
+      "runFrames": 121,
+      "calfSamples": 84,
+      "minimumCalfClearanceMeters": 0.002776769494467368,
+      "maxMovementMeters": 1.162857620072709,
+      "worstEdgeExcessMeters": -0.022000004053115727,
+      "appearance": {
+        "meshes": 20,
+        "triangles": 11656,
+        "sourceTriangles": 11656,
+        "parts": 7
+      }
+    },
+    {
+      "weight": 1,
+      "runFrames": 121,
+      "calfSamples": 86,
+      "minimumCalfClearanceMeters": 0.004283083795726117,
+      "maxMovementMeters": 1.162857620072709,
+      "worstEdgeExcessMeters": -0.022000004053115727,
+      "appearance": {
+        "meshes": 20,
+        "triangles": 11656,
+        "sourceTriangles": 11656,
+        "parts": 7
+      }
+    }
+  ],
+  "note": "Actual exported GLB loaded and posed by AvatarLibrary; Node image shim only supplies PNG metadata, not WebGL rendering"
+}

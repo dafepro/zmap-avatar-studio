@@ -1,0 +1,326 @@
+{
+  "id": "shoes-stride",
+  "rig": "athlete-reference-v2",
+  "triangles": 1648,
+  "bytes": 136924,
+  "sha256": "b087a54980a4db92dc193e4d01f35089df49d4678e89de279a2b847475266102",
+  "components": [
+    {
+      "name": "Forefoot tread L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 32
+    },
+    {
+      "name": "Heel tread L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 24
+    },
+    {
+      "name": "Forefoot split pod L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 32
+    },
+    {
+      "name": "Heel split pod L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 24
+    },
+    {
+      "name": "Narrow raised waist L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 16
+    },
+    {
+      "name": "Clipped six-plane upper L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 42
+    },
+    {
+      "name": "Raised angular tongue L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 6
+    },
+    {
+      "name": "Offset instep bridge L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 16
+    },
+    {
+      "name": "Outer strap buckle L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 8
+    },
+    {
+      "name": "Open heel frame L-1",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 20
+    },
+    {
+      "name": "Heel cage crossbar L-1",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 8
+    },
+    {
+      "name": "Open heel frame L1",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 20
+    },
+    {
+      "name": "Heel cage crossbar L1",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 8
+    },
+    {
+      "name": "Rear heel bridge L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Heel pull loop L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 16
+    },
+    {
+      "name": "Heel pull signal L",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Forefoot pod inset L-1",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Forefoot pod inset L1",
+      "side": "L",
+      "binding": "rigid foot",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Shin-bound crew sock L",
+      "side": "L",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 72
+    },
+    {
+      "name": "Double rib cuff L",
+      "side": "L",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 24
+    },
+    {
+      "name": "Raised knit rib L0",
+      "side": "L",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Raised knit rib L1",
+      "side": "L",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Raised knit rib L2",
+      "side": "L",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Raised knit rib L3",
+      "side": "L",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Raised knit rib L4",
+      "side": "L",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Raised knit rib L5",
+      "side": "L",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Forefoot tread R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 32
+    },
+    {
+      "name": "Heel tread R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 24
+    },
+    {
+      "name": "Forefoot split pod R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 32
+    },
+    {
+      "name": "Heel split pod R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 24
+    },
+    {
+      "name": "Narrow raised waist R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 16
+    },
+    {
+      "name": "Clipped six-plane upper R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 42
+    },
+    {
+      "name": "Raised angular tongue R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 6
+    },
+    {
+      "name": "Offset instep bridge R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 16
+    },
+    {
+      "name": "Outer strap buckle R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 8
+    },
+    {
+      "name": "Open heel frame R-1",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 20
+    },
+    {
+      "name": "Heel cage crossbar R-1",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 8
+    },
+    {
+      "name": "Open heel frame R1",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 20
+    },
+    {
+      "name": "Heel cage crossbar R1",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 8
+    },
+    {
+      "name": "Rear heel bridge R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Heel pull loop R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 16
+    },
+    {
+      "name": "Heel pull signal R",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Forefoot pod inset R-1",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Forefoot pod inset R1",
+      "side": "R",
+      "binding": "rigid foot",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Shin-bound crew sock R",
+      "side": "R",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 72
+    },
+    {
+      "name": "Double rib cuff R",
+      "side": "R",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 24
+    },
+    {
+      "name": "Raised knit rib R0",
+      "side": "R",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Raised knit rib R1",
+      "side": "R",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Raised knit rib R2",
+      "side": "R",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Raised knit rib R3",
+      "side": "R",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Raised knit rib R4",
+      "side": "R",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    },
+    {
+      "name": "Raised knit rib R5",
+      "side": "R",
+      "binding": "shared ankle fabric",
+      "sourceVertices": 12
+    }
+  ],
+  "ankleTransitionWorldY": [
+    0.105,
+    0.19
+  ],
+  "originalGeometry": true
+}
