@@ -1,0 +1,29 @@
+{
+  "id": "hat-moonwake-crescent",
+  "label": "Moonwake crescent band",
+  "slot": "headwear",
+  "rig": "athlete-reference-v2",
+  "description": "Open crown faceted band with a raised crescent and side star. Natural hair occlusion preserves every original hairstyle.",
+  "attachments": [
+    {
+      "node": "ref2_hat-moonwake-crescent__head",
+      "socket": "head"
+    }
+  ],
+  "channels": [
+    "secondary",
+    "trim",
+    "accent"
+  ],
+  "tags": [],
+  "hairFit": [
+    {
+      "targetSlot": "hair",
+      "mode": "occlude"
+    }
+  ],
+  "url": "models/hat-moonwake-crescent.glb",
+  "bytes": 15500,
+  "sha256": "43d4ddbb428fd2b1a648b258dcb84bd4ea3b6bc74765f3b5b1a42f604c113d33",
+  "triangles": 236
+}

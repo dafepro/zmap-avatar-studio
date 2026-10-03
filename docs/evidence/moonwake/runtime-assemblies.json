@@ -1,0 +1,158 @@
+[
+  {
+    "name": "neutral",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-ember",
+        "hair": "hair-nova",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-moonwake-crescent",
+        "shirt": "shirt-moonwake-festival",
+        "bottom": "bottom-moonwake-wide",
+        "shoes": "shoes-moonwake-platform",
+        "accessory": "acc-moonwake-lantern",
+        "effect": null
+      },
+      "colors": {
+        "primary": "#383a68",
+        "secondary": "#23283f",
+        "trim": "#d9c8ed",
+        "accent": "#ffc986",
+        "hair": "#302839",
+        "skin": "#c88f6a"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "diagnostics": {
+      "meshes": 31,
+      "triangles": 11972,
+      "sourceTriangles": 11972,
+      "parts": 9
+    }
+  },
+  {
+    "name": "lean-wave",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-ember",
+        "hair": "hair-nova",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-moonwake-crescent",
+        "shirt": "shirt-moonwake-festival",
+        "bottom": "bottom-moonwake-wide",
+        "shoes": "shoes-moonwake-platform",
+        "accessory": "acc-moonwake-lantern",
+        "effect": null
+      },
+      "colors": {
+        "primary": "#383a68",
+        "secondary": "#23283f",
+        "trim": "#d9c8ed",
+        "accent": "#ffc986",
+        "hair": "#302839",
+        "skin": "#c88f6a"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "diagnostics": {
+      "meshes": 31,
+      "triangles": 11972,
+      "sourceTriangles": 11972,
+      "parts": 9
+    }
+  },
+  {
+    "name": "broad-run",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-ember",
+        "hair": "hair-nova",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-moonwake-crescent",
+        "shirt": "shirt-moonwake-festival",
+        "bottom": "bottom-moonwake-wide",
+        "shoes": "shoes-moonwake-platform",
+        "accessory": "acc-moonwake-lantern",
+        "effect": null
+      },
+      "colors": {
+        "primary": "#383a68",
+        "secondary": "#23283f",
+        "trim": "#d9c8ed",
+        "accent": "#ffc986",
+        "hair": "#302839",
+        "skin": "#c88f6a"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "diagnostics": {
+      "meshes": 31,
+      "triangles": 11972,
+      "sourceTriangles": 11972,
+      "parts": 9
+    }
+  },
+  {
+    "name": "broad-idle",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-ember",
+        "hair": "hair-nova",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-moonwake-crescent",
+        "shirt": "shirt-moonwake-festival",
+        "bottom": "bottom-moonwake-wide",
+        "shoes": "shoes-moonwake-platform",
+        "accessory": "acc-moonwake-lantern",
+        "effect": null
+      },
+      "colors": {
+        "primary": "#383a68",
+        "secondary": "#23283f",
+        "trim": "#d9c8ed",
+        "accent": "#ffc986",
+        "hair": "#302839",
+        "skin": "#c88f6a"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "diagnostics": {
+      "meshes": 31,
+      "triangles": 11972,
+      "sourceTriangles": 11972,
+      "parts": 9
+    }
+  }
+]

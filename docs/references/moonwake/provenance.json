@@ -1,0 +1,25 @@
+{
+  "kind": "original concept art; not implementation evidence",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "prompt": "Use case: stylized-concept\nAsset type: original modular collectible avatar costume concept sheet for a 3D game asset author\nPrimary request: design the five-piece \"MOONWAKE FESTIVAL\" clothing set, coherent full costume with five separately collectible/equippable components\nStyle: angular expressive cel-shaded comic art, bold black ink and broad sculpted planes, confident playful adult human, graphic expressive eyes, game-readable original fantasy street festival style. Not chibi, not gritty, not bubbly.\nScene: clean pale lilac production sheet\nComposition: landscape, left 45 percent full-body hero three-quarter front and smaller rear view, right five separated component panels labeled \"CRESCENT BAND\", \"FESTIVAL TOP\", \"WIDE TROUSERS\", \"PLATFORM BOOTS\", \"LANTERN PACK\". Title \"MOONWAKE FESTIVAL\". Subtitle \"CONCEPT \u2022 5 COLLECTIBLE PIECES\"\nDesign: deep midnight blue and lavender with warm ivory and small luminous peach accents; a thin angular silver headband with a small crescent above one temple, open crown for any hair; top is structured high boat-neck short-sleeve boxy festival tunic with layered diagonal architectural shoulder/collar folds, not a cape, broad hem reaching hip, underside complete fabric; cropped very wide trousers ballooning at thigh then stepping in above ankle, broad ivory folded cuffs; blocky ankle boots with a thick segmented lavender platform and a crescent-shaped decorative side inset; self-contained angular lantern backpack with trapezoid warm paper center protected by purple rib frame and broad backpack straps. Solid material glowing impression, not transparent glass. Backpack readable from rear. Small star facets embossed as actual raised patches, not noisy tiny decorations.\nConstraints: practical discrete meshes for existing adult human skeleton, no wings, no weapons, no giant loose cape or simulated cloth, no humanoid creature anatomy. All five components visible independently and full assembled rear visible. Design clothing by silhouette not pattern alone. Concept only, no app screenshot.",
+  "original": {
+    "filename": "moonwake-concept.png",
+    "format": "PNG",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "e57c8f61a49b3c4424ae6582b53fe43b966d277dd3d319029a3af9138b6e12b0",
+    "retention": "Original full-resolution PNG retained in the local authoring archive"
+  },
+  "repositoryDerivative": {
+    "filename": "concept.jpg",
+    "format": "JPEG",
+    "width": 1536,
+    "height": 1024,
+    "quality": 90,
+    "chromaSubsampling": "4:4:4",
+    "bytes": 456141,
+    "sha256": "1d847dba6d59d0a0c38729f97fb177d4efea0f422e0a4aa45037799ab75e4aee",
+    "note": "Same resolution, high-quality repository derivative; no visual content edits. Inspected against the original."
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "shoes-moonwake-platform",
+  "label": "Moonwake platform ankle boots",
+  "slot": "shoes",
+  "rig": "athlete-reference-v2",
+  "description": "Angular ankle boots with a thick lavender platform, inset tread panels, folded ivory vamp and articulated ankle cuff.",
+  "attachments": [
+    {
+      "node": "ref2_shoes-moonwake-platform__root",
+      "socket": "root"
+    }
+  ],
+  "channels": [
+    "primary",
+    "secondary",
+    "trim",
+    "accent"
+  ],
+  "tags": [],
+  "covers": [
+    "feet"
+  ],
+  "skin": {
+    "bones": [
+      "root",
+      "hips",
+      "chest",
+      "head",
+      "arm_L",
+      "forearm_L",
+      "hand_L",
+      "leg_L",
+      "shin_L",
+      "foot_L",
+      "arm_R",
+      "forearm_R",
+      "hand_R",
+      "leg_R",
+      "shin_R",
+      "foot_R"
+    ]
+  },
+  "url": "models/shoes-moonwake-platform.glb",
+  "bytes": 56492,
+  "sha256": "f2d505fd01b660f8c306f21e79e107c554c7a702b4866d7267a14ee8b1cc5294",
+  "triangles": 696
+}
