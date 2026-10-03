@@ -36,7 +36,13 @@ The [concept](references/kiln/concept.jpg) and [exact original prompt](reference
 
 `scripts/export-kiln-evidence.ts` loads the real GLBs through `AvatarLibrary`, applies head/hair/body fitting and the native poses, and exports their actual posed vertices and embedded texture bytes. `assets/source/render_kiln.py` imports that geometry into Blender. The resulting [front](evidence/kiln/neutral-front.png), [side](evidence/kiln/neutral-side.png), [back](evidence/kiln/neutral-back.png), [wave](evidence/kiln/lean-wave-pose.png) and [run](evidence/kiln/broad-run-pose.png) are actual fitted geometry. `assets/source/kiln-review.blend` is the editable neutral review scene; `kiln-review-lean-wave.blend` and `kiln-review-broad-run.blend` preserve the actual fitted poses too. Blender's review lighting is distinct from the shipping WebGL treatment.
 
-The dedicated `Kiln Workshop set evidence` workflow uses the actual capsule catalog and shipping `ComicStyle`. It exercises all five independent studio swaps, imports the portable look, and renders front/side/back/run/wave for both heads at build −1, 0 and +1. Reviewed CI screenshots and exact-head provenance are recorded under `docs/evidence/kiln/` after the run completes.
+The dedicated `Kiln Workshop set evidence` workflow uses the actual capsule catalog and shipping `ComicStyle`. It exercises all five independent studio swaps, imports the portable look, and renders front/side/back/run/wave for both heads at build −1, 0 and +1. [Run 37103005856](https://github.com/dafepro/zmap-avatar-studio/actions/runs/37103005856) passed on source head `e189a15dc4937bcef2c02745241d3254eb7ef4d3`; the downloaded PNGs were visually inspected and independently reviewed. The [provenance record](evidence/kiln/browser-provenance.json) pins the source head, artifact digest, GLB hashes and all evidence files. This evidence-only follow-up does not alter those tested models or code.
+
+- [Actual studio import and selected maker case](evidence/kiln/browser-studio.png)
+- Scout: [lean](evidence/kiln/browser-head-scout--1.png), [neutral](evidence/kiln/browser-head-scout-0.png), [broad](evidence/kiln/browser-head-scout-1.png)
+- Spark: [lean](evidence/kiln/browser-head-spark--1.png), [neutral](evidence/kiln/browser-head-spark-0.png), [broad](evidence/kiln/browser-head-spark-1.png)
+
+Each sheet contains five actual WebGL views. The complete look uses 11,444 source triangles and 9 parts. ComicStyle's extra ink passes produce 56 rendered meshes / 22,100 rendered triangles; those include duplicated outline geometry rather than additional capsule parts.
 
 ## Qualification and limits
 
