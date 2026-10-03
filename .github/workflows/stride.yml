@@ -1,0 +1,40 @@
+name: Stride footwear browser evidence
+on:
+  push:
+    branches: ["codex/asset-stride-shoes"]
+  pull_request:
+    paths:
+      - "public/capsule/parts/shoes-stride.json"
+      - "public/capsule/models/shoes-stride.glb"
+      - "assets/source/stride*"
+      - "tests/stride*"
+      - "tests/stride-browser/**"
+      - "playwright.stride.config.ts"
+      - ".github/workflows/stride.yml"
+permissions:
+  contents: read
+jobs:
+  stride:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/build-capsule-catalog.mjs
+      - run: npm run typecheck
+      - run: node --import tsx --test tests/stride-footwear.test.ts tests/capsule-descriptors.test.ts
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --config playwright.stride.config.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stride-footwear-browser-evidence
+          path: |
+            docs/evidence/stride/
+            test-results/
+          retention-days: 14

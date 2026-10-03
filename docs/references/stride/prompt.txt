@@ -1,0 +1,10 @@
+Use case: stylized-concept
+Asset type: original footwear concept sheet for a modular angular cel-shaded 3D human avatar
+Primary request: Design STRIDE, a new expressive street-sport court/trail sneaker with a chunky angular split sole, one offset bridge strap sweeping diagonally over the instep, an open geometric heel cage, and a ribbed mid-calf sock. The shoe must read as an original authored silhouette, with a clipped squared toe, a raised angular tongue, two visibly separated heel/forefoot outsole blocks connected by a slim waist, faceted cream sidewalls and bold dark cutouts. Keep every component practical to model in low-poly game geometry. The sock stays close to the human calf and is visibly separate flexible fabric above the rigid heel cage.
+Scene/backdrop: clean warm off-white designer sketch page
+Style/medium: sharp hand-drawn industrial-design footwear concept, cel shaded color blocks, confident dark outlines, controlled marker shadows, graphic street-sport energy, angular rather than bubbly
+Composition/framing: one large lateral three-quarter view; smaller inner-side view, rear heel-cage view and outsole view; no human body except a cropped calf entering the sock; consistently the same shoe design across views
+Color palette: burnt orange uppers, midnight violet rigid cage/strap, warm ivory split sole and sock, two small acid-lime signal accents
+Materials/textures: matte woven upper and sock, sculpted rubber sole, stiff strap and heel cage; no photo textures
+Text: only the small heading STRIDE and short view labels
+Constraints: entirely original design, no brand logos, no imitation trademark shapes, no guns, no fake screenshot UI, no baked lighting intended as a final 3D texture
