@@ -10,7 +10,7 @@
   "blenderRenderer": "../../../assets/source/render_sunline.py",
   "runtimeReviewScene": "../../../assets/source/sunline-review.blend",
   "blenderReview": "Actual AvatarLibrary-loaded, body-fitted and posed vertices. Images without browser- prefixes are Blender renders, not browser screenshots. Final neutral, broad wave and broad run geometry was opened together and inspected interactively in cloud Blender after a fresh supported launch. Earlier disposable review process closure did not affect saved source.",
-  "browserReview": "Stored browser PNGs are reviewed pre-waist-correction captures from de836969. Model-matched refreshed evidence is pending the next focused CI run; do not treat the stored capture as the final waist proof.",
+  "browserReview": "Model-matched final waist geometry evidence downloaded from GitHub Actions artifact11263084435, run37094119513 at3914da7b0b272f8741bfda66095efa34375e254b. Inspected the actual SHIFT studio screenshot and24-panel ComicStyle sheet: front, side, back, wave, run and deep-knee run across both heads, three builds and12 slots. No visible skin cuts, detached pulls, buried pocket/shin trim or shader errors in these views.",
   "localChecks": {
     "unitTests": "170 passed",
     "focusedTests": "6 passed",
@@ -18,7 +18,7 @@
     "format": "passed",
     "build": "passed",
     "npmPack": "passed using writable temporary npm cache",
-    "packageSmoke": "Blocked locally before browser launch by missing /home/agent/.npm cache; full package smoke is required in Verify CI"
+    "packageSmoke": "Local attempt stopped before browser launch at missing npm cache; full package smoke passed in repository Verify on source3914da7b0b272f8741bfda66095efa34375e254b."
   },
   "sourceTriangles": 2658,
   "sourceBytes": 270424,
@@ -38,18 +38,18 @@
     "shiftResult": "success",
     "verifyRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37092612061",
     "packageSmoke": "passed",
-    "fullVerify": "still running when geometry correction prepared"
+    "fullVerify": "Superseded by corrected source and evidence commits; latest exact-head aggregate result is in PR checks."
   },
   "browserEvidence": {
-    "head": "de836969829c7e4b3e66406b143a0a8d294d5967",
-    "run": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37093172516",
-    "artifactId": 11263232667,
-    "artifactSHA256": "e2aa507c742e61893a474d750ad7cccce85ff2bd602fe856b1f4b168f42e04f4",
+    "head": "3914da7b0b272f8741bfda66095efa34375e254b",
+    "run": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37094119513",
+    "artifactId": 11263084435,
+    "artifactSHA256": "9c13ac730efcb9add33453b99e35ba3347b235d54eb879fb38de1b5da5d4a14b",
     "result": "success",
     "panels": 24,
     "images": {
-      "browser-studio.png": "77d3be75c62f060d9d9a7b4fd503f9b252aa3b29281c3c3d90fb703a5e56bb82",
-      "browser-collection.png": "4850ebd6bdc51a13a9068a8557bb16a09f50a40f7c82c44a849fb9252af2353e"
+      "browser-studio.png": "4808887f354ef0d155294bdca272450adfb648a0d404c56c561afd9c8a47a996",
+      "browser-collection.png": "1edb7b07f6bfd6c5544b37d814fa3eaeb98ba6d25b4f5a539a6292ffe0346f49"
     }
   },
   "finalGeometry": {
