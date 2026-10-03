@@ -4,6 +4,8 @@ An independent `face-challenger` part for the SHIFT capsule. It adds an asymmetr
 
 ## Concept and actual asset
 
+- [Actual Chromium head views](evidence/challenger/browser-heads.png), [assembled browser run and wave](evidence/challenger/browser-action.png), [pixel report](evidence/challenger/browser-report.json) and [capture provenance](evidence/challenger/browser-verification.json)
+
 - [Original generated concept sheet](references/challenger/concept.png), [exact prompt](references/challenger/prompt.txt) and [provenance](references/challenger/provenance.json)
 - [Actual fitted head views](evidence/challenger/blender-heads.png): both heads, front, both three-quarter views and both strict profiles
 - [Actual assembled run and wave](evidence/challenger/blender-action.png)
@@ -11,7 +13,7 @@ An independent `face-challenger` part for the SHIFT capsule. It adds an asymmetr
 - [Original editable SVG ink](../assets/textures/face-challenger.svg) and [embedded-texture PNG source](../assets/textures/face-challenger.png)
 - [Editable Blender source with packed artwork and concept](../assets/source/challenger/face-challenger.blend)
 
-The concept is a design reference, not an asset screenshot. The displayed Blender evidence uses the positions, indices, UVs, palette and poses of the actual GLBs after `AvatarLibrary` loading and fitting. Its review cel material is not the shipping Three.js `ComicStyle` shader. The dedicated browser test renders that real shader and generates separate `browser-heads.png`, `browser-action.png` and `browser-report.json` in the CI artifact.
+The concept is a design reference, not an asset screenshot. The displayed Blender evidence uses the positions, indices, UVs, palette and poses of the actual GLBs after `AvatarLibrary` loading and fitting. Its review cel material is not the shipping Three.js `ComicStyle` shader. The dedicated browser test passed in Chromium and renders that real shader. The committed `browser-heads.png`, `browser-action.png` and `browser-report.json` were retrieved from its verified CI artifact and visually inspected.
 
 ## Fit and budget
 
@@ -65,4 +67,4 @@ The runtime snapshot exporter writes reproducible intermediate mesh JSON under i
 - PNG pixel auditing checks opaque artwork, antialiased edges and clear gutters; see [texture audit](evidence/challenger/texture-validation.json)
 - All 169 unit tests, typecheck, formatting and production build passed locally after the final visual refinement
 
-Direct local Chromium and CUA loopback access are blocked in this cloud environment. No browser security restriction was bypassed. The browser spec runs under the repository's existing GitHub Actions Verify job and a focused Challenger job. The small `challenger-browser-evidence` artifact contains this piece's browser PNG/JSON evidence without the full historical image collection. Until those results are inspected, browser pixel verification is pending rather than represented by the Blender images. This is an authored fixed expression with angle-aware artwork, not facial blend-shape animation or a promise of identical appearance under every hair/accessory combination.
+Direct local Chromium and CUA loopback access are blocked in this cloud environment. No browser security restriction was bypassed. The browser spec runs under the repository's existing GitHub Actions Verify job and a focused Challenger job. The small `challenger-browser-evidence` artifact contains this piece's browser PNG/JSON evidence without the full historical image collection. Browser pixel verification passed at commit `822f5354`, with 56 actual lit/illustrated layer checks across both heads. The downloaded front/profile and action sheets were visually inspected; the final aggregate CI status is on the PR. This is an authored fixed expression with angle-aware artwork, not facial blend-shape animation or a promise of identical appearance under every hair/accessory combination.

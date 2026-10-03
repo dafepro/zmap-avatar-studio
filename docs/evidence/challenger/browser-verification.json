@@ -1,0 +1,58 @@
+{
+  "capturedAt": "2026-10-03T02:08:30Z",
+  "visuallyInspectedAt": "2026-10-03T02:10:17Z",
+  "repository": "dafepro/zmap-avatar-studio",
+  "captureCommit": "822f5354c95b94231f292b757f4f6767670d3da8",
+  "captureTree": "0a394249ac8fe2c15f0a51330fb223fd0195e14b",
+  "workflowRun": 37088649902,
+  "workflowURL": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37088649902",
+  "job": 111104040693,
+  "workflowConclusion": "success",
+  "artifactId": 11260914557,
+  "artifactZipSha256": "c2e2e5c6ab9db0727f0203b158295a907e1fdf495d00fafd03658bcc8616d81e",
+  "renderer": "Real Chromium WebGL, shipping AvatarLibrary and ComicStyle, generated capsule catalog, actual pinned GLBs",
+  "assetSha256": "4fb6caa6a0f70e5cc5f98a4d8073c30615b7ad180a3a8c521ad3484cfda8ea83",
+  "checks": {
+    "nodeAssetTests": 5,
+    "pixelLayerChecks": 56,
+    "heads": [
+      "head-scout",
+      "head-spark"
+    ],
+    "projectionYaws": [
+      -90,
+      -70,
+      -45,
+      0,
+      45,
+      70,
+      90
+    ],
+    "shadingModes": [
+      "lit",
+      "illustrated"
+    ],
+    "assembledPoses": [
+      "run",
+      "wave"
+    ],
+    "scriptOrShaderErrors": 0
+  },
+  "files": [
+    {
+      "path": "browser-heads.png",
+      "sha256": "965af5881b2ac79b6c38d456083bd539c25dba15eece4c2622b909ad05de8264"
+    },
+    {
+      "path": "browser-action.png",
+      "sha256": "efc18d0a72a29e19a8be7bbc6b1f93c648b707222d2a7aa4772208ded3384a58"
+    },
+    {
+      "path": "browser-report.json",
+      "sha256": "bedaab7c8befe9cf172d3a88d6692ec82d846fa6e7871827f69fcdbb282f652b"
+    }
+  ],
+  "inspection": "Cocked brow, narrowed eye and off-center grin remain distinct on both heads. Teeth are continuous in both profiles. Assembled run/wave retain the fitted face. No imagegen or painted-over screenshot pixels are used in these images.",
+  "budgetNote": "Browser diagnostics include outline meshes. Source geometry in the motion examples is 11,466 triangles; the additional illustrated pass raises render triangles to 22,324. The 14,000 limit applies to source triangles.",
+  "scope": "This report pins the screenshot capture. Final aggregate CI status is recorded on PR #5; no browser-local verification in the cloud authoring VM is claimed."
+}
