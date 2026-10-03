@@ -28,7 +28,15 @@ test("Kiln pieces swap independently and its portable look renders actual comple
     const before = await page.evaluate(
       () => (window as any).__atelier.look.appearance,
     );
-    await page.locator(`[data-category=${c.slot}]`).click();
+    if (c.slot === "headwear" || c.slot === "accessory") {
+      await page.locator("[data-category=extras]").click();
+      await page
+        .getByRole("button", {
+          name: c.slot === "headwear" ? "Hats" : "Accessories",
+          exact: true,
+        })
+        .click();
+    } else await page.locator(`[data-category=${c.slot}]`).click();
     await page.getByRole("button", { name: c.label, exact: true }).click();
     await ready();
     const after = await page.evaluate(
@@ -48,6 +56,9 @@ test("Kiln pieces swap independently and its portable look renders actual comple
         ),
       ),
     );
+  await expect
+    .poll(() => page.evaluate(() => (window as any).__atelier.look.name))
+    .toBe("Kiln Workshop");
   await ready();
   const recipe = await page.evaluate(
     () => (window as any).__atelier.look.appearance,
