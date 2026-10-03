@@ -1,0 +1,93 @@
+{
+  "collection": "sunline-courier",
+  "dateUTC": "2026-10-03",
+  "sourceRig": "athlete-reference-v2",
+  "originalConcept": "../../references/sunline/concept.png",
+  "conceptProvenance": "../../references/sunline/provenance.json",
+  "authoringSource": "../../../assets/source/sunline_courier.py",
+  "editableSource": "../../../assets/source/sunline-courier.blend",
+  "runtimeGeometryExport": "../../../scripts/export-sunline-evidence.ts",
+  "blenderRenderer": "../../../assets/source/render_sunline.py",
+  "runtimeReviewScene": "../../../assets/source/sunline-review.blend",
+  "blenderReview": "Actual AvatarLibrary-loaded, body-fitted and posed vertices. Images without browser- prefixes are Blender renders, not browser screenshots. Final neutral, broad wave and broad run geometry was opened together and inspected interactively in cloud Blender after a fresh supported launch. Earlier disposable review process closure did not affect saved source.",
+  "browserReview": "Model-matched final waist geometry evidence downloaded from GitHub Actions artifact11263084435, run37094119513 at3914da7b0b272f8741bfda66095efa34375e254b. Inspected the actual SHIFT studio screenshot and24-panel ComicStyle sheet: front, side, back, wave, run and deep-knee run across both heads, three builds and12 slots. No visible skin cuts, detached pulls, buried pocket/shin trim or shader errors in these views.",
+  "localChecks": {
+    "unitTests": "170 passed",
+    "focusedTests": "6 passed",
+    "typecheck": "passed",
+    "format": "passed",
+    "build": "passed",
+    "npmPack": "passed using writable temporary npm cache",
+    "packageSmoke": "Local attempt stopped before browser launch at missing npm cache; full package smoke passed in repository Verify on source3914da7b0b272f8741bfda66095efa34375e254b."
+  },
+  "sourceTriangles": 2658,
+  "sourceBytes": 270424,
+  "maximumFullSlotFittedTriangles": 13153,
+  "unchangedBudgets": {
+    "triangles": 14000,
+    "bytes": 1500000,
+    "parts": 12
+  },
+  "trouserDiagnostic": "30 cases across three builds: zero sampled exterior skin leaks after adding a shaped knee ring. Hidden anatomy intersections and natural cuff views are separately recorded in trouser-clearance.json.",
+  "initialCI": {
+    "head": "e8c3088d8958b72fe9f3ab983d455783d5f06f5c",
+    "focusedRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37092612064",
+    "focusedArtifactId": 11263696198,
+    "focusedResult": "success; downloaded and visually inspected",
+    "shiftRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37092612065",
+    "shiftResult": "success",
+    "verifyRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37092612061",
+    "packageSmoke": "passed",
+    "fullVerify": "Superseded by corrected source and evidence commits; latest exact-head aggregate result is in PR checks."
+  },
+  "browserEvidence": {
+    "head": "3914da7b0b272f8741bfda66095efa34375e254b",
+    "run": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37094119513",
+    "artifactId": 11263084435,
+    "artifactSHA256": "9c13ac730efcb9add33453b99e35ba3347b235d54eb879fb38de1b5da5d4a14b",
+    "result": "success",
+    "panels": 24,
+    "images": {
+      "browser-studio.png": "4808887f354ef0d155294bdca272450adfb648a0d404c56c561afd9c8a47a996",
+      "browser-collection.png": "1edb7b07f6bfd6c5544b37d814fa3eaeb98ba6d25b4f5a539a6292ffe0346f49"
+    }
+  },
+  "finalGeometry": {
+    "acc-sunline-envelope": {
+      "triangles": 548,
+      "bytes": 68076,
+      "sha256": "f2b7453e9d3de3a53664971d64d71e95021821c52359b23096bdaff5166ada50"
+    },
+    "bottom-sunline-cargo": {
+      "triangles": 474,
+      "bytes": 52292,
+      "sha256": "3165aa1118e5085b6e5e6c884bdb3e177a0e85a4b04851b19a8b63c3e8b96890"
+    },
+    "hat-sunline-visor": {
+      "triangles": 268,
+      "bytes": 20808,
+      "sha256": "18814e3c6ad435bad7649969215726778c275c200c25e4573c880cbd6fe03ef2"
+    },
+    "shirt-sunline-courier": {
+      "triangles": 656,
+      "bytes": 68584,
+      "sha256": "b02e67f0e38389abcd49f0c6e67966c3c08d30c49aa04620d6bcdfe247a6b03e"
+    },
+    "shoes-sunline-track": {
+      "triangles": 712,
+      "bytes": 60664,
+      "sha256": "317edbd1cef4fd1abd03dbeb8ff1e18156e8983b0d5f0cdd1e2ee8d92a4e1e52"
+    }
+  },
+  "waistCorrection": {
+    "description": "Restored legacy waist/upper-seat envelope after visible Kiln-top mix penetration. Own complete underlayer remains continuous.",
+    "mixedFrames": 36,
+    "mixedBuilds": [
+      -1,
+      0,
+      1
+    ],
+    "mixedWaistIntersections": 0,
+    "report": "mixed-kiln-waist.json"
+  }
+}

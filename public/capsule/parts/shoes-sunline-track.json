@@ -1,0 +1,49 @@
+{
+  "id": "shoes-sunline-track",
+  "label": "Sunline split track trainers",
+  "slot": "shoes",
+  "rig": "athlete-reference-v2",
+  "description": "Low aerodynamic track trainers with a notched split-front shell, thick faceted midsole, angled coral quarters and citron heel tab. Rigid foot collars remain below 0.26 m.",
+  "attachments": [
+    {
+      "node": "ref2_shoes-sunline-track__root",
+      "socket": "root"
+    }
+  ],
+  "channels": [
+    "primary",
+    "secondary",
+    "trim",
+    "accent"
+  ],
+  "tags": [
+    "sunline-courier"
+  ],
+  "covers": [
+    "feet"
+  ],
+  "skin": {
+    "bones": [
+      "root",
+      "hips",
+      "chest",
+      "head",
+      "arm_L",
+      "forearm_L",
+      "hand_L",
+      "leg_L",
+      "shin_L",
+      "foot_L",
+      "arm_R",
+      "forearm_R",
+      "hand_R",
+      "leg_R",
+      "shin_R",
+      "foot_R"
+    ]
+  },
+  "url": "models/shoes-sunline-track.glb",
+  "bytes": 60664,
+  "sha256": "317edbd1cef4fd1abd03dbeb8ff1e18156e8983b0d5f0cdd1e2ee8d92a4e1e52",
+  "triangles": 712
+}

@@ -1,0 +1,255 @@
+{
+  "timestamp": "2026-10-03T03:37:31.136Z",
+  "kind": "two-way lower-shirt/waistband intersection diagnostic",
+  "cases": [
+    {
+      "shirt": "shirt-kiln-apron",
+      "bottom": "bottom-sunline-cargo",
+      "weight": -1,
+      "poses": [
+        {
+          "pose": "run",
+          "frame": 0,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 15,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 30,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 45,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 60,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 75,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 0,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 15,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 30,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 45,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 60,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 75,
+          "hits": 0,
+          "samples": []
+        }
+      ]
+    },
+    {
+      "shirt": "shirt-kiln-apron",
+      "bottom": "bottom-sunline-cargo",
+      "weight": 0,
+      "poses": [
+        {
+          "pose": "run",
+          "frame": 0,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 15,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 30,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 45,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 60,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 75,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 0,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 15,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 30,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 45,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 60,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 75,
+          "hits": 0,
+          "samples": []
+        }
+      ]
+    },
+    {
+      "shirt": "shirt-kiln-apron",
+      "bottom": "bottom-sunline-cargo",
+      "weight": 1,
+      "poses": [
+        {
+          "pose": "run",
+          "frame": 0,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 15,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 30,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 45,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 60,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "run",
+          "frame": 75,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 0,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 15,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 30,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 45,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 60,
+          "hits": 0,
+          "samples": []
+        },
+        {
+          "pose": "wave",
+          "frame": 75,
+          "hits": 0,
+          "samples": []
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "assets": [
+    {
+      "id": "bottom-sunline-cargo",
+      "sha256": "3165aa1118e5085b6e5e6c884bdb3e177a0e85a4b04851b19a8b63c3e8b96890"
+    },
+    {
+      "id": "shirt-kiln-apron",
+      "sha256": "0760fd146bde5f2174018c5fcc62fff5be4bde4c22f181f281cc81f6f67ecd0d"
+    }
+  ],
+  "method": "Actual loaded/fitted lower-shirt and upper-pants surfaces; two-way triangle-edge intersection probes at six run and six wave frames per build. Companion Kiln assets are read-only integration fixtures and are not a shipped dependency."
+}
