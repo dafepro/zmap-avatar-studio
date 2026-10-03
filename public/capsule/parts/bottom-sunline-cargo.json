@@ -1,0 +1,49 @@
+{
+  "id": "bottom-sunline-cargo",
+  "label": "Sunline tapered cargo",
+  "slot": "bottom",
+  "rig": "athlete-reference-v2",
+  "description": "Connected tapered ankle cargo trousers with broad folded thigh pockets, angled knee panels and cuff openings above the shared shoe envelope. Full leg/shin skinning, no shorts-only weights.",
+  "attachments": [
+    {
+      "node": "ref2_bottom-sunline-cargo__root",
+      "socket": "root"
+    }
+  ],
+  "channels": [
+    "primary",
+    "secondary",
+    "trim",
+    "accent"
+  ],
+  "tags": [
+    "sunline-courier"
+  ],
+  "covers": [
+    "upper-legs"
+  ],
+  "skin": {
+    "bones": [
+      "root",
+      "hips",
+      "chest",
+      "head",
+      "arm_L",
+      "forearm_L",
+      "hand_L",
+      "leg_L",
+      "shin_L",
+      "foot_L",
+      "arm_R",
+      "forearm_R",
+      "hand_R",
+      "leg_R",
+      "shin_R",
+      "foot_R"
+    ]
+  },
+  "url": "models/bottom-sunline-cargo.glb",
+  "bytes": 49284,
+  "sha256": "a94688d3a2a6ac93b3b0c9e6bb720e0993ec0acf37a6289f596360bfe48be37a",
+  "triangles": 442
+}

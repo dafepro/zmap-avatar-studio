@@ -1,0 +1,43 @@
+{
+  "format": "shift-look",
+  "version": 1,
+  "name": "Sunline Courier",
+  "appearance": {
+    "version": 1,
+    "catalog": "shift-capsule",
+    "revision": "1.0.0",
+    "rig": "athlete-reference-v2",
+    "parts": {
+      "head": "head-scout",
+      "face": "face-grin",
+      "hair": "hair-sweep",
+      "facialHair": null,
+      "eyewear": null,
+      "headwear": "hat-sunline-visor",
+      "shirt": "shirt-sunline-courier",
+      "bottom": "bottom-sunline-cargo",
+      "shoes": "shoes-sunline-track",
+      "accessory": "acc-sunline-envelope",
+      "effect": null
+    },
+    "colors": {
+      "primary": "#e97552",
+      "secondary": "#303643",
+      "trim": "#f4e8cf",
+      "accent": "#d4e951",
+      "skin": "#cb9472",
+      "hair": "#303643"
+    },
+    "body": {
+      "weight": 0
+    }
+  },
+  "equipment": {
+    "version": 1,
+    "catalog": "zoomap-playful-hands",
+    "revision": "1.0.1",
+    "rig": "athlete-reference-v2",
+    "left": null,
+    "right": null
+  }
+}

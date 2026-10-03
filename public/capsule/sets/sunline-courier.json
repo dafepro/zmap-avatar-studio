@@ -1,0 +1,41 @@
+{
+  "format": "shift-collectible-set",
+  "version": 1,
+  "id": "sunline-courier",
+  "label": "SUNLINE COURIER",
+  "description": "Five independently equippable courier pieces: angular open visor, stepped long-sleeve jacket, tapered cargo trousers, split-front track trainers and folded envelope backpack.",
+  "components": [
+    {
+      "slot": "headwear",
+      "id": "hat-sunline-visor",
+      "label": "Sunline open visor"
+    },
+    {
+      "slot": "shirt",
+      "id": "shirt-sunline-courier",
+      "label": "Sunline stepped jacket"
+    },
+    {
+      "slot": "bottom",
+      "id": "bottom-sunline-cargo",
+      "label": "Sunline tapered cargo"
+    },
+    {
+      "slot": "shoes",
+      "id": "shoes-sunline-track",
+      "label": "Sunline split track trainers"
+    },
+    {
+      "slot": "accessory",
+      "id": "acc-sunline-envelope",
+      "label": "Sunline envelope pack"
+    }
+  ],
+  "palette": {
+    "primary": "#e97552",
+    "secondary": "#303643",
+    "trim": "#f4e8cf",
+    "accent": "#d4e951"
+  },
+  "look": "../looks/sunline-courier.shift.json"
+}

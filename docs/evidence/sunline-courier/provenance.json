@@ -1,0 +1,27 @@
+{
+  "collection": "sunline-courier",
+  "dateUTC": "2026-10-03",
+  "sourceRig": "athlete-reference-v2",
+  "originalConcept": "../../references/sunline/concept.png",
+  "conceptProvenance": "../../references/sunline/provenance.json",
+  "authoringSource": "../../../assets/source/sunline_courier.py",
+  "editableSource": "../../../assets/source/sunline-courier.blend",
+  "runtimeGeometryExport": "../../../scripts/export-sunline-evidence.ts",
+  "blenderRenderer": "../../../assets/source/render_sunline.py",
+  "runtimeReviewScene": "../../../assets/source/sunline-review.blend",
+  "blenderReview": "Actual AvatarLibrary-loaded, body-fitted and posed vertices. Images without browser- prefixes are Blender renders, not browser screenshots. Neutral geometry was opened and inspected in interactive cloud Blender; the disposable review process closed during material preview. A compressed three-pose review scene is preserved.",
+  "browserReview": "Pending initial GitHub Actions run and screenshot inspection; shipping ComicStyle fixture is checked in.",
+  "localChecks": {
+    "unitTests": "168 passed",
+    "focusedTests": "4 passed",
+    "typecheck": "passed",
+    "format": "passed",
+    "build": "passed",
+    "npmPack": "passed using writable temporary npm cache",
+    "packageSmoke": "Blocked locally before browser launch by missing /home/agent/.npm cache; full package smoke is required in Verify CI"
+  },
+  "sourceTriangles": 2626,
+  "sourceBytes": 267412,
+  "maximumFullSlotFittedTriangles": 13121,
+  "unchangedBudgets": { "triangles": 14000, "bytes": 1500000, "parts": 12 }
+}

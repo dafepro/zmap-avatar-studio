@@ -1,0 +1,32 @@
+{
+  "id": "hat-sunline-visor",
+  "label": "Sunline open visor",
+  "slot": "headwear",
+  "rig": "athlete-reference-v2",
+  "description": "Open-crown angular courier visor with a faceted split brim, wide cream band and citron side fastener. Original hair is naturally depth-occluded, never cut or substituted.",
+  "attachments": [
+    {
+      "node": "ref2_hat-sunline-visor__head",
+      "socket": "head"
+    }
+  ],
+  "channels": [
+    "primary",
+    "secondary",
+    "trim",
+    "accent"
+  ],
+  "tags": [
+    "sunline-courier"
+  ],
+  "hairFit": [
+    {
+      "targetSlot": "hair",
+      "mode": "occlude"
+    }
+  ],
+  "url": "models/hat-sunline-visor.glb",
+  "bytes": 20804,
+  "sha256": "e4927e5b6126c71afc517d70ca8095293a4dc5937f2aa00597139eb03e4473dd",
+  "triangles": 268
+}

@@ -1,0 +1,44 @@
+name: Sunline collectible set evidence
+on:
+  push:
+    branches: ["codex/asset-set-sunline"]
+  pull_request:
+    paths:
+      - "public/capsule/parts/*sunline*.json"
+      - "public/capsule/models/*sunline*.glb"
+      - "public/capsule/sets/sunline-courier.json"
+      - "public/capsule/looks/sunline-courier.shift.json"
+      - "tests/sunline-courier.test.ts"
+      - "tests/browser/sunline-courier.spec.ts"
+      - "tests/fixtures/sunline-review.ts"
+      - "playwright.sunline.config.ts"
+      - ".github/workflows/sunline.yml"
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  sunline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/build-capsule-catalog.mjs
+      - run: node --import tsx --test tests/sunline-courier.test.ts
+      - run: npm run typecheck
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --config playwright.sunline.config.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sunline-actual-browser-evidence
+          path: |
+            docs/evidence/sunline-courier/browser-*
+            test-results/
+          retention-days: 30
