@@ -39,7 +39,11 @@ The source uses the existing `scalp_foundation` without changing protected templ
 - Posed Blender evidence: 11,178 source triangles without accessories, 12,512 with cap/glasses, within the 14,000 limit
 - Local unit suite: **167 tests passed**; typecheck, format check and production build passed
 
-Browser verification is delegated to the repository's CI Chromium job because direct browser execution on the cloud VM is restricted. `Crane hair asset evidence` selects the real part through the studio UI, checks that other recipe fields are preserved, then captures the shipping `ComicStyle` renderer at eight angles with no accessories, glasses, and cap + glasses. Its artifact is `crane-hair-actual-browser-evidence`. Browser results are not claimed until that exact-head job completes and its images are inspected.
+Browser verification passed in [CI run 37087055637](https://github.com/dafepro/zmap-avatar-studio/actions/runs/37087055637) for asset commit `0a58ac40d6a1b3de57fd0492cb4f58cf23a68abe`. The studio UI selected Crane without changing the other recipe fields; the shipping `ComicStyle` renderer captured eight angles with no accessories, glasses, and cap + glasses, with no page or shader errors. The downloaded artifact SHA-256 was verified and all views were inspected. The SHIFT studio regression job also passed. Full legacy-suite status is tracked on the PR checks.
+
+[Actual studio screenshot](evidence/crane/browser-studio.png) · [Eight-angle hair](evidence/crane/browser-orbit.png) · [Glasses](evidence/crane/browser-glasses.png) · [Cap + glasses](evidence/crane/browser-cap-glasses.png) · [CI/artifact provenance](evidence/crane/verification.json)
+
+The low silhouette, short braid and independent palette read clearly in the shipping renderer. The hair is deliberately simpler than the concept drawing. Source triangle counts are 11,178 bare, 11,706 with glasses and 12,512 with cap/glasses; silhouette ink adds its own rendering pass.
 
 ## Rebuild
 

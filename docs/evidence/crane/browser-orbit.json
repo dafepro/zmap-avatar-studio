@@ -1,0 +1,24 @@
+[
+  {
+    "id": "hair-crane",
+    "head": "head-spark",
+    "weight": 1,
+    "hairColor": "#486469",
+    "accessories": false,
+    "headwear": false,
+    "angles": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "meshes": 38,
+    "triangles": 21568,
+    "sourceTriangles": 11178,
+    "parts": 7
+  }
+]
