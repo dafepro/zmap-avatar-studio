@@ -1,0 +1,25 @@
+{
+  "id": "hat-tideglass-fin",
+  "label": "Tideglass fin crown",
+  "slot": "headwear",
+  "rig": "athlete-reference-v2",
+  "description": "Open angular headband with two swept temple fins; natural hair occlusion, no hairstyle variants.",
+  "attachments": [
+    {
+      "node": "ref2_hat-tideglass-fin__head",
+      "socket": "head"
+    }
+  ],
+  "channels": ["primary", "trim", "accent"],
+  "tags": [],
+  "hairFit": [
+    {
+      "targetSlot": "hair",
+      "mode": "occlude"
+    }
+  ],
+  "url": "models/hat-tideglass-fin.glb",
+  "bytes": 11084,
+  "sha256": "142d75d9584da86555dc7717751d233f974c706fab37bdd044782b3e1874fc29",
+  "triangles": 140
+}

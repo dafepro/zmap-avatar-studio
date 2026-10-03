@@ -1,0 +1,39 @@
+{
+  "id": "acc-tideglass-twinfin",
+  "label": "Tideglass twin-fin pack",
+  "slot": "accessory",
+  "rig": "athlete-reference-v2",
+  "description": "Compact central glazed shell pod with short swept side fins, closed wide shoulder straps and coral clasp. No tanks or weapons.",
+  "attachments": [
+    {
+      "node": "ref2_acc-tideglass-twinfin__root",
+      "socket": "root"
+    }
+  ],
+  "channels": ["primary", "secondary", "trim", "accent"],
+  "tags": ["back-mounted"],
+  "skin": {
+    "bones": [
+      "root",
+      "hips",
+      "chest",
+      "head",
+      "arm_L",
+      "forearm_L",
+      "hand_L",
+      "leg_L",
+      "shin_L",
+      "foot_L",
+      "arm_R",
+      "forearm_R",
+      "hand_R",
+      "leg_R",
+      "shin_R",
+      "foot_R"
+    ]
+  },
+  "url": "models/acc-tideglass-twinfin.glb",
+  "bytes": 59356,
+  "sha256": "6c798ecf5e0d7ca202a061daa5bd6accad079260ea542c54c710ed102ae054ae",
+  "triangles": 488
+}

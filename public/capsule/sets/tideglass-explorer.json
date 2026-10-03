@@ -1,0 +1,41 @@
+{
+  "format": "shift-collectible-set",
+  "version": 1,
+  "id": "tideglass-explorer",
+  "label": "Tideglass Explorer",
+  "description": "Five independently wearable reef-explorer pieces: open fin crown, glazed shell top, fitted technical trousers, low broad reef boots and compact twin-fin pack.",
+  "components": [
+    {
+      "slot": "headwear",
+      "id": "hat-tideglass-fin",
+      "label": "Fin crown"
+    },
+    {
+      "slot": "shirt",
+      "id": "shirt-tideglass-shell",
+      "label": "Shell top"
+    },
+    {
+      "slot": "bottom",
+      "id": "bottom-tideglass-tech",
+      "label": "Technical trousers"
+    },
+    {
+      "slot": "shoes",
+      "id": "shoes-tideglass-reef",
+      "label": "Reef boots"
+    },
+    {
+      "slot": "accessory",
+      "id": "acc-tideglass-twinfin",
+      "label": "Twin-fin pack"
+    }
+  ],
+  "palette": {
+    "primary": "#277f8d",
+    "secondary": "#203e50",
+    "trim": "#afe4ee",
+    "accent": "#ed9551"
+  },
+  "look": "../looks/tideglass-explorer.shift.json"
+}

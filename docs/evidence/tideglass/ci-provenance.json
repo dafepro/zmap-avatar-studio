@@ -1,0 +1,83 @@
+{
+  "set": "tideglass-explorer",
+  "evidenceCommit": "f711ca1715b6e19069f72827534c58eed9666587",
+  "localEquivalentCommit": "afde7792bc8796b162fccf3a9ea23047e0bd323c",
+  "verifiedTree": "e2e3bdce56a0112377ddbda0c0b7ce0e5fb701c8",
+  "pullRequest": "https://github.com/dafepro/zmap-avatar-studio/pull/8",
+  "workflowRun": 37092742406,
+  "workflowURL": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37092742406",
+  "artifactId": 11263616590,
+  "artifactName": "tideglass-actual-browser-evidence",
+  "archiveSHA256": "ef36d17a9b43ea6e04073ff4386c6940a672270ef958b486f3813cf969ddc848",
+  "reviewDate": "2026-10-03",
+  "renderPath": "Chromium WebGL, shipping AvatarLibrary and ComicStyle, actual capsule GLBs. No Blender/concept pixel substitution.",
+  "reviewedViews": [
+    "complete set: front/side/back/run/wave \u00d7 Scout/Spark \u00d7 build -1/0/+1",
+    "full optional stack: front/side/back/run/wave \u00d7 Scout/Spark \u00d7 build -1/0/+1",
+    "actual SHIFT imported-look UI screenshot"
+  ],
+  "result": "Inspected all three PNGs. No observed skin gaps, floating knee/shin plates, missing feet, or shader failures in these sampled views. Headwear naturally overlaps/is hidden by large hairstyles.",
+  "sourceTotals": {
+    "triangles": 2342,
+    "bytes": 265960
+  },
+  "fullOptionalMaximums": {
+    "sourceTriangles": 12837,
+    "bytes": 853064,
+    "parts": 12
+  },
+  "parts": [
+    {
+      "id": "acc-tideglass-twinfin",
+      "sha256": "6c798ecf5e0d7ca202a061daa5bd6accad079260ea542c54c710ed102ae054ae"
+    },
+    {
+      "id": "bottom-tideglass-tech",
+      "sha256": "6c122f751b70d72f4415383b7efa4390eaf712b3bbb8da5bde93ae8f42b7c01a"
+    },
+    {
+      "id": "hat-tideglass-fin",
+      "sha256": "142d75d9584da86555dc7717751d233f974c706fab37bdd044782b3e1874fc29"
+    },
+    {
+      "id": "shirt-tideglass-shell",
+      "sha256": "a7ec36f715d77385af4186c5684918763a477d78091782fbc6114d145916d37b"
+    },
+    {
+      "id": "shoes-tideglass-reef",
+      "sha256": "57f4bc79fc3b06ac734dd76d092ae4dd4bf61952c15a0ae133db41177e939846"
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/evidence/tideglass/browser-complete-set.json",
+      "sha256": "1a1c6691f87a22afff3f3397d88d27e1d6baeee3d5f6587cbf9906224d7f4af8",
+      "bytes": 30497
+    },
+    {
+      "path": "docs/evidence/tideglass/browser-complete-set.png",
+      "sha256": "339fd4c34fddc5ae941b202291c19a97d3fbfd7b2a281bea97d7efb78dd178eb",
+      "bytes": 1273626
+    },
+    {
+      "path": "docs/evidence/tideglass/browser-optional-stack.json",
+      "sha256": "b0eda68c3b04d922ec0d751b68c4c327ff7a17fb2f7cd8d778e05a5676a1bf4f",
+      "bytes": 31457
+    },
+    {
+      "path": "docs/evidence/tideglass/browser-optional-stack.png",
+      "sha256": "173cad9e415a961195047f27d1284dde652a89eb7fd8416a47ee060d00efb208",
+      "bytes": 1442622
+    },
+    {
+      "path": "docs/evidence/tideglass/browser-studio.png",
+      "sha256": "561ec1e50ce798caba4877fa97830e3f6fc1a51768968cfe8b8b1bfa0d6327c7",
+      "bytes": 232940
+    }
+  ],
+  "limitations": [
+    "All-anatomy crossing counts include masked/internal folds and intentional hidden mounting overlaps; this is not collision-free cloth simulation.",
+    "No phone/full-room frame-performance claim or arbitrary terrain-foot support qualification.",
+    "The evidence images were generated at evidenceCommit; the subsequent evidence-only commit adds these verified unchanged image bytes and provenance and is separately checked by CI."
+  ]
+}

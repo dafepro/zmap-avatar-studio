@@ -1,0 +1,90 @@
+{
+  "set": "tideglass-explorer",
+  "rig": "athlete-reference-v2",
+  "provenance": "Original Blender-authored geometry from the original concept; established rig and export helpers only. Concept artwork is not raster or geometry proof.",
+  "authoredDate": "2026-10-03",
+  "parts": [
+    {
+      "id": "acc-tideglass-twinfin",
+      "triangles": 488,
+      "bytes": 59356,
+      "sha256": "6c798ecf5e0d7ca202a061daa5bd6accad079260ea542c54c710ed102ae054ae"
+    },
+    {
+      "id": "bottom-tideglass-tech",
+      "triangles": 746,
+      "bytes": 83936,
+      "sha256": "6c122f751b70d72f4415383b7efa4390eaf712b3bbb8da5bde93ae8f42b7c01a"
+    },
+    {
+      "id": "hat-tideglass-fin",
+      "triangles": 140,
+      "bytes": 11084,
+      "sha256": "142d75d9584da86555dc7717751d233f974c706fab37bdd044782b3e1874fc29"
+    },
+    {
+      "id": "shirt-tideglass-shell",
+      "triangles": 400,
+      "bytes": 50428,
+      "sha256": "a7ec36f715d77385af4186c5684918763a477d78091782fbc6114d145916d37b"
+    },
+    {
+      "id": "shoes-tideglass-reef",
+      "triangles": 568,
+      "bytes": 61156,
+      "sha256": "57f4bc79fc3b06ac734dd76d092ae4dd4bf61952c15a0ae133db41177e939846"
+    }
+  ],
+  "totals": {
+    "triangles": 2342,
+    "bytes": 265960
+  },
+  "sources": [
+    {
+      "path": "assets/source/tideglass_explorer.py",
+      "sha256": "f722118dab173af95fbc214c34476126fdcbf2214ce028b58b6db0d04f2dd793"
+    },
+    {
+      "path": "assets/source/tideglass-explorer.blend",
+      "sha256": "2abf7b20dea3abd91cb2ef7445f97e0b16062eac984913b4ef3946c4c62af1d0"
+    },
+    {
+      "path": "assets/source/tideglass-review.blend",
+      "sha256": "ef157671c484f09948d9962d44572efb5ec81027d243ac018655ada54b892fd3"
+    },
+    {
+      "path": "assets/source/tideglass-review-lean-wave.blend",
+      "sha256": "cfac1cc7bb8e0a577b8214d628f0de43b856129f7721840fc1298d412e724bec"
+    },
+    {
+      "path": "assets/source/tideglass-review-broad-run.blend",
+      "sha256": "6c18679d0927ac9b9db814fa57c89b3f06555a1353b52bd119aba29b14d1c529"
+    },
+    {
+      "path": "scripts/export-tideglass-evidence.ts",
+      "sha256": "b60a3ee2ef836464f2919293295698fb0dcd6099f9e700d2aff4b6a7718760b8"
+    },
+    {
+      "path": "assets/source/render_tideglass.py",
+      "sha256": "ad18573bcf1854b2bb41e60aef517e3a6d9d70027a85d280863476bf78dc6bc0"
+    }
+  ],
+  "blenderReview": {
+    "method": "Actual AvatarLibrary-loaded, body-fitted and motion-posed vertices transferred to Blender. Blender shading is a review approximation, separate from ComicStyle Chromium.",
+    "views": [
+      "neutral-front",
+      "neutral-side",
+      "neutral-back",
+      "lean-wave-pose",
+      "broad-run-pose",
+      "broad-front",
+      "broad-back"
+    ],
+    "guiInspection": {
+      "timeUTC": "2026-10-03T03:21:55Z",
+      "window": "Separate tideglass-review.blend instance; exact current fitted neutral scene opened and inspected",
+      "scope": "Current neutral geometry and source materials inspected interactively. Saved run/wave posed scenes independently rendered and inspected as actual loaded geometry.",
+      "limitation": "While selecting saved broad-run scene, all Blender windows disappeared and tools reported X11 BadWindow. Cause unverified; no Quit/close action was issued in this inspection pass. Existing source files remain intact."
+    }
+  }
+}

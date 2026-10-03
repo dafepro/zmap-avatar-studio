@@ -1,0 +1,40 @@
+{
+  "id": "bottom-tideglass-tech",
+  "label": "Tideglass technical trousers",
+  "slot": "bottom",
+  "rig": "athlete-reference-v2",
+  "description": "Full-length fitted technical trousers with welded pelvis, articulated kneecaps, shin shell panels and segmented coral side tape.",
+  "attachments": [
+    {
+      "node": "ref2_bottom-tideglass-tech__root",
+      "socket": "root"
+    }
+  ],
+  "channels": ["primary", "secondary", "trim", "accent"],
+  "tags": [],
+  "covers": ["upper-legs"],
+  "skin": {
+    "bones": [
+      "root",
+      "hips",
+      "chest",
+      "head",
+      "arm_L",
+      "forearm_L",
+      "hand_L",
+      "leg_L",
+      "shin_L",
+      "foot_L",
+      "arm_R",
+      "forearm_R",
+      "hand_R",
+      "leg_R",
+      "shin_R",
+      "foot_R"
+    ]
+  },
+  "url": "models/bottom-tideglass-tech.glb",
+  "bytes": 83936,
+  "sha256": "6c122f751b70d72f4415383b7efa4390eaf712b3bbb8da5bde93ae8f42b7c01a",
+  "triangles": 746
+}

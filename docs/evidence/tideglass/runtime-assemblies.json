@@ -1,0 +1,162 @@
+[
+  {
+    "name": "neutral",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-tide",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": null
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "diagnostics": {
+      "meshes": 42,
+      "triangles": 11395,
+      "sourceTriangles": 11395,
+      "parts": 9
+    }
+  },
+  {
+    "name": "lean-wave",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-tide",
+        "hair": "hair-tide",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": null
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "diagnostics": {
+      "meshes": 42,
+      "triangles": 11395,
+      "sourceTriangles": 11395,
+      "parts": 9
+    }
+  },
+  {
+    "name": "broad-run",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-tide",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": null
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "diagnostics": {
+      "meshes": 42,
+      "triangles": 11395,
+      "sourceTriangles": 11395,
+      "parts": 9
+    }
+  },
+  {
+    "name": "broad",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-tide",
+        "hair": "hair-tide",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-tideglass-fin",
+        "shirt": "shirt-tideglass-shell",
+        "bottom": "bottom-tideglass-tech",
+        "shoes": "shoes-tideglass-reef",
+        "accessory": "acc-tideglass-twinfin",
+        "effect": null
+      },
+      "colors": {
+        "skin": "#c68b60",
+        "primary": "#277f8d",
+        "secondary": "#203e50",
+        "trim": "#afe4ee",
+        "hair": "#243d42",
+        "iris": "#554030",
+        "accent": "#ed9551"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "diagnostics": {
+      "meshes": 42,
+      "triangles": 11395,
+      "sourceTriangles": 11395,
+      "parts": 9
+    }
+  }
+]
