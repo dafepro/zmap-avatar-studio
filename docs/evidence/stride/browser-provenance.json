@@ -1,0 +1,31 @@
+{
+  "sourceCommit": "99eb4242a6574e21d736b29c14de2b6b869911e3",
+  "workflowRun": 37087128677,
+  "workflowURL": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37087128677",
+  "artifactId": 11261251529,
+  "artifactName": "stride-footwear-browser-evidence",
+  "artifactSHA256": "290f7774f629585d8dfc15474ba6aa3ec96304fb4ea6ec005d6a611c7d14586c",
+  "browser": "Chromium installed by Playwright on GitHub Actions ubuntu-latest",
+  "captureMethod": "Unmodified Playwright screenshots of the actual SHIFT page and stage canvas",
+  "imageSHA256": {
+    "browser-build--1.png": "9ed8db61170d12d4ce826d2051e0fca5da1a3458cdb0bc6d01720fc383a833c0",
+    "browser-build-0.png": "5754c5362e2786fd1e5d49a40cca31e0e29fb2fdf60773776982dfa8da683761",
+    "browser-build-1.png": "cb7ea17e77194aa6d774283c849289b2da90356f635f7dc959e9f958db1aee6c",
+    "browser-running-back.png": "69ee0dea75ff74de9fd73b4c2e24a3bcfcc802dd2e3f94d149eda6327933890e",
+    "browser-running-side.png": "773a5b79e8dbb890cb32e5a55028f29b46c891ce4e376afd76a97f2855ae8a5f",
+    "browser-stride-studio.png": "14ebc0558ae237fe7843ca9b271e9e51fc729fccdad87810bcf01f10f9570030"
+  },
+  "review": "Downloaded and pixel-inspected all six actual browser captures: shoe selection and thumbnail, builds -1/0/1, side running split sole/cage, rear running heel detail. Sock/calf continuity remains visible. The run side image demonstrates different rigid-foot and shin-bound-fabric orientations.",
+  "tests": {
+    "strideBrowser": "passed",
+    "studioBrowser": "9 passed on the same source head",
+    "pageErrors": []
+  },
+  "localValidation": {
+    "unitTests": 168,
+    "format": "passed",
+    "typecheck": "passed",
+    "build": "passed",
+    "capsuleValidator": "passed"
+  }
+}

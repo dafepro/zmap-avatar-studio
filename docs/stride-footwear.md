@@ -73,6 +73,12 @@ The runtime snapshot intermediate is written under ignored `outputs/stride/`; it
 
 [Dedicated browser test](../tests/stride-browser/stride.spec.ts) and [CI workflow](../.github/workflows/stride.yml) exercise real shoe selection, unchanged other selections, a rendered thumbnail, three builds, running side/rear views, saved-look reload and old-recipe reimport. They write clearly named `browser-*.png` screenshots and a browser validation report. The workflow uploads them in `stride-footwear-browser-evidence`.
 
-Local Chromium sandbox launch and the cloud-browser loopback route are blocked in this environment. Those restrictions were not bypassed. Browser qualification runs on the repository CI route; check the PR's exact-head workflow results for current status. Until its artifact is inspected, the Blender evidence must not be described as browser qualification.
+Actual Chromium qualification [passed on source commit `99eb4242`](https://github.com/dafepro/zmap-avatar-studio/actions/runs/37087128677). All six screenshots were downloaded and pixel-inspected. The dedicated test passed selection/thumbnail, builds −1/0/1, side/rear running, saved-look reload and original-recipe reimport, with zero page errors. The common studio's nine browser tests also passed on that source head. [Artifact provenance and image hashes](evidence/stride/browser-provenance.json), [browser diagnostics](evidence/stride/browser-validation.json).
+
+![Actual Chromium studio, Stride selected](evidence/stride/browser-stride-studio.png)
+![Actual Chromium running side view](evidence/stride/browser-running-side.png)
+![Actual Chromium running rear view](evidence/stride/browser-running-back.png)
+
+Local Chromium sandbox launch and the cloud-browser loopback route are blocked in this environment. Those restrictions were not bypassed: these browser captures came from the repository's CI runner. They are distinct from the Blender renders above. Subsequent evidence-only commits preserve the tested model/source; check the PR's latest exact-head checks for current status.
 
 This is deliberately angular low-poly footwear, not a cloth simulation. The fit check samples calf triangle centroids and selected running poses, not all triangle interiors or all possible motions. The rigid heel cage can intersect deeply flexed fabric at extreme poses outside the measured samples. Arbitrary future pants, cloth collision, every emote and full-room phone performance remain separate qualification work.
