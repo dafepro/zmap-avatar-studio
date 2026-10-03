@@ -15,6 +15,7 @@ scene.render.engine='CYCLES';scene.cycles.samples=12;scene.cycles.use_denoising=
 scene.render.resolution_x=800;scene.render.resolution_y=880;scene.render.resolution_percentage=100
 scene.world.color=(.65,.65,.65);scene.view_settings.view_transform='Standard'
 scene.render.film_transparent=False
+scene.render.dither_intensity=0
 world=bpy.data.worlds.new('Sunline ivory review');world.use_nodes=True;world.node_tree.nodes['Background'].inputs[0].default_value=(.73,.75,.72,1);world.node_tree.nodes['Background'].inputs[1].default_value=.8;scene.world=world
 
 def co(p):return(p[0],-p[2],p[1])
@@ -78,7 +79,7 @@ def aim(obj,p):obj.rotation_euler=(Vector(co(p))-obj.location).to_track_quat('-Z
 data=bpy.data.cameras.new('Sunline review camera');camera=bpy.data.objects.new('Sunline review camera',data);scene.collection.objects.link(camera);scene.camera=camera;data.type='ORTHO'
 light=bpy.data.lights.new('Review softbox','AREA');light.energy=450;light.size=5;obj=bpy.data.objects.new('Review softbox',light);scene.collection.objects.link(obj);obj.location=co((-3,5,4));aim(obj,(0,1,0))
 all_records=[]
-for name,views in [('neutral',[('front',(0,1.16,5),2.30,(0,1.08,0)),('side',(5,1.16,.02),2.30,(0,1.08,0)),('back',(0,1.16,-5),2.30,(0,1.08,0))]),('lean-wave',[('pose',(3.2,1.7,7),2.40,(0,1.12,0))]),('broad-run',[('pose',(4,1.7,7),2.45,(0,1.10,0)),('back',(-3,1.7,-7),2.45,(0,1.10,0))]),('broad-wave',[('pose',(3.2,1.7,7),2.4,(0,1.10,0))]),('broad-neutral',[('front',(0,1.16,5),2.30,(0,1.08,0)),('back',(0,1.16,-5),2.30,(0,1.08,0))])]:
+for name,views in [('neutral',[('front',(0,1.16,5),2.30,(0,1.08,0)),('side',(5,1.16,.02),2.30,(0,1.08,0)),('back',(0,1.16,-5),2.30,(0,1.08,0))]),('lean-wave',[('pose',(3.2,1.7,7),2.40,(0,1.12,0))]),('broad-run',[('pose',(4,1.7,7),2.45,(0,1.10,0)),('back',(-3,1.7,-7),2.45,(0,1.10,0))]),('deep-run',[('front',(0,1.16,5),2.3,(0,1.08,0)),('side',(5,1.16,.02),2.3,(0,1.08,0)),('back',(0,1.16,-5),2.3,(0,1.08,0))]),('broad-wave',[('pose',(3.2,1.7,7),2.4,(0,1.10,0))]),('broad-neutral',[('front',(0,1.16,5),2.30,(0,1.08,0)),('back',(0,1.16,-5),2.30,(0,1.08,0))])]:
     objects,record=assembly(name)
     for label,pos,scale,target in views:
         camera.location=co(pos);aim(camera,target);data.ortho_scale=scale

@@ -10,18 +10,34 @@
   "blenderRenderer": "../../../assets/source/render_sunline.py",
   "runtimeReviewScene": "../../../assets/source/sunline-review.blend",
   "blenderReview": "Actual AvatarLibrary-loaded, body-fitted and posed vertices. Images without browser- prefixes are Blender renders, not browser screenshots. Neutral geometry was opened and inspected in interactive cloud Blender; the disposable review process closed during material preview. A compressed three-pose review scene is preserved.",
-  "browserReview": "Pending initial GitHub Actions run and screenshot inspection; shipping ComicStyle fixture is checked in.",
+  "browserReview": "Initial focused shipping WebGL workflow37092612064 at e8c3088d8958b72fe9f3ab983d455783d5f06f5c passed. Downloaded artifact11263696198 and inspected both screenshots. Final updated asset/24-panel evidence will be captured on subsequent CI.",
   "localChecks": {
-    "unitTests": "168 passed",
-    "focusedTests": "4 passed",
+    "unitTests": "170 passed",
+    "focusedTests": "6 passed",
     "typecheck": "passed",
     "format": "passed",
     "build": "passed",
     "npmPack": "passed using writable temporary npm cache",
     "packageSmoke": "Blocked locally before browser launch by missing /home/agent/.npm cache; full package smoke is required in Verify CI"
   },
-  "sourceTriangles": 2626,
-  "sourceBytes": 267412,
-  "maximumFullSlotFittedTriangles": 13121,
-  "unchangedBudgets": { "triangles": 14000, "bytes": 1500000, "parts": 12 }
+  "sourceTriangles": 2658,
+  "sourceBytes": 270420,
+  "maximumFullSlotFittedTriangles": 13153,
+  "unchangedBudgets": {
+    "triangles": 14000,
+    "bytes": 1500000,
+    "parts": 12
+  },
+  "trouserDiagnostic": "30 cases across three builds: zero sampled exterior skin leaks after adding a shaped knee ring. Hidden anatomy intersections and natural cuff views are separately recorded in trouser-clearance.json.",
+  "initialCI": {
+    "head": "e8c3088d8958b72fe9f3ab983d455783d5f06f5c",
+    "focusedRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37092612064",
+    "focusedArtifactId": 11263696198,
+    "focusedResult": "success; downloaded and visually inspected",
+    "shiftRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37092612065",
+    "shiftResult": "success",
+    "verifyRun": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37092612061",
+    "packageSmoke": "passed",
+    "fullVerify": "still running when geometry correction prepared"
+  }
 }

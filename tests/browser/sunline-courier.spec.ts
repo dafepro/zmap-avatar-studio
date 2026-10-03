@@ -73,7 +73,7 @@ test("Sunline pieces select independently; complete look imports and renders all
     "/@fs" +
       fileURLToPath(new URL("../fixtures/sunline-review.ts", import.meta.url)),
   );
-  expect(result.records).toHaveLength(20);
+  expect(result.records).toHaveLength(24);
   for (const record of result.records) {
     expect(record.sourceTriangles).toBeLessThanOrEqual(14000);
     expect(record.parts).toBe(record.optional ? 12 : 9);

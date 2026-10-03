@@ -43,6 +43,7 @@ for (const [name, head, weight, motion] of [
   ["neutral", "head-scout", 0, "idle"],
   ["lean-wave", "head-scout", -1, "wave"],
   ["broad-run", "head-spark", 1, "run"],
+  ["deep-run", "head-spark", 1, "deep-run"],
   ["broad-wave", "head-spark", 1, "wave"],
   ["broad-neutral", "head-spark", 1, "idle"],
 ] as const) {
@@ -68,12 +69,12 @@ for (const [name, head, weight, motion] of [
     accent: "#d4e951",
   });
   await avatar.setAppearance(recipe);
-  for (let frame = 0; frame <= 60; frame++)
+  for (let frame = 0; frame <= (motion === "deep-run" ? 30 : 60); frame++)
     avatar.update(
       frame / 60,
       motion === "wave"
         ? { emote: { id: "wave", elapsed: frame / 60 } }
-        : motion === "run"
+        : motion === "run" || motion === "deep-run"
           ? { velocity: { x: 0, z: 3.8 }, grounded: true }
           : {},
     );

@@ -14,6 +14,10 @@ import {
 import { parseLook } from "../app/atelier-state";
 import { type WieldCatalog } from "../src/wield-core";
 import "./helpers/node-image";
+import {
+  captureRestAnatomy,
+  measureTrouserClearance,
+} from "./helpers/sunline-trouser-clearance";
 
 const root = new URL("../public/", import.meta.url);
 const catalog: Catalog = JSON.parse(
@@ -326,6 +330,107 @@ test("long sleeves, full trousers, socks and rigid trainers retain anatomical we
     assert.ok(owned.length && before.length);
   } finally {
     avatar.dispose();
+    library.dispose();
+  }
+});
+
+test("visor clears both actual head surfaces while preserving natural hair geometry", async () => {
+  const library = new AvatarLibrary(catalog, "https://sunline.test/", fetcher);
+  const crossings = (source: THREE.Mesh[], target: THREE.Mesh[]) => {
+    let count = 0;
+    for (const mesh of source) {
+      const points = vertices(mesh),
+        index = mesh.geometry.index;
+      for (let i = 0; i < (index?.count ?? points.length); i += 3)
+        for (let edge = 0; edge < 3; edge++) {
+          const a = points[index?.getX(i + edge) ?? i + edge],
+            b =
+              points[index?.getX(i + ((edge + 1) % 3)) ?? i + ((edge + 1) % 3)];
+          const direction = b.clone().sub(a),
+            length = direction.length();
+          if (length < 0.0002) continue;
+          if (
+            new THREE.Raycaster(
+              a,
+              direction.normalize(),
+              0.0001,
+              length - 0.0001,
+            ).intersectObjects(target, false).length
+          )
+            count++;
+        }
+    }
+    return count;
+  };
+  try {
+    for (const head of ["head-scout", "head-spark"]) {
+      const avatar = library.create();
+      try {
+        const recipe = fullRecipe();
+        recipe.parts.head = head;
+        recipe.parts.hair = "hair-pony";
+        await avatar.setAppearance(recipe);
+        rest(avatar);
+        const hat = meshes(avatar.object, ["hat-sunline-visor"]),
+          skin = meshes(avatar.object, [head]);
+        assert.equal(
+          crossings(hat, skin) + crossings(skin, hat),
+          0,
+          `${head} intersects the solid visor`,
+        );
+        const snapshot = meshes(avatar.object, ["hair-pony"]).map((mesh) =>
+          Array.from(mesh.geometry.attributes.position.array),
+        );
+        recipe.parts.headwear = null;
+        await avatar.setAppearance(recipe);
+        rest(avatar);
+        assert.deepEqual(
+          meshes(avatar.object, ["hair-pony"]).map((mesh) =>
+            Array.from(mesh.geometry.attributes.position.array),
+          ),
+          snapshot,
+        );
+      } finally {
+        avatar.dispose();
+      }
+    }
+  } finally {
+    library.dispose();
+  }
+});
+
+test("deep-knee run has no exterior trouser skin leaks at all three builds", async () => {
+  const library = new AvatarLibrary(catalog, "https://sunline.test/", fetcher);
+  try {
+    for (const weight of [-1, 0, 1]) {
+      const avatar = library.create();
+      try {
+        const recipe = fullRecipe();
+        recipe.body = { weight };
+        await avatar.setAppearance(recipe);
+        const anatomy = captureRestAnatomy(avatar.object);
+        for (let frame = 0; frame <= 30; frame++)
+          avatar.update(frame / 60, {
+            velocity: { x: 0, z: 3.8 },
+            grounded: true,
+          });
+        const report = measureTrouserClearance(
+          avatar.object,
+          "bottom-sunline-cargo",
+          anatomy,
+        );
+        assert.ok(report.visibleSamples > 0);
+        assert.deepEqual(
+          report.exposedSamples,
+          [],
+          JSON.stringify({ weight, ...report }),
+        );
+        assert.equal(report.cuffApertures.length, 2);
+      } finally {
+        avatar.dispose();
+      }
+    }
+  } finally {
     library.dispose();
   }
 });

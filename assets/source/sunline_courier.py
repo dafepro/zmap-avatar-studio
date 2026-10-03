@@ -64,10 +64,12 @@ def make_visor():
     parent=mount(root,record,'head')
     count=20;vertices=[]
     # Full annular wearing band clears both authored heads. No crown volume.
-    for y,rx,rz in [(.096,.192,.220),(.146,.188,.216),(.146,.179,.207),(.096,.183,.211)]:
+    for y,rx,rz in [(.096,.204,.220),(.146,.200,.216),(.146,.191,.207),(.096,.195,.211)]:
         for i in range(count):
             a=i*math.tau/count
-            vertices.append((math.sin(a)*rx,y,-.019+math.cos(a)*rz))
+            cosine=math.cos(a)
+            z=-.019+rz*(cosine**.48 if cosine>0 else cosine)
+            vertices.append((math.sin(a)*rx,y,z))
     faces=[]
     for ring in range(4):
         for i in range(count):faces.append((ring*count+i,ring*count+(i+1)%count,((ring+1)%4)*count+(i+1)%count,((ring+1)%4)*count+i))
@@ -80,7 +82,7 @@ def make_visor():
         shape=[(sign*.006,.099,.204),(sign*.085,.104,.193),(sign*.163,.106,.143),(sign*.203,.068,.307),(sign*.055,.075,.337),(sign*.006,.089,.317)]
         brim=prism('Split swept visor blade '+str(sign),shape,trim,.009);brim.parent=parent
         edge=prism('Coral visor wing '+str(sign),[(sign*.146,.108,.168),(sign*.170,.104,.142),(sign*.204,.071,.306),(sign*.175,.073,.312)],primary,.006);edge.parent=parent
-    buckle=bake(box('Citron visor lock',(.187,.122,.055),(.022,.046,.036),accent,parent,.004))
+    buckle=bake(box('Citron visor lock',(.207,.122,.055),(.022,.046,.036),accent,parent,.004))
     export(root,record);record['tags']=['sunline-courier']
     (PARTS/(record['id']+'.json')).write_text(json.dumps(record,indent=2)+'\n')
     print('SUNLINE_READY',record['id'],record['triangles'],record['bytes'],flush=True)
@@ -174,7 +176,7 @@ def make_pants():
     # Order starts at outer side, travels through front, inside and back.
     for sign,opening in [(-1,[18,19,20,21,22,49,48,47]),(1,[27,26,25,24,23,52,53,54])]:
         last=opening
-        for y,cx,rx,rz,cz in [(.700,.153,.091,.096,.003),(.596,.169,.076,.077,.011),(.515,.182,.079,.079,.008),(.413,.198,.086,.084,-.003),(.323,.210,.066,.066,-.005),(.286,.215,.057,.058,-.004)]:
+        for y,cx,rx,rz,cz in [(.700,.153,.091,.096,.003),(.596,.169,.082,.091,.011),(.565,.174,.086,.103,.012),(.515,.182,.082,.087,.008),(.413,.198,.086,.084,-.003),(.323,.210,.066,.066,-.005),(.286,.215,.057,.058,-.004)]:
             ids=[]
             for j in range(8):
                 angle=j*math.tau/8

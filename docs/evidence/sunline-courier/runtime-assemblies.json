@@ -33,8 +33,8 @@
     },
     "diagnostics": {
       "meshes": 31,
-      "triangles": 11029,
-      "sourceTriangles": 11029,
+      "triangles": 11061,
+      "sourceTriangles": 11061,
       "parts": 9
     }
   },
@@ -72,8 +72,8 @@
     },
     "diagnostics": {
       "meshes": 31,
-      "triangles": 11029,
-      "sourceTriangles": 11029,
+      "triangles": 11061,
+      "sourceTriangles": 11061,
       "parts": 9
     }
   },
@@ -111,8 +111,47 @@
     },
     "diagnostics": {
       "meshes": 31,
-      "triangles": 11029,
-      "sourceTriangles": 11029,
+      "triangles": 11061,
+      "sourceTriangles": 11061,
+      "parts": 9
+    }
+  },
+  {
+    "name": "deep-run",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-grin",
+        "hair": "hair-sweep",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-sunline-visor",
+        "shirt": "shirt-sunline-courier",
+        "bottom": "bottom-sunline-cargo",
+        "shoes": "shoes-sunline-track",
+        "accessory": "acc-sunline-envelope",
+        "effect": null
+      },
+      "colors": {
+        "skin": "#cb9472",
+        "hair": "#303643",
+        "primary": "#e97552",
+        "secondary": "#303643",
+        "trim": "#f4e8cf",
+        "accent": "#d4e951"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "diagnostics": {
+      "meshes": 31,
+      "triangles": 11061,
+      "sourceTriangles": 11061,
       "parts": 9
     }
   },
@@ -150,8 +189,8 @@
     },
     "diagnostics": {
       "meshes": 31,
-      "triangles": 11029,
-      "sourceTriangles": 11029,
+      "triangles": 11061,
+      "sourceTriangles": 11061,
       "parts": 9
     }
   },
@@ -189,8 +228,8 @@
     },
     "diagnostics": {
       "meshes": 31,
-      "triangles": 11029,
-      "sourceTriangles": 11029,
+      "triangles": 11061,
+      "sourceTriangles": 11061,
       "parts": 9
     }
   }

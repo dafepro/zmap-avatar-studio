@@ -31,8 +31,9 @@ export async function renderSunlineReview() {
   const scene = new THREE.Scene(),
     camera = new THREE.OrthographicCamera(-0.88, 0.88, 1.15, -1.15, 0.01, 20);
   const canvas = document.createElement("canvas");
-  canvas.width = width * 5;
-  canvas.height = height * 4 + 80;
+  canvas.width = width * 6;
+  const cellHeight = height + 40;
+  canvas.height = cellHeight * 4 + 80;
   const ctx = canvas.getContext("2d")!;
   ctx.fillStyle = "#f4e8cf";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -57,6 +58,7 @@ export async function renderSunlineReview() {
         { label: "BACK", yaw: 180, motion: "idle" },
         { label: "WAVE", yaw: 25, motion: "wave" },
         { label: "RUN", yaw: -32, motion: "run" },
+        { label: "DEEP RUN", yaw: 0, motion: "deep-run" },
       ].entries()) {
         const avatar = library.create(),
           style = new ComicStyle({ inkWidth: 1.45 });
@@ -73,12 +75,16 @@ export async function renderSunlineReview() {
             });
           await avatar.setAppearance(recipe);
           scene.add(avatar.object);
-          for (let frame = 0; frame <= 60; frame++)
+          for (
+            let frame = 0;
+            frame <= (motion === "deep-run" ? 30 : 60);
+            frame++
+          )
             avatar.update(
               frame / 60,
               motion === "wave"
                 ? { emote: { id: "wave", elapsed: frame / 60 } }
-                : motion === "run"
+                : motion === "run" || motion === "deep-run"
                   ? { velocity: { x: 0, z: 3.8 }, grounded: true }
                   : {},
             );
@@ -95,14 +101,14 @@ export async function renderSunlineReview() {
           );
           renderer.render(scene, camera);
           const x = col * width,
-            y = 80 + row * height;
+            y = 80 + row * cellHeight;
           ctx.drawImage(renderer.domElement, x, y);
           ctx.fillStyle = "#303643";
           ctx.font = "bold 17px Arial";
           ctx.fillText(
             `${label} · ${head.replace("head-", "")} / ${weight}${optional ? " / MAX SLOTS" : ""}`,
             x + 14,
-            y + height - 13,
+            y + height + 23,
           );
           records.push({
             head,
