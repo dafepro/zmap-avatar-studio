@@ -1,0 +1,43 @@
+{
+  "format": "shift-look",
+  "version": 1,
+  "name": "Moonwake Festival",
+  "appearance": {
+    "version": 1,
+    "catalog": "shift-capsule",
+    "revision": "1.0.0",
+    "rig": "athlete-reference-v2",
+    "parts": {
+      "head": "head-spark",
+      "face": "face-ember",
+      "hair": "hair-nova",
+      "facialHair": null,
+      "eyewear": null,
+      "headwear": "hat-moonwake-crescent",
+      "shirt": "shirt-moonwake-festival",
+      "bottom": "bottom-moonwake-wide",
+      "shoes": "shoes-moonwake-platform",
+      "accessory": "acc-moonwake-lantern",
+      "effect": null
+    },
+    "colors": {
+      "primary": "#383a68",
+      "secondary": "#23283f",
+      "trim": "#d9c8ed",
+      "accent": "#ffc986",
+      "hair": "#302839",
+      "skin": "#c88f6a"
+    },
+    "body": {
+      "weight": 0
+    }
+  },
+  "equipment": {
+    "version": 1,
+    "catalog": "zoomap-playful-hands",
+    "revision": "1.0.1",
+    "rig": "athlete-reference-v2",
+    "left": null,
+    "right": null
+  }
+}

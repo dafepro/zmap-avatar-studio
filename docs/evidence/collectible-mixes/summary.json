@@ -1,0 +1,144 @@
+{
+  "timestamp": "2026-10-03T04:08:26.510Z",
+  "source": "exact GLBs loaded and fitted by AvatarLibrary; local integration test, not browser evidence",
+  "rig": "athlete-reference-v2",
+  "budgets": {
+    "maxTriangles": 14000,
+    "maxBytes": 1500000,
+    "maxParts": 12
+  },
+  "assets": [
+    {
+      "id": "hat-sunline-visor",
+      "sha256": "18814e3c6ad435bad7649969215726778c275c200c25e4573c880cbd6fe03ef2",
+      "triangles": 268,
+      "bytes": 20808
+    },
+    {
+      "id": "shirt-sunline-courier",
+      "sha256": "b02e67f0e38389abcd49f0c6e67966c3c08d30c49aa04620d6bcdfe247a6b03e",
+      "triangles": 656,
+      "bytes": 68584
+    },
+    {
+      "id": "bottom-sunline-cargo",
+      "sha256": "3165aa1118e5085b6e5e6c884bdb3e177a0e85a4b04851b19a8b63c3e8b96890",
+      "triangles": 474,
+      "bytes": 52292
+    },
+    {
+      "id": "shoes-sunline-track",
+      "sha256": "317edbd1cef4fd1abd03dbeb8ff1e18156e8983b0d5f0cdd1e2ee8d92a4e1e52",
+      "triangles": 712,
+      "bytes": 60664
+    },
+    {
+      "id": "acc-sunline-envelope",
+      "sha256": "f2b7453e9d3de3a53664971d64d71e95021821c52359b23096bdaff5166ada50",
+      "triangles": 548,
+      "bytes": 68076
+    },
+    {
+      "id": "hat-moonwake-crescent",
+      "sha256": "43d4ddbb428fd2b1a648b258dcb84bd4ea3b6bc74765f3b5b1a42f604c113d33",
+      "triangles": 236,
+      "bytes": 15500
+    },
+    {
+      "id": "shirt-moonwake-festival",
+      "sha256": "7ddbf53fa2b3befa8f7db365f743f1e0ff84fe8cc973eb0368bbb8678d45f661",
+      "triangles": 608,
+      "bytes": 73212
+    },
+    {
+      "id": "bottom-moonwake-wide",
+      "sha256": "60207ee2259314ed7c95cd617a1ae311d2a3dcc7d194b99c8b393df4f22af378",
+      "triangles": 478,
+      "bytes": 49668
+    },
+    {
+      "id": "shoes-moonwake-platform",
+      "sha256": "f2d505fd01b660f8c306f21e79e107c554c7a702b4866d7267a14ee8b1cc5294",
+      "triangles": 696,
+      "bytes": 56492
+    },
+    {
+      "id": "acc-moonwake-lantern",
+      "sha256": "53a8397c4e49d667512217e76db5f0dd99f48f563284f0b7f16aca6574e755ba",
+      "triangles": 516,
+      "bytes": 54400
+    },
+    {
+      "id": "hat-kiln-folded",
+      "sha256": "48bf57af545c5ee67221a09e5ed1baaedd68dede5c384043d63ad3763dec71bc",
+      "triangles": 164,
+      "bytes": 15532
+    },
+    {
+      "id": "shirt-kiln-apron",
+      "sha256": "0760fd146bde5f2174018c5fcc62fff5be4bde4c22f181f281cc81f6f67ecd0d",
+      "triangles": 438,
+      "bytes": 56280
+    },
+    {
+      "id": "bottom-kiln-cuffed",
+      "sha256": "4abd2ee65a053680c0ec96bebd11a0f0ca26d5eb17b9a9d71191708bd70ec439",
+      "triangles": 713,
+      "bytes": 86772
+    },
+    {
+      "id": "shoes-kiln-clogs",
+      "sha256": "4d5cd675dbf8068347894a5ba593fc6ed389d06f8378b41c429edcbbe3853644",
+      "triangles": 592,
+      "bytes": 62424
+    },
+    {
+      "id": "acc-kiln-maker",
+      "sha256": "5e6ac96b027ba6fe76664b21c9ba3c67d5e721eab11686f2f1a0793fe71d5afe",
+      "triangles": 572,
+      "bytes": 64044
+    },
+    {
+      "id": "hat-tideglass-fin",
+      "sha256": "142d75d9584da86555dc7717751d233f974c706fab37bdd044782b3e1874fc29",
+      "triangles": 140,
+      "bytes": 11084
+    },
+    {
+      "id": "shirt-tideglass-shell",
+      "sha256": "a7ec36f715d77385af4186c5684918763a477d78091782fbc6114d145916d37b",
+      "triangles": 400,
+      "bytes": 50428
+    },
+    {
+      "id": "bottom-tideglass-tech",
+      "sha256": "6c122f751b70d72f4415383b7efa4390eaf712b3bbb8da5bde93ae8f42b7c01a",
+      "triangles": 746,
+      "bytes": 83936
+    },
+    {
+      "id": "shoes-tideglass-reef",
+      "sha256": "57f4bc79fc3b06ac734dd76d092ae4dd4bf61952c15a0ae133db41177e939846",
+      "triangles": 568,
+      "bytes": 61156
+    },
+    {
+      "id": "acc-tideglass-twinfin",
+      "sha256": "6c798ecf5e0d7ca202a061daa5bd6accad079260ea542c54c710ed102ae054ae",
+      "triangles": 488,
+      "bytes": 59356
+    }
+  ],
+  "summary": {
+    "cases": 336,
+    "poses": 1680,
+    "pairwiseSlotPairs": 10,
+    "pairValuesPerSlotPair": 16,
+    "maximumSourceTriangles": 13727,
+    "maximumSourceBytes": 885140,
+    "minimumShoeVertex": -5.551115123125783e-17,
+    "failures": 0
+  },
+  "reportSha256": "6454fdc25243be5e584b9d47606cb5a4064492698f77a6205bb6c7ddffd49357",
+  "gzipSha256": "97f98e17bd76b3ad74fcad57eadaed5492674d46ecc111ef9d649acc9ef97468"
+}

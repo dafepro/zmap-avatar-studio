@@ -1,0 +1,41 @@
+{
+  "format": "shift-collectible-set",
+  "version": 1,
+  "id": "moonwake-festival",
+  "label": "Moonwake Festival",
+  "description": "A five-piece festival look built from folded midnight cloth, crescent metalwork and a peach lantern. Each component is independently equippable.",
+  "components": [
+    {
+      "slot": "accessory",
+      "id": "acc-moonwake-lantern",
+      "label": "Moonwake lantern backpack"
+    },
+    {
+      "slot": "bottom",
+      "id": "bottom-moonwake-wide",
+      "label": "Moonwake balloon trousers"
+    },
+    {
+      "slot": "headwear",
+      "id": "hat-moonwake-crescent",
+      "label": "Moonwake crescent band"
+    },
+    {
+      "slot": "shirt",
+      "id": "shirt-moonwake-festival",
+      "label": "Moonwake folded festival tunic"
+    },
+    {
+      "slot": "shoes",
+      "id": "shoes-moonwake-platform",
+      "label": "Moonwake platform ankle boots"
+    }
+  ],
+  "palette": {
+    "primary": "#383a68",
+    "secondary": "#23283f",
+    "trim": "#d9c8ed",
+    "accent": "#ffc986"
+  },
+  "look": "../looks/moonwake-festival.shift.json"
+}

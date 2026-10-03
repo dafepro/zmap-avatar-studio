@@ -1,0 +1,47 @@
+{
+  "id": "bottom-moonwake-wide",
+  "label": "Moonwake balloon trousers",
+  "slot": "bottom",
+  "rig": "athlete-reference-v2",
+  "description": "Sculpted balloon trousers with a welded fork, deep faceted volume, thigh-to-shin articulation and high folded lavender cuffs.",
+  "attachments": [
+    {
+      "node": "ref2_bottom-moonwake-wide__root",
+      "socket": "root"
+    }
+  ],
+  "channels": [
+    "primary",
+    "secondary",
+    "trim",
+    "accent"
+  ],
+  "tags": [],
+  "covers": [
+    "upper-legs"
+  ],
+  "skin": {
+    "bones": [
+      "root",
+      "hips",
+      "chest",
+      "head",
+      "arm_L",
+      "forearm_L",
+      "hand_L",
+      "leg_L",
+      "shin_L",
+      "foot_L",
+      "arm_R",
+      "forearm_R",
+      "hand_R",
+      "leg_R",
+      "shin_R",
+      "foot_R"
+    ]
+  },
+  "url": "models/bottom-moonwake-wide.glb",
+  "bytes": 49668,
+  "sha256": "60207ee2259314ed7c95cd617a1ae311d2a3dcc7d194b99c8b393df4f22af378",
+  "triangles": 478
+}

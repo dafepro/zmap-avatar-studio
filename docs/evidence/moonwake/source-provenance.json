@@ -1,0 +1,97 @@
+{
+  "format": "moonwake-source-evidence",
+  "version": 1,
+  "reviewedAtUTC": "2026-10-03T04:01:27Z",
+  "sourceRig": "athlete-reference-v2",
+  "sourceCatalog": "shift-capsule@1.0.0",
+  "concept": "docs/references/moonwake/concept.jpg",
+  "conceptSha256": "1d847dba6d59d0a0c38729f97fb177d4efea0f422e0a4aa45037799ab75e4aee",
+  "authoringScript": "assets/source/moonwake_set.py",
+  "editableSource": "assets/source/moonwake-set.blend",
+  "posedReview": "assets/source/moonwake-review.blend",
+  "geometryBridge": "scripts/export-moonwake-evidence.ts",
+  "reviewRenderer": "assets/source/render_moonwake.py",
+  "sourceTriangles": 2534,
+  "parts": [
+    {
+      "id": "acc-moonwake-lantern",
+      "sha256": "53a8397c4e49d667512217e76db5f0dd99f48f563284f0b7f16aca6574e755ba",
+      "bytes": 54400,
+      "triangles": 516
+    },
+    {
+      "id": "bottom-moonwake-wide",
+      "sha256": "60207ee2259314ed7c95cd617a1ae311d2a3dcc7d194b99c8b393df4f22af378",
+      "bytes": 49668,
+      "triangles": 478
+    },
+    {
+      "id": "hat-moonwake-crescent",
+      "sha256": "43d4ddbb428fd2b1a648b258dcb84bd4ea3b6bc74765f3b5b1a42f604c113d33",
+      "bytes": 15500,
+      "triangles": 236
+    },
+    {
+      "id": "shirt-moonwake-festival",
+      "sha256": "7ddbf53fa2b3befa8f7db365f743f1e0ff84fe8cc973eb0368bbb8678d45f661",
+      "bytes": 73212,
+      "triangles": 608
+    },
+    {
+      "id": "shoes-moonwake-platform",
+      "sha256": "f2d505fd01b660f8c306f21e79e107c554c7a702b4866d7267a14ee8b1cc5294",
+      "bytes": 56492,
+      "triangles": 696
+    }
+  ],
+  "reviewedImages": [
+    {
+      "path": "docs/evidence/moonwake/broad-idle-back.png",
+      "sha256": "852d83fa10b45a7ba68c88e313dc297da90ba5720f066277c49f4f30198661ed",
+      "kind": "actual AvatarLibrary-fitted/posed GLB geometry rendered in Blender, not WebGL"
+    },
+    {
+      "path": "docs/evidence/moonwake/broad-idle-front.png",
+      "sha256": "91b9536e41039557d304c2b18b0788c4a9f2dd08811ff6c29454298349b1b1a9",
+      "kind": "actual AvatarLibrary-fitted/posed GLB geometry rendered in Blender, not WebGL"
+    },
+    {
+      "path": "docs/evidence/moonwake/broad-run-pose.png",
+      "sha256": "69e4021d6c00cc0246b92b717dd73960baa824799e0558fa8abe4fa4ca1ca5d3",
+      "kind": "actual AvatarLibrary-fitted/posed GLB geometry rendered in Blender, not WebGL"
+    },
+    {
+      "path": "docs/evidence/moonwake/broad-run-side.png",
+      "sha256": "98aed1715e2eb618d01bcfe0da363dc3897e6f822a612fce9aad0b18756282ee",
+      "kind": "actual AvatarLibrary-fitted/posed GLB geometry rendered in Blender, not WebGL"
+    },
+    {
+      "path": "docs/evidence/moonwake/lean-wave-pose.png",
+      "sha256": "234f2e3d5d1d904f168714f53713c245b98773a8508ddc6517934ac1b331734b",
+      "kind": "actual AvatarLibrary-fitted/posed GLB geometry rendered in Blender, not WebGL"
+    },
+    {
+      "path": "docs/evidence/moonwake/neutral-back.png",
+      "sha256": "01e133130d1d081c19d3f6879bc32e36f4acce8e72d1bbcd99b3ad195b38ec33",
+      "kind": "actual AvatarLibrary-fitted/posed GLB geometry rendered in Blender, not WebGL"
+    },
+    {
+      "path": "docs/evidence/moonwake/neutral-front.png",
+      "sha256": "8989ac8aea8fa284819eeb1c8a073440b386e0227170722bdfcdbbbb624a6036",
+      "kind": "actual AvatarLibrary-fitted/posed GLB geometry rendered in Blender, not WebGL"
+    },
+    {
+      "path": "docs/evidence/moonwake/neutral-side.png",
+      "sha256": "1325f5c283f549ffc5972eba00178d325eba6af72cebecf1fb4f6bb2520a0b29",
+      "kind": "actual AvatarLibrary-fitted/posed GLB geometry rendered in Blender, not WebGL"
+    }
+  ],
+  "notes": [
+    "Lavender lower panels share actual tunic support topology, eliminating overlay intersections.",
+    "Trouser waist/upper-seat and waistband preserve the exact legacy envelope.",
+    "Native Blender files use lossless compression.",
+    "Actual Chromium evidence is generated separately by the focused GitHub Actions workflow.",
+    "Repository concept is an inspected, same-resolution JPEG90/4:4:4 derivative; original PNG hash is preserved separately."
+  ],
+  "originalConceptSha256": "e57c8f61a49b3c4424ae6582b53fe43b966d277dd3d319029a3af9138b6e12b0"
+}
