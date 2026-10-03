@@ -63,10 +63,10 @@ Named looks are stored only in this browser under a distinct local key, with up 
 
 - TypeScript: passed
 - Production build: passed (existing shared Three.js chunk size warning remains)
-- Complete repository Node test suite: 161 passed, 0 failed, including seven new preset/schema tests
+- Complete repository Node test suite: 164 passed, 0 failed, including ten preset/descriptor tests
 - New asset verification: see `public/capsule/validation.json` and `docs/capsule-assets.md` for final exact part hashes, geometry counts, body-build and animated fitting evidence
-- Seven browser regression tests are provided in `tests/browser/atelier.spec.ts`
-- Browser UI verification is currently blocked in the cloud VM: the cloud browser rejected the local loopback URL with `ERR_BLOCKED_BY_CLIENT`; installed Chromium then could not create its standard local process socket (`Operation not permitted`). No successful live UI screenshot or passing browser run is claimed yet. The included capsule front/back images are actual Blender renders of the 3D assets, not screenshots of the studio
+- Nine browser regression tests are provided in `tests/browser/atelier.spec.ts`
+- Real Chromium browser verification passed all nine tests on GitHub Actions at source commit `f6521f1a1402788063ce2a727744e56f8f2aa9a0`. The [successful run](https://github.com/dafepro/zmap-avatar-studio/actions/runs/37086264742) produced actual desktop, dual-gear, pack-back and mobile screenshots. See `docs/evidence/atelier/`. The local VM browser restriction remains, so browser testing uses the repository's CI runner. A later thumbnail-framing polish is rechecked by the same CI suite; its status is visible on the draft PR
 - Production-asset consumer integration, phone performance, exhaustive interpenetration testing and subjective art review remain future qualification work
 
 The existing 14,000 source-triangle / 1.5 MB / 12 appearance-part budgets remain enforced. New garment tests sample three builds and documented poses; sampled clearance is not a proof for every animation frame. This is an editable design/interaction prototype, not a new released package.
