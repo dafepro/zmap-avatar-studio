@@ -1,0 +1,47 @@
+{
+  "id": "acc-kiln-maker",
+  "label": "Kiln maker case",
+  "slot": "accessory",
+  "rig": "athlete-reference-v2",
+  "description": "Angular slab-lid maker backpack with two short capped canvas rolls, broad cross straps and visible shoulder webbing. Compact chest-bound case clears the back and moving arms.",
+  "attachments": [
+    {
+      "node": "ref2_acc-kiln-maker__root",
+      "socket": "root"
+    }
+  ],
+  "channels": [
+    "primary",
+    "secondary",
+    "trim",
+    "accent"
+  ],
+  "tags": [
+    "back-mounted",
+    "kiln-workshop"
+  ],
+  "skin": {
+    "bones": [
+      "root",
+      "hips",
+      "chest",
+      "head",
+      "arm_L",
+      "forearm_L",
+      "hand_L",
+      "leg_L",
+      "shin_L",
+      "foot_L",
+      "arm_R",
+      "forearm_R",
+      "hand_R",
+      "leg_R",
+      "shin_R",
+      "foot_R"
+    ]
+  },
+  "url": "models/acc-kiln-maker.glb",
+  "bytes": 64044,
+  "sha256": "5e6ac96b027ba6fe76664b21c9ba3c67d5e721eab11686f2f1a0793fe71d5afe",
+  "triangles": 572
+}

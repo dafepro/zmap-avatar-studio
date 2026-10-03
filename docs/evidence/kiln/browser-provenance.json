@@ -1,0 +1,141 @@
+{
+  "kind": "actual-shipping-WebGL-evidence",
+  "repository": "dafepro/zmap-avatar-studio",
+  "sourceHead": "e189a15dc4937bcef2c02745241d3254eb7ef4d3",
+  "sourceTree": "d9357da61b225e720de48a6b9631dc7c11c027a0",
+  "capturedAt": "2026-10-03T06:27:37Z",
+  "workflow": "Kiln Workshop set evidence",
+  "runId": 37103005856,
+  "runUrl": "https://github.com/dafepro/zmap-avatar-studio/actions/runs/37103005856",
+  "runConclusion": "success",
+  "artifactId": 11265854324,
+  "artifactZipSha256": "12fe03a6cf180a745ca819d6c1fd07dda75c23ee0179fc23ae641eb694bcb717",
+  "browser": "Playwright Chromium on GitHub Actions ubuntu-latest",
+  "rendering": "Actual capsule GLBs through AvatarLibrary and ComicStyle; no screenshot stand-ins",
+  "coverage": {
+    "independentStudioSwaps": 5,
+    "portableFullLookImport": true,
+    "heads": ["head-scout", "head-spark"],
+    "weights": [-1, 0, 1],
+    "views": ["front", "side", "back", "run", "wave"],
+    "poseRenders": 30,
+    "studioScreenshots": 1,
+    "sheetDimensions": [1750, 615]
+  },
+  "diagnostics": {
+    "sourceTriangles": 11444,
+    "parts": 9,
+    "renderMeshesIncludingComicInk": 56,
+    "renderTrianglesIncludingComicInk": 22100
+  },
+  "review": {
+    "allSevenPngsInspected": true,
+    "independentSecondReview": true,
+    "result": "Separate trouser legs and consistent knee/cuff articulation, clean tested waist/hem, attached pack with continuous straps, fitted folded cap and strapped clogs",
+    "limits": "Sampled poses and linear skinning, not unrestricted cloth simulation; hidden concave knee-fold intersections remain diagnostic"
+  },
+  "bodyClearanceReproduction": {
+    "sameCountsAndClassifications": true,
+    "maximumFloatingPointDelta": 2.220446049250313e-16,
+    "tolerance": 1e-12
+  },
+  "assets": [
+    {
+      "id": "acc-kiln-maker",
+      "triangles": 572,
+      "bytes": 64044,
+      "sha256": "5e6ac96b027ba6fe76664b21c9ba3c67d5e721eab11686f2f1a0793fe71d5afe"
+    },
+    {
+      "id": "bottom-kiln-cuffed",
+      "triangles": 713,
+      "bytes": 86772,
+      "sha256": "4abd2ee65a053680c0ec96bebd11a0f0ca26d5eb17b9a9d71191708bd70ec439"
+    },
+    {
+      "id": "hat-kiln-folded",
+      "triangles": 164,
+      "bytes": 15532,
+      "sha256": "48bf57af545c5ee67221a09e5ed1baaedd68dede5c384043d63ad3763dec71bc"
+    },
+    {
+      "id": "shirt-kiln-apron",
+      "triangles": 438,
+      "bytes": 56280,
+      "sha256": "0760fd146bde5f2174018c5fcc62fff5be4bde4c22f181f281cc81f6f67ecd0d"
+    },
+    {
+      "id": "shoes-kiln-clogs",
+      "triangles": 592,
+      "bytes": 62424,
+      "sha256": "4d5cd675dbf8068347894a5ba593fc6ed389d06f8378b41c429edcbbe3853644"
+    }
+  ],
+  "files": [
+    {
+      "path": "browser-head-scout--1.json",
+      "bytes": 4633,
+      "sha256": "1a2f9bac4e8edc48228bf1992facc9e425d79802a57654d6bece79be7d9d60e7"
+    },
+    {
+      "path": "browser-head-scout--1.png",
+      "bytes": 271648,
+      "sha256": "7c6ce07b255fcb16ebbeadd47d90c592468e903d608bdc6da35d6bc525fb4a9e"
+    },
+    {
+      "path": "browser-head-scout-0.json",
+      "bytes": 4623,
+      "sha256": "56f9faac10b1e20618dc9314546c83254bad6f80adcd5d06303e83f816d6dcfb"
+    },
+    {
+      "path": "browser-head-scout-0.png",
+      "bytes": 273969,
+      "sha256": "043f4db5cfe98eb16607ee69b7b2bc7ed16f90ccb6fb0392e2b0f98d15322180"
+    },
+    {
+      "path": "browser-head-scout-1.json",
+      "bytes": 4623,
+      "sha256": "c58845bca7528823504626cb534a90cee7983456cbaf3abc3c3a970414f469ac"
+    },
+    {
+      "path": "browser-head-scout-1.png",
+      "bytes": 291489,
+      "sha256": "3bbe0d4501835978bdd6a5c1388fcd994c57d83f5b0bd99a4cd28c149f642283"
+    },
+    {
+      "path": "browser-head-spark--1.json",
+      "bytes": 4633,
+      "sha256": "8fed88476789dea66445149b98532c0f6d13117d2ded02b8f3598df5acd7cd1a"
+    },
+    {
+      "path": "browser-head-spark--1.png",
+      "bytes": 272945,
+      "sha256": "913ab91625b2ebc625863aae577a32294b4f41db88b662de3dd330f291b3d362"
+    },
+    {
+      "path": "browser-head-spark-0.json",
+      "bytes": 4623,
+      "sha256": "54e5c24a2c2d7723f637112902164512ca63a96cec4fc6d13fa62a6964dcc0de"
+    },
+    {
+      "path": "browser-head-spark-0.png",
+      "bytes": 275336,
+      "sha256": "198319f94b91d2eb411247e01c6742d9ea9e11a0e7e44045dd125bcbcd58748c"
+    },
+    {
+      "path": "browser-head-spark-1.json",
+      "bytes": 4623,
+      "sha256": "459902b205fa265c899823bd8fbc85a742c05d8889a24e294ba04e3de6c71cb4"
+    },
+    {
+      "path": "browser-head-spark-1.png",
+      "bytes": 293093,
+      "sha256": "56e8db6fb88fd8825f78d1471aacd34cb25fa4f444db480c4ec3c9ca38c80dbb"
+    },
+    {
+      "path": "browser-studio.png",
+      "bytes": 203439,
+      "sha256": "2deed1be958953b3216459323a12fec6de9f9e9c0f0c97e9bd1b8cd22b85d7f4"
+    }
+  ]
+}

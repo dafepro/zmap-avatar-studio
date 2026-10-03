@@ -1,0 +1,49 @@
+{
+  "id": "shirt-kiln-apron",
+  "label": "Kiln apron overshirt",
+  "slot": "shirt",
+  "rig": "athlete-reference-v2",
+  "description": "Boxy short-sleeve maker overshirt with folded lapels, integrated trapezoid apron, broad divided pocket and crossed canvas back ties. The apron stays above the thigh split.",
+  "attachments": [
+    {
+      "node": "ref2_shirt-kiln-apron__root",
+      "socket": "root"
+    }
+  ],
+  "channels": [
+    "primary",
+    "secondary",
+    "trim",
+    "accent"
+  ],
+  "tags": [
+    "kiln-workshop"
+  ],
+  "covers": [
+    "torso"
+  ],
+  "skin": {
+    "bones": [
+      "root",
+      "hips",
+      "chest",
+      "head",
+      "arm_L",
+      "forearm_L",
+      "hand_L",
+      "leg_L",
+      "shin_L",
+      "foot_L",
+      "arm_R",
+      "forearm_R",
+      "hand_R",
+      "leg_R",
+      "shin_R",
+      "foot_R"
+    ]
+  },
+  "url": "models/shirt-kiln-apron.glb",
+  "bytes": 56280,
+  "sha256": "0760fd146bde5f2174018c5fcc62fff5be4bde4c22f181f281cc81f6f67ecd0d",
+  "triangles": 438
+}

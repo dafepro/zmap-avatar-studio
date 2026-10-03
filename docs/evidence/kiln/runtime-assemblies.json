@@ -1,0 +1,158 @@
+[
+  {
+    "name": "neutral",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-pony",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-kiln-folded",
+        "shirt": "shirt-kiln-apron",
+        "bottom": "bottom-kiln-cuffed",
+        "shoes": "shoes-kiln-clogs",
+        "accessory": "acc-kiln-maker",
+        "effect": null
+      },
+      "colors": {
+        "primary": "#bd684b",
+        "secondary": "#494640",
+        "trim": "#ecdab6",
+        "accent": "#88b3a1",
+        "skin": "#cd9570",
+        "hair": "#282d2a"
+      },
+      "body": {
+        "weight": 0
+      }
+    },
+    "diagnostics": {
+      "meshes": 29,
+      "triangles": 11444,
+      "sourceTriangles": 11444,
+      "parts": 9
+    }
+  },
+  {
+    "name": "lean-wave",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-scout",
+        "face": "face-grin",
+        "hair": "hair-pony",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-kiln-folded",
+        "shirt": "shirt-kiln-apron",
+        "bottom": "bottom-kiln-cuffed",
+        "shoes": "shoes-kiln-clogs",
+        "accessory": "acc-kiln-maker",
+        "effect": null
+      },
+      "colors": {
+        "primary": "#bd684b",
+        "secondary": "#494640",
+        "trim": "#ecdab6",
+        "accent": "#88b3a1",
+        "skin": "#cd9570",
+        "hair": "#282d2a"
+      },
+      "body": {
+        "weight": -1
+      }
+    },
+    "diagnostics": {
+      "meshes": 29,
+      "triangles": 11444,
+      "sourceTriangles": 11444,
+      "parts": 9
+    }
+  },
+  {
+    "name": "broad-run",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-grin",
+        "hair": "hair-pony",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-kiln-folded",
+        "shirt": "shirt-kiln-apron",
+        "bottom": "bottom-kiln-cuffed",
+        "shoes": "shoes-kiln-clogs",
+        "accessory": "acc-kiln-maker",
+        "effect": null
+      },
+      "colors": {
+        "primary": "#bd684b",
+        "secondary": "#494640",
+        "trim": "#ecdab6",
+        "accent": "#88b3a1",
+        "skin": "#cd9570",
+        "hair": "#282d2a"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "diagnostics": {
+      "meshes": 29,
+      "triangles": 11444,
+      "sourceTriangles": 11444,
+      "parts": 9
+    }
+  },
+  {
+    "name": "broad-neutral",
+    "recipe": {
+      "version": 1,
+      "catalog": "shift-capsule",
+      "revision": "1.0.0",
+      "rig": "athlete-reference-v2",
+      "parts": {
+        "head": "head-spark",
+        "face": "face-grin",
+        "hair": "hair-pony",
+        "facialHair": null,
+        "eyewear": null,
+        "headwear": "hat-kiln-folded",
+        "shirt": "shirt-kiln-apron",
+        "bottom": "bottom-kiln-cuffed",
+        "shoes": "shoes-kiln-clogs",
+        "accessory": "acc-kiln-maker",
+        "effect": null
+      },
+      "colors": {
+        "primary": "#bd684b",
+        "secondary": "#494640",
+        "trim": "#ecdab6",
+        "accent": "#88b3a1",
+        "skin": "#cd9570",
+        "hair": "#282d2a"
+      },
+      "body": {
+        "weight": 1
+      }
+    },
+    "diagnostics": {
+      "meshes": 29,
+      "triangles": 11444,
+      "sourceTriangles": 11444,
+      "parts": 9
+    }
+  }
+]

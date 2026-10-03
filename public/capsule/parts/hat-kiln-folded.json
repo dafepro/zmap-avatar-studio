@@ -1,0 +1,45 @@
+{
+  "id": "hat-kiln-folded",
+  "label": "Kiln folded cap",
+  "slot": "headwear",
+  "rig": "athlete-reference-v2",
+  "description": "Low work cap with a folded canvas band, twin split brim and celadon maker tile. One generic crown containment field fits every original hairstyle.",
+  "attachments": [
+    {
+      "node": "ref2_hat-kiln-folded__head",
+      "socket": "head"
+    }
+  ],
+  "channels": [
+    "primary",
+    "trim",
+    "accent"
+  ],
+  "tags": [
+    "kiln-workshop"
+  ],
+  "hairFit": [
+    {
+      "targetSlot": "hair",
+      "mode": "contain",
+      "center": [
+        0,
+        0.1125,
+        -0.018
+      ],
+      "radii": [
+        0.209,
+        0.205,
+        0.216
+      ],
+      "transition": [
+        -0.015,
+        0.09
+      ]
+    }
+  ],
+  "url": "models/hat-kiln-folded.glb",
+  "bytes": 15532,
+  "sha256": "48bf57af545c5ee67221a09e5ed1baaedd68dede5c384043d63ad3763dec71bc",
+  "triangles": 164
+}
