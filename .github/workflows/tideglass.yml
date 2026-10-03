@@ -1,0 +1,45 @@
+name: Tideglass collectible set evidence
+on:
+  push:
+    branches: ["codex/asset-set-tideglass"]
+  pull_request:
+    paths:
+      - "public/capsule/**tideglass**"
+      - "public/capsule/models/*tideglass*"
+      - "public/capsule/parts/*tideglass*"
+      - "public/capsule/sets/tideglass-explorer.json"
+      - "public/capsule/looks/tideglass-explorer.shift.json"
+      - "tests/tideglass-set.test.ts"
+      - "tests/browser/tideglass-set.spec.ts"
+      - "tests/fixtures/tideglass-review.ts"
+      - "playwright.tideglass.config.ts"
+      - ".github/workflows/tideglass.yml"
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  tideglass:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/build-capsule-catalog.mjs
+      - run: node --import tsx --test tests/tideglass-set.test.ts
+      - run: npm run typecheck
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --config playwright.tideglass.config.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tideglass-actual-browser-evidence
+          path: |
+            docs/evidence/tideglass/browser-*
+            test-results/
+          retention-days: 30
