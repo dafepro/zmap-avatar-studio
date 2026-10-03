@@ -166,7 +166,7 @@ export class LookThumbnails {
   private chain: Promise<void> = Promise.resolve();
   private cache = new Map<string, string>();
   private disposed = false;
-  constructor(library: AvatarLibrary) {
+  constructor(private readonly library: AvatarLibrary) {
     this.avatar = library.create();
     this.scene.add(this.avatar.object);
     this.renderer.setSize(180, 160);
@@ -186,14 +186,15 @@ export class LookThumbnails {
       if (!isCurrent()) return undefined;
       await this.avatar.setAppearance(recipe);
       this.avatar.update(0, { reducedMotion: true });
-      const head = [
-          "head",
-          "face",
-          "hair",
-          "eyewear",
-          "headwear",
-          "accessory",
-        ].includes(slot),
+      const back =
+        this.library.catalog.assets
+          .find((asset) => asset.id === recipe.parts[slot])
+          ?.tags.includes("back-mounted") ?? false;
+      const head =
+          !back &&
+          ["head", "face", "hair", "eyewear", "headwear", "accessory"].includes(
+            slot,
+          ),
         shoes = slot === "shoes",
         bottom = slot === "bottom";
       const target = head ? 1.77 : shoes ? 0.2 : bottom ? 0.71 : 1.3,
@@ -202,7 +203,7 @@ export class LookThumbnails {
       this.camera.bottom = -half;
       this.camera.left = -half * 1.125;
       this.camera.right = half * 1.125;
-      this.camera.position.set(0.7, target + 0.08, 4);
+      this.camera.position.set(back ? -0.7 : 0.7, target + 0.08, back ? -4 : 4);
       this.camera.lookAt(0, target, 0);
       this.camera.updateProjectionMatrix();
       this.comic.update(
