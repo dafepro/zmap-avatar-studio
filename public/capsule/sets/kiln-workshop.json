@@ -1,0 +1,41 @@
+{
+  "format": "shift-collectible-set",
+  "version": 1,
+  "id": "kiln-workshop",
+  "label": "Kiln Workshop",
+  "description": "Five original ceramic-maker pieces: folded cap, apron overshirt, barrel trousers, strapped clogs and slab-lid maker case.",
+  "components": [
+    {
+      "slot": "headwear",
+      "id": "hat-kiln-folded",
+      "label": "Kiln folded cap"
+    },
+    {
+      "slot": "shirt",
+      "id": "shirt-kiln-apron",
+      "label": "Kiln apron overshirt"
+    },
+    {
+      "slot": "bottom",
+      "id": "bottom-kiln-cuffed",
+      "label": "Kiln cuffed trousers"
+    },
+    {
+      "slot": "shoes",
+      "id": "shoes-kiln-clogs",
+      "label": "Kiln strapped clogs"
+    },
+    {
+      "slot": "accessory",
+      "id": "acc-kiln-maker",
+      "label": "Kiln maker case"
+    }
+  ],
+  "palette": {
+    "primary": "#bd684b",
+    "secondary": "#494640",
+    "trim": "#ecdab6",
+    "accent": "#88b3a1"
+  },
+  "look": "../looks/kiln-workshop.shift.json"
+}

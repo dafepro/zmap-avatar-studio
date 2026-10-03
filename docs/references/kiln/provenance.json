@@ -1,0 +1,26 @@
+{
+  "kind": "original concept art; not implementation evidence",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "prompt": "Use case: stylized-concept\nAsset type: original modular collectible avatar clothing concept sheet for a 3D game\nPrimary request: design \"KILN WORKSHOP\", five coherent individually collectible costume pieces for a cheerful ceramic artist / maker\nStyle: angular expressive cel-shaded comic illustration, broad planes, decisive dark ink, playful adult human proportions, expressive graphic eyes, contemporary maker workwear, original design; not gritty, not military, not chibi or bubbly\nScene: light warm paper production sheet\nComposition: landscape, left 45 percent full-body three-quarter hero and smaller rear view; right five separated component panels labeled \"FOLDED CAP\", \"APRON OVERSHIRT\", \"CUFFED PANTS\", \"WORK CLOGS\", \"MAKER PACK\". Title \"KILN WORKSHOP\"; subtitle \"CONCEPT \u2022 5 COLLECTIBLE PIECES\"\nDesign: terracotta and ochre, off-white canvas and graphite accents, small celadon green glazed details. Low folded square work cap with a short broad split brim and a strong flat folded crown. Top: a short-sleeved boxy terracotta overshirt with off-white heavy-canvas apron built into its front, trapezoid apron ending at upper hip, one generous angular front pocket and cross-back apron straps, no long loose skirt. Bottoms: straight barrel-leg graphite work trousers with visible rolled ivory cuffs at calf and broad rectangular reinforced knees, different from sports joggers. Footwear: chunky round-square closed work clogs with broad hollow-looking heel shape and one wide instep strap; substantial dark beveled rubber sole, celadon glazed-looking small toe badge. Back accessory: compact hard-sided vertical ochre maker case with diagonal ceramic slab lid and broad cross-shaped retaining straps, two chunky capped cylinders fixed horizontally on top, no sharp tools or weapons. Raised geometrical seams/panels, no tiny clutter. Matte sturdy canvas contrasts with glossy small ceramic accents.\nConstraints: all five distinct components visible and rear view shows back accessory/strap design; practical riggable shapes around adult human skeleton; no loose cloth, no large hanging tools, no weapons, no logos, no copied characters. Concept only, not screenshot.",
+  "original": {
+    "filename": "kiln-concept.png",
+    "mimeType": "image/png",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2589754,
+    "sha256": "0906dbf4d0cee86afe62616c458d309c833bab1f1a4776e8127f76e2aa1d504f",
+    "preservation": "Original PNG preserved separately; the repository includes the same-resolution display derivative"
+  },
+  "displayDerivative": {
+    "filename": "concept.jpg",
+    "mimeType": "image/jpeg",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 301048,
+    "quality": 80,
+    "subsampling": "4:2:0",
+    "sha256": "abab6aa46b6a1879bc1e2b90917eb867548f1c74343a7a1b4097952024819eeb",
+    "changes": "Encoding only; no crop, resize, repainting or composition changes"
+  }
+}
