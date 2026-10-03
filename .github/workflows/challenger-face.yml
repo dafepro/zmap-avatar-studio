@@ -1,0 +1,45 @@
+name: Challenger face browser evidence
+on:
+  push:
+    branches: ["codex/asset-challenger-face"]
+  pull_request:
+    paths:
+      - "public/capsule/parts/face-challenger.json"
+      - "public/capsule/models/face-challenger.glb"
+      - "assets/source/face_challenger.py"
+      - "assets/textures/face-challenger.*"
+      - "tests/challenger-face.test.ts"
+      - "tests/browser/challenger-face.spec.ts"
+      - "tests/fixtures/challenger-review.ts"
+      - ".github/workflows/challenger-face.yml"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  challenger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node --import tsx --test tests/challenger-face.test.ts
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test tests/browser/challenger-face.spec.ts
+        env:
+          ZMAP_BROWSER_CHANNEL: chromium
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: challenger-browser-evidence
+          path: |
+            docs/evidence/challenger/browser-heads.png
+            docs/evidence/challenger/browser-action.png
+            docs/evidence/challenger/browser-report.json
+            test-results/
+          retention-days: 14

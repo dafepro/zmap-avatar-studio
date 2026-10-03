@@ -1,0 +1,37 @@
+{
+  "source": "Original alpha PNG pixel audit with Pillow",
+  "dimensions": [
+    1024,
+    1024
+  ],
+  "mode": "RGBA",
+  "cells": {
+    "front": {
+      "clear": 231572,
+      "opaque": 26225,
+      "antialiased": 4347
+    },
+    "leftProfile": {
+      "clear": 121478,
+      "opaque": 8409,
+      "antialiased": 1185
+    },
+    "rightProfile": {
+      "clear": 120194,
+      "opaque": 9630,
+      "antialiased": 1248
+    },
+    "unusedUpperRight": {
+      "clear": 262144,
+      "opaque": 0,
+      "antialiased": 0
+    },
+    "unusedLowerLeft": {
+      "clear": 262144,
+      "opaque": 0,
+      "antialiased": 0
+    }
+  },
+  "conceptSha256": "68adbb9a2882dec68bedc41eac939a04d8b7a5e3305477b83911cdeb06842109",
+  "textureSha256": "af05364c6636239332a7d3bf4c9f69b45d2164fcf0f432930e2175f569b9ebd8"
+}

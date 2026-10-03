@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Challenger original front and asymmetric profile expression atlas</title>
+  <desc>Original angular ink: cocked left brow, narrowed right eyelid and off-center toothy grin. Front cell is 0,0–512,512. Character left profile is 512,512–768,1024; character right is 768,512–1024,1024. Remaining pixels are clear alpha.</desc>
+  <defs>
+    <clipPath id="wide-eye"><path d="M67 206 Q111 169 157 181 L217 216 Q171 248 110 238Z"/></clipPath>
+    <clipPath id="narrow-eye"><path d="M306 214 Q359 187 443 187 L430 221 Q370 240 309 223Z"/></clipPath>
+    <g id="profile-wide">
+      <path d="M89 172 Q130 132 182 163 L197 191 Q163 218 118 207Z" fill="#f5f3e9"/>
+      <path d="M140 148 Q126 180 143 211 L171 205 Q186 178 167 154Z" fill="#333634"/>
+      <path d="M155 155 Q146 181 160 204 L178 193 176 166Z" fill="#171d21"/>
+      <path d="M143 152 L156 154 154 166 142 167Z" fill="#fffaf0"/>
+      <path d="M82 165 L99 160 Q143 129 181 153 L201 186 193 195 Q164 160 132 160 L91 181Z" fill="#1c2225"/>
+      <path d="M112 206 Q150 222 183 207 L190 199 Q148 215 114 201Z" fill="#434440"/>
+      <path d="M80 119 L121 79 188 112 193 133 130 105 84 136Z" fill="#252b2c"/>
+      <path d="M86 116 L123 83 146 96 122 91Z" fill="#52534c"/>
+    </g>
+    <g id="profile-grin">
+      <path d="M151 363 Q190 365 231 331 L239 332 235 344 Q222 380 190 391 L166 381Z" fill="#20262a"/>
+      <path d="M161 367 Q197 364 228 344 L219 364 191 377 168 376Z" fill="#f5f3e9"/>
+      <path d="M219 350 L217 362 212 364Z" fill="#9c9f98"/>
+      <path d="M153 356 L147 360 153 370 161 369Z" fill="#1c2225"/>
+      <path d="M176 402 L200 396 210 397 191 408 179 407Z" fill="#765e50" opacity=".38"/>
+    </g>
+  </defs>
+  <!-- FRONT: deliberately uneven gaze and a raised character-right brow. -->
+  <path d="M62 145 L103 93 139 105 217 155 208 166 111 119 68 159Z" fill="#252b2c"/>
+  <path d="M67 143 L104 96 130 106 105 103 80 138Z" fill="#52534c"/>
+  <path d="M300 162 L321 165 409 118 453 133 458 143 415 140 319 183 305 178Z" fill="#252b2c"/>
+  <path d="M67 206 Q111 169 157 181 L217 216 Q171 248 110 238Z" fill="#f5f3e9"/>
+  <g clip-path="url(#wide-eye)">
+    <path d="M73 197 Q140 166 215 208 L221 220 Q139 180 78 212Z" fill="#aaa99e"/>
+    <ellipse cx="143" cy="211" rx="31" ry="42" fill="#383c39"/>
+    <path d="M125 180 Q106 215 134 244 L148 248 Q116 245 111 214 L116 187Z" fill="#63645a"/>
+    <ellipse cx="151" cy="211" rx="17" ry="30" fill="#171d21"/>
+    <path d="M128 179 L143 178 143 190 130 194Z" fill="#fffaf0"/>
+  </g>
+  <path d="M56 192 L77 193 Q117 165 163 176 L214 207 223 226 213 225 Q181 195 154 194 Q111 180 72 211Z" fill="#1c2225"/>
+  <path d="M86 227 Q135 253 190 229 L210 224 199 237 Q138 255 100 241Z" fill="#3f433f"/>
+  <path d="M306 214 Q359 187 443 187 L430 221 Q370 240 309 223Z" fill="#f5f3e9"/>
+  <g clip-path="url(#narrow-eye)">
+    <path d="M307 207 Q373 181 444 184 L438 200 Q366 195 309 219Z" fill="#aaa99e"/>
+    <ellipse cx="379" cy="211" rx="29" ry="41" fill="#383c39"/>
+    <path d="M365 180 Q345 214 371 242 L383 246 Q353 245 350 213 L353 189Z" fill="#63645a"/>
+    <ellipse cx="385" cy="211" rx="16" ry="29" fill="#171d21"/>
+    <path d="M364 184 L377 182 377 194 365 196Z" fill="#fffaf0"/>
+  </g>
+  <path d="M298 216 L318 199 Q364 183 433 182 L452 171 447 190 436 200 Q367 192 315 221 L305 227Z" fill="#1c2225"/>
+  <path d="M316 225 Q371 244 430 218 L437 211 433 225 Q375 251 320 232Z" fill="#3f433f"/>
+  <!-- Small tapered crease strokes remain paint, not extra facial geometry. -->
+  <path d="M209 174 L222 184 230 206 224 197Z M296 178 L285 193 282 208 291 194Z" fill="#605247" opacity=".55"/>
+  <path d="M243 293 L257 303 281 291 286 300 261 314 244 307 232 304 229 299Z" fill="#4b433c" opacity=".66"/>
+  <path d="M246 300 L258 305 275 298 261 301Z" fill="#242b2a" opacity=".6"/>
+  <path d="M151 371 Q207 379 266 357 L347 328 358 333 Q343 368 307 389 Q243 419 178 391Z" fill="#20262a"/>
+  <path d="M171 378 Q231 379 289 355 L341 339 325 364 Q260 397 191 386Z" fill="#f5f3e9"/>
+  <path d="M327 346 L322 362 316 365 319 350Z" fill="#9c9f98"/>
+  <path d="M184 382 L196 383 202 391 195 390Z" fill="#9c9f98"/>
+  <path d="M144 363 L140 369 148 378 165 379 161 373Z M345 323 L356 325 363 334 359 341 353 334 341 331Z" fill="#1c2225"/>
+  <path d="M213 422 L251 416 282 413 274 422 237 430 217 429Z" fill="#765e50" opacity=".38"/>
+  <!-- Character left: narrowed near eye and upward grin corner. -->
+  <g transform="translate(512 512)">
+    <path d="M89 176 Q145 150 194 158 L191 189 Q146 211 97 197Z" fill="#f5f3e9"/>
+    <path d="M144 159 Q132 181 145 205 L168 199 Q177 180 165 158Z" fill="#333634"/>
+    <path d="M152 164 Q147 181 158 199 L173 189 169 166Z" fill="#171d21"/>
+    <path d="M140 160 L151 160 151 172 142 173Z" fill="#fffaf0"/>
+    <path d="M83 170 L97 168 Q143 147 191 149 L205 141 200 163 Q144 159 93 184Z" fill="#1c2225"/>
+    <path d="M100 196 Q145 213 190 189 L191 198 Q148 218 104 202Z" fill="#434440"/>
+    <path d="M82 132 L101 132 166 107 194 115 199 130 169 125 95 150Z" fill="#252b2c"/>
+    <use href="#profile-grin" transform="translate(24 48) scale(.85 1)"/>
+  </g>
+  <!-- Character right: wide near eye and the higher raised brow. -->
+  <g transform="translate(768 512)"><use href="#profile-wide"/><use href="#profile-grin" transform="translate(24 55) scale(.85 .98)"/></g>
+</svg>
